@@ -390,6 +390,7 @@ h3 {
   text-align: center;
   background-color: wheat;
   padding: 50px 0;
+  margin-top: 20px;
 }
 
 .services .box {
@@ -880,6 +881,7 @@ iframe {
   .branding {
     position: relative;
     z-index: 1;
+    margin: 80px 0;
   }
 
   .wrapperOne {
