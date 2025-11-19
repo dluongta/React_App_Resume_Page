@@ -1238,32 +1238,18 @@ marquee {
   content: "";
   position: absolute;
   z-index: 1;
-  top: -20px;
-  left: -20px;
-  right: -20px;
-  bottom: -20px;
-
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
   background: rgba(2, 179, 255, 0.25);
-  border-radius: 12px;
-  animation: rectPulse 2.7s linear infinite;
+  animation: rectPulse 2.8s linear infinite;
   opacity: 0;
-
   pointer-events: none;
 }
 
 .btn-pulse-wrapper::after {
   animation-delay: 1.35s;
-}
-
-@keyframes rectPulse {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.4;
-  }
-  100% {
-    transform: scale(1.25);
-    opacity: 0;
-  }
 }
 
 .btn-pulse-wrapper {
@@ -1274,13 +1260,12 @@ marquee {
 .btn-pulse-wrapper::before {
   content: "";
   position: absolute;
-  top: -20px;
-  left: -20px;
-  right: -20px;
-  bottom: -20px;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
   background: rgba(2, 179, 255, 0.25);
-  border-radius: 12px;
-  animation: rectPulse 2.7s linear infinite;
+  animation: rectPulse 2.8s linear infinite;
   opacity: 0;
   z-index: 1;
   pointer-events: none;
@@ -1289,13 +1274,12 @@ marquee {
 .btn-pulse-wrapper::after {
   content: "";
   position: absolute;
-  top: -20px;
-  left: -20px;
-  right: -20px;
-  bottom: -20px;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
   background: rgba(2, 179, 255, 0.25);
-  border-radius: 12px;
-  animation: rectPulse 2.7s linear infinite;
+  animation: rectPulse 2.8s linear infinite;
   animation-delay: 0.9s;
   opacity: 0;
   z-index: 1;
@@ -1305,13 +1289,12 @@ marquee {
 .pulse-third {
   content: "";
   position: absolute;
-  top: -20px;
-  left: -20px;
-  right: -20px;
-  bottom: -20px;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
   background: rgba(2, 179, 255, 0.25);
-  border-radius: 12px;
-  animation: rectPulse 2.7s linear infinite;
+  animation: rectPulse 2.8s linear infinite;
   animation-delay: 1.8s;
   opacity: 0;
   z-index: 1;
@@ -1321,11 +1304,11 @@ marquee {
 
 @keyframes rectPulse {
   0% {
-    transform: scale(0.85);
+    transform: scale(0.89);
     opacity: 0.45;
   }
   100% {
-    transform: scale(1.35);
+    transform: scale(1.6);
     opacity: 0;
   }
 }
