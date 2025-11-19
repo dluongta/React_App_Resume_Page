@@ -11,23 +11,23 @@ export const Home = ({ className }) => {
   const [isTransitioning, setIsTransitioning] = useState(true);
 
   useEffect(() => {
-  const interval = setInterval(() => {
-    if (currentLineIndex === toRotate.length - 1) {
-      setIsTransitioning(false);
-      setCurrentLineIndex(0);
+    const interval = setInterval(() => {
+      if (currentLineIndex === toRotate.length - 1) {
+        setIsTransitioning(false);
+        setCurrentLineIndex(0);
 
-      setTimeout(() => {
+        setTimeout(() => {
+          setIsTransitioning(true);
+          setCurrentLineIndex(1);
+        }, 20);
+      } else {
         setIsTransitioning(true);
-        setCurrentLineIndex(1);
-      }, 20);
-    } else {
-      setIsTransitioning(true);
-      setCurrentLineIndex((prevIndex) => prevIndex + 1);
-    }
-  }, 3000);
+        setCurrentLineIndex((prevIndex) => prevIndex + 1);
+      }
+    }, 3000);
 
-  return () => clearInterval(interval);
-}, [currentLineIndex, toRotate]);
+    return () => clearInterval(interval);
+  }, [currentLineIndex, toRotate]);
 
 
 
@@ -142,13 +142,17 @@ export const Home = ({ className }) => {
                 Resume Viewer Page
               </Link>
             </p>
-            <button className="primary-btn btn-led">
-              Contact Me
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
+            <div className="btn-pulse-wrapper">
+              <span className="pulse-third"></span>
+              <button className="primary-btn btn-led">
+                Contact Me
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+
           </div>
         </div>
       </section>

@@ -1228,6 +1228,109 @@ marquee {
   }
 }
 
+.btn-pulse-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-pulse-wrapper::before,
+.btn-pulse-wrapper::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+
+  background: rgba(2, 179, 255, 0.25);
+  border-radius: 12px;
+  animation: rectPulse 2.7s linear infinite;
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+.btn-pulse-wrapper::after {
+  animation-delay: 1.35s;
+}
+
+@keyframes rectPulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+.btn-pulse-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-pulse-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: rgba(2, 179, 255, 0.25);
+  border-radius: 12px;
+  animation: rectPulse 2.7s linear infinite;
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.btn-pulse-wrapper::after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: rgba(2, 179, 255, 0.25);
+  border-radius: 12px;
+  animation: rectPulse 2.7s linear infinite;
+  animation-delay: 0.9s; /* lệch sóng */
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.pulse-third {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: rgba(2, 179, 255, 0.25);
+  border-radius: 12px;
+  animation: rectPulse 2.7s linear infinite;
+  animation-delay: 1.8s; /* lệch tiếp */
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+@keyframes rectPulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.45;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+
 
 .timeline-section {
   padding: 60px 0;

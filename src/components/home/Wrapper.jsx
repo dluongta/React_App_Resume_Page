@@ -17,13 +17,17 @@ export const Wrapper = ({ className }) => {
               <h3>{val.title}</h3>
               <h2>{val.heading}</h2>
               <p>{val.desc}</p>
-              <button className="primary-btn btn-led">
-                Contact Me
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </button>
+              <div className="btn-pulse-wrapper">
+                <span className="pulse-third"></span>
+                <button className="primary-btn btn-led">
+                  Contact Me
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </button>
+              </div>
+
             </div>
           )
         }

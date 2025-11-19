@@ -50,7 +50,7 @@ export const Skill = ({ className }) => {
                             }
                             return prev + 1;
                         });
-                    }, 10); 
+                    }, 10);
                 }
             }
         }, [inView, done]);
@@ -95,13 +95,17 @@ export const Skill = ({ className }) => {
                                 <h1>{val.title}</h1>
                                 <p>{val.para}</p>
                                 <p>{val.para1}</p>
-                                <button className="primary-btn btn-led">
-                                    Contact Me
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </button>
+                                <div className="btn-pulse-wrapper">
+                                    <span className="pulse-third"></span>
+                                    <button className="primary-btn btn-led">
+                                        Contact Me
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </button>
+                                </div>
+
                             </div>
                         ))}
                     </div>

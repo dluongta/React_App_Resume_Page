@@ -24,13 +24,17 @@ export const About = ({ className }) => {
                                         <h1>{value.title}</h1>
                                     </div>
                                     <p>{value.desc}</p>
-                                    <button className="primary-btn btn-led">
-                                        Learn About Me
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </button>
+                                    <div className="btn-pulse-wrapper">
+                                        <span className="pulse-third"></span>
+                                        <button className="primary-btn btn-led">
+                                            Contact Me
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </button>
+                                    </div>
+
                                 </div>
                                 <div className="right">
                                     <div className="img">
