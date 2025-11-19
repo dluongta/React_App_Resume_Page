@@ -1296,7 +1296,7 @@ marquee {
   background: rgba(2, 179, 255, 0.25);
   border-radius: 12px;
   animation: rectPulse 2.7s linear infinite;
-  animation-delay: 0.9s; /* lệch sóng */
+  animation-delay: 0.9s;
   opacity: 0;
   z-index: 1;
   pointer-events: none;
@@ -1312,7 +1312,7 @@ marquee {
   background: rgba(2, 179, 255, 0.25);
   border-radius: 12px;
   animation: rectPulse 2.7s linear infinite;
-  animation-delay: 1.8s; /* lệch tiếp */
+  animation-delay: 1.8s;
   opacity: 0;
   z-index: 1;
   pointer-events: none;
