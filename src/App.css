@@ -962,7 +962,7 @@ iframe {
   }
 
   .home {
-    margin-top: 80px!important;
+    margin-top: 108 px!important;
   }
   .headline h1{
     margin: 0 auto;  
@@ -1649,6 +1649,9 @@ footer .socialIcon {
 
   .nav-links-sidebar li.active-link a {
     color: white;
+  }
+  .content-wrapper {
+    margin-bottom: 30px!important;
   }
 }
 
