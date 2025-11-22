@@ -2032,6 +2032,28 @@ footer a:hover {
   z-index: 9999;
 }
 
+.single-column {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.content-wrapper {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.headline {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;       
+  justify-content: center;  
+}
+
 
 
 
