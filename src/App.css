@@ -168,8 +168,10 @@ header.active {
 }
 
 .home {
-  height: 40em;
-  margin-top: 200px;
+  margin-top: 85px!important;
+}
+.content-wrapper p:last-of-type {
+  margin-bottom: 40px;
 }
 
 .home .img {
@@ -683,10 +685,6 @@ footer .fa-github:hover {
     width: 100%;
   }
 
-  .home {
-    margin-top: -20px;
-  }
-
   .home .img {
     width: 100%;
     height: 100%;
@@ -896,12 +894,6 @@ iframe {
 }
 
 @media screen and (max-width: 768px) {
-  .home {
-    padding: 0;
-    margin: 0;
-    height: auto;
-    position: relative;
-  }
 
   .home img {
     width: 100%;
@@ -964,23 +956,16 @@ iframe {
   line-clamp: 2;
 }
 
-.home .math-image {
-  width: 250px;
-  margin-left: -145px;
-  margin-top: 650px;
-}
-
-.home {
-  margin-top: 200px;
-}
-
 @media (max-width: 768px) {
   .right {
     margin-bottom: -100px;
   }
 
   .home {
-    margin-bottom: 160px;
+    margin-top: 80px!important;
+  }
+  .headline h1{
+    margin: 0 auto;  
   }
 }
 
@@ -1494,8 +1479,8 @@ marquee {
   -webkit-text-fill-color: transparent;
   display: inline-block;
   white-space: nowrap;
-  text-align: left;
-  margin: 0;
+  text-align: center;
+  margin: 0 auto;
   padding: 0;
 }
 
@@ -1507,7 +1492,7 @@ marquee {
 
   .gradientTextStyle {
     padding: 0 !important;
-    margin: 0 !important;
+    margin: 0 auto!important;
     text-align: left !important;
   }
 }
@@ -1595,10 +1580,6 @@ footer .socialIcon {
     margin-left: 10px !important;
   }
 
-  .home {
-    padding-top: 0px !important;
-    margin-top: 0px !important;
-  }
 }
 
 .nav-links li,

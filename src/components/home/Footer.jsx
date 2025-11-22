@@ -92,7 +92,7 @@ export const Footer = () => {
 
       <div className="legal container">
         <p>Copyright <span className="blue">&copy;<span id="currentYear"></span></span>. All rights reserved.</p>
-        <span className="author">Made with <span className="heartbeat">❤️‍🔥</span> by <span className="blue">Dinh Luong Ta</span></span>
+        <span className="author">Made with <span className="heartbeat">❤️</span> by <span className="blue">Dinh Luong Ta</span></span>
       </div>
     </footer>
   );
