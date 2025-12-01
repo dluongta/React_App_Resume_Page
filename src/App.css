@@ -1259,7 +1259,7 @@ marquee {
 
 :root {
   --line-length: 60px; 
-  --line-length-x: 200px; /* dài cho top/bottom */
+  --line-length-x: 240px; /* dài cho top/bottom */
   --line-length-y: 180px;  /* dài cho left/right */
 }
 
@@ -1326,13 +1326,13 @@ marquee {
 
 /* ===== ANIMATIONS ===== */
 @keyframes moveTop {
-  0% { left: -200px; }
-  100% { left: calc(100% + 200px); }
+  0% { left: -240px; }
+  100% { left: calc(100% + 240px); }
 }
 
 @keyframes moveBottom {
-  0% { right: -200px; }
-  100% { right: calc(100% + 200px); }
+  0% { right: -240px; }
+  100% { right: calc(100% + 240px); }
 }
 
 @keyframes moveRight {
