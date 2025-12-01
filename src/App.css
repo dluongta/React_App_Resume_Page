@@ -1260,7 +1260,7 @@ marquee {
 :root {
   --line-length: 60px; 
   --line-length-x: 200px; /* dài cho top/bottom */
-  --line-length-y: 60px;  /* dài cho left/right */
+  --line-length-y: 180px;  /* dài cho left/right */
 }
 
 /* ===== LINE 1 ===== */
@@ -1336,13 +1336,13 @@ marquee {
 }
 
 @keyframes moveRight {
-  0% { top: -60px; }
-  100% { top: calc(100% + 60px); }
+  0% { top: -180px; }
+  100% { top: calc(100% + 180px); }
 }
 
 @keyframes moveLeft {
-  0% { bottom: -60px; }
-  100% { bottom: calc(100% + 60px); }
+  0% { bottom: -180px; }
+  100% { bottom: calc(100% + 180px); }
 }
 
 .btn-pulse-wrapper {
