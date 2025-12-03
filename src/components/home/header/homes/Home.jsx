@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import headerImg from '../../../../assets/main.png';
 import introBackground from '../../../../assets/IntroBackground.mp4';
-import outputEffect from '../../../../assets/output.mp4';
-import outputImage from '../../../../assets/output.gif';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
