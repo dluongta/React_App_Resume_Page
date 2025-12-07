@@ -1787,7 +1787,7 @@ footer .socialIcon {
 }
 
 .nav-links-sidebar li.active-link a:hover {
-  background-color: orangered;
+  background-color: #036fe2;
   color: #fff;
   border-radius: 0;
 }
@@ -1888,7 +1888,7 @@ section.contact {
 }
 
 .nav-links li:not(.icon):hover::before {
-  background: orangered;
+  background: #036fe2;
   left: 0;
 }
 
@@ -1897,7 +1897,7 @@ section.contact {
 }
 
 .nav-links-sidebar li:hover {
-  background-color: orangered;
+  background-color: #036fe2;
 }
 
 .nav-links-sidebar li:hover a {
