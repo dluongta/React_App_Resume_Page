@@ -48,8 +48,6 @@ export const Branding = ({ className }) => {
 
       <img width={'100%'} src={logo} alt="Logo" />
       <iframe className="custom-iframe" src="/pages/particle-text.html" title="Particle Text Canvas"></iframe>
-      <iframe className="custom-iframe" src="/pages/3d-model.html" title="3D Model"></iframe>
-      <iframe className="custom-iframe" src="/pages/globe.html" title="3D Globe"></iframe>
       <CustomVideoPlayer src={bgVideo} captionSrc={caption} />
       <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />
       <CustomVideoPlayer src={lumindAnimationVideo} captionSrc={lumind_animation_text} />
