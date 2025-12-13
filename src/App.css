@@ -89,7 +89,7 @@ header.active {
   position: sticky;
   top: 0;
   left: 0;
-  background-color: alicelinear-gradient(135deg, #6a00ff, #8e0e00);
+  background-color: aliceblue;
   box-shadow: 0 2px 28px 0 black;
   width: 100%;
   z-index: 10;
@@ -122,7 +122,7 @@ header.active {
   .nav-links-sidebar {
     position: absolute;
     display: block;
-    background-color: alicelinear-gradient(135deg, #6a00ff, #8e0e00);
+    background-color: aliceblue;
     left: 50px;
     top: 75px;
     transition: 0.5s;
@@ -425,7 +425,7 @@ h3 {
 }
 
 .services .text {
-  background-color: alicelinear-gradient(135deg, #6a00ff, #8e0e00);
+  background-color: aliceblue;
   box-shadow: 0 5px 20px 0 black;
   padding: 30px;
   margin: 20px;
@@ -760,7 +760,7 @@ footer .fa-github:hover {
 }
 
 .pages .card {
-  background-color: alicelinear-gradient(135deg, #6a00ff, #8e0e00);
+  background-color: aliceblue;
   padding: 10px;
   margin-bottom: 15px;
   width: 90%;
