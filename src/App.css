@@ -341,7 +341,7 @@ p {
 
 .branding h1 {
   font-size: 40px;
-  color:  linear-gradient(135deg, #0a3cff, #6a00ff);
+  color:  linear-gradient(135deg, #406cfc, #8001ef);
   margin-right: 20px;
 }
 
@@ -1786,7 +1786,7 @@ footer .socialIcon {
 }
 
 .nav-links-sidebar li.active-link a:hover {
-  background-color:  linear-gradient(135deg, #0a3cff, #6a00ff);
+  background-color:  linear-gradient(135deg, #406cfc, #8001ef);
   color: #fff;
   border-radius: 0;
 }
@@ -1885,7 +1885,7 @@ section.contact {
 }
 
 .nav-links li:not(.icon):hover::before {
-  background:  linear-gradient(135deg, #0a3cff, #6a00ff);
+  background:  linear-gradient(135deg, #406cfc, #8001ef);
   left: 0;
 }
 
@@ -1894,7 +1894,7 @@ section.contact {
 }
 
 .nav-links-sidebar li:hover {
-  background-color:  linear-gradient(135deg, #0a3cff, #6a00ff);
+  background-color:  linear-gradient(135deg, #406cfc, #8001ef);
 }
 
 .nav-links-sidebar li:hover a {
@@ -2150,7 +2150,7 @@ footer a:hover {
 @media (max-width: 768px) {
 
   .nav-links-sidebar li:hover {
-    background:  linear-gradient(135deg, #0a3cff, #6a00ff);
+    background:  linear-gradient(135deg, #406cfc, #8001ef);
     border-radius: 6px;
   }
 
