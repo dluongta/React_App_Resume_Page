@@ -130,12 +130,18 @@ export const Home = ({ className }) => {
 
             <p>
               I am Dinh Luong Ta. I am a programmer skilled at Web Development,
-              Android Development. I am also learning Artificial Intelligence and Hardware.
+              Android Development.
+            </p>
+            <p>
+              I am also learning Artificial Intelligence and Hardware.
               I am extremely fascinated by science and technology.
+            </p>
+            <p> 
+              All of my products are ULTRAMIND generation made by DLUONGTA.
             </p>
 
             <p>
-              My Resume:{" "}
+              My Resume:
               <Link to={{ pathname: '/Resume.pdf' }} target="_blank" className="blue">
                 Resume Viewer Page
               </Link>
