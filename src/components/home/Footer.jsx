@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import logo_brand from '../../assets/luen-1.jpg';
 import { Link } from 'react-router-dom';
 import './Footer.css';
+import BoltIcon from '@mui/icons-material/Bolt';
+
 
 export const Footer = () => {
   useEffect(() => {
@@ -92,7 +94,7 @@ export const Footer = () => {
 
       <div className="legal container">
         <p>Copyright <span className="blue">&copy;<span id="currentYear"></span></span>. All rights reserved.</p>
-        <span className="author">Made with <span className="heartbeat">🔥</span> AND <span className="heartbeat">⚡</span> by <span className="blue">Dinh Luong Ta</span></span>
+        <span className="author">Made with <span className="heartbeat"><BoltIcon color="warning"/></span> by <span className="blue">Dinh Luong Ta</span></span>
       </div>
     </footer>
   );
