@@ -947,12 +947,10 @@ iframe {
 .card h1 {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
+  -webkit-line-clamp: unset;
   text-overflow: ellipsis;
   line-height: 1.5;
-  max-height: 3em;
-  line-clamp: 2;
+  line-clamp: unset;
 }
 
 @media (max-width: 768px) {
@@ -2164,7 +2162,20 @@ footer a:hover {
   }
 }
 
+.card {
+  min-height: 50svh!important;
+  display: flex!important;
+  flex-direction: column!important;
+  padding-bottom: 60px!important;
 
+
+}
+
+.card-content {
+  flex-grow: 1!important;
+    min-height: 50svh!important;
+
+}
 
 
 
