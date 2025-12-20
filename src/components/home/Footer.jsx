@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import logo_brand from '../../assets/luen.jpg';
+import logo_brand from '../../assets/luen-1.jpg';
 import { Link } from 'react-router-dom';
 import './Footer.css';
 
