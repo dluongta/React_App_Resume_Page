@@ -163,6 +163,16 @@ export const Portfolio = () => {
       id: "32",
       link: "https://github.com/luen2003/SpaceShooter/releases/download/v1.0.0/app-release.apk",
       linkName: "Space Shooter Mobile Game",
+    },
+    {
+      id: "33",
+      link: "https://dluongta.github.io/image_editor/index.html",
+      linkName: "Image Editor",
+    },
+    {
+      id: "34",
+      link: "https://dluongta.github.io/particles_hand_control.html",
+      linkName: "Particle Hand Control",
     }
   ];
   return (

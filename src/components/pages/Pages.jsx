@@ -133,6 +133,16 @@ export const Pages = () => {
       id: "26",
       link: "https://deeptankio.onrender.com/",
       linkName: "DeepTankIO",
+    },
+    {
+      id: "27",
+      link: "https://dluongta.github.io/image_editor/index.html",
+      linkName: "Image Editor",
+    },
+    {
+      id: "28",
+      link: "https://dluongta.github.io/particles_hand_control.html",
+      linkName: "Particle Hand Control",
     }
   ]
   return (
