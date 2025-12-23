@@ -13,7 +13,7 @@ export default function ParticleTextCanvas() {
   const seqIndexRef = useRef(0);
   const useAccentRef = useRef(false); 
   
-  const [accentLabel, setAccentLabel] = useState("TẮT");
+  const [accentLabel, setAccentLabel] = useState("BẬT");
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -344,7 +344,7 @@ export default function ParticleTextCanvas() {
 
   const handleToggleAccent = () => {
     useAccentRef.current = !useAccentRef.current;
-    setAccentLabel(useAccentRef.current ? "BẬT" : "TẮT");
+    setAccentLabel(useAccentRef.current ? "TẮT" : "BẬT");
     handleRestart(); 
   };
 
