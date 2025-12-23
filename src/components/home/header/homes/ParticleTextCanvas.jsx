@@ -3,26 +3,22 @@ import styles from "./ParticleTextCanvas.module.css";
 
 export default function ParticleTextCanvas() {
   const canvasRef = useRef(null);
-  // Refs to manage animation state without triggering re-renders
   const particlesRef = useRef([]);
   const particlePoolRef = useRef([]);
   const rafRef = useRef(null);
   const timeoutRef = useRef(null);
   const resizeTimeoutRef = useRef(null);
   
-  // Logic state stored in refs to be accessible inside the closure of useEffect
   const sequenceRef = useRef([]);
   const seqIndexRef = useRef(0);
-  const useAccentRef = useRef(false); // Ref for animation logic reading
+  const useAccentRef = useRef(false); 
   
-  // UI state for button label
   const [accentLabel, setAccentLabel] = useState("TẮT");
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d", { alpha: true });
 
-    /* ===== CONFIG FROM HTML ===== */
     const particleSize = 2.2;
     const sampleGap = 6;
     const formDuration = 900;
@@ -36,15 +32,12 @@ export default function ParticleTextCanvas() {
     let DPR = window.devicePixelRatio || 1;
     let lastTime = performance.now();
 
-    // Offscreen canvas for text analysis
     const off = document.createElement("canvas");
     const offCtx = off.getContext("2d");
 
-    /* ===== HELPER FUNCTIONS ===== */
     const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
     const lerp = (a, b, t) => a + (b - a) * t;
 
-    /* ===== PARTICLE CLASS ===== */
     class Particle {
       constructor(x = 0, y = 0) {
         this.init(x, y);
@@ -59,8 +52,7 @@ export default function ParticleTextCanvas() {
         this.ty = y;
         this.life = 1;
         this.size = particleSize;
-        this.phase = 0; // 0: moving to target, 1: exploded, 2: idle
-        this.startTime = 0;
+        this.phase = 0; 
         this.startX = x;
         this.startY = y;
         this.duration = formDuration;
@@ -76,7 +68,6 @@ export default function ParticleTextCanvas() {
         this.ty = targetY;
         this.startTime = now;
         this.duration = dur;
-        // Subtle color variation
         const hue = 200 + Math.random() * 140;
         this.color = `hsla(${hue}, 85%, ${45 + Math.random() * 10}%, 1)`;
       }
@@ -100,25 +91,21 @@ export default function ParticleTextCanvas() {
           this.y = lerp(this.startY, this.ty, e);
           this.alpha = 0.95;
           if (t >= 1) {
-            this.phase = 2; // Arrived
+            this.phase = 2; 
           }
         } else if (this.phase === 1) {
-          // Ballistic with damping
-          this.vy += 0.06 * (1 + Math.random() * 0.5); // gravity
+          this.vy += 0.06 * (1 + Math.random() * 0.5);
           this.x += this.vx;
           this.y += this.vy;
-          // Fade out slowly
           const t = Math.min(1, (now - this.startTime) / this.duration);
           this.alpha = 1 - t;
           if (t >= 1) this.alpha = 0;
         } else {
-          // Idle slight float
           this.y += Math.sin(now / 800 + this.x * 0.001) * 0.02;
         }
       }
     }
 
-    /* ===== CORE LOGIC ===== */
 
     function createOrReuseParticle(x, y) {
       let p;
@@ -163,7 +150,6 @@ export default function ParticleTextCanvas() {
           const idx = (y * off.width + x) * 4;
           const alpha = data[idx + 3];
           if (alpha > 120) {
-            // Center in main canvas
             const tx = (x - off.width / 2) + (canvas.width / DPR) / 2;
             const ty = (y - off.height / 2) + (canvas.height / DPR) / 2;
             targets.push({ x: tx, y: ty });
@@ -193,7 +179,6 @@ export default function ParticleTextCanvas() {
     function assignToTargets(targets, now) {
       const particles = particlesRef.current;
       
-      // Create extras if needed
       if (particles.length < targets.length) {
         const need = targets.length - particles.length;
         for (let i = 0; i < need; i++) {
@@ -203,19 +188,16 @@ export default function ParticleTextCanvas() {
         }
       }
 
-      // Sort by distance to center for natural movement
       const cx = (canvas.width / DPR) / 2;
       const cy = (canvas.height / DPR) / 2;
       particles.sort((a, b) => Math.hypot(a.x - cx, a.y - cy) - Math.hypot(b.x - cx, b.y - cy));
 
-      // Assign to targets
       for (let i = 0; i < targets.length; i++) {
         const t = targets[i];
         const p = particles[i];
         p.to(t.x + (Math.random() - 0.5) * 0.6, t.y + (Math.random() - 0.5) * 0.6, now, formDuration + Math.random() * 200);
       }
 
-      // Extras go to edges
       for (let i = targets.length; i < particles.length; i++) {
         const p = particles[i];
         const edgeX = Math.random() < 0.5 ? -30 : (canvas.width / DPR) + 30;
@@ -238,15 +220,12 @@ export default function ParticleTextCanvas() {
 
       clearTimeout(timeoutRef.current);
       
-      // Hold
       timeoutRef.current = setTimeout(() => {
         explodeAll(performance.now());
         
-        // Next
         timeoutRef.current = setTimeout(() => {
           seqIndexRef.current++;
           if (seqIndexRef.current >= sequence.length) {
-            // Loop logic
             timeoutRef.current = setTimeout(() => {
               seqIndexRef.current = 0;
               runNextStage();
@@ -261,7 +240,6 @@ export default function ParticleTextCanvas() {
     function drawBackground(ctx) {
         const w = canvas.width / DPR;
         const h = canvas.height / DPR;
-        // Replicate the gradient from HTML source logic
         const g = ctx.createRadialGradient(w * 0.5, h * 0.4, Math.min(w, h) * 0.1, w * 0.5, h * 0.4, Math.max(w, h) * 0.9);
         g.addColorStop(0, 'rgba(20,12,40,0.85)');
         g.addColorStop(0.5, 'rgba(10,6,20,0.7)');
@@ -274,18 +252,15 @@ export default function ParticleTextCanvas() {
       const dt = now - lastTime;
       lastTime = now;
       
-      // Canvas clear
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       drawBackground(ctx);
 
       const particles = particlesRef.current;
 
-      // Update
       for (let i = 0; i < particles.length; i++) {
         particles[i].update(dt, now);
       }
 
-      // Draw Glow
       ctx.save();
       ctx.globalCompositeOperation = "lighter";
       for (let i = 0; i < particles.length; i++) {
@@ -298,7 +273,6 @@ export default function ParticleTextCanvas() {
         ctx.fill();
       }
 
-      // Draw Core
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         if (p.alpha <= 0) continue;
@@ -313,14 +287,11 @@ export default function ParticleTextCanvas() {
       rafRef.current = requestAnimationFrame(render);
     }
 
-    /* ===== INIT & EVENTS ===== */
     
-    // START FUNCTION (Exposed to be called by buttons)
     const startSequence = () => {
         buildSequence();
         const maxCount = Math.max(...sequenceRef.current.map(a => a.length));
         
-        // If restarting, recycle current particles
         if (particlesRef.current.length > 0) {
             particlePoolRef.current.push(...particlesRef.current);
             particlesRef.current = [];
@@ -331,7 +302,6 @@ export default function ParticleTextCanvas() {
         runNextStage();
     };
 
-    // Resize Handler
     const handleResize = () => {
       DPR = window.devicePixelRatio || 1;
       canvas.width = Math.floor(window.innerWidth * DPR);
@@ -350,16 +320,11 @@ export default function ParticleTextCanvas() {
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // Initial size set
+    handleResize(); 
     
-    // Start loop
     startSequence();
     rafRef.current = requestAnimationFrame(render);
 
-    // Attach control function to ref for external access if needed, 
-    // but here we use refs inside useEffect, so we need a way to trigger from outside.
-    // We will attach a custom event listener or just use the refs if we keep logic inside.
-    // Better approach: Assign startSequence to a mutable ref that the button handler can call.
     canvasRef.current.__startSequence = startSequence;
 
     return () => {
@@ -368,9 +333,8 @@ export default function ParticleTextCanvas() {
       clearTimeout(timeoutRef.current);
       clearTimeout(resizeTimeoutRef.current);
     };
-  }, []); // Run once on mount
+  }, []); 
 
-  // Handlers
   const handleRestart = () => {
     clearTimeout(timeoutRef.current);
     if (canvasRef.current && canvasRef.current.__startSequence) {
@@ -381,7 +345,7 @@ export default function ParticleTextCanvas() {
   const handleToggleAccent = () => {
     useAccentRef.current = !useAccentRef.current;
     setAccentLabel(useAccentRef.current ? "BẬT" : "TẮT");
-    handleRestart(); // Restart to apply new text
+    handleRestart(); 
   };
 
   return (
