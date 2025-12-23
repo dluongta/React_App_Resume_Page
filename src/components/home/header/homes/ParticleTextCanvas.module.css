@@ -7,6 +7,7 @@
   background: radial-gradient(circle at 20% 20%, #111022 0%, #0d0b1a 35%, #07050a 100%);
   font-family: "Segoe UI", "Roboto", Arial, sans-serif;
   color: #fff;
+  margin-top: 30px;
 }
 
 canvas {
