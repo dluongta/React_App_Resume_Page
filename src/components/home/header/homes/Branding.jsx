@@ -8,6 +8,8 @@ import caption_logo from '../../../../assets/caption_logo.vtt';
 import bgLogoVideo from '../../../../assets/lumind_logo.mp4';
 import lumind_animation_text from '../../../../assets/lumind_animation.vtt';
 import lumindAnimationVideo from '../../../../assets/lumind_animation.mp4';
+import ParticleTextCanvas from "./ParticleTextCanvas";
+
 export const Branding = ({ className }) => {
   const data = [
     {
@@ -47,7 +49,7 @@ export const Branding = ({ className }) => {
       </section>
 
       <img width={'100%'} src={logo} alt="Logo" />
-      <iframe className="custom-iframe" src="/pages/particle-text.html" title="Particle Text Canvas"></iframe>
+      <ParticleTextCanvas />
       <CustomVideoPlayer src={bgVideo} captionSrc={caption} />
       <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />
       <CustomVideoPlayer src={lumindAnimationVideo} captionSrc={lumind_animation_text} />
