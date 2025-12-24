@@ -143,6 +143,11 @@ export const Pages = () => {
       id: "28",
       link: "https://dluongta.github.io/particles_hand_control.html",
       linkName: "Particle Hand Control",
+    },
+    {
+      id: "29",
+      link: "https://dluongta.github.io/galaxy_love.html",
+      linkName: "Galaxy Love",
     }
   ]
   return (
