@@ -178,6 +178,11 @@ export const Portfolio = () => {
       id: "35",
       link: "https://dluongta.github.io/galaxy_love.html",
       linkName: "Galaxy Love",
+    },
+    {
+      id: "36",
+      link: "https://dluongta.github.io/upload_avatar.html",
+      linkName: "Upload Avatar",
     }
   ];
   return (
