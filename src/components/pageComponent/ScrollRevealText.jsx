@@ -17,7 +17,7 @@ export const ScrollRevealText = () => {
        * - start: khi section chạm top viewport
        * - end: khi section đi hết sticky
        */
-      const start = rect.top - 40;
+      const start = rect.top - 20;
       const end = rect.bottom - vh + 180;
 
       let progress = (0 - start) / (end - start);
