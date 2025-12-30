@@ -17,11 +17,11 @@ export const ScrollRevealText = () => {
        * - start: khi section chạm top viewport
        * - end: khi section đi hết sticky
        */
-      const start = rect.top;
-      const end = rect.bottom - vh;
+      const start = rect.top - 80;
+      const end = rect.bottom - vh + 180;
 
       let progress = (0 - start) / (end - start);
-      progress = Math.min(Math.max(progress, 0), 1);
+      progress = Math.min(Math.max(progress, 0), 1)*3;
 
       textRef.current.style.setProperty(
         '--scroll-pos',
