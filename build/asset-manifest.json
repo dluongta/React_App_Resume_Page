@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.f24e29f3.css",
-    "main.js": "/static/js/main.932cd0e9.js",
+    "main.css": "/static/css/main.ae9da1c3.css",
+    "main.js": "/static/js/main.a60e0996.js",
     "static/media/IntroBackground.mp4": "/static/media/IntroBackground.c7c7bc1152c1e74a86d9.mp4",
     "static/media/lumind_animation.mp4": "/static/media/lumind_animation.e13ba4a3abdab01f0b84.mp4",
     "static/media/dluongta-animation.mp4": "/static/media/dluongta-animation.9279a867b31c081d65b6.mp4",
@@ -18,11 +18,11 @@
     "static/media/caption.vtt": "/static/media/caption.3e852e34cf64d66091d2.vtt",
     "static/media/caption_logo.vtt": "/static/media/caption_logo.c938afd7754ea3ffe6d7.vtt",
     "static/media/lumind_animation.vtt": "/static/media/lumind_animation.9fe9e5bffd53a7f0e2a8.vtt",
-    "main.f24e29f3.css.map": "/static/css/main.f24e29f3.css.map",
-    "main.932cd0e9.js.map": "/static/js/main.932cd0e9.js.map"
+    "main.ae9da1c3.css.map": "/static/css/main.ae9da1c3.css.map",
+    "main.a60e0996.js.map": "/static/js/main.a60e0996.js.map"
   },
   "entrypoints": [
-    "static/css/main.f24e29f3.css",
-    "static/js/main.932cd0e9.js"
+    "static/css/main.ae9da1c3.css",
+    "static/js/main.a60e0996.js"
   ]
 }

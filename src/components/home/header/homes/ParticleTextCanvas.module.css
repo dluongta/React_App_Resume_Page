@@ -1,6 +1,6 @@
 .root {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
   background: radial-gradient(circle at 20% 20%, #111022 0%, #0d0b1a 35%, #07050a 100%);
@@ -18,19 +18,18 @@ canvas {
 .overlay {
   position: absolute;
   top: 20px;
-  left: 20px;
-  z-index: 10;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.85);
-  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
-  user-select: none;
-  pointer-events: none; /* Để chuột không chặn canvas nếu click ra ngoài */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: left;
 }
 
+
 .overlayContent {
-  pointer-events: auto; /* Bật lại tương tác cho nút bấm */
+  max-width: 600px;
+  padding: 0 16px;
 }
+
 
 .title {
   font-size: 20px;
@@ -71,4 +70,33 @@ canvas {
   color: rgba(255, 255, 255, 0.65);
   font-size: 13px;
   pointer-events: none;
+}
+
+@media (max-width: 768px) { .title { font-size: 16px; } 
+.small { font-size: 12px; line-height: 1.4; } 
+.controls { display: flex; flex-wrap: wrap; 
+  justify-content: center; gap: 8px; } 
+.button { margin-right: 0; } 
+.overlay {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+}
+.overlayContent {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.hint {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  padding: 0 16px;
+  font-size: 12px;
+}
+
 }
