@@ -1,0 +1,58 @@
+/* SECTION tạo chiều cao scroll */
+.scroll-text-section {
+  height: 150vh; /* vừa đủ, KHÔNG thừa */
+  background: #111;
+}
+
+/* Sticky giữ chữ ở giữa */
+.sticky-wrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  pointer-events: none;
+}
+
+/* Chữ */
+.reveal-text {
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  transform: translateY(150px);
+
+  /* Chữ chưa quét */
+  color: rgba(255, 255, 255, 0.15);
+
+  background-image: linear-gradient(
+    to bottom,
+    #00e5ff 0%,
+    #00e5ff calc(var(--scroll-pos) - 1.5%),
+    #ffffff var(--scroll-pos),
+    #333333 calc(var(--scroll-pos) + 0.5%),
+    #333333 100%
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  will-change: background-image;
+}
+
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
