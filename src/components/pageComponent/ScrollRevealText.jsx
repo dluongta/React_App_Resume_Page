@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import './ScrollRevealText.css';
+import styles from './ScrollRevealText.module.css';
 
 export const ScrollRevealText = () => {
   const sectionRef = useRef(null);
@@ -7,35 +7,38 @@ export const ScrollRevealText = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!sectionRef.current) return;
+      if (!sectionRef.current || !textRef.current) return;
 
-      const section = sectionRef.current;
-      const rect = section.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const sectionHeight = section.offsetHeight;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const vh = window.innerHeight;
 
-      // Scroll progress CHỈ trong section
-      const progress =
-        ((windowHeight - rect.top) / (sectionHeight - windowHeight)) * 100 - 155;
+      /**
+       * Sticky logic chuẩn:
+       * - start: khi section chạm top viewport
+       * - end: khi section đi hết sticky
+       */
+      const start = rect.top;
+      const end = rect.bottom - vh;
 
-      const clamped = Math.min(Math.max(progress, 0), 100) * 1.5;
+      let progress = (0 - start) / (end - start);
+      progress = Math.min(Math.max(progress, 0), 1);
 
       textRef.current.style.setProperty(
         '--scroll-pos',
-        `${clamped}%`
+        `${progress * 100}%`
       );
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <section ref={sectionRef} className="scroll-text-section">
-      <div className="sticky-wrapper">
-        <div ref={textRef} className="reveal-text">
+    <section ref={sectionRef} className={styles.scrollTextSection}>
+      <div className={styles.stickyWrapper}>
+        <div ref={textRef} className={styles.revealText}>
           PROFICIENT PROGRAMMER <br />
           SOFTWARE DEVELOPER <br />
           HARDWARE ENGINEER

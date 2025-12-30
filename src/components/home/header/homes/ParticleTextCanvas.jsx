@@ -303,19 +303,21 @@ export default function ParticleTextCanvas() {
     };
 
     const handleResize = () => {
-  DPR = window.devicePixelRatio || 1;
+      DPR = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(window.innerWidth * DPR);
+      canvas.height = Math.floor(window.innerHeight * DPR);
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 
-  const root = canvasRef.current.parentElement;
-  const w = root.clientWidth;
-  const h = root.clientHeight;
-
-  canvas.width = Math.floor(w * DPR);
-  canvas.height = Math.floor(h * DPR);
-  canvas.style.width = w + "px";
-  canvas.style.height = h + "px";
-
-  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-};
+      clearTimeout(resizeTimeoutRef.current);
+      resizeTimeoutRef.current = setTimeout(() => {
+         buildSequence();
+         const now = performance.now();
+         const targets = sequenceRef.current[seqIndexRef.current];
+         if (targets) assignToTargets(targets, now);
+      }, 150);
+    };
 
     window.addEventListener("resize", handleResize);
     handleResize(); 
