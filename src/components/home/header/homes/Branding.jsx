@@ -3,7 +3,7 @@ import logo from '../../../../assets/logo.jpg';
 import Hero from './Hero';
 import CustomVideoPlayer from './CustomVideoPlayer';
 import caption from '../../../../assets/caption.vtt';
-import bgVideo from '../../../../assets/dluongta-animation.mp4';
+import bgVideo from '../../../../assets/dluongta_animation.mp4';
 import caption_logo from '../../../../assets/caption_logo.vtt';
 import bgLogoVideo from '../../../../assets/lumind_logo.mp4';
 import lumind_animation_text from '../../../../assets/lumind_animation.vtt';
