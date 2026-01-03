@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/static/css/main.3e6a83e3.css",
-    "main.js": "/static/js/main.90616781.js",
+    "main.js": "/static/js/main.9b7818c4.js",
     "static/media/IntroBackground.mp4": "/static/media/IntroBackground.bfb8e3fa82c026ee9ef8.mp4",
     "static/media/lumind_animation.mp4": "/static/media/lumind_animation.5a5b497f69bc1862e664.mp4",
-    "static/media/dluongta_animation.mp4": "/static/media/dluongta_animation.35fed856f2cb958ce6d8.mp4",
     "static/media/lumind_logo.mp4": "/static/media/lumind_logo.0cf79e237cc6b4f99f94.mp4",
+    "static/media/dluongta_animation.mp4": "/static/media/dluongta_animation.c5b43225948fc2960889.mp4",
     "static/media/contact-img.png": "/static/media/contact-img.b99cdb766ab2d8b5cfa5.png",
     "static/media/banner-bg.png": "/static/media/banner-bg.f67087d1c9931d7ccc75.png",
     "static/media/hexagon.png": "/static/media/hexagon.4a2efb8663eceda0a4b6.png",
@@ -19,10 +19,10 @@
     "static/media/caption_logo.vtt": "/static/media/caption_logo.c938afd7754ea3ffe6d7.vtt",
     "static/media/lumind_animation.vtt": "/static/media/lumind_animation.9fe9e5bffd53a7f0e2a8.vtt",
     "main.3e6a83e3.css.map": "/static/css/main.3e6a83e3.css.map",
-    "main.90616781.js.map": "/static/js/main.90616781.js.map"
+    "main.9b7818c4.js.map": "/static/js/main.9b7818c4.js.map"
   },
   "entrypoints": [
     "static/css/main.3e6a83e3.css",
-    "static/js/main.90616781.js"
+    "static/js/main.9b7818c4.js"
   ]
 }
