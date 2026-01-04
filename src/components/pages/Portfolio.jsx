@@ -186,7 +186,7 @@ export const Portfolio = () => {
     },
     {
       id: "37",
-      link: "https://github.com/luen2003/react-app-bank-code",
+      link: "https://react-app-bank-code.vercel.app/",
       linkName: "Bank Transfer",
     }
   ];
