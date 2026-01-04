@@ -153,6 +153,11 @@ export const Pages = () => {
       id: "30",
       link: "https://dluongta.github.io/upload_avatar.html",
       linkName: "Upload Avatar",
+    },
+    {
+      id: "31",
+      link: "https://github.com/luen2003/react-app-bank-code",
+      linkName: "Bank Transfer",
     }
   ]
   return (

@@ -183,6 +183,11 @@ export const Portfolio = () => {
       id: "36",
       link: "https://dluongta.github.io/upload_avatar.html",
       linkName: "Upload Avatar",
+    },
+    {
+      id: "37",
+      link: "https://github.com/luen2003/react-app-bank-code",
+      linkName: "Bank Transfer",
     }
   ];
   return (

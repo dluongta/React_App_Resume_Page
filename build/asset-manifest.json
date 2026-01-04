@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.3e6a83e3.css",
-    "main.js": "/static/js/main.5429ac99.js",
+    "main.js": "/static/js/main.0e718057.js",
     "static/media/IntroBackground.mp4": "/static/media/IntroBackground.bfb8e3fa82c026ee9ef8.mp4",
     "static/media/lumind_animation.mp4": "/static/media/lumind_animation.5a5b497f69bc1862e664.mp4",
     "static/media/lumind_logo.mp4": "/static/media/lumind_logo.ae730741aaf62d289782.mp4",
@@ -19,10 +19,10 @@
     "static/media/caption.vtt": "/static/media/caption.f60d51dda084efcb1f52.vtt",
     "static/media/lumind_animation.vtt": "/static/media/lumind_animation.9fe9e5bffd53a7f0e2a8.vtt",
     "main.3e6a83e3.css.map": "/static/css/main.3e6a83e3.css.map",
-    "main.5429ac99.js.map": "/static/js/main.5429ac99.js.map"
+    "main.0e718057.js.map": "/static/js/main.0e718057.js.map"
   },
   "entrypoints": [
     "static/css/main.3e6a83e3.css",
-    "static/js/main.5429ac99.js"
+    "static/js/main.0e718057.js"
   ]
 }
