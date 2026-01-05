@@ -62,11 +62,12 @@ export const Branding = ({ className }) => {
 
       <div style={{
         position: 'relative',
-        width: '100%',
-        height: '68vh', 
+        width: '80%',
+        height: '110vh', 
         overflow: 'hidden',
         background: '#000',
-        margin: '50px 0' 
+        margin: '0 auto' ,
+        marginTop: '30px'
       }}>
         <GalaxyAnimation
           text="DINH LUONG TA"
