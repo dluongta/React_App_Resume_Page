@@ -62,8 +62,8 @@ export const Branding = ({ className }) => {
 
       <div style={{
         position: 'relative',
-        width: '80%',
-        height: '110vh', 
+        width: '75%',
+        height: '75vh',
         overflow: 'hidden',
         background: '#000',
         margin: '0 auto' ,
