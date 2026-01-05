@@ -1,7 +1,10 @@
 import React, { useEffect, useRef } from 'react';
+import heroImage1 from '../../../../assets/luen.jpg';
+import heroImage2 from '../../../../assets/luen_logo.png';
+import heroImage3 from '../../../../assets/hexagon-main.png';
+const importedImages = [heroImage1, heroImage2, heroImage3];
 
 const GalaxyAnimation = ({
-  imageUrls = [],
   text = "DINH LUONG TA"
 }) => {
   const canvasRef = useRef(null);
@@ -23,11 +26,12 @@ const GalaxyAnimation = ({
     let rotY = 0;
 
     // --- LOAD IMAGES ---
-    const images = imageUrls.map(url => {
-      const img = new Image();
-      img.src = url;
-      return img;
-    });
+    const images = importedImages.map(src => {
+  const img = new Image();
+  img.src = src;
+  return img;
+});
+
 
     // --- HELPER FUNCTIONS ---
     const rand = (a, b) => Math.random() * (b - a) + a;
@@ -64,8 +68,8 @@ const GalaxyAnimation = ({
 
     const particles = [];
     for (let i = 0; i < 1500; i++) {
-      const minR = 350;
-      const maxR = 550;
+      const minR = 600;
+      const maxR = 900;
       const radius = rand(minR, maxR);
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(rand(-1, 1));
@@ -340,7 +344,7 @@ const GalaxyAnimation = ({
       }
       cancelAnimationFrame(requestId);
     };
-  }, [imageUrls, text]);
+  }, [text]);
 
   return (
     <div ref={containerRef} style={{ width: '100%', height: '100%' }}>
