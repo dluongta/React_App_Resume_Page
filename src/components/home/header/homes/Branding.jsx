@@ -62,13 +62,13 @@ export const Branding = ({ className }) => {
 
       <div style={{
         position: 'relative',
-        width: '100%',
-        height: '300px',
+        width: '70%',
+        height: '70vh',
         overflow: 'hidden',
         background: '#000',
         margin: '0 auto' ,
         marginTop: '30px'
-      }}>
+      }} className='galaxy'>
         <GalaxyAnimation
           text="DINH LUONG TA"
           imageUrls={galaxyImages}

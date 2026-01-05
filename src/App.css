@@ -2173,13 +2173,17 @@ footer a:hover {
 
 .card-content {
   flex-grow: 1!important;
-    min-height: 50svh!important;
+  min-height: 50svh!important;
 
 }
 
 .heartbeat svg {
   transform: translateY(2px);
 }
-
-
+@media only screen and (max-width: 768px) {
+  .galaxy {
+    width: 100%!important;
+    height: 60vh!important;
+  }
+}
 
