@@ -812,7 +812,7 @@ footer .fa-github:hover {
 /*homepage*/
 #mySidenav a {
   position: fixed;
-  left: -80px;
+  left: -68px;
   margin-top: 150px;
   transition: 0.3s;
   padding: 15px;

@@ -1,5 +1,8 @@
 import React from 'react';
-import logo from '../../../../assets/logo.jpg';
+import logo from '../../../../assets/luen-1.jpg';
+
+import GalaxyAnimation from './GalaxyAnimation'; 
+import lumindLogo from '../../../../assets/luen-1.jpg';
 import Hero from './Hero';
 import CustomVideoPlayer from './CustomVideoPlayer';
 import caption from '../../../../assets/caption.vtt';
@@ -9,6 +12,8 @@ import bgLogoVideo from '../../../../assets/lumind_logo.mp4';
 import lumind_animation_text from '../../../../assets/lumind_animation.vtt';
 import lumindAnimationVideo from '../../../../assets/lumind_animation.mp4';
 import ParticleTextCanvas from "./ParticleTextCanvas";
+
+import hexagonImg from '../../../../assets/hexagon-main.png'; // Ví dụ, hãy đảm bảo bạn có file này hoặc dùng file khác
 
 export const Branding = ({ className }) => {
   const data = [
@@ -29,6 +34,14 @@ export const Branding = ({ className }) => {
     },
   ];
 
+  // Danh sách ảnh cho Galaxy
+  // Bạn có thể tái sử dụng biến 'logo' hoặc import các ảnh khác
+  const galaxyImages = [
+    logo,
+    hexagonImg,
+    lumindLogo,
+  ];
+
   return (
     <>
       <section className={`branding ${className}`} style={{ marginTop: "100px" }}>
@@ -45,10 +58,17 @@ export const Branding = ({ className }) => {
             </div>
           ))}
         </div>
-
       </section>
 
-      <img width={'100%'} src={logo} alt="Logo" />
+      <div style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden', background: '#000' }}>
+        <GalaxyAnimation 
+            text="DINH LUONG TA" 
+            imageUrls={galaxyImages} 
+        />
+      </div>
+
+      {/* <img width={'100%'} src={logo} alt="Logo" /> */}
+      
       <ParticleTextCanvas />
       <CustomVideoPlayer src={bgVideo} captionSrc={caption} />
       <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />
