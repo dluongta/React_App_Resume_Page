@@ -161,31 +161,26 @@ export const Portfolio = () => {
     },
     {
       id: "32",
-      link: "https://github.com/luen2003/SpaceShooter/releases/download/v1.0.0/app-release.apk",
-      linkName: "Space Shooter Mobile Game",
-    },
-    {
-      id: "33",
       link: "https://dluongta.github.io/image_editor/index.html",
       linkName: "Image Editor",
     },
     {
-      id: "34",
+      id: "33",
       link: "https://dluongta.github.io/particles_hand_control.html",
       linkName: "Particle Hand Control",
     },
     {
-      id: "35",
+      id: "34",
       link: "https://dluongta.github.io/galaxy_love.html",
       linkName: "Galaxy Love",
     },
     {
-      id: "36",
+      id: "35",
       link: "https://dluongta.github.io/upload_avatar.html",
       linkName: "Upload Avatar",
     },
     {
-      id: "37",
+      id: "36",
       link: "https://react-app-bank-code.vercel.app/",
       linkName: "Bank Transfer",
     }
