@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../../../../assets/luen-1.jpg';
 
-import GalaxyAnimation from './GalaxyAnimation'; 
+import GalaxyAnimation from './GalaxyAnimation';
 import lumindLogo from '../../../../assets/luen-1.jpg';
 import Hero from './Hero';
 import CustomVideoPlayer from './CustomVideoPlayer';
@@ -60,15 +60,23 @@ export const Branding = ({ className }) => {
         </div>
       </section>
 
-      <div style={{ position: 'relative', width: '100%', height: '100vh', overflow: 'hidden', background: '#000' }}>
-        <GalaxyAnimation 
-            text="DINH LUONG TA" 
-            imageUrls={galaxyImages} 
+      <div style={{
+        position: 'relative',
+        width: '100%',
+        height: '68vh', 
+        overflow: 'hidden',
+        background: '#000',
+        margin: '50px 0' 
+      }}>
+        <GalaxyAnimation
+          text="DINH LUONG TA"
+          imageUrls={galaxyImages}
         />
       </div>
 
+
       {/* <img width={'100%'} src={logo} alt="Logo" /> */}
-      
+
       <ParticleTextCanvas />
       <CustomVideoPlayer src={bgVideo} captionSrc={caption} />
       <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />

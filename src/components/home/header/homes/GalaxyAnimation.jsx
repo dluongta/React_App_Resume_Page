@@ -1,15 +1,17 @@
 import React, { useEffect, useRef } from 'react';
 
-const GalaxyAnimation = ({ 
-  imageUrls = [], 
-  text = "LOVE YOU FOREVER" 
+const GalaxyAnimation = ({
+  imageUrls = [],
+  text = "DINH LUONG TA"
 }) => {
   const canvasRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    
+    const container = containerRef.current;
+    if (!canvas || !container) return;
+
     const ctx = canvas.getContext("2d");
     let w, h, cx, cy;
     let requestId;
@@ -19,9 +21,8 @@ const GalaxyAnimation = ({
     const PERSPECTIVE = 900;
     let rotX = 0;
     let rotY = 0;
-    
+
     // --- LOAD IMAGES ---
-    // Chuyển đổi URLs thành đối tượng Image
     const images = imageUrls.map(url => {
       const img = new Image();
       img.src = url;
@@ -32,11 +33,9 @@ const GalaxyAnimation = ({
     const rand = (a, b) => Math.random() * (b - a) + a;
 
     function resize() {
-      if (!canvas) return;
-      // Bạn có thể chỉnh lại dòng này nếu muốn canvas nằm trong container thay vì full màn hình
-      // Ví dụ: canvas.width = canvas.parentElement.clientWidth;
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight; // Hoặc set chiều cao cố định
+      if (!canvas || !container) return;
+      w = canvas.width = container.clientWidth;
+      h = canvas.height = container.clientHeight;
       cx = w / 2;
       cy = h / 2;
     }
@@ -54,7 +53,7 @@ const GalaxyAnimation = ({
       return { x: cx + p.x * s, y: cy + p.y * s, s, z: p.z };
     }
 
-    // --- INIT PARTICLES & STARS ---
+    // --- INIT PARTICLES ---
     const stars = Array.from({ length: 800 }, () => ({
       x: rand(-w * 3, w * 3),
       y: rand(-h * 3, h * 3),
@@ -70,7 +69,7 @@ const GalaxyAnimation = ({
       const radius = rand(minR, maxR);
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(rand(-1, 1));
-      
+
       particles.push({
         x: radius * Math.sin(phi) * Math.cos(theta),
         y: radius * Math.cos(phi),
@@ -85,11 +84,12 @@ const GalaxyAnimation = ({
     let px = 0;
     let py = 0;
 
+    // Xử lý Zoom bằng chuột (Lăn chuột)
     const onWheel = (e) => {
-        // Ngăn cuộn trang web khi đang zoom trong canvas
-        // e.preventDefault(); 
-        zoom += e.deltaY * -0.0005;
-        zoom = Math.max(0.1, Math.min(6, zoom));
+      // [QUAN TRỌNG] Ngăn chặn cuộn trang khi lăn chuột trên canvas
+      e.preventDefault(); 
+      zoom += e.deltaY * -0.0005;
+      zoom = Math.max(0.1, Math.min(6, zoom));
     };
 
     const onMouseDown = (e) => {
@@ -97,9 +97,9 @@ const GalaxyAnimation = ({
       px = e.clientX;
       py = e.clientY;
     };
-    
+
     const onMouseUp = () => dragging = false;
-    
+
     const onMouseMove = (e) => {
       if (!dragging) return;
       rotY += (e.clientX - px) * 0.003;
@@ -108,7 +108,7 @@ const GalaxyAnimation = ({
       py = e.clientY;
     };
 
-    // Touch events
+    // --- TOUCH EVENTS (MOBILE) ---
     let lastTouchX = 0;
     let lastTouchY = 0;
     let initialPinchDistance = null;
@@ -120,6 +120,9 @@ const GalaxyAnimation = ({
     }
 
     const onTouchStart = (e) => {
+        // Ngăn hành vi mặc định (nếu cần thiết để tránh lỗi click ảo)
+        if(e.cancelable) e.preventDefault(); 
+
         if (e.touches.length === 1) {
             dragging = true;
             lastTouchX = e.touches[0].clientX;
@@ -131,15 +134,11 @@ const GalaxyAnimation = ({
     };
 
     const onTouchMove = (e) => {
-        // e.preventDefault(); // Cẩn thận với passive event listener trong React
-        if (e.touches.length === 1 && dragging) {
-            const x = e.touches[0].clientX;
-            const y = e.touches[0].clientY;
-            rotY += (x - lastTouchX) * 0.005; 
-            rotX += (y - lastTouchY) * 0.005;
-            lastTouchX = x;
-            lastTouchY = y;
-        } else if (e.touches.length === 2) {
+        // [QUAN TRỌNG] Luôn ngăn chặn hành vi cuộn trang của trình duyệt
+        if(e.cancelable) e.preventDefault();
+
+        // Xử lý Zoom (2 ngón tay)
+        if (e.touches.length === 2) {
             const currentDistance = getDistance(e.touches);
             if (initialPinchDistance) {
                 const diff = currentDistance - initialPinchDistance;
@@ -147,21 +146,40 @@ const GalaxyAnimation = ({
                 zoom = Math.max(0.1, Math.min(6, zoom));
                 initialPinchDistance = currentDistance;
             }
+            return;
+        }
+
+        // Xử lý Xoay (1 ngón tay)
+        if (e.touches.length === 1 && dragging) {
+            const x = e.touches[0].clientX;
+            const y = e.touches[0].clientY;
+            
+            // Tính toán độ lệch để xoay
+            const dx = x - lastTouchX;
+            const dy = y - lastTouchY;
+            
+            rotY += dx * 0.005; 
+            rotX += dy * 0.005;
+            
+            lastTouchX = x;
+            lastTouchY = y;
         }
     };
 
     const onTouchEnd = () => {
-        dragging = false;
-        initialPinchDistance = null;
+      dragging = false;
+      initialPinchDistance = null;
     };
 
-    // Attach Listeners
+    // --- ATTACH LISTENERS ---
     window.addEventListener("resize", resize);
-    // Sử dụng { passive: false } để có thể preventDefault nếu cần
+
+    // Lưu ý: { passive: false } là bắt buộc để dùng e.preventDefault()
     canvas.addEventListener("wheel", onWheel, { passive: false });
     canvas.addEventListener("mousedown", onMouseDown);
     window.addEventListener("mouseup", onMouseUp);
     window.addEventListener("mousemove", onMouseMove);
+    
     canvas.addEventListener("touchstart", onTouchStart, { passive: false });
     canvas.addEventListener("touchmove", onTouchMove, { passive: false });
     canvas.addEventListener("touchend", onTouchEnd);
@@ -213,47 +231,47 @@ const GalaxyAnimation = ({
         let squareAlpha = 1;
 
         if (pr.s > imgThreshold) {
-            squareAlpha = Math.max(0, 1 - (pr.s - imgThreshold));
+          squareAlpha = Math.max(0, 1 - (pr.s - imgThreshold));
         }
 
         if (squareAlpha > 0) {
-            ctx.save();
-            ctx.globalAlpha = squareAlpha;
-            const grad = ctx.createLinearGradient(
-                pr.x - displaySize / 2, pr.y - displaySize / 2,
-                pr.x + displaySize / 2, pr.y + displaySize / 2
-            );
-            grad.addColorStop(0, "#00ffff");
-            grad.addColorStop(0.5, "#bd00ff");
-            grad.addColorStop(1, "#ff0066");
-            ctx.fillStyle = grad;
-            ctx.fillRect(
-                pr.x - displaySize / 2, pr.y - displaySize / 2,
-                displaySize, displaySize
-            );
-            ctx.restore();
+          ctx.save();
+          ctx.globalAlpha = squareAlpha;
+          const grad = ctx.createLinearGradient(
+            pr.x - displaySize / 2, pr.y - displaySize / 2,
+            pr.x + displaySize / 2, pr.y + displaySize / 2
+          );
+          grad.addColorStop(0, "#00ffff");
+          grad.addColorStop(0.5, "#bd00ff");
+          grad.addColorStop(1, "#ff0066");
+          ctx.fillStyle = grad;
+          ctx.fillRect(
+            pr.x - displaySize / 2, pr.y - displaySize / 2,
+            displaySize, displaySize
+          );
+          ctx.restore();
         }
 
         /* Vẽ Ảnh */
         if (pr.s > imgThreshold && images.length > 0) {
-            const currentImg = images[p.imgIndex];
-            if (currentImg && currentImg.complete) {
-                const imgSize = displaySize * 3;
-                let imgAlpha = (pr.s - imgThreshold);
-                imgAlpha = Math.max(0, Math.min(1, imgAlpha));
+          const currentImg = images[p.imgIndex];
+          if (currentImg && currentImg.complete) {
+            const imgSize = displaySize * 3;
+            let imgAlpha = (pr.s - imgThreshold);
+            imgAlpha = Math.max(0, Math.min(1, imgAlpha));
 
-                if (imgAlpha > 0.01) {
-                    ctx.save();
-                    ctx.globalAlpha = imgAlpha;
-                    ctx.drawImage(
-                        currentImg,
-                        pr.x - imgSize / 2,
-                        pr.y - imgSize / 2,
-                        imgSize, imgSize
-                    );
-                    ctx.restore();
-                }
+            if (imgAlpha > 0.01) {
+              ctx.save();
+              ctx.globalAlpha = imgAlpha;
+              ctx.drawImage(
+                currentImg,
+                pr.x - imgSize / 2,
+                pr.y - imgSize / 2,
+                imgSize, imgSize
+              );
+              ctx.restore();
             }
+          }
         }
       });
 
@@ -305,31 +323,37 @@ const GalaxyAnimation = ({
       requestId = requestAnimationFrame(draw);
     }
 
-    // Start loop
     requestId = requestAnimationFrame(draw);
 
-    // CLEANUP
+    // --- CLEANUP ---
     return () => {
       window.removeEventListener("resize", resize);
       window.removeEventListener("mouseup", onMouseUp);
       window.removeEventListener("mousemove", onMouseMove);
-      
+
       if (canvas) {
-          canvas.removeEventListener("wheel", onWheel);
-          canvas.removeEventListener("mousedown", onMouseDown);
-          canvas.removeEventListener("touchstart", onTouchStart);
-          canvas.removeEventListener("touchmove", onTouchMove);
-          canvas.removeEventListener("touchend", onTouchEnd);
+        canvas.removeEventListener("wheel", onWheel);
+        canvas.removeEventListener("mousedown", onMouseDown);
+        canvas.removeEventListener("touchstart", onTouchStart);
+        canvas.removeEventListener("touchmove", onTouchMove);
+        canvas.removeEventListener("touchend", onTouchEnd);
       }
       cancelAnimationFrame(requestId);
     };
-  }, [imageUrls, text]); // Re-run if props change
+  }, [imageUrls, text]);
 
   return (
-    <canvas 
-      ref={canvasRef} 
-      style={{ display: 'block', width: '100%', height: '100vh', touchAction: 'none' }} 
-    />
+    <div ref={containerRef} style={{ width: '100%', height: '100%' }}>
+      <canvas
+        ref={canvasRef}
+        style={{ 
+            display: 'block', 
+            width: '100%', 
+            height: '100%', 
+            touchAction: 'none' 
+        }}
+      />
+    </div>
   );
 };
 
