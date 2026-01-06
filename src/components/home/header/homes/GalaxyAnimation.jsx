@@ -189,7 +189,17 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
         ctx.fillRect(p.x, p.y, s.r*p.s, s.r*p.s);
       });
       ctx.globalAlpha = 1;
-
+// Planet
+      const planet = project(rotate3D(0,0,0));
+      const planetR = PLANET_RADIUS*planet.s;
+      const g = ctx.createRadialGradient(planet.x-40*planet.s, planet.y-40*planet.s, 20*planet.s, planet.x, planet.y, planetR);
+      g.addColorStop(0,"#ffd1ff");
+      g.addColorStop(0.5,"#ff8ad4");
+      g.addColorStop(1,"#C77DFF");
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(planet.x, planet.y, planetR, 0, Math.PI*2);
+      ctx.fill();
       // Sort particles by depth
       const sortedParticles = particles.slice().sort((a,b)=>{
         const ra = rotate3D(a.x*Math.cos(time)-a.z*Math.sin(time), a.y, a.x*Math.sin(time)+a.z*Math.cos(time));
@@ -221,17 +231,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
         }
       });
 
-      // Planet
-      const planet = project(rotate3D(0,0,0));
-      const planetR = PLANET_RADIUS*planet.s;
-      const g = ctx.createRadialGradient(planet.x-40*planet.s, planet.y-40*planet.s, 20*planet.s, planet.x, planet.y, planetR);
-      g.addColorStop(0,"#ffd1ff");
-      g.addColorStop(0.5,"#ff8ad4");
-      g.addColorStop(1,"#C77DFF");
-      ctx.fillStyle = g;
-      ctx.beginPath();
-      ctx.arc(planet.x, planet.y, planetR, 0, Math.PI*2);
-      ctx.fill();
+      
 
       // Text orbit
       ctx.fillStyle = "#fff";
