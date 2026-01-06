@@ -68,8 +68,9 @@ const GalaxyAnimation = ({
 
     const particles = [];
     for (let i = 0; i < 1500; i++) {
-      const minR = 600;
-      const maxR = 900;
+      const minR = 300;
+      const maxR = 500;
+
       const radius = rand(minR, maxR);
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(rand(-1, 1));
