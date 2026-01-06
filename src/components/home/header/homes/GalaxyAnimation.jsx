@@ -27,9 +27,9 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
     const PLANET_RADIUS = 120;
     const IMAGE_SHOW_SCALE = 0.85;
     
-    // CẤU HÌNH BÁN KÍNH CHỮ Ở ĐÂY
-    const TEXT_RADIUS_X = 300; 
-    const TEXT_RADIUS_Y = 80; 
+    // Cấu hình quỹ đạo chữ
+    const ORBIT_RADIUS = 240; // Độ rộng vòng quay
+    const ORBIT_TILT = -80;   // Độ nghiêng của vòng quay (tạo hình elip)
 
     /* ===== LOAD IMAGES ===== */
     const images = importedImages.map(src => {
@@ -168,11 +168,11 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
       // 3. Render Queue
       const renderList = [];
 
-      // A. Planet
+      // A. Planet (Gốc tọa độ)
       const planetRot = rotate3D(0, 0, 0);
       renderList.push({
         type: 'planet',
-        z: planetRot.z,
+        z: planetRot.z, // Z dùng để sort
         x: planetRot.x,
         y: planetRot.y
       });
@@ -192,14 +192,20 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
         });
       });
 
-      // C. Text (Đã cập nhật bán kính lớn hơn)
+      // C. Text (ĐÃ SỬA LẠI LOGIC TOẠ ĐỘ)
       for(let i = 0; i < text.length; i++){
         const a = time * 2 + i * 0.35;
-        // Sử dụng biến bán kính mới
-        const tx = Math.cos(a) * TEXT_RADIUS_X; 
-        const ty = Math.sin(a) * TEXT_RADIUS_Y;
-        const tz = 0;
+        
+        // --- LOGIC MỚI ---
+        // Thay vì tz = 0, ta cho tz thay đổi theo hình tròn (sin/cos)
+        // tx = cos, tz = sin -> Chữ đi vòng tròn quanh trục Y
+        // ty = sin * tilt -> Tạo độ nghiêng cho vòng tròn
+        
+        const tx = Math.cos(a) * ORBIT_RADIUS;
+        const tz = Math.sin(a) * ORBIT_RADIUS; // QUAN TRỌNG: Tạo độ sâu thực tế
+        const ty = Math.sin(a) * ORBIT_TILT;   // Tạo độ nghiêng
 
+        // Xoay theo camera
         const r = rotate3D(tx, ty, tz);
 
         renderList.push({
@@ -211,12 +217,13 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
         });
       }
 
-      // 4. Sort Z
+      // 4. Sort Z (Xa vẽ trước, gần vẽ sau)
       renderList.sort((a, b) => b.z - a.z);
 
       // 5. Draw
       renderList.forEach(item => {
         const p = project(item);
+        // Nếu s <= 0 nghĩa là vật thể ở sau camera hoặc quá xa, không vẽ
         if(p.s <= 0) return;
 
         if (item.type === 'planet') {
