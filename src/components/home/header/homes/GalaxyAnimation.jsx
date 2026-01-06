@@ -20,7 +20,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
 
     /* ===== CONFIG ===== */
     let zoom = 0.45;
-    const PERSPECTIVE = 1500; // zoom xa hơn
+    const PERSPECTIVE = 1500;
     let rotX = 0;
     let rotY = 0;
 
@@ -84,19 +84,25 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
     let dragging = false;
     let px = 0, py = 0;
 
+    // Check if device is mobile
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
     const onWheel = e => {
+      if (isMobile) return; // disable zoom on mobile
       e.preventDefault();
       zoom += e.deltaY * -0.0005;
       zoom = Math.max(0.2, Math.min(6, zoom));
     };
 
     const onMouseDown = e => {
+      if (isMobile) return; // disable dragging on mobile
       dragging = true;
       px = e.clientX;
       py = e.clientY;
     };
 
     const onMouseMove = e => {
+      if (isMobile) return; // disable dragging on mobile
       if (!dragging) return;
       rotY += (e.clientX - px) * 0.003;
       rotX += (e.clientY - py) * 0.003;
@@ -106,11 +112,18 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
 
     const onMouseUp = () => dragging = false;
 
+    // Prevent pinch-zoom on mobile
+    const preventTouch = e => {
+      if (e.touches.length > 1) e.preventDefault();
+    };
+
     window.addEventListener("resize", resize);
     canvas.addEventListener("wheel", onWheel, { passive: false });
     canvas.addEventListener("mousedown", onMouseDown);
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mouseup", onMouseUp);
+    canvas.addEventListener("touchstart", preventTouch, { passive: false });
+    canvas.addEventListener("touchmove", preventTouch, { passive: false });
 
     resize();
 
@@ -137,7 +150,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
       });
       ctx.globalAlpha = 1;
 
-      /* ===== SORT PARTICLES THEO Z (XA TRƯỚC) ===== */
+      /* ===== SORT PARTICLES ===== */
       const sortedParticles = particles.slice().sort((a, b) => {
         const ra = rotate3D(
           a.x * Math.cos(time) - a.z * Math.sin(time),
@@ -149,10 +162,9 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
           b.y,
           b.x * Math.sin(time) + b.z * Math.cos(time)
         );
-        return ra.z - rb.z; // xa hơn trước
+        return ra.z - rb.z;
       });
 
-      /* ===== VẼ PARTICLES + IMAGES ===== */
       sortedParticles.forEach(p => {
         const r = rotate3D(
           p.x * Math.cos(time) - p.z * Math.sin(time),
@@ -199,7 +211,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
         }
       });
 
-      /* ===== PLANET (VẼ CUỐI CÙNG, LUÔN TRÊN CÁC PARTICLE) ===== */
+      /* ===== PLANET ===== */
       const planet = project(rotate3D(0, 0, 0));
       const planetR = PLANET_RADIUS * planet.s;
 
@@ -241,6 +253,12 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
     return () => {
       cancelAnimationFrame(requestId);
       window.removeEventListener("resize", resize);
+      canvas.removeEventListener("wheel", onWheel);
+      canvas.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+      canvas.removeEventListener("touchstart", preventTouch);
+      canvas.removeEventListener("touchmove", preventTouch);
     };
   }, [text]);
 
