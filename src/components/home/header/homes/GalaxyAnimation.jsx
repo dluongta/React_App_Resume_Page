@@ -21,7 +21,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
     /* ===== CONFIG ===== */
     let zoom = 0.45;
     const PERSPECTIVE = 1500;
-    let rotX = 0;
+    let rotX = 2.0;
     let rotY = 0;
 
     const PLANET_RADIUS = 120;
