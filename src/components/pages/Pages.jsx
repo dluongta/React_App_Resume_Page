@@ -106,13 +106,13 @@ export const Pages = () => {
     },
     {
       id: "21",
-      link: "https://digital_calendar.playcode.io/",
+      link: "https://dluongta.github.io/digital-calendar.html",
       linkName: "Digital Calendar",
     },
     {
       id: "22",
-      link: "https://custom_video.playcode.io/",
-      linkName: "Custom Video",
+      link: "https://dluongta.github.io/caculator.html",
+      linkName: "Compact Caculator",
     },
     {
       id: "23",

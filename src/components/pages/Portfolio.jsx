@@ -131,13 +131,13 @@ export const Portfolio = () => {
     },
     {
       id: "26",
-      link: "https://digital_calendar.playcode.io/",
+      link: "https://dluongta.github.io/digital-calendar.html",
       linkName: "Digital Calendar",
     },
     {
       id: "27",
-      link: "https://custom_video.playcode.io/",
-      linkName: "Custom Video",
+      link: "https://dluongta.github.io/caculator.html",
+      linkName: "Digital Caculator",
     },
     {
       id: "28",
