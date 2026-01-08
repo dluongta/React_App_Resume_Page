@@ -95,92 +95,86 @@ export const Portfolio = () => {
     },
     {
       id: "19",
-      link: "https://github.com/luen2003/BookingRoom",
-      linkName: "Booking Laravel App",
-
-    },
-    {
-      id: "20",
       link: "https://react-livestream-app.onrender.com/",
       linkName: "Livestream App",
     },
     {
-      id: "21",
+      id: "20",
       link: "https://bank-qrcode.w3spaces.com/",
       linkName: "Bank QRCode",
     },
     {
-      id: "22",
+      id: "21",
       link: "https://github.com/luen2003/Face-App",
       linkName: "Face Recognition Analysis",
     },
     {
-      id: "23",
+      id: "22",
       link: "https://react-app-text-audio.onrender.com/",
       linkName: "Read Text + Translate + Record + Download MP3",
     },
     {
-      id: "24",
+      id: "23",
       link: "https://github.com/luen2003/Styled_Python",
       linkName: "Styled Effect Python App",
     },
     {
-      id: "25",
+      id: "24",
       link: "https://quizzes-app.w3spaces.com/",
       linkName: "Quizzes App",
     },
     {
-      id: "26",
+      id: "25",
       link: "https://dluongta.github.io/digital-calendar.html",
       linkName: "Digital Calendar",
     },
     {
-      id: "27",
+      id: "26",
       link: "https://dluongta.github.io/caculator.html",
       linkName: "Digital Caculator",
     },
     {
-      id: "28",
+      id: "27",
       link: "https://github.com/luen2003/ASPNET_API",
       linkName: "ASPNET API",
     },
     {
-      id: "29",
+      id: "28",
       link: "https://github.com/luen2003/text-3d-video",
       linkName: "Text 3D Video",
     },
     {
-      id: "30",
+      id: "29",
       link: "https://dluongta.github.io/runcodeonline.html",
       linkName: "Run Code Online",
     },
     {
-      id: "31",
+      id: "32",
       link: "https://deeptankio.onrender.com/",
       linkName: "DeepTankIO",
     },
     {
-      id: "32",
+      id: "33",
       link: "https://dluongta.github.io/image_editor/index.html",
       linkName: "Image Editor",
     },
     {
-      id: "33",
+      id: "34",
       link: "https://dluongta.github.io/particles_hand_control.html",
       linkName: "Particle Hand Control",
     },
     {
-      id: "34",
+      id: "35",
       link: "https://dluongta.github.io/galaxy_love.html",
       linkName: "Galaxy Love",
     },
     {
-      id: "35",
+      id: "36",
       link: "https://dluongta.github.io/upload_avatar.html",
       linkName: "Upload Avatar",
     },
     {
-      id: "36",
+      id: "37",
       link: "https://react-app-bank-code.vercel.app/",
       linkName: "Bank Transfer",
     }
