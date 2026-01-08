@@ -26,10 +26,16 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
 
     const PLANET_RADIUS = 120;
     const IMAGE_SHOW_SCALE = 0.85;
-    
-    // Cấu hình quỹ đạo chữ
-    const ORBIT_RADIUS = 240; // Độ rộng vòng quay
-    const ORBIT_TILT = -80;   // Độ nghiêng của vòng quay (tạo hình elip)
+
+    // Cấu hình quỹ đạo chữ (Giữ nguyên hoặc chỉnh nhẹ nếu muốn)
+    const ORBIT_RADIUS = 240; 
+    const ORBIT_TILT = -80;   
+
+    // === CẤU HÌNH ĐĨA HẠT (MỚI) ===
+    // Góc nghiêng của đĩa hạt để KHÔNG trùng với chữ
+    // Chữ đang nghiêng theo trục X. Ta nghiêng hạt theo trục X khác đi và thêm trục Z để tạo độ "chéo".
+    const PARTICLE_TILT_X = Math.PI / 2.5; // Nghiêng khoảng 70 độ về phía trước
+    const PARTICLE_TILT_Z = Math.PI / 6;   // Nghiêng 30 độ sang bên (tạo hiệu ứng chéo góc)
 
     /* ===== LOAD IMAGES ===== */
     const images = importedImages.map(src => {
@@ -50,6 +56,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
 
     /* ===== 3D HELPERS ===== */
     function rotate3D(x, y, z) {
+      // Xoay theo thao tác chuột (Camera)
       let y1 = y * Math.cos(rotX) - z * Math.sin(rotX);
       let z1 = y * Math.sin(rotX) + z * Math.cos(rotX);
       let x2 = x * Math.cos(rotY) + z1 * Math.sin(rotY);
@@ -62,7 +69,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
       return { x: cx + p.x * s, y: cy + p.y * s, s, z: p.z };
     }
 
-    /* ===== STARS ===== */
+    /* ===== STARS (Background) ===== */
     const stars = Array.from({ length: 800 }, () => ({
       x: rand(-w * 3, w * 3),
       y: rand(-h * 3, h * 3),
@@ -71,17 +78,21 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
       a: Math.random() * Math.PI * 2
     }));
 
-    /* ===== PARTICLES ===== */
+    /* ===== PARTICLES (SỬA LẠI LOGIC TẠO HẠT) ===== */
     const particles = [];
-    for (let i = 0; i < 1500; i++) {
-      const radius = rand(200, 520);
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(rand(-1, 1));
+    const particleCount = 1500;
+    
+    for (let i = 0; i < particleCount; i++) {
+      // Thay vì tọa độ cầu, ta dùng tọa độ đĩa
+      const rBase = rand(220, 650); // Bán kính từ gần hành tinh ra xa
+      const angle = Math.random() * Math.PI * 2;
+      
       particles.push({
-        x: radius * Math.sin(phi) * Math.cos(theta),
-        y: radius * Math.cos(phi),
-        z: radius * Math.sin(phi) * Math.sin(theta),
-        size: rand(3, 6),
+        radius: rBase,
+        angle: angle, // Góc ban đầu
+        speed: rand(0.001, 0.003), // Tốc độ bay của từng hạt
+        yOffset: rand(-15, 15), // Độ dày của đĩa (mỏng thôi mới ra đĩa)
+        size: rand(2, 5),
         imgIndex: Math.floor(Math.random() * images.length)
       });
     }
@@ -131,7 +142,6 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
     };
     const onTouchEnd = (e) => { dragging = false; if(e.touches.length < 2) initialPinchDistance = null; };
 
-    /* Listeners */
     window.addEventListener("resize", resize);
     canvas.addEventListener("wheel", onWheel, { passive: false });
     canvas.addEventListener("mousedown", onMouseDown);
@@ -168,20 +178,37 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
       // 3. Render Queue
       const renderList = [];
 
-      // A. Planet (Gốc tọa độ)
+      // A. Planet
       const planetRot = rotate3D(0, 0, 0);
       renderList.push({
         type: 'planet',
-        z: planetRot.z, // Z dùng để sort
+        z: planetRot.z,
         x: planetRot.x,
         y: planetRot.y
       });
 
-      // B. Particles
+      // B. Particles (SỬA LẠI LOGIC CHUYỂN ĐỘNG)
       particles.forEach(p => {
-        const rx = p.x * Math.cos(time) - p.z * Math.sin(time);
-        const rz = p.x * Math.sin(time) + p.z * Math.cos(time);
-        const r = rotate3D(rx, p.y, rz);
+        // Tính góc hiện tại theo thời gian (quỹ đạo tròn)
+        const currentA = p.angle + time + (time * p.speed * 100); 
+
+        // 1. Tạo hình đĩa phẳng trên mặt phẳng X-Z
+        let px = p.radius * Math.cos(currentA);
+        let pz = p.radius * Math.sin(currentA);
+        let py = p.yOffset; // Độ dày ngẫu nhiên
+
+        // 2. Nghiêng đĩa (Rotation Matrix)
+        // Nghiêng quanh trục X (để đĩa ngả xuống)
+        let y1 = py * Math.cos(PARTICLE_TILT_X) - pz * Math.sin(PARTICLE_TILT_X);
+        let z1 = py * Math.sin(PARTICLE_TILT_X) + pz * Math.cos(PARTICLE_TILT_X);
+        
+        // Nghiêng thêm quanh trục Z (để tạo độ chéo, khác với chữ)
+        let x2 = px * Math.cos(PARTICLE_TILT_Z) - y1 * Math.sin(PARTICLE_TILT_Z);
+        let y2 = px * Math.sin(PARTICLE_TILT_Z) + y1 * Math.cos(PARTICLE_TILT_Z);
+        let z2 = z1;
+
+        // 3. Xoay theo camera (Mouse/Touch)
+        const r = rotate3D(x2, y2, z2);
         
         renderList.push({
           type: 'particle',
@@ -192,20 +219,13 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
         });
       });
 
-      // C. Text (ĐÃ SỬA LẠI LOGIC TOẠ ĐỘ)
+      // C. Text
       for(let i = 0; i < text.length; i++){
         const a = time * 2 + i * 0.35;
-        
-        // --- LOGIC MỚI ---
-        // Thay vì tz = 0, ta cho tz thay đổi theo hình tròn (sin/cos)
-        // tx = cos, tz = sin -> Chữ đi vòng tròn quanh trục Y
-        // ty = sin * tilt -> Tạo độ nghiêng cho vòng tròn
-        
         const tx = Math.cos(a) * ORBIT_RADIUS;
-        const tz = Math.sin(a) * ORBIT_RADIUS; // QUAN TRỌNG: Tạo độ sâu thực tế
-        const ty = Math.sin(a) * ORBIT_TILT;   // Tạo độ nghiêng
+        const tz = Math.sin(a) * ORBIT_RADIUS;
+        const ty = Math.sin(a) * ORBIT_TILT; // Chữ nghiêng theo kiểu ép dẹp trục Y
 
-        // Xoay theo camera
         const r = rotate3D(tx, ty, tz);
 
         renderList.push({
@@ -217,24 +237,18 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
         });
       }
 
-      // 4. Sort Z (Xa vẽ trước, gần vẽ sau)
+      // 4. Sort & Draw
       renderList.sort((a, b) => b.z - a.z);
 
-      // 5. Draw
       renderList.forEach(item => {
         const p = project(item);
-        // Nếu s <= 0 nghĩa là vật thể ở sau camera hoặc quá xa, không vẽ
         if(p.s <= 0) return;
 
         if (item.type === 'planet') {
           const planetR = PLANET_RADIUS * p.s;
           const g = ctx.createRadialGradient(
-            p.x - 40 * p.s,
-            p.y - 40 * p.s,
-            20 * p.s,
-            p.x,
-            p.y,
-            planetR
+            p.x - 40 * p.s, p.y - 40 * p.s, 20 * p.s,
+            p.x, p.y, planetR
           );
           g.addColorStop(0, "#ffd1ff");
           g.addColorStop(0.5, "#ff8ad4");
@@ -246,23 +260,22 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA" }) => {
         } 
         else if (item.type === 'particle') {
           const displaySize = item.original.size * p.s;
+          // Gradient cho hạt
           const grad = ctx.createLinearGradient(
-            p.x - displaySize / 2,
-            p.y - displaySize / 2,
-            p.x + displaySize / 2,
-            p.y + displaySize / 2
+            p.x - displaySize/2, p.y - displaySize/2,
+            p.x + displaySize/2, p.y + displaySize/2
           );
           grad.addColorStop(0, "#00ffff");
-          grad.addColorStop(0.5, "#bd00ff");
-          grad.addColorStop(1, "#ff0066");
+          grad.addColorStop(1, "#bd00ff");
+          
           ctx.fillStyle = grad;
-          ctx.fillRect(p.x - displaySize / 2, p.y - displaySize / 2, displaySize, displaySize);
+          ctx.fillRect(p.x - displaySize/2, p.y - displaySize/2, displaySize, displaySize);
 
           if(p.s > IMAGE_SHOW_SCALE) {
             const img = images[item.original.imgIndex];
             if(img && img.complete) {
               const imgSize = displaySize * 3.2;
-              ctx.drawImage(img, p.x - imgSize / 2, p.y - imgSize / 2, imgSize, imgSize);
+              ctx.drawImage(img, p.x - imgSize/2, p.y - imgSize/2, imgSize, imgSize);
             }
           }
         } 
