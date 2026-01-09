@@ -45,7 +45,7 @@ export const Home = ({ className }) => {
 
   return (
     <>
-      <div className="container mx-auto position-relative ">
+      {/* <div className="container mx-auto position-relative ">
         <div className="swiper mySwiper h-100 w-100">
           <div className="swiper-wrapper">
             <div className="swiper-slide swiper-slide-active w-100">
@@ -74,7 +74,7 @@ export const Home = ({ className }) => {
           </div>
           <div className="swiper-pagination"></div>
         </div>
-      </div>
+      </div> */}
 
       <section className={`home ${className}`}>
         <div className="container single-column">
