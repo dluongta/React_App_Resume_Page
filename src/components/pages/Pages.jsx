@@ -157,7 +157,7 @@ export const Pages = () => {
     {
       id: "31",
       link: "https://react-app-bank-code.vercel.app/",
-      linkName: "Bank Transfer",
+      linkName: "Confirm Payment",
     }
   ]
   return (
