@@ -44,7 +44,7 @@ export const Home = ({ className }) => {
 
   return (
     <>
-            <section className={`home ${className}`}>
+      <section className={`home ${className}`}>
         <div className="container single-column">
 
           <div className="content-wrapper">
