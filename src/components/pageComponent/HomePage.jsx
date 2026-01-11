@@ -125,7 +125,7 @@ export const HomePage = () => {
       <ScrollRevealText />
       <Skill className="reveal" />
       <Service className="reveal" />
-      <WrapperOne className="reveal" />
+      <WrapperOne />
     </>
   );
 };
