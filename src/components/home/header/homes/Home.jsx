@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import introBackground from '../../../../assets/IntroBackground.mp4';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
@@ -45,38 +44,7 @@ export const Home = ({ className }) => {
 
   return (
     <>
-      {/* <div className="container mx-auto position-relative ">
-        <div className="swiper mySwiper h-100 w-100">
-          <div className="swiper-wrapper">
-            <div className="swiper-slide swiper-slide-active w-100">
-              <div className="embed-responsive embed-responsive-16by9">
-                <video
-                  className="embed-responsive-item"
-                  autoPlay
-                  loop
-                  playsInline
-                  preload="auto"
-                  muted
-                  style={{
-                    objectFit: 'cover',
-                    width: '100%',
-                    height: '100%',
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                  }}
-                >
-                  <source src={introBackground} type="video/mp4" />
-                </video>
-              </div>
-            </div>
-          </div>
-          <div className="swiper-pagination"></div>
-        </div>
-      </div> */}
-
-      <section className={`home ${className}`}>
+            <section className={`home ${className}`}>
         <div className="container single-column">
 
           <div className="content-wrapper">

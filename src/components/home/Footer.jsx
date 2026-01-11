@@ -51,7 +51,7 @@ export const Footer = () => {
       <div className="container grid1">
         <div className="box centerBox">
           <img width="95" height="60" src={logo_brand} alt="logo" />
-          <p>DLUONGTA - LUONG MIND</p>
+          <p>DLUONGTA - ULTRAMIND</p>
           <div className="socialIcon">
             <a href="https://www.facebook.com/dluongta" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f"></i></a>
             <a href="https://www.instagram.com/dluongta/" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>

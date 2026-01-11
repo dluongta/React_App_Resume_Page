@@ -1,16 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.db837ef4.css",
-    "main.js": "/static/js/main.2609d202.js",
-    "static/media/IntroBackground.mp4": "/static/media/IntroBackground.bfb8e3fa82c026ee9ef8.mp4",
-    "static/media/lumind_animation.mp4": "/static/media/lumind_animation.5a5b497f69bc1862e664.mp4",
-    "static/media/lumind_logo.mp4": "/static/media/lumind_logo.ae730741aaf62d289782.mp4",
+    "main.js": "/static/js/main.64ab7c30.js",
     "static/media/dluongta_animation.mp4": "/static/media/dluongta_animation.7e92d2ae3f14f3cc4ba1.mp4",
+    "static/media/lumind_animation.mp4": "/static/media/lumind_animation.1cd2e61b41a3f38e1c0a.mp4",
+    "static/media/lumind_logo.mp4": "/static/media/lumind_logo.fb98160980a5b598508e.mp4",
     "static/media/contact-img.png": "/static/media/contact-img.b99cdb766ab2d8b5cfa5.png",
     "static/media/banner-bg.png": "/static/media/banner-bg.f67087d1c9931d7ccc75.png",
     "static/media/hexagon.png": "/static/media/hexagon.4a2efb8663eceda0a4b6.png",
-    "static/media/luen-1.jpg": "/static/media/luen-1.96d0881af7cde8a374b4.jpg",
-    "static/media/luen.jpg": "/static/media/luen.3cf46119a4272eaa5af5.jpg",
+    "static/media/luen-1.jpg": "/static/media/luen-1.b813df30aeecfdc54a6a.jpg",
+    "static/media/luen.jpg": "/static/media/luen.56b0f2187afef68a2d6c.jpg",
     "static/media/hexagon-main.png": "/static/media/hexagon-main.068f159c444a3180f667.png",
     "static/media/luen_logo.png": "/static/media/luen_logo.9de91ff6306a22184438.png",
     "index.html": "/index.html",
@@ -18,10 +17,10 @@
     "static/media/caption.vtt": "/static/media/caption.f60d51dda084efcb1f52.vtt",
     "static/media/lumind_animation.vtt": "/static/media/lumind_animation.9fe9e5bffd53a7f0e2a8.vtt",
     "main.db837ef4.css.map": "/static/css/main.db837ef4.css.map",
-    "main.2609d202.js.map": "/static/js/main.2609d202.js.map"
+    "main.64ab7c30.js.map": "/static/js/main.64ab7c30.js.map"
   },
   "entrypoints": [
     "static/css/main.db837ef4.css",
-    "static/js/main.2609d202.js"
+    "static/js/main.64ab7c30.js"
   ]
 }
