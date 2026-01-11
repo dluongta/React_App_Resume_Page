@@ -176,29 +176,31 @@ html, body {
 }
 
 /* --- THÊM GRADIENT VÀ Z-INDEX --- */
-
-/* Thẻ 01: Z-index thấp nhất */
+/* Thẻ 01 */
 .steps-container4 { 
   z-index: 10; 
-  background: linear-gradient(135deg, #FF6B6B 0%, #556270 100%);
+  background: linear-gradient(135deg, #FF9A8B 0%, #FFD6A5 100%); /* Hồng – cam nhạt, sáng và ấm */
   transform: rotate(-1.5deg);
 }
+
 /* Thẻ 02 */
 .steps-container5 { 
   z-index: 20; 
-  background: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%);
+  background: linear-gradient(135deg, #6EE7B7 0%, #3B82F6 100%); /* Xanh lá nhạt → Xanh dương sáng */
   transform: rotate(1.5deg);
 }
+
 /* Thẻ 03 */
 .steps-container6 { 
   z-index: 30; 
-  background: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
+  background: linear-gradient(135deg, #A78BFA 0%, #F472B6 100%); /* Tím nhạt → Hồng tươi */
   transform: rotate(-1deg);
 }
-/* Thẻ 04: Z-index cao nhất (sẽ đè lên tất cả) */
+
+/* Thẻ 04: Z-index cao nhất */
 .steps-container7 { 
   z-index: 40; 
-  background: linear-gradient(135deg, #FDBB2D 0%, #22C55E 100%);
+  background: linear-gradient(135deg, #FDE68A 0%, #34D399 100%); /* Vàng sáng → Xanh mint */
   transform: rotate(1deg);
 }
 
