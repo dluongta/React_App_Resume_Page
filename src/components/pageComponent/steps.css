@@ -1,0 +1,399 @@
+/* Container tổng */
+.steps-container1 {
+  width: 100%;
+  position: relative;
+  /* Quan trọng: Tuyệt đối không để overflow: hidden ở đây hoặc các thẻ cha cao hơn */
+}
+
+.steps-max-width {
+  width: 100%;
+  padding: 80px 20px;
+}
+
+.steps-container2 {
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
+  position: relative;
+}
+
+/* CỘT TRÁI: TIÊU ĐỀ */
+.steps-section-header {
+  flex: 1;
+  position: sticky;
+  top: 15vh; /* Vị trí tiêu đề sẽ dừng lại */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* CỘT PHẢI */
+.steps-container3 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HIỆU ỨNG CHỒNG THẺ */
+.step-card-wrapper {
+  position: sticky;
+  top: 10vh; /* ĐIỂM DỪNG CỐ ĐỊNH: Thẻ sẽ đứng yên tại đây */
+  
+  width: 100%;
+  min-height: 450px;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  
+  /* BÍ QUYẾT: Margin này tạo không gian để bạn cuộn chuột tiếp mà thẻ vẫn đứng yên */
+  margin-bottom: 50vh; 
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+/* Thứ tự các lớp chồng lên nhau */
+.steps-container4 { 
+  z-index: 1; 
+  background-color: var(--dl-color-theme-accent1); 
+  transform: rotate(-1.5deg);
+}
+.steps-container5 { 
+  z-index: 2; 
+  background-color: var(--dl-color-theme-accent2); 
+  transform: rotate(1.5deg);
+}
+.steps-container6 { 
+  z-index: 3; 
+  background-color: #f3f0ff; 
+  transform: rotate(-1deg);
+}
+.steps-container7 { 
+  z-index: 4; 
+  background-color: #e7f5ff; 
+  transform: rotate(1deg);
+  margin-bottom: 10vh; /* Thẻ cuối cùng thu nhỏ margin để hiện nội dung tiếp theo */
+}
+
+.steps-label {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 50px;
+  font-weight: 900;
+  opacity: 0.1;
+}
+
+/* RESPONSIVE */
+@media(max-width: 991px) {
+  .steps-container2 { flex-direction: column; }
+  .steps-section-header { position: static; }
+  .step-card-wrapper { position: relative; top: 0; margin-bottom: 20px; transform: none !important; }
+}
+html, body {
+  overflow-x: visible !important;
+  height: auto !important;
+}
+/* Thiết lập chung và loại bỏ overflow */
+html, body {
+  /* Bắt buộc để sticky hoạt động */
+  overflow-x: visible !important;
+  height: auto !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Container tổng: Tăng chiều cao cuộn */
+.steps-container1 {
+  width: 100%;
+  position: relative;
+  /* Đảm bảo có đủ scroll cho 4 thẻ dính */
+  min-height: 350vh; 
+  padding-top: 50px; 
+}
+
+.steps-max-width {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto; /* Căn giữa */
+  padding: 80px 0;
+}
+
+.steps-container2 {
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
+  position: relative;
+}
+
+/* CỘT TRÁI: TIÊU ĐỀ */
+.steps-section-header {
+  flex: 1;
+  position: sticky;
+  top: 15vh; /* Vị trí tiêu đề sẽ dừng lại */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-right: 20px; /* Thêm padding cho đẹp */
+}
+
+/* CỘT PHẢI */
+.steps-container3 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========================================= */
+/* === HIỆU ỨNG CHỒNG THẺ (STICKY STACKING) == */
+/* ========================================= */
+.step-card-wrapper {
+  position: sticky;
+  top: 10vh; /* ĐIỂM DỪNG CỐ ĐỊNH: Thẻ sẽ đứng yên tại đây */
+  
+  width: 100%;
+  min-height: 400px; /* Chiều cao tối thiểu của thẻ */
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  color: white; /* Đặt màu chữ trắng cho Gradient */
+  
+  /* BÍ QUYẾT: Margin lớn tạo quãng đường cuộn */
+  margin-bottom: 50vh; 
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+/* Thẻ cuối cùng thu nhỏ margin để giải phóng scroll */
+.steps-container7 { 
+  margin-bottom: 10vh; 
+}
+
+/* --- THÊM GRADIENT VÀ Z-INDEX --- */
+
+/* Thẻ 01: Z-index thấp nhất */
+.steps-container4 { 
+  z-index: 10; 
+  background: linear-gradient(135deg, #FF6B6B 0%, #556270 100%);
+  transform: rotate(-1.5deg);
+}
+/* Thẻ 02 */
+.steps-container5 { 
+  z-index: 20; 
+  background: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%);
+  transform: rotate(1.5deg);
+}
+/* Thẻ 03 */
+.steps-container6 { 
+  z-index: 30; 
+  background: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
+  transform: rotate(-1deg);
+}
+/* Thẻ 04: Z-index cao nhất (sẽ đè lên tất cả) */
+.steps-container7 { 
+  z-index: 40; 
+  background: linear-gradient(135deg, #FDBB2D 0%, #22C55E 100%);
+  transform: rotate(1deg);
+}
+
+.card-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+.card-desc {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+.steps-label {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 50px;
+  font-weight: 900;
+  opacity: 0.2; /* Tăng opacity lên 0.2 cho dễ nhìn trên nền tối */
+}
+
+/* RESPONSIVE */
+@media(max-width: 991px) {
+  .steps-container2 { flex-direction: column; }
+  .steps-section-header { position: static; top: auto; padding-right: 0; }
+  .steps-max-width { padding: 40px 10px; }
+  
+  /* Tắt sticky và transform trên mobile */
+  .step-card-wrapper { 
+    position: relative; 
+    top: 0; 
+    margin-bottom: 20px; 
+    transform: none !important; 
+    min-height: auto;
+  }
+  .steps-container7 { 
+    margin-bottom: 20px; 
+  }
+}
+/* Tùy chỉnh Nút Chung */
+.steps-button {
+    /* Đảm bảo nút là inline-block để có thể set width/padding */
+    display: inline-block; 
+    
+    /* Font và chữ */
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    /* Kích thước và bo góc */
+    padding: 15px 35px;
+    border: none;
+    cursor: pointer;
+    
+    /* Hiệu ứng chuyển động mượt mà */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Style cho nút THQ Filled (Màu nền chính) */
+.thq-button-filled {
+    /* Sử dụng Gradient làm nền */
+    background: linear-gradient(90deg, #4F46E5 0%, #7C3AED 100%); /* Màu xanh tím hiện đại */
+    color: #ffffff; /* Chữ trắng */
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4); /* Thêm bóng đổ nhẹ */
+}
+
+/* Hiệu ứng khi di chuột vào (Hover Effect) */
+.thq-button-filled:hover {
+    /* Tăng độ sáng của gradient */
+    background: linear-gradient(90deg, #6366F1 0%, #9333EA 100%);
+    
+    /* Hiệu ứng nhấc nút lên */
+    transform: translateY(-3px); 
+    
+    /* Bóng đổ đậm hơn khi hover */
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.6); 
+}
+
+/* Hiệu ứng khi nhấn nút (Active Effect) */
+.thq-button-filled:active {
+    transform: translateY(0); /* Đẩy nút về vị trí ban đầu */
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4); 
+}
+
+/* RESPONSIVE MOBILE: vẫn chồng thẻ, sticky + gradient */
+@media(max-width: 991px) {
+  .steps-container2 {
+    flex-direction: column;
+    gap: 0; /* loại bỏ khoảng cách lớn */
+  }
+
+  .steps-section-header {
+    position: sticky; /* giữ sticky header */
+    top: 10vh;
+    z-index: 50; /* header luôn trên thẻ */
+    margin-bottom: 30px;
+    padding-right: 0;
+  }
+
+  .steps-container3 {
+    flex-direction: column;
+    position: relative;
+  }
+
+  .step-card-wrapper {
+    position: sticky; /* vẫn sticky */
+    top: 15vh;
+    width: 100%;
+    margin-bottom: 20vh; /* đủ để cuộn mà vẫn chồng */
+    min-height: 300px; /* nhỏ hơn desktop */
+    transform: rotate(0deg); /* loại bỏ rotate để dễ nhìn */
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    color: white;
+  }
+
+  .steps-container4,
+  .steps-container5,
+  .steps-container6,
+  .steps-container7 {
+    transform: none; /* loại bỏ rotate */
+    margin-bottom: 20vh;
+  }
+
+  .steps-label {
+    font-size: 40px;
+    top: 15px;
+    right: 20px;
+    opacity: 0.2;
+  }
+}
+/* ... Các code CSS cho Desktop giữ nguyên ... */
+
+/* ========================================= */
+/* === RESPONSIVE MOBILE (SỬA LỖI CHỒNG) === */
+/* ========================================= */
+@media (max-width: 991px) {
+  
+  /* 1. CONTAINER CHÍNH */
+  .steps-container2 {
+    flex-direction: column; /* Xếp dọc: Chữ trên, Thẻ dưới */
+    gap: 0; 
+  }
+
+  .steps-max-width {
+    padding: 60px 20px;
+  }
+
+  /* 2. HEADER (TIÊU ĐỀ): QUAN TRỌNG NHẤT */
+  .steps-section-header {
+    /* Thay đổi từ sticky -> relative để nó trôi đi khi cuộn */
+    position: relative; 
+    top: auto;
+    width: 100%;
+    margin-bottom: 40px; /* Tạo khoảng cách an toàn với thẻ đầu tiên */
+    z-index: 5; /* Thấp hơn thẻ để khi thẻ trôi lên sẽ đè lên chữ */
+    padding-right: 0;
+  }
+
+  /* 3. CÁC THẺ (CARDS) */
+  .steps-container3 {
+    width: 100%;
+    position: relative;
+    /* Padding bottom để thẻ cuối cùng có chỗ hiển thị hết */
+    padding-bottom: 100px; 
+  }
+
+  .step-card-wrapper {
+    /* Vẫn giữ hiệu ứng dính để xếp chồng đẹp mắt */
+    position: sticky;
+    top: 80px; /* Dính cách mép trên 80px (để không bị sát quá) */
+    
+    width: 100%;
+    min-height: 350px; /* Chiều cao vừa phải cho mobile */
+    padding: 30px;
+    margin-bottom: 30vh; /* Khoảng cách cuộn giữa các thẻ */
+    
+    /* Reset hiệu ứng xoay cho gọn gàng trên màn hình nhỏ */
+    transform: none !important; 
+    border-radius: 20px;
+  }
+
+  /* Chỉnh lại Label số (01, 02...) nhỏ hơn chút */
+  .steps-label {
+    font-size: 32px;
+    top: 20px;
+    right: 20px;
+    opacity: 0.15;
+  }
+  
+  /* Thẻ cuối cùng không cần margin lớn */
+  .steps-container7 {
+    margin-bottom: 0;
+  }
+}
