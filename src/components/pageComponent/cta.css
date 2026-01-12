@@ -22,7 +22,7 @@
     border-radius: var(--dl-radius-radius-cardradius);
     justify-content: space-between;
     transform-style: preserve-3d;
-    background-color: blueviolet;
+    background-color: #00baed;
 
     /* background-color: var(--dl-color-theme-accent1); */
   }
