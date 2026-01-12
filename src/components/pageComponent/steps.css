@@ -46,7 +46,7 @@
   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   
   /* BÍ QUYẾT: Margin này tạo không gian để bạn cuộn chuột tiếp mà thẻ vẫn đứng yên */
-  margin-bottom: 50vh; 
+  margin-bottom: 25vh; 
   
   display: flex;
   flex-direction: column;
@@ -58,23 +58,23 @@
 .steps-container4 { 
   z-index: 1; 
   background-color: var(--dl-color-theme-accent1); 
-  transform: rotate(-1.5deg);
+  transform: rotate(-2.2deg) translateX(-6px);
 }
 .steps-container5 { 
   z-index: 2; 
   background-color: var(--dl-color-theme-accent2); 
-  transform: rotate(1.5deg);
+  transform: rotate(1.8deg) translateX(4px);
 }
 .steps-container6 { 
   z-index: 3; 
   background-color: #f3f0ff; 
-  transform: rotate(-1deg);
+  transform: rotate(-1.2deg) translateX(-2px);
 }
 .steps-container7 { 
   z-index: 4; 
   background-color: #e7f5ff; 
   transform: rotate(1deg);
-  margin-bottom: 10vh; /* Thẻ cuối cùng thu nhỏ margin để hiện nội dung tiếp theo */
+  margin-bottom: 10vh;
 }
 
 .steps-label {
@@ -90,7 +90,7 @@
 @media(max-width: 991px) {
   .steps-container2 { flex-direction: column; }
   .steps-section-header { position: static; }
-  .step-card-wrapper { position: relative; top: 0; margin-bottom: 20px; transform: none !important; }
+  .step-card-wrapper { position: relative; top: 0; margin-bottom: 15vh; transform: none !important; }
 }
 html, body {
   overflow-x: visible !important;
@@ -162,7 +162,7 @@ html, body {
   color: white; /* Đặt màu chữ trắng cho Gradient */
   
   /* BÍ QUYẾT: Margin lớn tạo quãng đường cuộn */
-  margin-bottom: 50vh; 
+  margin-bottom: 15vh; 
   
   display: flex;
   flex-direction: column;
@@ -324,8 +324,8 @@ html, body {
   .steps-container5,
   .steps-container6,
   .steps-container7 {
-    transform: none; /* loại bỏ rotate */
-    margin-bottom: 20vh;
+    transform: none; 
+    margin-bottom: 10vh;
   }
 
   .steps-label {
@@ -379,7 +379,7 @@ html, body {
     width: 100%;
     min-height: 350px; /* Chiều cao vừa phải cho mobile */
     padding: 30px;
-    margin-bottom: 30vh; /* Khoảng cách cuộn giữa các thẻ */
+    margin-bottom: 15vh; /* Khoảng cách cuộn giữa các thẻ */
     
     /* Reset hiệu ứng xoay cho gọn gàng trên màn hình nhỏ */
     transform: none !important; 
@@ -398,4 +398,26 @@ html, body {
   .steps-container7 {
     margin-bottom: 0;
   }
+}
+/* ================================ */
+/* === FIX HƯỚNG XOAY CARD MOBILE === */
+/* ================================ */
+@media (max-width: 991px) {
+
+  .steps-container4 {
+    transform: rotate(-1.8deg) translateX(-8px) !important;
+  }
+
+  .steps-container5 {
+    transform: rotate(1.4deg) translateX(6px) !important;
+  }
+
+  .steps-container6 {
+    transform: rotate(-1deg) translateX(-4px) !important;
+  }
+
+  .steps-container7 {
+    transform: rotate(0.8deg) translateX(2px) !important;
+  }
+
 }
