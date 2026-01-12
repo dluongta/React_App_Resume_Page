@@ -12,6 +12,18 @@ export const Footer = () => {
     if (el) el.textContent = year;
   }, []);
 
+  //   const currentDate = new Intl.DateTimeFormat('en-GB', {
+  //   day: '2-digit',
+  //   month: 'long',
+  //   year: 'numeric',
+  // }).format(new Date());
+
+  const currentDate = new Date().toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
+
   return (
     <footer>
       <svg viewBox="0 -5 120 28" preserveAspectRatio="none">
@@ -35,15 +47,15 @@ export const Footer = () => {
         <use id="wave3" className="wave" xlinkHref="#wave" x="0" y="-2" />
         <use id="wave2" className="wave" xlinkHref="#wave" x="0" y="0" />
         <g className="gooeff">
-        <circle className="drop drop1" cx="20" cy="2" r="1.8" />
-        <circle className="drop drop2" cx="25" cy="2.5" r="1.5" />
-        <circle className="drop drop3" cx="16" cy="2.8" r="1.2" />
+          <circle className="drop drop1" cx="20" cy="2" r="1.8" />
+          <circle className="drop drop2" cx="25" cy="2.5" r="1.5" />
+          <circle className="drop drop3" cx="16" cy="2.8" r="1.2" />
 
-        <circle className="drop drop4" cx="95" cy="2.2" r="1.5" />
-        <circle className="drop drop5" cx="105" cy="3" r="1.8" />
-        <circle className="drop drop6" cx="110" cy="2.5" r="1.2" />
+          <circle className="drop drop4" cx="95" cy="2.2" r="1.5" />
+          <circle className="drop drop5" cx="105" cy="3" r="1.8" />
+          <circle className="drop drop6" cx="110" cy="2.5" r="1.2" />
 
-        <use id="wave1" className="wave" xlinkHref="#wave" x="0" y="1" />
+          <use id="wave1" className="wave" xlinkHref="#wave" x="0" y="1" />
         </g>
 
       </svg>
@@ -51,7 +63,10 @@ export const Footer = () => {
       <div className="container grid1">
         <div className="box centerBox">
           <img width="95" height="60" src={logo_brand} alt="logo" />
-          <p>DLUONGTA - ULTRAMIND</p>
+          <p>
+            ULMIND - DLUONGTA <br />
+            ULTRAMIND
+          </p>
           <div className="socialIcon">
             <a href="https://www.facebook.com/dluongta" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f"></i></a>
             <a href="https://www.instagram.com/dluongta/" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
@@ -75,10 +90,10 @@ export const Footer = () => {
 
         <div className="box">
           <h2>Recent Post</h2>
-          {[1,2,3].map((i) => (
+          {[1, 2, 3].map((i) => (
             <div key={i} className="text">
               <p>Latest News</p>
-              <span>30 April 2023</span>
+              <span>{currentDate}</span>
             </div>
           ))}
         </div>
@@ -94,7 +109,7 @@ export const Footer = () => {
 
       <div className="legal container">
         <p>Copyright <span className="blue">&copy;<span id="currentYear"></span></span>. All rights reserved.</p>
-        <span className="author">Made with <span className="heartbeat"><FavoriteIcon color="warning" sx={{ fontSize: 18 }}/></span> by <span className="blue">Dinh Luong Ta</span></span>
+        <span className="author">Made with <span className="heartbeat"><FavoriteIcon color="warning" sx={{ fontSize: 18 }} /></span> by <span className="blue">Dinh Luong Ta</span></span>
       </div>
     </footer>
   );
