@@ -419,5 +419,7 @@ html, body {
   .steps-container7 {
     transform: rotate(0.8deg) translateX(2px) !important;
   }
-
+  .steps-container1 {
+    margin-bottom: -18vh;
+  }
 }
