@@ -2194,7 +2194,7 @@ footer a:hover {
 .centerBox p {
   max-width: 220px;
   margin: auto;
-  text-align: center;
+  text-align: left;
   line-height: 1.4;
   word-break: break-word;
 }
