@@ -12,7 +12,7 @@ import { ScrollRevealText } from './ScrollRevealText';
 import Steps from './Steps';
 import Particles from 'react-tsparticles';
 import { loadSlim } from 'tsparticles-slim'; 
-
+import CTA from './CTA';
 export const HomePage = () => {
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal');
@@ -124,6 +124,7 @@ export const HomePage = () => {
       <Wrapper className="reveal" />
       <ScrollRevealText />
       <Steps/>
+      <CTA/>
       <Skill className="reveal" />
       <Service className="reveal" />
       <WrapperOne />
