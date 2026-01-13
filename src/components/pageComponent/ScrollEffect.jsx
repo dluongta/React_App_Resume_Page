@@ -49,7 +49,7 @@ const ScrollEffect = () => {
       const extraRight = isMobile ? windowWidth * 0.1 * contentProgress : 0;
 
       if (dev1) {
-        dev1.style.transform = `translate(${-horizontalDist }px, ${-verticalDist * 0.4}px) rotate(${-contentProgress * 15}deg) scale(${isMobile ? 0.8 : 1})`;
+        dev1.style.transform = `translate(${-horizontalDist *1.2}px, ${-verticalDist * 0.4}px) rotate(${-contentProgress * 15}deg) scale(${isMobile ? 0.8 : 1})`;
       }
 
       if (dev2) {
@@ -133,7 +133,7 @@ const ScrollEffect = () => {
               textAlign: 'center',
               color: '#000',
               maxWidth: '500px',
-              transform: isMobile ? 'translateY(240px)' : 'translateY(320px)',
+              transform: isMobile ? 'translateY(340px)' : 'translateY(320px)',
               transition: 'transform 0.4s ease-out',
               marginBottom: '100px'
             }}
