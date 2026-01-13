@@ -53,15 +53,15 @@ const ScrollEffect = () => {
       }
 
       if (dev2) {
-        dev2.style.transform = `translate(${horizontalDist + extraRight*0.25}px, ${-verticalDist * 0.3}px) rotate(${contentProgress * 15}deg) scale(${isMobile ? 0.8 : 1})`;
+        dev2.style.transform = `translate(${isMobile ? horizontalDist *1.2: horizontalDist + extraRight*0.25}px, ${-verticalDist * 0.3}px) rotate(${contentProgress * 15}deg) scale(${isMobile ? 0.8 : 1})`;
       }
 
       if (dev3) {
-        dev3.style.transform = `translate(${-horizontalDist * 0.9}px, ${verticalDist * 0.6}px) rotate(${-contentProgress * 10}deg) scale(${isMobile ? 0.8 : 1})`;
+        dev3.style.transform = `translate(${isMobile ? -horizontalDist *1.1 :-horizontalDist * 0.9}px, ${verticalDist * 0.6}px) rotate(${-contentProgress * 10}deg) scale(${isMobile ? 0.8 : 1})`;
       }
 
       if (dev4) {
-        dev4.style.transform = `translate(${horizontalDist * 0.9}px, ${verticalDist * 0.6}px) rotate(${contentProgress * 10}deg) scale(${isMobile ? 0.8 : 1})`;
+        dev4.style.transform = `translate(${isMobile ? horizontalDist *1.2 :horizontalDist * 0.9}px, ${verticalDist * 0.6}px) rotate(${contentProgress * 10}deg) scale(${isMobile ? 0.8 : 1})`;
       }
     };
 
