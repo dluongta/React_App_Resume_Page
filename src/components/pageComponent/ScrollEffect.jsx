@@ -49,15 +49,15 @@ const ScrollEffect = () => {
       const extraRight = isMobile ? windowWidth * 0.1 * contentProgress : 0;
 
       if (dev1) {
-        dev1.style.transform = `translate(${-horizontalDist *1.2}px, ${-verticalDist * 0.4}px) rotate(${-contentProgress * 15}deg) scale(${isMobile ? 0.8 : 1})`;
+        dev1.style.transform = `translate(${-horizontalDist}px, ${-verticalDist * 0.4}px) rotate(${-contentProgress * 15}deg) scale(${isMobile ? 0.8 : 1})`;
       }
 
       if (dev2) {
-        dev2.style.transform = `translate(${isMobile ? horizontalDist *1.2: horizontalDist + extraRight*0.25}px, ${-verticalDist * 0.3}px) rotate(${contentProgress * 15}deg) scale(${isMobile ? 0.8 : 1})`;
+        dev2.style.transform = `translate(${isMobile ? horizontalDist *1.4: horizontalDist + extraRight*0.25}px, ${-verticalDist * 0.3}px) rotate(${contentProgress * 15}deg) scale(${isMobile ? 0.8 : 1})`;
       }
 
       if (dev3) {
-        dev3.style.transform = `translate(${isMobile ? -horizontalDist *1.1 :-horizontalDist * 0.9}px, ${verticalDist * 0.6}px) rotate(${-contentProgress * 10}deg) scale(${isMobile ? 0.8 : 1})`;
+        dev3.style.transform = `translate(${isMobile ? -horizontalDist *1.2 :-horizontalDist * 0.9}px, ${verticalDist * 0.6}px) rotate(${-contentProgress * 10}deg) scale(${isMobile ? 0.8 : 1})`;
       }
 
       if (dev4) {
@@ -70,8 +70,8 @@ const ScrollEffect = () => {
   }, [isMobile]);
 
   return (
-    <div style={{ backgroundColor: '#f5f5f5', minHeight: '350vh', fontFamily: 'Segoe UI, sans-serif' }}>
-      <div style={{ position: 'sticky', top: 0, height: '120vh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+    <div style={{ backgroundColor: '#f5f5f5', minHeight: '300vh', fontFamily: 'Segoe UI, sans-serif' }}>
+      <div style={{ position: 'sticky', top: 0, height: '110vh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
         <img
           ref={mainBgRef}
           src={main_bg}
