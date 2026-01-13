@@ -13,6 +13,7 @@ import Steps from './Steps';
 import Particles from 'react-tsparticles';
 import { loadSlim } from 'tsparticles-slim'; 
 import CTA from './CTA';
+import ScrollEffect from './ScrollEffect';
 export const HomePage = () => {
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal');
@@ -117,7 +118,7 @@ export const HomePage = () => {
         <Link to='/portfolio' id="portfolio"> Portfolio </Link>
         <Link to='/contact' id="contact"> Contact </Link>
       </div>
-
+       <ScrollEffect/> 
       <Home className="reveal" />
       <Branding className="reveal" />
       <About className="reveal" />
