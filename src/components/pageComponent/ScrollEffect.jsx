@@ -53,7 +53,7 @@ const ScrollEffect = () => {
       }
 
       if (dev2) {
-        dev2.style.transform = `translate(${isMobile ? horizontalDist *1.4: horizontalDist + extraRight*0.25}px, ${-verticalDist * 0.3}px) rotate(${contentProgress * 15}deg) scale(${isMobile ? 0.8 : 1})`;
+        dev2.style.transform = `translate(${isMobile ? horizontalDist *1.23: horizontalDist + extraRight*0.25}px, ${-verticalDist * 0.3}px) rotate(${contentProgress * 15}deg) scale(${isMobile ? 0.8 : 1})`;
       }
 
       if (dev3) {
