@@ -14,6 +14,7 @@ import Particles from 'react-tsparticles';
 import { loadSlim } from 'tsparticles-slim'; 
 import CTA from './CTA';
 import ScrollEffect from './ScrollEffect';
+import ScrollHero from './ScrollHero';
 export const HomePage = () => {
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal');
@@ -124,6 +125,7 @@ export const HomePage = () => {
       <About className="reveal" />
       <Wrapper className="reveal" />
       <ScrollRevealText />
+      <ScrollHero/>
       <Steps/>
       <CTA/>
       <Skill className="reveal" />
