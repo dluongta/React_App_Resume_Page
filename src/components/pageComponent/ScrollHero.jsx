@@ -98,7 +98,7 @@ const ScrollHero = () => {
                         <h1 style={styles.title}>DIGITAL<br />TRANSFORMATION</h1>
                         <p style={styles.description}>
                             Xây dựng nền tảng công nghệ vững chắc cho sự tăng trưởng bền vững.
-                            Giải pháp phần mềm đóng góp cho sự phát triển của doanh nghiệp và người sử dụng.
+                            Giải pháp phần mềm đóng góp cho sự phát triển của doanh nghiệp.
                         </p>
                     </div>
                 </div>
