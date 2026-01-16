@@ -124,7 +124,7 @@ const ScrollHero = () => {
                 <div style={styles.baseLayer}>
                     <div style={styles.contentBox}>
                         <h1 style={styles.titleGradientDark}>
-                            DIGITAL<br />TRANSFORMATION
+                            DIGITAL<br />PLATFORM
                         </h1>
                         <p style={styles.descriptionDark}>
                             Xây dựng nền tảng công nghệ vững chắc cho sự tăng trưởng bền vững.

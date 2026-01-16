@@ -12,7 +12,6 @@ import { ScrollRevealText } from './ScrollRevealText';
 import Steps from './Steps';
 import Particles from 'react-tsparticles';
 import { loadSlim } from 'tsparticles-slim'; 
-import CTA from './CTA';
 import ScrollEffect from './ScrollEffect';
 import ScrollHero from './ScrollHero';
 export const HomePage = () => {
@@ -127,7 +126,6 @@ export const HomePage = () => {
       <ScrollRevealText />
       <ScrollHero/>
       <Steps/>
-      {/* <CTA/> */}
       <Skill className="reveal" />
       <Service className="reveal" />
       <WrapperOne />
