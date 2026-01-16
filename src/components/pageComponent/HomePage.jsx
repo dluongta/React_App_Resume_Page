@@ -127,7 +127,7 @@ export const HomePage = () => {
       <ScrollRevealText />
       <ScrollHero/>
       <Steps/>
-      <CTA/>
+      {/* <CTA/> */}
       <Skill className="reveal" />
       <Service className="reveal" />
       <WrapperOne />
