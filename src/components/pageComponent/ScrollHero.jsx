@@ -11,24 +11,25 @@ const ScrollHero = () => {
             const rect = containerRef.current.getBoundingClientRect();
             const windowHeight = window.innerHeight;
 
-            // Tính toán vùng hoạt động của hiệu ứng
-            // 0: Bắt đầu chạm đỉnh, 1: Đã cuộn qua hết container
             const totalAvailableScroll = rect.height - windowHeight;
             const currentScroll = -rect.top;
 
-            const currentProgress = Math.min(Math.max(currentScroll / totalAvailableScroll, 0), 1);
+            const currentProgress = Math.min(
+                Math.max(currentScroll / totalAvailableScroll, 0),
+                1
+            );
             setProgress(currentProgress);
         };
 
         window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Chạy lần đầu để set state
+        handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const styles = {
         container: {
-            height: '250vh', // Độ dài để người dùng cuộn tạo hiệu ứng
-            backgroundColor: '#000',
+            height: '250vh',
+            background: 'linear-gradient(180deg, #f8fbff, #eef2ff)',
             position: 'relative',
         },
         stickyWrapper: {
@@ -38,33 +39,34 @@ const ScrollHero = () => {
             width: '100%',
             overflow: 'hidden',
         },
-        // Nội dung đen (Nằm dưới)
-        blackLayer: {
+
+        /* Layer dưới */
+        baseLayer: {
             position: 'absolute',
             inset: 0,
-            backgroundColor: '#000',
+            background: 'linear-gradient(135deg, #667eea, #764ba2)',
             color: '#fff',
             zIndex: 1,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
         },
-        // Nội dung trắng (Nằm trên, bị cắt dần)
-        whiteLayer: {
+
+        /* Layer trên (bị cắt dần) */
+        overlayLayer: {
             position: 'absolute',
             top: 0,
             left: 0,
             width: '100%',
-            height: `${(1 - progress) * 100}%`, // Chiều cao giảm dần
-            backgroundColor: '#fff',
-            color: '#000',
+            height: `${(1 - progress) * 100}%`,
+            background: 'linear-gradient(135deg, #ffffff, #f3f6ff)',
             zIndex: 2,
             overflow: 'hidden',
             display: 'flex',
-            alignItems: 'flex-start', // Quan trọng để giữ nội dung không trượt theo
+            alignItems: 'flex-start',
             justifyContent: 'center',
         },
-        // Container chứa Text để đảm bảo 2 lớp chữ giống hệt vị trí nhau
+
         contentBox: {
             width: '100%',
             height: '100vh',
@@ -72,41 +74,72 @@ const ScrollHero = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            flexShrink: 0, // Không cho nội dung bị bóp méo khi lớp cha thu nhỏ
+            flexShrink: 0,
         },
-        title: {
-            fontSize: 'clamp(40px, 10vw, 120px)',
+
+        titleGradientDark: {
+            fontSize: 'clamp(42px, 10vw, 120px)',
             fontWeight: 900,
             lineHeight: 0.9,
             margin: 0,
             textTransform: 'uppercase',
+            background: 'linear-gradient(90deg, #ffffff, #e0e7ff)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
         },
-        description: {
+
+        titleGradientLight: {
+            fontSize: 'clamp(42px, 10vw, 120px)',
+            fontWeight: 900,
+            lineHeight: 0.9,
+            margin: 0,
+            textTransform: 'uppercase',
+            background: 'linear-gradient(90deg, #667eea, #764ba2)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+        },
+
+        descriptionDark: {
             fontSize: 'clamp(16px, 2vw, 24px)',
             marginTop: '30px',
-            maxWidth: '700px',
-            lineHeight: 1.5,
-        }
+            maxWidth: '720px',
+            lineHeight: 1.6,
+            color: '#f1f5ff',
+        },
+
+        descriptionLight: {
+            fontSize: 'clamp(16px, 2vw, 24px)',
+            marginTop: '30px',
+            maxWidth: '720px',
+            lineHeight: 1.6,
+            color: '#4a5568',
+        },
     };
 
     return (
         <div style={styles.container} ref={containerRef}>
             <div style={styles.stickyWrapper}>
 
-                <div style={styles.blackLayer}>
+                {/* Layer dưới */}
+                <div style={styles.baseLayer}>
                     <div style={styles.contentBox}>
-                        <h1 style={styles.title}>DIGITAL<br />TRANSFORMATION</h1>
-                        <p style={styles.description}>
+                        <h1 style={styles.titleGradientDark}>
+                            DIGITAL<br />TRANSFORMATION
+                        </h1>
+                        <p style={styles.descriptionDark}>
                             Xây dựng nền tảng công nghệ vững chắc cho sự tăng trưởng bền vững.
                             Giải pháp phần mềm đóng góp cho sự phát triển của doanh nghiệp.
                         </p>
                     </div>
                 </div>
 
-                <div style={styles.whiteLayer}>
+                {/* Layer trên */}
+                <div style={styles.overlayLayer}>
                     <div style={styles.contentBox}>
-                        <h1 style={styles.title}>INNOVATION<br />SYSTEMS</h1>
-                        <p style={styles.description}>
+                        <h1 style={styles.titleGradientLight}>
+                            INNOVATION<br />SYSTEMS
+                        </h1>
+                        <p style={styles.descriptionLight}>
                             Chúng tôi kiến tạo các giải pháp phần mềm chuyên sâu, giúp doanh nghiệp
                             đột phá trong kỷ nguyên trí tuệ nhân tạo và chuyển đổi số.
                         </p>
