@@ -12,7 +12,7 @@ import bgLogoVideo from '../../../../assets/lumind_logo.mp4';
 import lumind_animation_text from '../../../../assets/lumind_animation.vtt';
 import lumindAnimationVideo from '../../../../assets/lumind_animation.mp4';
 import ParticleTextCanvas from "./ParticleTextCanvas";
-
+import Globe from './GlobeVisualization';
 import hexagonImg from '../../../../assets/hexagon-main.png'; // Ví dụ, hãy đảm bảo bạn có file này hoặc dùng file khác
 
 export const Branding = ({ className }) => {
@@ -77,7 +77,7 @@ export const Branding = ({ className }) => {
 
 
       {/* <img width={'100%'} src={logo} alt="Logo" /> */}
-
+      <Globe />
       <ParticleTextCanvas />
       <CustomVideoPlayer src={bgVideo} captionSrc={caption} />
       <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />
