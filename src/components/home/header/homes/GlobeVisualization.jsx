@@ -80,7 +80,8 @@ import './Globe.css';
 );
 
 camera.position.z = isMobile ? 32 : 25;
-camera.position.y = isMobile ? 6 : 10;
+// camera.position.y = isMobile ? 6 : 10;
+camera.position.y = 0;   
 camera.lookAt(0, 0, 0);
 
     cameraRef.current = camera;
@@ -91,7 +92,13 @@ camera.lookAt(0, 0, 0);
       precision: "mediump"
     });
     renderer.sortObjects = false;
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    // renderer.setSize(window.innerWidth, window.innerHeight);
+    const { clientWidth, clientHeight } = mountRef.current;
+
+renderer.setSize(clientWidth, clientHeight);
+camera.aspect = clientWidth / clientHeight;
+camera.updateProjectionMatrix();
+
     const pixelRatio = CONFIG.useHighPerformanceMode ? 1 : (window.devicePixelRatio > 2 ? 1.5 : window.devicePixelRatio);
     renderer.setPixelRatio(pixelRatio);
     renderer.shadowMap.enabled = false;
@@ -648,11 +655,20 @@ window.addEventListener('touchend', onTouchEnd);
     const animationId = animate(performance.now());
 
     // Resize Handler
+    // const onResize = () => {
+    //     camera.aspect = window.innerWidth / window.innerHeight;
+    //     camera.updateProjectionMatrix();
+    //     renderer.setSize(window.innerWidth, window.innerHeight);
+    // };
     const onResize = () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    };
+  if (!mountRef.current) return;
+
+  const { clientWidth, clientHeight } = mountRef.current;
+  camera.aspect = clientWidth / clientHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(clientWidth, clientHeight);
+};
+
     window.addEventListener('resize', onResize);
 
     // --- Expose update functions ---

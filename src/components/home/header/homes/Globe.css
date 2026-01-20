@@ -13,15 +13,24 @@
   cursor: grab;
   outline: none;
 } */
- .globe-container {
+ /* .globe-container {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
   position: relative;
   background-color: #081b2e;
   margin-top: 30px;
-  /* Quan trọng cho mobile: */
   touch-action: none; 
+} */
+.globe-container {
+  width: 100%;
+  max-width: 1020px;   
+  height: 600px;      
+  margin: 24px auto;
+  overflow: hidden;
+  position: relative;
+  background-color: #081b2e;
+  /* border-radius: 16px; */
 }
 
 .globe-canvas {
@@ -128,4 +137,12 @@
 .control-item input[type="checkbox"] {
   width: auto;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .globe-container {
+        max-width: 420px; 
+        height: 360px;      
+    }
+
 }
