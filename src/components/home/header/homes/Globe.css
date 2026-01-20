@@ -1,5 +1,5 @@
 /* Globe.css */
-.globe-container {
+/* .globe-container {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -12,6 +12,25 @@
   display: block;
   cursor: grab;
   outline: none;
+} */
+ .globe-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background-color: #081b2e;
+  margin-top: 30px;
+  /* Quan trọng cho mobile: */
+  touch-action: none; 
+}
+
+.globe-canvas {
+  display: block;
+  cursor: grab;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  touch-action: none; 
 }
 
 .globe-canvas:active {

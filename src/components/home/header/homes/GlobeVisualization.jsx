@@ -6,7 +6,8 @@ import './Globe.css';
   const mountRef = useRef(null);
   const [fps, setFps] = useState(0);
   const [showDebug, setShowDebug] = useState(false);
-  
+  const isMobile = window.innerWidth < 768;
+
   // Refs để truy cập vào các biến Three.js từ bên ngoài (cho Debug Panel)
   const configRef = useRef({
     backgroundColor: 0x081b2e,
@@ -49,22 +50,39 @@ import './Globe.css';
   const arcsRef = useRef([]);
   const arcsGroupRef = useRef(null);
   const impactEffectsRef = useRef([]);
-  
+  let isTouching = false;
+
   // Ref chứa các hàm update để UI gọi
   const apiRef = useRef({});
 
   useEffect(() => {
     const CONFIG = configRef.current;
-    
+    if (isMobile) {
+  CONFIG.globeRadius = 8.5;
+  CONFIG.numPoints = Math.min(CONFIG.numPoints, 15000);
+  CONFIG.arcThickness *= 0.75;
+}
+
     // --- 1. Setup Three.js ---
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(CONFIG.backgroundColor);
     sceneRef.current = scene;
 
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 25;
-    camera.position.y = 10;
-    camera.lookAt(0, 0, 0);
+    // const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    // camera.position.z = 25;
+    // camera.position.y = 10;
+    // camera.lookAt(0, 0, 0);
+    const camera = new THREE.PerspectiveCamera(
+  isMobile ? 65 : 75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+
+camera.position.z = isMobile ? 32 : 25;
+camera.position.y = isMobile ? 6 : 10;
+camera.lookAt(0, 0, 0);
+
     cameraRef.current = camera;
 
     const renderer = new THREE.WebGLRenderer({
@@ -281,6 +299,33 @@ import './Globe.css';
     globeGroup.add(arcsGroup);
     arcsGroupRef.current = arcsGroup;
     arcsRef.current = [];
+const onTouchStart = (e) => {
+  isTouching = true;
+  const touch = e.touches[0];
+  previousMousePosition = { x: touch.clientX, y: touch.clientY };
+};
+
+const onTouchMove = (e) => {
+    
+  if (!isTouching) return;
+  const touch = e.touches[0];
+
+  const deltaX = touch.clientX - previousMousePosition.x;
+  const deltaY = touch.clientY - previousMousePosition.y;
+
+  globeRotation.y += deltaX * 0.008;
+  globeRotation.x += deltaY * 0.008;
+  globeRotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, globeRotation.x));
+
+  globeGroup.rotation.y = globeRotation.y;
+  globeGroup.rotation.x = globeRotation.x;
+
+  previousMousePosition = { x: touch.clientX, y: touch.clientY };
+};
+
+const onTouchEnd = () => {
+  isTouching = false;
+};
 
     const createArc = (startPoint, endPoint) => {
         const startPos = startPoint.position.clone();
@@ -439,6 +484,9 @@ import './Globe.css';
     window.addEventListener('mousedown', onMouseDown);
     window.addEventListener('mouseup', onMouseUp);
     window.addEventListener('mousemove', onMouseMove);
+window.addEventListener('touchstart', onTouchStart, { passive: false });
+window.addEventListener('touchmove', onTouchMove, { passive: false });
+window.addEventListener('touchend', onTouchEnd);
 
     // --- 6. Animation Loop ---
     let lastArcTime = 0;
@@ -627,6 +675,10 @@ import './Globe.css';
         window.removeEventListener('mouseup', onMouseUp);
         window.removeEventListener('mousemove', onMouseMove);
         window.removeEventListener('resize', onResize);
+        window.removeEventListener('touchstart', onTouchStart);
+window.removeEventListener('touchmove', onTouchMove);
+window.removeEventListener('touchend', onTouchEnd);
+
         if (mountRef.current && renderer.domElement) {
             mountRef.current.removeChild(renderer.domElement);
         }
@@ -649,9 +701,9 @@ import './Globe.css';
 
   return (
     <div className="globe-container">
-      <div id="fps-counter" className="fps-counter">FPS: {fps}</div>
+      {/* <div id="fps-counter" className="fps-counter">FPS: {fps}</div>
       <button className="debug-toggle" onClick={() => setShowDebug(!showDebug)}>Control Panel</button>
-      
+       */}
       {showDebug && (
         <div className="debug-panel">
             <h3>Configuration Controls</h3>
