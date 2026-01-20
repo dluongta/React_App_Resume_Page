@@ -57,11 +57,17 @@ import './Globe.css';
 
   useEffect(() => {
     const CONFIG = configRef.current;
-    if (isMobile) {
-  CONFIG.globeRadius = 8.5;
-  CONFIG.numPoints = Math.min(CONFIG.numPoints, 15000);
-  CONFIG.arcThickness *= 0.75;
+//     if (isMobile) {
+//   CONFIG.globeRadius = 8.5;
+//   CONFIG.numPoints = Math.min(CONFIG.numPoints, 15000);
+//   CONFIG.arcThickness *= 0.75;
+// }
+if (isMobile) {
+  CONFIG.globeRadius = 9.8;      
+  CONFIG.numPoints = Math.min(CONFIG.numPoints, 18000);
+  CONFIG.arcThickness *= 0.85;
 }
+
 
     // --- 1. Setup Three.js ---
     const scene = new THREE.Scene();
@@ -73,14 +79,15 @@ import './Globe.css';
     // camera.position.y = 10;
     // camera.lookAt(0, 0, 0);
     const camera = new THREE.PerspectiveCamera(
-  isMobile ? 65 : 75,
+  isMobile ? 55 : 75,
   window.innerWidth / window.innerHeight,
   0.1,
   1000
 );
 
-camera.position.z = isMobile ? 32 : 25;
+// camera.position.z = isMobile ? 32 : 25;
 // camera.position.y = isMobile ? 6 : 10;
+camera.position.z = isMobile ? 22 : 25; 
 camera.position.y = 0;   
 camera.lookAt(0, 0, 0);
 
