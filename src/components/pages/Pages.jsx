@@ -86,8 +86,8 @@ export const Pages = () => {
     },
     {
       id: "17",
-      link: "https://react-app-text-audio.onrender.com/",
-      linkName: "Read Text + Translate + Record + Download MP3",
+      link: "https://dluongta.github.io/text_speech.html",
+      linkName: "Text Speech",
     },
     {
       id: "18",
@@ -96,7 +96,7 @@ export const Pages = () => {
     },
     {
       id: "19",
-      link: "https://quizzes-app.w3spaces.com/",
+      link: "https://dluongta.github.io/quiz-app.html",
       linkName: "Quizzes App",
     },
     {
