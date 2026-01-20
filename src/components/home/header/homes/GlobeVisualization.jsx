@@ -79,7 +79,7 @@ if (isMobile) {
     // camera.position.y = 10;
     // camera.lookAt(0, 0, 0);
     const camera = new THREE.PerspectiveCamera(
-  isMobile ? 55 : 75,
+  isMobile ? 65 : 75,
   window.innerWidth / window.innerHeight,
   0.1,
   1000
@@ -87,7 +87,7 @@ if (isMobile) {
 
 // camera.position.z = isMobile ? 32 : 25;
 // camera.position.y = isMobile ? 6 : 10;
-camera.position.z = isMobile ? 22 : 25; 
+camera.position.z = isMobile ? 30 : 25; 
 camera.position.y = 0;   
 camera.lookAt(0, 0, 0);
 
