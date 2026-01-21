@@ -1260,7 +1260,6 @@ marquee {
   --line-length-y: 200px;  /* dài cho left/right */
 }
 
-/* ===== LINE 1 ===== */
 .btn-led span:nth-child(1) {
   height: 2px; width: var(--line-length-x);
   top: 0; left: -45px;
@@ -1288,7 +1287,6 @@ marquee {
   animation-delay: .75s;
 }
 
-/* ===== LINE 2 (lệch pha) ===== */
 .btn-led .line2 {
   opacity: .9;
 }
@@ -2323,8 +2321,8 @@ footer a:hover {
 }
 
 .close-sidebar-btn:hover {
-  transform: rotate(90deg); /* Hiệu ứng xoay khi hover */
-  color: #7f00ff;           /* Đổi màu tím khi hover */
+  transform: rotate(90deg);
+  color: #7f00ff;           
 }
 
 /* ===== Sidebar ===== */
