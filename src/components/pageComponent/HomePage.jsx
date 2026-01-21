@@ -9,7 +9,6 @@ import { Wrapper } from '../home/Wrapper';
 import { Link } from 'react-router-dom';
 import hexagon from '../../assets/hexagon.png';
 import { ScrollRevealText } from './ScrollRevealText';
-import Steps from './Steps';
 import Particles from 'react-tsparticles';
 import { loadSlim } from 'tsparticles-slim'; 
 import ScrollEffect from './ScrollEffect';

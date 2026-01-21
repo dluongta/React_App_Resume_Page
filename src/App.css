@@ -2400,3 +2400,11 @@ footer a:hover {
     color: #fff;
   }
 }
+
+html, body {
+  overflow-x: visible !important;
+  height: auto !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

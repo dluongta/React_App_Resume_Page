@@ -71,7 +71,7 @@ const ScrollEffect = () => {
 
   return (
     <div style={{ backgroundColor: '#f5f5f5', minHeight: '300vh', fontFamily: 'Segoe UI, sans-serif' }}>
-      <div style={{ position: 'sticky', top: 0, height: '110vh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+      <div style={{ position: 'sticky', top: 0, height: '120vh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
         <img
           ref={mainBgRef}
           src={main_bg}
