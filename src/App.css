@@ -2228,7 +2228,7 @@ footer a:hover {
   position: absolute;
   top: 0;
   right: -300px;
-  width: 280px;
+  width: 60vw;
   height: 100vh;
   background: #f0f9ff;
   padding-top: 90px;
@@ -2308,18 +2308,18 @@ footer a:hover {
 /* ===== 2. Nút Close trong Sidebar ===== */
 .close-sidebar-btn {
   position: absolute;
-  top: 20px;           /* Cách mép trên */
-  right: 20px;         /* Cách mép phải */
+  top: 20px;           
+  right: 30px;         
   background: none;
   border: none;
   cursor: pointer;
-  color: #333;         /* Màu icon */
+  color: #333;         
   padding: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease;
-  z-index: 10;         /* Nổi lên trên nền sidebar */
+  z-index: 10;       
 }
 
 .close-sidebar-btn:hover {
@@ -2332,7 +2332,7 @@ footer a:hover {
   position: absolute;
   top: 0;
   right: -300px;
-  width: 280px;
+  width: 60vw;
   height: 100vh;
   background: #f0f9ff;
   
@@ -2345,8 +2345,8 @@ footer a:hover {
 
 .close-sidebar-btn {
   position: absolute;
-  top: 15px;    
-  right: 15px;    
+  top: 20px;    
+  right: 30px;    
   background: none;
   border: none;
   cursor: pointer;
@@ -2357,7 +2357,7 @@ footer a:hover {
   position: absolute;
   top: 0;
   right: -300px;
-  width: 280px;
+  width: 60vw;
   height: 100vh;
   background: #f0f9ff;
   padding-top: 80px; 
@@ -2370,7 +2370,7 @@ footer a:hover {
 .close-sidebar-btn {
   position: absolute;
   top: 20px;     
-  right: 20px;
+  right: 30px;
   width: 45px;
   height: 45px;
   display: flex;
