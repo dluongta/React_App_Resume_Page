@@ -80,35 +80,25 @@ export const Header = () => {
             </header>
 
 {/* Mobile sidebar */}
+{/* Mobile sidebar */}
 <div className={`mobile-overlay ${sideBar ? "show" : ""}`}>
-    <div className="mobile-sidebar" ref={navRef}>
-        
-        {/* --- THÊM ĐOẠN NÀY: Nút Close --- */}
-        <button className="close-sidebar-btn" onClick={() => setSidebar(false)}>
-            <CloseIcon fontSize="large" /> 
-        </button>
-        {/* -------------------------------- */}
+  <div className="overlay-bg" onClick={() => setSidebar(false)} />
 
-        <ul className="nav-links-sidebar" onClick={() => setSidebar(false)}>
-            {/* Logic Active Link cũ của bạn giữ nguyên */}
-            <li className={isActive('/') ? 'active-link' : ''}>
-                <Link to="/">Home</Link>
-            </li>
-            <li className={isActive('/pages') ? 'active-link' : ''}>
-                <Link to="/pages">Pages</Link>
-            </li>
-            <li className={isActive('/blog') ? 'active-link' : ''}>
-                <Link to="/blog">Blog</Link>
-            </li>
-            <li className={isActive('/portfolio') ? 'active-link' : ''}>
-                <Link to="/portfolio">Portfolio</Link>
-            </li>
-            <li className={isActive('/contact') ? 'active-link' : ''}>
-                <Link to="/contact">Contact</Link>
-            </li>
-        </ul>
-    </div>
+  <div className={`mobile-sidebar ${sideBar ? "open" : ""}`} ref={navRef}>
+    <button className="close-sidebar-btn" onClick={() => setSidebar(false)}>
+      <CloseIcon fontSize="large" />
+    </button>
+
+    <ul className="nav-links-sidebar" onClick={() => setSidebar(false)}>
+      <li className={isActive('/') ? 'active-link' : ''}><Link to="/">Home</Link></li>
+      <li className={isActive('/pages') ? 'active-link' : ''}><Link to="/pages">Pages</Link></li>
+      <li className={isActive('/blog') ? 'active-link' : ''}><Link to="/blog">Blog</Link></li>
+      <li className={isActive('/portfolio') ? 'active-link' : ''}><Link to="/portfolio">Portfolio</Link></li>
+      <li className={isActive('/contact') ? 'active-link' : ''}><Link to="/contact">Contact</Link></li>
+    </ul>
+  </div>
 </div>
+
         </>
     );
 };

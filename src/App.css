@@ -2206,36 +2206,9 @@ footer a:hover {
   transition: 0.3s ease;
   z-index: 999;
 } */
-.mobile-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s ease;
-  z-index: 999;
-}
 
-.mobile-overlay.show {
-  opacity: 1;
-  visibility: visible;
-}
 
-/* ===== Sidebar ===== */
-.mobile-sidebar {
-  position: absolute;
-  top: 0;
-  right: -300px;
-  width: 60vw;
-  height: 100vh;
-  background: #f0f9ff;
-  padding-top: 90px;
-  transition: right 0.35s ease-in-out;
-}
 
-.mobile-overlay.show .mobile-sidebar {
-  right: 0;
-}
 
 /* ===== Sidebar Menu ===== */
 .nav-links-sidebar {
@@ -2297,13 +2270,8 @@ footer a:hover {
     display: block;
   }
 }
-/* ===== 1. Cập nhật Z-Index cho Overlay ===== */
-/* Tăng z-index lên thật cao để đè lên Header (thường header là 100 hoặc 1000) */
-.mobile-overlay {
-  z-index: 9999 !important; 
-}
 
-/* ===== 2. Nút Close trong Sidebar ===== */
+
 .close-sidebar-btn {
   position: absolute;
   top: 20px;           
@@ -2326,20 +2294,7 @@ footer a:hover {
 }
 
 /* ===== Sidebar ===== */
-.mobile-sidebar {
-  position: absolute;
-  top: 0;
-  right: -300px;
-  width: 60vw;
-  height: 100vh;
-  background: #f0f9ff;
-  
-  padding-top: 30px; 
-  
-  transition: right 0.35s ease-in-out;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
+
 
 .close-sidebar-btn {
   position: absolute;
@@ -2351,19 +2306,7 @@ footer a:hover {
   z-index: 10;
 }
 /* ===== Sidebar ===== */
-.mobile-sidebar {
-  position: absolute;
-  top: 0;
-  right: -300px;
-  width: 60vw;
-  height: 100vh;
-  background: #f0f9ff;
-  padding-top: 80px; 
-  transition: right 0.35s ease-in-out;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-}
+
 
 .close-sidebar-btn {
   position: absolute;
@@ -2406,3 +2349,105 @@ html, body {
   padding: 0;
   box-sizing: border-box;
 }
+
+
+.mobile-sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60vw;
+  max-width: 320px;
+  height: 100vh;
+
+  background: #f0f9ff;
+  padding-top: 90px;
+
+  transform: translateX(100%);
+  transition: transform 0.35s ease-in-out;
+
+  box-shadow: -5px 0 15px rgba(0,0,0,0.15);
+}
+
+.mobile-sidebar.open {
+  transform: translateX(0);
+}
+
+/* ===== Overlay ===== */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+
+  z-index: 9999;
+}
+
+.mobile-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===== Sidebar ===== */
+.mobile-sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: 60vw;
+  max-width: 320px;
+  height: 100vh;
+
+  background: #f0f9ff;
+  padding-top: 90px;
+
+  transform: translateX(100%);
+  transition: transform 0.35s ease-in-out;
+
+  box-shadow: -5px 0 15px rgba(0,0,0,0.15);
+}
+
+.mobile-sidebar.open {
+  transform: translateX(0);
+}
+
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.mobile-overlay.show {
+  pointer-events: auto;
+}
+
+
+.mobile-overlay.show .overlay-bg {
+  opacity:1;
+}
+
+/* ===== Sidebar ===== */
+.mobile-sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: 60vw;
+  max-width: 320px;
+  height: 100vh;
+
+  background: #f0f9ff;
+  padding-top: 90px;
+
+  transform: translateX(100%);
+  transition: transform 0.35s ease-in-out;
+
+  box-shadow: -5px 0 15px rgba(0,0,0,0.15);
+}
+
+.mobile-sidebar.open {
+  transform: translateX(0);
+}
+
