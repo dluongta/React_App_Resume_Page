@@ -2199,10 +2199,19 @@ footer a:hover {
   word-break: break-word;
 }
 /* ===== Overlay ===== */
-.mobile-overlay {
+/* .mobile-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 999;
+} */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
   opacity: 0;
   visibility: hidden;
   transition: 0.3s ease;
