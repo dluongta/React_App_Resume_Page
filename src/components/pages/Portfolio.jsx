@@ -172,6 +172,11 @@ export const Portfolio = () => {
       id: "34",
       link: "https://react-app-bank-code.vercel.app/",
       linkName: "Confirm Payment",
+    },
+    {
+      id: "35",
+      link: "https://github.com/luen2003/mysql-api",
+      linkName: "MySQL API",
     }
   ];
   return (

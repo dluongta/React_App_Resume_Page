@@ -153,6 +153,11 @@ export const Pages = () => {
       id: "30",
       link: "https://react-app-bank-code.vercel.app/",
       linkName: "Confirm Payment",
+    },
+    {
+      id: "31",
+      link: "https://github.com/luen2003/mysql-api",
+      linkName: "MySQL API",
     }
   ]
   return (
