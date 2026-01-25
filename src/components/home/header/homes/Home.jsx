@@ -1,79 +1,37 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import RotatingText from './RotatingText';
+import './RotatingText.css'; // Đảm bảo đã import CSS
 import './Home.css';
 
 export const Home = ({ className }) => {
-  const originalToRotate = ["Proficient Programmer", "Software Developer", "Hardware Engineer"];
-  const [toRotate, setToRotate] = useState([...originalToRotate, originalToRotate[0]]);
-  const [currentLineIndex, setCurrentLineIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (currentLineIndex === toRotate.length - 1) {
-        setIsTransitioning(false);
-        setCurrentLineIndex(0);
-
-        setTimeout(() => {
-          setIsTransitioning(true);
-          setCurrentLineIndex(1);
-        }, 20);
-      } else {
-        setIsTransitioning(true);
-        setCurrentLineIndex((prevIndex) => prevIndex + 1);
-      }
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [currentLineIndex, toRotate]);
-
-
-
-
-
-  const colors = [
-    '#FF8800',
-    '#A033FF',
-    '#0088FF'
+  const textToRotate = [
+    "Proficient Programmer", 
+    "Software Developer", 
+    "Hardware Engineer"
   ];
-
-
-  const gradientTransitonTextStyle = {
-    color: colors[currentLineIndex % colors.length],
-  };
 
   return (
     <>
       <section className={`home ${className}`}>
         <div className="container single-column">
-
           <div className="content-wrapper">
-
-            <div className="headline">
-              <h1 className="gradientTextStyle">I AM A</h1>
-
-              <h1>
-                <div className="carousel_carousel_container">
-                  <div
-                    className="carousel_carousel"
-                    style={{
-                      transform: `translateY(-${currentLineIndex * 25}%)`,
-                      transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
-                    }}
-                  >
-                    {toRotate.map((text, index) => (
-                      <div
-                        key={index}
-                        className="carousel_carousel_item"
-                        style={gradientTransitonTextStyle}
-                      >
-                        {text}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </h1>
-            </div>
+            
+            <div className="headline" style={{ width: '100%', textAlign: 'center' }}>
+  <h1 className="gradientTextStyle" style={{ marginBottom: '10px' }}>I AM A</h1>
+  
+  <h1 style={{ display: 'block', width: '100%' }}>
+    <RotatingText
+      texts={textToRotate}
+      mainClassName="rotating-text-highlight"
+      staggerFrom="last"
+      staggerDuration={0.025}
+      rotationInterval={3000}
+      //splitBy="words"
+      splitBy="characters" 
+    />
+  </h1>
+</div>
 
             <div className="socialIcon">
               <Link to={{ pathname: 'https://www.facebook.com/dluongta' }} target="_blank">
@@ -117,19 +75,16 @@ export const Home = ({ className }) => {
                 <span></span>
                 <span></span>
                 <span></span>
-
-                <span class="line2"></span>
-                <span class="line2"></span>
-                <span class="line2"></span>
-                <span class="line2"></span>
-
+                <span className="line2"></span>
+                <span className="line2"></span>
+                <span className="line2"></span>
+                <span className="line2"></span>
               </button>
             </div>
 
           </div>
         </div>
       </section>
-
     </>
   );
 };
