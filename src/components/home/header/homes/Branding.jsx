@@ -14,6 +14,7 @@ import lumindAnimationVideo from '../../../../assets/lumind_animation.mp4';
 import ParticleTextCanvas from "./ParticleTextCanvas";
 import Globe from './GlobeVisualization';
 import hexagonImg from '../../../../assets/hexagon-main.png'; // Ví dụ, hãy đảm bảo bạn có file này hoặc dùng file khác
+import CurvedLoop from './CurvedLoop';
 
 export const Branding = ({ className }) => {
   const data = [
@@ -59,7 +60,14 @@ export const Branding = ({ className }) => {
           ))}
         </div>
       </section>
-
+<CurvedLoop 
+  marqueeText="Be ✦ Creative ✦ With ✦ DLUONGTA ✦ ULTRAMIND ✦"
+  speed={2}
+  curveAmount={400}
+  direction="right"
+  interactive
+  className="custom-text-style"
+/>
       <div style={{
         position: 'relative',
         width: '80%',
