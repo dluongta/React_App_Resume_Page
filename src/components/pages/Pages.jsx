@@ -158,6 +158,11 @@ export const Pages = () => {
       id: "31",
       link: "https://github.com/luen2003/mysql-api",
       linkName: "MySQL API",
+    },
+    {
+      id: "32",
+      link: "https://github.com/luen2003/php-mysql-api",
+      linkName: "PHP MySQL API",
     }
   ]
   return (
