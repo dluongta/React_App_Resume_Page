@@ -13,8 +13,10 @@ import lumind_animation_text from '../../../../assets/lumind_animation.vtt';
 import lumindAnimationVideo from '../../../../assets/lumind_animation.mp4';
 import ParticleTextCanvas from "./ParticleTextCanvas";
 import Globe from './GlobeVisualization';
-import hexagonImg from '../../../../assets/hexagon-main.png'; // Ví dụ, hãy đảm bảo bạn có file này hoặc dùng file khác
+import hexagonImg from '../../../../assets/hexagon-main.png';
 import CurvedLoop from './CurvedLoop';
+import ulmind_intro from '../../../../assets/ultramind_intro.mp4';
+import caption_ulmind_intro from '../../../../assets/caption_intro.vtt';
 
 export const Branding = ({ className }) => {
   const data = [
@@ -87,6 +89,7 @@ export const Branding = ({ className }) => {
       {/* <img width={'100%'} src={logo} alt="Logo" /> */}
       <Globe />
       <ParticleTextCanvas />
+      <CustomVideoPlayer src={ulmind_intro} captionSrc={caption_ulmind_intro} />
       <CustomVideoPlayer src={bgVideo} captionSrc={caption} />
       <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />
       <CustomVideoPlayer src={lumindAnimationVideo} captionSrc={lumind_animation_text} />
