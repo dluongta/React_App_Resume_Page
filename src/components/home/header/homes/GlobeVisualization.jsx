@@ -98,13 +98,33 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
         //   powerPreference: "high-performance",
         //   precision: "mediump"
         // });
-        const renderer = new THREE.WebGLRenderer({
-            antialias: false,
-            powerPreference: "default",
-            precision: "mediump",
-            failIfMajorPerformanceCaveat: false,
-            alpha: true
-        });
+        // const renderer = new THREE.WebGLRenderer({
+        //     antialias: false,
+        //     powerPreference: "default",
+        //     precision: "mediump",
+        //     failIfMajorPerformanceCaveat: false,
+        //     alpha: true
+        // });
+        // --- 1. Setup Three.js (Tối ưu cho Windows 7) ---
+        let renderer;
+        try {
+            renderer = new THREE.WebGLRenderer({
+                antialias: false,           // Tắt khử răng cưa (giảm tải GPU)
+                powerPreference: "default",
+                precision: "lowp",          // Dùng độ chính xác thấp nhất
+                failIfMajorPerformanceCaveat: false,
+                // Ép buộc không sử dụng WebGL 2 nếu máy quá cũ
+                canvas: document.createElement('canvas'),
+                context: null
+            });
+        } catch (e) {
+            // Nếu vẫn lỗi, hiển thị thông báo thay vì treo trang
+            console.error("WebGL not supported");
+            if (mountRef.current) {
+                mountRef.current.innerHTML = "<p style='color:white; text-align:center'>Trình duyệt của bạn quá cũ để chạy Globe 3D.</p>";
+            }
+            return;
+        }
         renderer.sortObjects = false;
         // renderer.setSize(window.innerWidth, window.innerHeight);
         const { clientWidth, clientHeight } = mountRef.current;
