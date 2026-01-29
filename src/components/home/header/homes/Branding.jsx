@@ -12,11 +12,11 @@ import bgLogoVideo from '../../../../assets/lumind_logo.mp4';
 import lumind_animation_text from '../../../../assets/lumind_animation.vtt';
 import lumindAnimationVideo from '../../../../assets/lumind_animation.mp4';
 import ParticleTextCanvas from "./ParticleTextCanvas";
-import Globe from './GlobeVisualization';
 import hexagonImg from '../../../../assets/hexagon-main.png';
 import CurvedLoop from './CurvedLoop';
 import ulmind_intro from '../../../../assets/ultramind_intro.mp4';
 import caption_ulmind_intro from '../../../../assets/caption_intro.vtt';
+// import Globe from './GlobeVisualization';
 
 export const Branding = ({ className }) => {
   const data = [
@@ -87,7 +87,6 @@ export const Branding = ({ className }) => {
 
 
       {/* <img width={'100%'} src={logo} alt="Logo" /> */}
-      <Globe />
       <ParticleTextCanvas />
       <CustomVideoPlayer src={ulmind_intro} captionSrc={caption_ulmind_intro} />
       <CustomVideoPlayer src={bgVideo} captionSrc={caption} />

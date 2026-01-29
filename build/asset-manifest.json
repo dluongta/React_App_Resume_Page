@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.7989d44c.css",
-    "main.js": "/static/js/main.bbd44f5e.js",
+    "main.css": "/static/css/main.fffc3551.css",
+    "main.js": "/static/js/main.a8463d37.js",
     "static/media/main-background.png": "/static/media/main-background.5da6c504ab37ffb54fd6.png",
     "static/media/dluongta_animation.mp4": "/static/media/dluongta_animation.7e92d2ae3f14f3cc4ba1.mp4",
     "static/media/ultramind_intro.mp4": "/static/media/ultramind_intro.54fa77eb3a31df5e6012.mp4",
@@ -19,11 +19,11 @@
     "static/media/caption_logo.vtt": "/static/media/caption_logo.75175c236c60850b1874.vtt",
     "static/media/caption.vtt": "/static/media/caption.f60d51dda084efcb1f52.vtt",
     "static/media/lumind_animation.vtt": "/static/media/lumind_animation.9fe9e5bffd53a7f0e2a8.vtt",
-    "main.7989d44c.css.map": "/static/css/main.7989d44c.css.map",
-    "main.bbd44f5e.js.map": "/static/js/main.bbd44f5e.js.map"
+    "main.fffc3551.css.map": "/static/css/main.fffc3551.css.map",
+    "main.a8463d37.js.map": "/static/js/main.a8463d37.js.map"
   },
   "entrypoints": [
-    "static/css/main.7989d44c.css",
-    "static/js/main.bbd44f5e.js"
+    "static/css/main.fffc3551.css",
+    "static/js/main.a8463d37.js"
   ]
 }
