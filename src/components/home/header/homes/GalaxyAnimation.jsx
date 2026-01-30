@@ -90,12 +90,12 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
     const updateShootingStar = () => {
       const ss = state.current.shootingStar;
       if (!ss.active) {
-        if (Math.random() < 0.006) { // Tần suất xuất hiện
+        if (Math.random() < 0.02) { // Tần suất xuất hiện
           ss.active = true;
           ss.x = -400; 
           ss.y = rand(50, h * 0.8);
           ss.len = rand(200, 400);
-          ss.speed = rand(15, 30);
+          ss.speed = rand(40, 60);
           ss.opacity = 1;
         }
       } else {
@@ -189,7 +189,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
 
     let time = 0;
     const draw = () => {
-      time += 0.004;
+      time += 0.01;
       ctx.fillStyle = "#000";
       ctx.fillRect(0, 0, w, h);
 
@@ -204,12 +204,12 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
       renderList.push({ type: 'planet', ...rotate3D(0, 0, 0) });
 
       for (let i = 0; i < text.length; i++) {
-        const charA = time * 1.5 + (i * (Math.PI * 2 / text.length) * 0.5);
+        const charA = time * 2.0 + (i * (Math.PI * 2 / text.length) * 0.5);
         renderList.push({ type: 'text', char: text[i], ...rotate3D(Math.cos(charA) * ORBIT_RADIUS, Math.sin(charA) * ORBIT_TILT * 0.2, Math.sin(charA) * ORBIT_RADIUS) });
       }
 
       particles.forEach(p => {
-        const curA = p.angle + time + (time * p.speed * 80);
+        const curA = p.angle + time + (time * p.speed * 120);
         let px = p.radius * Math.cos(curA), pz = p.radius * Math.sin(curA), py = p.yOffset;
         const PARTICLE_TILT_X = Math.PI / 2.3;
         const PARTICLE_TILT_Z = Math.PI / 6;

@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../../../assets/luen-1.jpg';
+import logo from '../../../../assets/luen_logo.png';
 
 import GalaxyAnimation from './GalaxyAnimation';
 import lumindLogo from '../../../../assets/luen-1.jpg';
