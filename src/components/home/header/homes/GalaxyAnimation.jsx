@@ -13,7 +13,16 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
     lastX: 0,
     lastY: 0,
     initialPinchDist: null,
-    initialZoom: 0.4
+    initialZoom: 0.4,
+    // Trạng thái sao băng
+    shootingStar: {
+      active: false,
+      x: 0,
+      y: 0,
+      len: 0,
+      speed: 0,
+      opacity: 0
+    }
   });
 
   useEffect(() => {
@@ -77,9 +86,47 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
       return { x: cx + p.x * s, y: cy + p.y * s, s, z: p.z };
     };
 
+    // --- LOGIC SAO BĂNG CHẠY NGANG ---
+    const updateShootingStar = () => {
+      const ss = state.current.shootingStar;
+      if (!ss.active) {
+        if (Math.random() < 0.006) { // Tần suất xuất hiện
+          ss.active = true;
+          ss.x = -400; 
+          ss.y = rand(50, h * 0.8);
+          ss.len = rand(200, 400);
+          ss.speed = rand(15, 30);
+          ss.opacity = 1;
+        }
+      } else {
+        ss.x += ss.speed;
+        ss.opacity -= 0.007;
+        if (ss.x > w + 400 || ss.opacity <= 0) {
+          ss.active = false;
+        }
+      }
+    };
+
+    const drawShootingStar = () => {
+      const ss = state.current.shootingStar;
+      if (!ss.active) return;
+
+      ctx.save();
+      ctx.globalCompositeOperation = "lighter";
+      const grad = ctx.createLinearGradient(ss.x, ss.y, ss.x - ss.len, ss.y);
+      grad.addColorStop(0, `rgba(255, 255, 255, ${ss.opacity})`);
+      grad.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(ss.x, ss.y);
+      ctx.lineTo(ss.x - ss.len, ss.y);
+      ctx.stroke();
+      ctx.restore();
+    };
+
     // --- XỬ LÝ SỰ KIỆN TƯƠNG TÁC ---
-    
-    // Cuộn chuột phóng to/thu nhỏ
     const onWheel = (e) => {
       e.preventDefault();
       const delta = e.deltaY > 0 ? 0.95 : 1.05;
@@ -126,7 +173,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
     function drawDynamicAura(time) {
       ctx.save();
       ctx.globalCompositeOperation = "screen";
-      const colors = ["rgba(0, 150, 255, 0.4)", "rgba(180, 0, 255, 0.4)", "rgba(255, 100, 0, 0.3)"];
+      const colors = ["rgba(0, 150, 255, 0.3)", "rgba(180, 0, 255, 0.3)", "rgba(255, 100, 0, 0.2)"];
       colors.forEach((color, i) => {
         const angle = time * (0.4 + i * 0.1) + i * 2;
         const lx = cx + Math.cos(angle) * (w * 0.2);
@@ -147,6 +194,10 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
       ctx.fillRect(0, 0, w, h);
 
       drawDynamicAura(time);
+      
+      // Vẽ sao băng ở lớp phía sau
+      updateShootingStar();
+      drawShootingStar();
 
       const renderList = [];
       stars.forEach(s => renderList.push({ type: 'star', ...rotate3D(s.x, s.y, s.z), size: s.size }));
@@ -222,7 +273,6 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
     canvas.addEventListener("touchmove", handleTouchMove, { passive: false });
     canvas.addEventListener("touchend", handleTouchEnd);
 
-    // Xử lý kéo bằng chuột trên PC
     const onMouseDown = (e) => {
         state.current.dragging = true;
         state.current.lastX = e.clientX;
@@ -258,7 +308,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
   }, [text, imageUrls]);
 
   return (
-    <div ref={containerRef} style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden' }}>
+    <div ref={containerRef} style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden', background: '#000' }}>
       <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%', touchAction: 'none' }} />
     </div>
   );
