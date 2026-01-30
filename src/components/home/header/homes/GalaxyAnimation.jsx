@@ -254,14 +254,24 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
             ctx.globalAlpha = 1;
           }
         } else if (item.type === 'text') {
-          ctx.fillStyle = "#fff";
-          ctx.font = `bold ${24 * p.s}px Arial`;
-          ctx.shadowBlur = 15 * p.s; ctx.shadowColor = "#ffcc00";
-          ctx.textAlign = "center"; ctx.textBaseline = "middle";
-          ctx.fillText(item.char, p.x, p.y);
-          ctx.shadowBlur = 0;
+    ctx.font = `bold ${50 * p.s}px Impact, Arial, sans-serif`;
+    ctx.textAlign = "center"; 
+    ctx.textBaseline = "middle";
+
+    ctx.shadowColor = "#ff6200"; 
+    ctx.shadowBlur = 12 * p.s;
+
+    ctx.strokeStyle = "#ff6200"; 
+    ctx.lineWidth = 20 * p.s;     
+    ctx.lineJoin = "round";      
+    ctx.strokeText(item.char, p.x, p.y);
+
+    ctx.shadowBlur = 0;         
+    ctx.fillStyle = "#ffffff"; 
+    ctx.fillText(item.char, p.x, p.y);
+}
         }
-      });
+      );
 
       requestId = requestAnimationFrame(draw);
     };
