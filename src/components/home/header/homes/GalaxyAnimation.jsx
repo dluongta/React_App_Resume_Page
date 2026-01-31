@@ -239,7 +239,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
       // Xóa đoạn chạy loop text cũ, thay bằng:
       RINGS.forEach((ring) => {
         const repeatCount = isMobile
-          ? Math.floor(ring.radius / 45)
+          ? Math.floor(ring.radius / 30)
           : Math.floor(ring.radius / 15);
         const fullText = ring.text.repeat(repeatCount);
         for (let i = 0; i < fullText.length; i++) {
