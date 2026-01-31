@@ -236,10 +236,9 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
       //   const charA = time * 2.0 + (i * (Math.PI * 2 / text.length) * 0.5);
       //   renderList.push({ type: 'text', char: text[i], ...rotate3D(Math.cos(charA) * ORBIT_RADIUS, Math.sin(charA) * ORBIT_TILT * 0.2, Math.sin(charA) * ORBIT_RADIUS) });
       // }
-      // Xóa đoạn chạy loop text cũ, thay bằng:
       RINGS.forEach((ring) => {
         const repeatCount = isMobile
-          ? Math.floor(ring.radius / 30)
+          ? Math.floor(ring.radius / 20)
           : Math.floor(ring.radius / 15);
         const fullText = ring.text.repeat(repeatCount);
         for (let i = 0; i < fullText.length; i++) {
