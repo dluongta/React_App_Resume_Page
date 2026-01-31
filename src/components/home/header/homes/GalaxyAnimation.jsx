@@ -53,7 +53,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
     // Khởi tạo dữ liệu tĩnh (Stars, Particles)
     const stars = Array.from({ length: 800 }, () => ({
       x: rand(-3000, 3000), y: rand(-3000, 3000), z: rand(-3000, 3000),
-      size: rand(2.0, 4.5),
+      size: rand(0.5, 2.0),
     }));
 
     const particles = Array.from({ length: 1500 }, () => ({
