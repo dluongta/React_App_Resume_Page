@@ -6,7 +6,8 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
   
   // Sử dụng Refs để lưu trữ trạng thái mà không gây re-render
   const state = useRef({
-    zoom: window.innerWidth < 768 ? 0.25 : 0.4,
+    // zoom: window.innerWidth < 768 ? 0.25 : 0.4,
+    zoom: window.innerWidth < 768 ? 0.15 : 0.25,
     rotX: 1.8,
     rotY: 0,
     dragging: false,
@@ -34,12 +35,18 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
     let w, h, cx, cy;
     let requestId;
 
-    const PERSPECTIVE = 1200;
+    const PERSPECTIVE = 2000;
     const PLANET_RADIUS = 110;
     const ORBIT_RADIUS = 280;
     const ORBIT_TILT = -80;
     const IMAGE_SHOW_SCALE = 0.8;
     const BLUE_COLOR = "#00ccff";
+
+    const RINGS = [
+  { text: "DINH ", radius: 220, tilt: -0.8, speed: 1.2, color: "#ff6200" },
+  { text: "LUONG ", radius: 320, tilt: 0.8, speed: 0.8, color: "#00ccff" },
+  { text: "TA ", radius: 420, tilt: "vertical", speed: 0.5, color: "#ff0066" }
+];
 
     // Khởi tạo hình ảnh
     const images = imageUrls.map(src => {
@@ -57,7 +64,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
     }));
 
     const particles = Array.from({ length: 1500 }, () => ({
-      radius: rand(300, 600),
+      radius: rand(500, 900),
       angle: Math.random() * Math.PI * 2,
       speed: rand(0.0005, 0.002),
       yOffset: rand(-50, 50),
@@ -203,10 +210,27 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
       stars.forEach(s => renderList.push({ type: 'star', ...rotate3D(s.x, s.y, s.z), size: s.size }));
       renderList.push({ type: 'planet', ...rotate3D(0, 0, 0) });
 
-      for (let i = 0; i < text.length; i++) {
-        const charA = time * 2.0 + (i * (Math.PI * 2 / text.length) * 0.5);
-        renderList.push({ type: 'text', char: text[i], ...rotate3D(Math.cos(charA) * ORBIT_RADIUS, Math.sin(charA) * ORBIT_TILT * 0.2, Math.sin(charA) * ORBIT_RADIUS) });
-      }
+      // for (let i = 0; i < text.length; i++) {
+      //   const charA = time * 2.0 + (i * (Math.PI * 2 / text.length) * 0.5);
+      //   renderList.push({ type: 'text', char: text[i], ...rotate3D(Math.cos(charA) * ORBIT_RADIUS, Math.sin(charA) * ORBIT_TILT * 0.2, Math.sin(charA) * ORBIT_RADIUS) });
+      // }
+      // Xóa đoạn chạy loop text cũ, thay bằng:
+RINGS.forEach((ring) => {
+  const repeatCount = Math.floor(ring.radius / 15);
+  const fullText = ring.text.repeat(repeatCount);
+  for (let i = 0; i < fullText.length; i++) {
+    const charAngle = (time * ring.speed) + (i * (Math.PI * 2 / fullText.length));
+    let x, y, z;
+    if (ring.tilt === "vertical") {
+      x = 0; y = Math.cos(charAngle) * ring.radius; z = Math.sin(charAngle) * ring.radius;
+    } else {
+      x = Math.cos(charAngle) * ring.radius;
+      z = Math.sin(charAngle) * ring.radius;
+      y = Math.cos(charAngle) * ring.radius * ring.tilt;
+    }
+    renderList.push({ type: 'text', char: fullText[i], color: ring.color, ...rotate3D(x, y, z) });
+  }
+});
 
       particles.forEach(p => {
         const curA = p.angle + time + (time * p.speed * 120);
@@ -254,20 +278,37 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
             ctx.globalAlpha = 1;
           }
         } else if (item.type === 'text') {
+    // ctx.font = `bold ${50 * p.s}px Impact, Arial, sans-serif`;
+    // ctx.textAlign = "center"; 
+    // ctx.textBaseline = "middle";
+
+    // ctx.shadowColor = "#ff6200"; 
+    // ctx.shadowBlur = 12 * p.s;
+
+    // ctx.strokeStyle = "#ff6200"; 
+    // ctx.lineWidth = 20 * p.s;     
+    // ctx.lineJoin = "round";      
+    // ctx.strokeText(item.char, p.x, p.y);
+
+    // ctx.shadowBlur = 0;         
+    // ctx.fillStyle = "#ffffff"; 
+    // ctx.fillText(item.char, p.x, p.y);
     ctx.font = `bold ${50 * p.s}px Impact, Arial, sans-serif`;
     ctx.textAlign = "center"; 
     ctx.textBaseline = "middle";
 
-    ctx.shadowColor = "#ff6200"; 
+    // --- SỬA TẠI ĐÂY ---
+    // Lấy màu từ item thay vì dùng mã cứng #ff6200
+    ctx.shadowColor = item.color; 
     ctx.shadowBlur = 12 * p.s;
 
-    ctx.strokeStyle = "#ff6200"; 
-    ctx.lineWidth = 20 * p.s;     
+    ctx.strokeStyle = item.color; 
+    ctx.lineWidth = 4 * p.s; // Giảm xuống 4-6 cho thanh mảnh, 20 là quá dày
     ctx.lineJoin = "round";      
     ctx.strokeText(item.char, p.x, p.y);
 
-    ctx.shadowBlur = 0;         
-    ctx.fillStyle = "#ffffff"; 
+    ctx.shadowBlur = 0;          
+    ctx.fillStyle = "#ffffff"; // Giữ màu trắng bên trong để chữ nổi bật
     ctx.fillText(item.char, p.x, p.y);
 }
         }
