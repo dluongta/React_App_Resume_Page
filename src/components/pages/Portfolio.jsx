@@ -182,6 +182,11 @@ export const Portfolio = () => {
       id: "36",
       link: "https://github.com/luen2003/php-mysql-api",
       linkName: "PHP MySQL API",
+    },
+    {
+      id: "37",
+      link: "https://github.com/luen2003/Fingerprint/releases/download/v1.0.0/app-release.apk",
+      linkName: "Fingerprint",
     }
   ];
   return (
