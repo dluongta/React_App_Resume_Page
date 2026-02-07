@@ -187,6 +187,11 @@ export const Portfolio = () => {
       id: "37",
       link: "https://github.com/luen2003/Fingerprint/releases/download/v1.0.0/app-release.apk",
       linkName: "Fingerprint",
+    },
+    {
+      id: "38",
+      link: "https://dluongta.github.io/flipbook3d.html",
+      linkName: "3D PDF Flipbook",
     }
   ];
   return (
