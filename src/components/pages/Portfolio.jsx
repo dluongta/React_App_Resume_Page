@@ -195,8 +195,8 @@ export const Portfolio = () => {
     },
     {
       id: "39",
-      link: "https://dluongta.github.io/convert_image_to_word.html",
-      linkName: "Read Text From Image",
+      link: "https://dluongta.github.io/text_image.html",
+      linkName: "Text Image",
     }
   ];
   return (

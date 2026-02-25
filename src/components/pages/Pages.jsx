@@ -171,8 +171,8 @@ export const Pages = () => {
     },
     {
       id: "34",
-      link: "https://dluongta.github.io/convert_image_to_word.html",
-      linkName: "Read Text From Image",
+      link: "https://dluongta.github.io/text_image.html",
+      linkName: "Text Image",
     }
   ]
   return (
