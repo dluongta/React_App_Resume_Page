@@ -168,6 +168,11 @@ export const Pages = () => {
       id: "33",
       link: "https://dluongta.github.io/flipbook3d.html",
       linkName: "3D PDF Flipbook",
+    },
+    {
+      id: "34",
+      link: "https://dluongta.github.io/convert_image_to_word.html",
+      linkName: "Read Text From Image",
     }
   ]
   return (

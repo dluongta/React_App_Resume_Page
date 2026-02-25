@@ -192,6 +192,11 @@ export const Portfolio = () => {
       id: "38",
       link: "https://dluongta.github.io/flipbook3d.html",
       linkName: "3D PDF Flipbook",
+    },
+    {
+      id: "39",
+      link: "https://dluongta.github.io/convert_image_to_word.html",
+      linkName: "Read Text From Image",
     }
   ];
   return (
