@@ -12,11 +12,6 @@ export const ScrollRevealText = () => {
       const rect = sectionRef.current.getBoundingClientRect();
       const vh = window.innerHeight;
 
-      /**
-       * Sticky logic chuẩn:
-       * - start: khi section chạm top viewport
-       * - end: khi section đi hết sticky
-       */
       const start = rect.top - 20;
       const end = rect.bottom - vh + 180;
 

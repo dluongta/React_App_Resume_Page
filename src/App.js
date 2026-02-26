@@ -12,6 +12,8 @@ import { Portfolio } from './components/pages/Portfolio';
 import { Blog } from './components/pages/Blog';
 import { Contact } from './components/pages/Contact';
 import ScrollToTopButton from './components/button/ScrollToTopButton';
+import { FireworkButton } from './components/pageComponent/FireworkButton';
+import { FireworksEffect } from './components/pageComponent/FireworksEffect';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
           <Route path='/contact' exact component={Contact} />
         </Switch>
         <Footer />
+        <FireworksEffect />
+        <FireworkButton />
         <ScrollToTopButton />
       </Router>
     </>

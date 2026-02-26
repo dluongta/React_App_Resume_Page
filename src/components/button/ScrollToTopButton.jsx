@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import './ScrollToTopButton.css';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 const ScrollToTopButton = () => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
-    setVisible(scrolled > 300);
+    // setVisible(scrolled > 300);
+    setVisible(true);
   };
 
   const scrollToTop = () => {

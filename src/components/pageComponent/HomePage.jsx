@@ -13,6 +13,8 @@ import Particles from 'react-tsparticles';
 import { loadSlim } from 'tsparticles-slim'; 
 import ScrollEffect from './ScrollEffect';
 import ScrollHero from './ScrollHero';
+import { FireworksEffect } from './FireworksEffect';
+import { FireworkButton } from './FireworkButton';
 export const HomePage = () => {
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal');
@@ -110,6 +112,8 @@ export const HomePage = () => {
           zIndex: 1000, 
         }}
       /> */}
+      {/* <FireworksEffect />
+      <FireworkButton /> */}
 
       <div id="mySidenav" className="sidenav">
         <Link to='/pages' id="pages"> Pages </Link>
