@@ -121,7 +121,7 @@ export const HomePage = () => {
         <Link to='/portfolio' id="portfolio"> Portfolio </Link>
         <Link to='/contact' id="contact"> Contact </Link>
       </div>
-       <ScrollEffect/> 
+      <ScrollEffect/> 
       <Home className="reveal" />
       <Branding className="reveal" />
       <About className="reveal" />
