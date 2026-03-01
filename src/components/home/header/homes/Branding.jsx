@@ -1,6 +1,5 @@
-import React from 'react';
+import { React, useEffect, useState } from 'react';
 import logo from '../../../../assets/luen_logo.png';
-
 import GalaxyAnimation from './GalaxyAnimation';
 import lumindLogo from '../../../../assets/luen-1.jpg';
 import Hero from './Hero';
@@ -37,13 +36,28 @@ export const Branding = ({ className }) => {
     },
   ];
 
-  // Danh sách ảnh cho Galaxy
-  // Bạn có thể tái sử dụng biến 'logo' hoặc import các ảnh khác
+
   const galaxyImages = [
     logo,
     hexagonImg,
     lumindLogo,
   ];
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+    const handleResize = () => {
+      setIsMobile(mediaQuery.matches);
+    };
+
+    handleResize();
+    mediaQuery.addEventListener("change", handleResize);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleResize);
+    };
+  }, []);
 
   return (
     <>
@@ -62,30 +76,33 @@ export const Branding = ({ className }) => {
           ))}
         </div>
       </section>
-<CurvedLoop 
-  marqueeText="Be ✦ Creative ✦ With ✦ DLUONGTA ✦ ULTRAMIND ✦"
-  speed={10}
-  curveAmount={400}
-  direction="right"
-  interactive
-  className="custom-text-style"
-/>
-      <div style={{
-        position: 'relative',
-        width: '80%',
-        height: '100vh',
-        overflow: 'hidden',
-        background: '#000',
-        margin: '0 auto' ,
-        marginTop: '30px'
-      }} className='galaxy'>
-        <GalaxyAnimation
-          text="DINH LUONG TA"
-          imageUrls={galaxyImages}
-        />
-      </div>
+      <CurvedLoop
+        marqueeText="Be ✦ Creative ✦ With ✦ DLUONGTA ✦ ULTRAMIND ✦"
+        speed={10}
+        curveAmount={400}
+        direction="right"
+        interactive
+        className="custom-text-style"
+      />
+      {!isMobile && (
+        <div style={{
+          position: 'relative',
+          width: '80%',
+          height: '100vh',
+          overflow: 'hidden',
+          background: '#000',
+          margin: '0 auto',
+          marginTop: '30px'
+        }} className='galaxy'>
 
+          <GalaxyAnimation
+            text="DINH LUONG TA"
+            imageUrls={galaxyImages}
+          />
 
+        </div>
+
+      )}
       {/* <img width={'100%'} src={logo} alt="Logo" /> */}
       <ParticleTextCanvas />
       <CustomVideoPlayer src={ulmind_intro} captionSrc={caption_ulmind_intro} />

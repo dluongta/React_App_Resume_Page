@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useLocation
 } from "react-router-dom";
 import { HomePage } from './components/pageComponent/HomePage';
 import { Footer } from './components/home/Footer';
@@ -16,42 +15,24 @@ import ScrollToTopButton from './components/button/ScrollToTopButton';
 import { FireworkButton } from './components/pageComponent/FireworkButton';
 import { FireworksEffect } from './components/pageComponent/FireworksEffect';
 
-function AppContent() {
-  const location = useLocation();
-
-  const isHomePage = location.pathname === "/";
-
-  return (
-    <>
-      <Header />
-
-      <Switch>
-        <Route path='/' exact component={HomePage} />
-        <Route path='/pages' exact component={Pages} />
-        <Route path='/portfolio' exact component={Portfolio} />
-        <Route path='/blog' exact component={Blog} />
-        <Route path='/contact' exact component={Contact} />
-      </Switch>
-
-      <Footer />
-
-      {!isHomePage && (
-        <>
-          <FireworksEffect />
-          <FireworkButton />
-        </>
-      )}
-
-      <ScrollToTopButton />
-    </>
-  );
-}
-
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <>
+      <Router>
+        <Header />
+        <Switch>
+          <Route path='/' exact component={HomePage} />
+          <Route path='/pages' exact component={Pages} />
+          <Route path='/portfolio' exact component={Portfolio} />
+          <Route path='/blog' exact component={Blog} />
+          <Route path='/contact' exact component={Contact} />
+        </Switch>
+        <Footer />
+        <FireworksEffect />
+        <FireworkButton />
+        <ScrollToTopButton />
+      </Router>
+    </>
   );
 }
 
