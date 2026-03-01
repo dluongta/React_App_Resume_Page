@@ -1,4 +1,5 @@
 import React from 'react';
+import CelebrationIcon from '@mui/icons-material/Celebration';
 
 export const FireworkButton = () => {
   const handleLaunch = () => {
@@ -9,10 +10,10 @@ export const FireworkButton = () => {
 
   const buttonStyle = {
     position: 'fixed',
-    bottom: '120px', 
-    right: '20px',
-    width: '150px',
-    height: '50px',
+    bottom: '120px',
+    right: '25px',
+    width: '70px',
+    height: '70px',
     borderRadius: '4px',
     backgroundColor: '#ff4757',
     color: 'white',
@@ -28,13 +29,13 @@ export const FireworkButton = () => {
   };
 
   return (
-    <button 
-      style={buttonStyle} 
+    <button
+      style={buttonStyle}
       onClick={handleLaunch}
       onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
       onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
     >
-      Fireworks
+      <CelebrationIcon sx={{ fontSize: 30, color: '#fff' }} />
     </button>
   );
 };
