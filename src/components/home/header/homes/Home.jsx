@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import RotatingText from './RotatingText';
-import './RotatingText.css'; // Đảm bảo đã import CSS
+import './RotatingText.css';
 import './Home.css';
 
 export const Home = ({ className }) => {

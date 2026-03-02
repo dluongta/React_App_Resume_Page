@@ -37,69 +37,69 @@ export const HomePage = () => {
   }, []);
 
 
-  // const particlesOptions = {
-  //   fullScreen: {
-  //     enable: true, 
-  //     zIndex: 1000,  
-  //   },
-  //   interactivity: {
-  //     events: {
-  //       onClick: {
-  //         enable: true, 
-  //         mode: "push", 
-  //       },
-  //       onHover: {
-  //         enable: true, 
-  //         mode: "repulse", 
-  //       },
-  //     },
-  //     modes: {
-  //       push: {
-  //         quantity: 10, 
-  //       },
-  //       repulse: {
-  //         distance: 100, 
-  //       },
-  //     },
-  //   },
-  //   particles: {
-  //     number: {
-  //       value: 50, 
-  //     },
-  //     size: {
-  //       value: 12, 
-  //     },
-  //     shape: {
-  //       type: 'image',
-  //       image: [
-  //         {
-  //           src: hexagon, 
-  //           width: 20,    
-  //           height: 20,  
-  //         },
-  //       ],
-  //     },
-  //     move: {
-  //       enable: true,
-  //       speed: 8, 
-  //       direction: 'bottom',
-  //       random: true, 
-  //       straight: false, 
-  //     },
-  //     opacity: {
-  //       value: 0.8, 
-  //     },
-  //   },
-  // };
+  const particlesOptions = {
+    fullScreen: {
+      enable: true, 
+      zIndex: 1000,  
+    },
+    interactivity: {
+      events: {
+        onClick: {
+          enable: true, 
+          mode: "push", 
+        },
+        onHover: {
+          enable: true, 
+          mode: "repulse", 
+        },
+      },
+      modes: {
+        push: {
+          quantity: 10, 
+        },
+        repulse: {
+          distance: 100, 
+        },
+      },
+    },
+    particles: {
+      number: {
+        value: 50, 
+      },
+      size: {
+        value: 12, 
+      },
+      shape: {
+        type: 'image',
+        image: [
+          {
+            src: hexagon, 
+            width: 20,    
+            height: 20,  
+          },
+        ],
+      },
+      move: {
+        enable: true,
+        speed: 8, 
+        direction: 'bottom',
+        random: true, 
+        straight: false, 
+      },
+      opacity: {
+        value: 0.8, 
+      },
+    },
+  };
 
-  // const particlesInit = (engine) => {
-  //   loadSlim(engine); 
-  // };
+  const particlesInit = (engine) => {
+    loadSlim(engine); 
+  };
 
   return (
     <>
 
-      {/* <Particles
+      <Particles
         id="tsparticles"
         init={particlesInit}
         options={particlesOptions}
@@ -111,7 +111,7 @@ export const HomePage = () => {
           height: '100%',
           zIndex: 1000, 
         }}
-      /> */}
+      />
       {/* <FireworksEffect />
       <FireworkButton /> */}
 
