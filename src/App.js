@@ -14,11 +14,86 @@ import { Contact } from './components/pages/Contact';
 import ScrollToTopButton from './components/button/ScrollToTopButton';
 import { FireworkButton } from './components/pageComponent/FireworkButton';
 import { FireworksEffect } from './components/pageComponent/FireworksEffect';
+import Particles from 'react-tsparticles';
+import { loadSlim } from 'tsparticles-slim';
+import hexagon from '../src/assets/hexagon.png';
+
+  const particlesOptions = {
+    fullScreen: {
+      enable: true, 
+      zIndex: 1000,  
+    },
+    interactivity: {
+      events: {
+        onClick: {
+          enable: true, 
+          mode: "push", 
+        },
+        onHover: {
+          enable: true, 
+          mode: "repulse", 
+        },
+      },
+      modes: {
+        push: {
+          quantity: 10, 
+        },
+        repulse: {
+          distance: 100, 
+        },
+      },
+    },
+    particles: {
+      number: {
+        value: 50, 
+      },
+      size: {
+        value: 12, 
+      },
+      shape: {
+        type: 'image',
+        image: [
+          {
+            src: hexagon, 
+            width: 20,    
+            height: 20,  
+          },
+        ],
+      },
+      move: {
+        enable: true,
+        speed: 8, 
+        direction: 'bottom',
+        random: true, 
+        straight: false, 
+      },
+      opacity: {
+        value: 0.8, 
+      },
+    },
+  };
+
+  const particlesInit = (engine) => {
+    loadSlim(engine); 
+  };
 
 function App() {
   return (
     <>
       <Router>
+        <Particles
+                id="tsparticles"
+                init={particlesInit}
+                options={particlesOptions}
+                style={{
+                  position: 'fixed', 
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  zIndex: 1000, 
+                }}
+              />
         <Header />
         <Switch>
           <Route path='/' exact component={HomePage} />
