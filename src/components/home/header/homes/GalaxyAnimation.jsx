@@ -6,7 +6,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
 
   const state = useRef({
     // zoom: window.innerWidth < 768 ? 0.25 : 0.4,
-    zoom: 0.25,
+    zoom: window.innerWidth < 768? 0.15 : 0.25,
     rotX: 1.8,
     rotY: 0,
     dragging: false,
