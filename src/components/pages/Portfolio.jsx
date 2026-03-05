@@ -215,6 +215,9 @@ export const Portfolio = () => {
           <Link to="/contact" id="contact">
             Contact
           </Link>
+          <Link to='/galaxy' id="galaxy">
+           Galaxy 
+           </Link>
         </div>
         <div className="cards-wrapper">
 

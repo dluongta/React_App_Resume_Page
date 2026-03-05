@@ -4,10 +4,9 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
 
-  // Sử dụng Refs để lưu trữ trạng thái mà không gây re-render
   const state = useRef({
     // zoom: window.innerWidth < 768 ? 0.25 : 0.4,
-    zoom: window.innerWidth < 768 ? 0.15 : 0.25,
+    zoom: 0.25,
     rotX: 1.8,
     rotY: 0,
     dragging: false,
@@ -15,7 +14,6 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
     lastY: 0,
     initialPinchDist: null,
     initialZoom: 0.4,
-    // Trạng thái sao băng
     shootingStar: {
       active: false,
       x: 0,
@@ -34,7 +32,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
     const ctx = canvas.getContext("2d");
     let w, h, cx, cy;
     let requestId;
-    const isMobile = window.innerWidth < 768;
+    // const isMobile = window.innerWidth < 768;
 
 
     const PERSPECTIVE = 2000;
@@ -60,13 +58,13 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
     const rand = (a, b) => Math.random() * (b - a) + a;
 
     // Khởi tạo dữ liệu tĩnh (Stars, Particles)
-    const stars = Array.from({ length: isMobile ? 200 : 800 }, () => ({
+    const stars = Array.from({ length: 800 }, () => ({
 
       x: rand(-3000, 3000), y: rand(-3000, 3000), z: rand(-3000, 3000),
       size: rand(6, 8), color: "#ffffff"
     }));
 
-    const particles = Array.from({ length: isMobile ? 300 : 1500 }, () => ({
+    const particles = Array.from({ length: 1500 }, () => ({
 
       radius: rand(500, 900),
       angle: Math.random() * Math.PI * 2,
@@ -81,7 +79,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
       // h = canvas.height = container.offsetHeight;
       // cx = w / 2;
       // cy = h / 2;
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5); // mobile cap
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       canvas.width = container.offsetWidth * dpr;
       canvas.height = container.offsetHeight * dpr;
       canvas.style.width = container.offsetWidth + "px";
@@ -214,10 +212,10 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
     let lastTime = 0;
 
     const draw = () => {
-      // time += 0.01;
 
-      if (isMobile) time += 0.006;
-      else time += 0.01;
+      // if (isMobile) time += 0.006;
+      // else time += 0.01;
+      time += 0.01;
 
       ctx.fillStyle = "#000";
       ctx.fillRect(0, 0, w, h);
@@ -237,9 +235,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
       //   renderList.push({ type: 'text', char: text[i], ...rotate3D(Math.cos(charA) * ORBIT_RADIUS, Math.sin(charA) * ORBIT_TILT * 0.2, Math.sin(charA) * ORBIT_RADIUS) });
       // }
       RINGS.forEach((ring) => {
-        const repeatCount = isMobile
-          ? Math.floor(ring.radius / 20)
-          : Math.floor(ring.radius / 15);
+        const repeatCount = Math.floor(ring.radius / 15);
         const fullText = ring.text.repeat(repeatCount);
         for (let i = 0; i < fullText.length; i++) {
           const charAngle = (time * ring.speed) + (i * (Math.PI * 2 / fullText.length));
@@ -312,92 +308,10 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
             ctx.globalAlpha = 1;
           }
         } else if (item.type === 'text') {
-          // ctx.font = `bold ${50 * p.s}px Impact, Arial, sans-serif`;
-          // ctx.textAlign = "center"; 
-          // ctx.textBaseline = "middle";
-
-          // ctx.shadowColor = "#ff6200"; 
-          // ctx.shadowBlur = 12 * p.s;
-
-          // ctx.strokeStyle = "#ff6200"; 
-          // ctx.lineWidth = 20 * p.s;     
-          // ctx.lineJoin = "round";      
-          // ctx.strokeText(item.char, p.x, p.y);
-
-          // ctx.shadowBlur = 0;         
-          // ctx.fillStyle = "#ffffff"; 
-          // ctx.fillText(item.char, p.x, p.y);
-          // ctx.font = `bold ${50 * p.s}px Impact, Arial, sans-serif`;
-          // ctx.textAlign = "center";
-          // ctx.textBaseline = "middle";
-
-          // // --- SỬA TẠI ĐÂY ---
-          // // Lấy màu từ item thay vì dùng mã cứng #ff6200
-          // ctx.shadowColor = item.color;
-          // ctx.shadowBlur = 12 * p.s;
-
-          // ctx.strokeStyle = item.color;
-          // ctx.lineWidth = 4 * p.s; // Giảm xuống 4-6 cho thanh mảnh, 20 là quá dày
-          // ctx.lineJoin = "round";
-          // ctx.strokeText(item.char, p.x, p.y);
-
-          // ctx.shadowBlur = 0;
-          // ctx.fillStyle = "#ffffff"; // Giữ màu trắng bên trong để chữ nổi bật
-          // ctx.fillText(item.char, p.x, p.y);
-          //           ctx.font = `bold ${50 * p.s}px Impact, Arial, sans-serif`;
-          //           ctx.textAlign = "center";
-          //           ctx.textBaseline = "middle";
-
-          // if (!isMobile) {
-          //   // Desktop: viền + glow
-          //   ctx.shadowColor = item.color;
-          //   ctx.shadowBlur = 12 * p.s;
-          //   ctx.strokeStyle = item.color;
-          //   ctx.lineWidth = 4 * p.s;
-          //   ctx.strokeText(item.char, p.x, p.y);
-
-          //   ctx.shadowBlur = 0;
-          //   ctx.fillStyle = "#ffffff";
-          //   ctx.fillText(item.char, p.x, p.y);
-          // } else {
-          //   // Mobile: fill màu trực tiếp (nhẹ GPU)
-          //   ctx.fillStyle = item.color;
-          //   ctx.fillText(item.char, p.x, p.y);
-          // }
-          // ctx.font = `bold ${50 * p.s}px Impact, Arial, sans-serif`;
-          // ctx.textAlign = "center";
-          // ctx.textBaseline = "middle";
-
-          // if (!isMobile) {
-          //   // ===== DESKTOP =====
-          //   ctx.shadowColor = item.color;
-          //   ctx.shadowBlur = 12 * p.s;
-
-          //   ctx.strokeStyle = item.color;
-          //   ctx.lineWidth = 4 * p.s;
-          //   ctx.strokeText(item.char, p.x, p.y);
-
-          //   ctx.shadowBlur = 0;
-          //   ctx.fillStyle = "#ffffff";
-          //   ctx.fillText(item.char, p.x, p.y);
-
-          // } else {
-          //   ctx.shadowColor = item.color;
-          //   ctx.shadowBlur = 12 * p.s;
-
-          //   ctx.strokeStyle = item.color;
-          //   ctx.lineWidth = 4 * p.s;
-          //   ctx.strokeText(item.char, p.x, p.y);
-
-          //   ctx.shadowBlur = 0;
-          //   ctx.fillStyle = "#ffffff";
-          //   ctx.fillText(item.char, p.x, p.y);
-          // }
-          ctx.font = `bold ${50 * p.s}px Impact, Arial, sans-serif`;
+                 ctx.font = `bold ${50 * p.s}px Impact, Arial, sans-serif`;
           ctx.textAlign = "center";
           ctx.textBaseline = "middle";
 
-          if (!isMobile) {
             ctx.shadowColor = item.color;
             ctx.shadowBlur = 12 * p.s;
 
@@ -408,32 +322,6 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
             ctx.shadowBlur = 0;
             ctx.fillStyle = "#ffffff";
             ctx.fillText(item.char, p.x, p.y);
-
-          } else {
-            // const blur = Math.min(4 * p.s, 6); 
-
-            // ctx.shadowColor = item.color;
-            // ctx.shadowBlur = blur;
-
-
-            // ctx.fillStyle = item.color;
-            // ctx.fillText(item.char, p.x, p.y);
-
-            // ctx.shadowBlur = 0;
-
-
-
-            ctx.strokeStyle = item.color;
-            ctx.lineWidth = 4 * p.s;
-            ctx.strokeText(item.char, p.x, p.y);
-
-            ctx.fillStyle = "#ffffff";
-            ctx.fillText(item.char, p.x, p.y);
-          }
-
-
-
-
         }
       }
       );

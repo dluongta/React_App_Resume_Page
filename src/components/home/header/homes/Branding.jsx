@@ -84,7 +84,7 @@ export const Branding = ({ className }) => {
         interactive
         className="custom-text-style"
       />
-      {!isMobile && (
+      {/* {!isMobile && (
         <div style={{
           position: 'relative',
           width: '80%',
@@ -102,7 +102,7 @@ export const Branding = ({ className }) => {
 
         </div>
 
-      )}
+      )} */}
       {/* <img width={'100%'} src={logo} alt="Logo" /> */}
       <ParticleTextCanvas />
       <CustomVideoPlayer src={ulmind_intro} captionSrc={caption_ulmind_intro} />

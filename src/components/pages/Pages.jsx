@@ -183,6 +183,7 @@ export const Pages = () => {
           <Link to='/blog' id="blog"> Blog </Link>
           <Link to='/portfolio' id="portfolio"> Portfolio </Link>
           <Link to='/contact' id="contact"> Contact </Link>
+          <Link to='/galaxy' id="galaxy"> Galaxy </Link>
         </div>
         <div className="cards-wrapper">
 

@@ -827,6 +827,10 @@ footer .fa-github:hover {
 #mySidenav a:hover {
   left: 0;
 }
+#galaxy {
+  top: 260px;
+  background-color: #ca06fb;
+}
 
 #pages {
   top: 20px;
@@ -2450,4 +2454,62 @@ html, body {
 .mobile-sidebar.open {
   transform: translateX(0);
 }
+.header {
+  position: fixed;
+  top: 0;
+  left: 0; 
+  width: 100% !important;
+  z-index: 1000;
+  background: white;
+  transition: all 0.3s ease;
+  padding: 10px 0;
+}
 
+.header-container {
+  max-width: 100% !important; 
+  padding: 0 40px; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  box-sizing: border-box;
+}
+
+.logo-section, .icon-section {
+  flex: 0 0 auto;
+}
+
+.nav-section {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.galaxy-page {
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100%;
+}
+
+.pages, .blog, .portfolio, .galaxy, .galaxy-page {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.galaxy-page {
+  width: 100vw !important;  
+  margin-left: calc(-50vw + 50%); 
+  margin-right: calc(-50vw + 50%);
+  padding: 0 !important;
+  overflow-x: hidden;
+  background: #fff;
+}
+
+.galaxy-page > div {
+  width: 100% !important;
+}
+
+body:has(.galaxy-page) .container {
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
