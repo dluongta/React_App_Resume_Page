@@ -34,7 +34,7 @@ export const Galaxy = () => {
             height: "100vh",
             overflow: "hidden",
             background: "#000",
-            marginTop: "10em"
+            marginTop: "5em"
           }}
         >
           <GalaxyAnimation
