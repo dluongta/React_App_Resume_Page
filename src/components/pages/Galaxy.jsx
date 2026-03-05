@@ -1,4 +1,4 @@
-import React from "react";
+import {useEffect,useState} from "react";
 import { Link } from "react-router-dom";
 
 import GalaxyAnimation from "../home/header/homes/GalaxyAnimation";
@@ -8,13 +8,18 @@ import lumindLogo from "../../assets/luen-1.jpg";
 import hexagonImg from "../../assets/hexagon-main.png";
 
 export const Galaxy = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const galaxyImages = [
     logo,
     hexagonImg,
     lumindLogo,
   ];
-
   return (
     <>
       <section className="galaxy-page">
@@ -27,22 +32,12 @@ export const Galaxy = () => {
           <Link to="/galaxy" id="galaxy">Galaxy</Link>
         </div>
 
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            height: "50vh",
-            overflow: "hidden",
-            background: "#fff",
-            marginTop: "8em"
-          }}
-        >
-          <GalaxyAnimation
-            text="DINH LUONG TA"
-            imageUrls={galaxyImages}
-          />
-        </div>
-
+       <div className="galaxy-container-wrapper">
+        <GalaxyAnimation
+          text="DINH LUONG TA"
+          imageUrls={galaxyImages}
+        />
+      </div>
       </section>
     </>
   );
