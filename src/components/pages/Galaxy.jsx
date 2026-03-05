@@ -31,10 +31,10 @@ export const Galaxy = () => {
           style={{
             position: "relative",
             width: "100%",
-            height: "100vh",
+            height: "50vh",
             overflow: "hidden",
-            background: "#000",
-            marginTop: "5em"
+            background: "#fff",
+            marginTop: "8em"
           }}
         >
           <GalaxyAnimation
