@@ -872,7 +872,7 @@ iframe {
   display: flex;
 }
 
-.pdf-container {
+/* .pdf-container {
   flex-grow: 1;
   padding: 10px;
 }
@@ -884,6 +884,26 @@ iframe {
   border: none;
   margin-bottom: 20px;
   width: 80%;
+} */
+
+.pdf-container {
+  flex-grow: 1;
+  padding: 120px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh + 80px); 
+  margin: 80px auto;
+  box-sizing: border-box;
+}
+
+.pdf {
+  display: block;
+  border: 1px solid #ddd;
+  width: 95%; 
+  max-width: 1000px; 
+  height: 100vh; 
+  margin: auto;
 }
 
 .reveal {
@@ -2611,3 +2631,6 @@ body:has(.galaxy-page) .container {
     margin-top: 8rem !important;
   }
 }
+
+
+
