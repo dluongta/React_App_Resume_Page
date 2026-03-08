@@ -65,7 +65,7 @@ const AppContent = () => {
 
   return (
     <>
-      {!isGalaxyPage && (
+      {/* {!isGalaxyPage && (
         <Particles
           id="tsparticles"
           init={particlesInit}
@@ -79,7 +79,7 @@ const AppContent = () => {
             zIndex: 1000,
           }}
         />
-      )}
+      )} */}
 
       <Header />
 
