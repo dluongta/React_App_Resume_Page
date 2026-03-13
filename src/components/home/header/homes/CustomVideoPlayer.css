@@ -298,11 +298,11 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 80px; /* adjust this to sit above your controls */
+  bottom: 80px;
   display: flex;
   justify-content: center;
-  pointer-events: none; /* clicks go through */
-  z-index: 999; /* ensure it's above the controls */
+  pointer-events: none; 
+  z-index: 999; 
   padding: 0 12px;
 }
 
@@ -412,10 +412,12 @@
   color: #333;
 }
 
-/* Hover trigger */
 .settings-menu:hover .settings-content,
 .settings-content:hover {
   display: block;
 }
 
+.captions-btn {
+  transform: translateY(-2px);
+}
 

@@ -2,6 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import './CustomVideoPlayer.css';
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
+import VolumeOffIcon from '@mui/icons-material/VolumeOff';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseIcon from '@mui/icons-material/Pause';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const formatTime = (seconds) => {
   if (isNaN(seconds)) return '00:00:00';
@@ -32,7 +37,6 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   const [previewTime, setPreviewTime] = useState(null);
   const [previewPos, setPreviewPos] = useState(null);
 
-  // Video setup
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -89,7 +93,6 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
-  // Click outside to close settings
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (settingsRef.current && !settingsRef.current.contains(event.target)) {
@@ -164,7 +167,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     if (!video) return;
     video.playbackRate = rate;
     setPlaybackRate(rate);
-    setShowSettings(false); // auto-close menu
+    setShowSettings(false); 
   };
 
   const toggleSettings = (e) => {
@@ -196,7 +199,6 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
 
         {loading && <div className="loading-spinner"></div>}
 
-        {/* Controls overlay */}
         <div className="controls">
           <div
             className="progress-container"
@@ -222,10 +224,10 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
           <div className="buttons-container">
             <div className="left-controls">
               <button className="control-btn play-btn" title="Play/Pause" onClick={togglePlay}>
-                {isPlaying ? '❚❚' : '▶'}
+                {isPlaying ? <PauseIcon fontSize="small" /> : <PlayArrowIcon fontSize="small" />}
               </button>
-              <button className="control-btn mute-btn" title="Mute" onClick={toggleMute}>
-                {isMuted ? '🔇' : '🔊'}
+              <button className="control-btn mute-btn" title="Sound On/Sound Off" onClick={toggleMute}>
+                {isMuted ?  <VolumeOffIcon fontSize="small"/> : <VolumeUpIcon fontSize="small"/>}
               </button>
               <div className="volume-container">
                 <input
@@ -258,7 +260,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
                   title="Settings"
                   onClick={toggleSettings}
                 >
-                  ⚙️
+                  <SettingsIcon fontSize="small" />
                 </button>
 
                 {showSettings && (
