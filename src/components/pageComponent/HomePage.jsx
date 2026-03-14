@@ -128,7 +128,7 @@ export const HomePage = () => {
       <About className="reveal" />
       <Wrapper className="reveal" />
       <ScrollRevealText />
-      <ScrollHero/>
+      {/* <ScrollHero/> */}
       <Skill className="reveal" />
       <Service className="reveal" />
       <WrapperOne />
