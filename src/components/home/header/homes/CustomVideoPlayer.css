@@ -24,7 +24,6 @@
   display: block;
 }
 
-/* LỚP PHỦ QUAN TRỌNG: Chặn click vào video khi controls đang ẩn */
 .mobile-touch-layer {
   position: absolute;
   top: 0;
@@ -41,7 +40,6 @@
   left: 0;
   right: 0;
   padding: 10px 15px;
-  /* ĐEN TRONG SUỐT PHẲNG (ĐỀU) */
   background: rgba(0, 0, 0, 0.7); 
   z-index: 10;
   display: flex;
@@ -141,27 +139,24 @@
   background-color: #000;
   position: relative;
 }
-/* Container chứa loa và slider - Luôn hiển thị ngang */
 .volume-container {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-/* Thanh trượt volume - Luôn hiện */
 .volume-slider {
   -webkit-appearance: none;
   appearance: none;
-  width: 60px; /* Độ rộng cố định */
+  width: 60px;
   height: 4px;
   cursor: pointer;
   border-radius: 2px;
-  background: rgba(255, 255, 255, 0.3); /* Màu nền mặc định */
+  background: rgba(255, 255, 255, 0.3); 
   outline: none;
-  opacity: 1; /* Luôn hiện */
+  opacity: 1; 
 }
 
-/* Nút kéo volume */
 .volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -174,10 +169,9 @@
   border: none;
 }
 
-/* Đảm bảo trên Mobile không bị mất */
 @media (max-width: 600px) {
   .volume-slider {
-    width: 50px; /* Có thể nhỏ lại một chút trên mobile nếu chật */
+    width: 50px; 
     display: block;
   }
 }
