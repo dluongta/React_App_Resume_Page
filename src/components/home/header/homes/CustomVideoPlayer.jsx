@@ -23,6 +23,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   const videoRef = useRef(null);
   const progressBarRef = useRef(null);
   const settingsRef = useRef(null);
+  const controlsTimeoutRef = useRef(null);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
@@ -36,6 +37,8 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   const [loading, setLoading] = useState(false);
   const [previewTime, setPreviewTime] = useState(null);
   const [previewPos, setPreviewPos] = useState(null);
+  
+  const [showControls, setShowControls] = useState(true); 
 
   useEffect(() => {
     const video = videoRef.current;
@@ -52,6 +55,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
         track.mode = 'hidden';
         setIsCaptionsOn(false);
       }
+      handleInteraction(); 
     };
 
     const onTimeUpdate = () => {
@@ -81,10 +85,10 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
       video.removeEventListener('waiting', onWaiting);
       video.removeEventListener('playing', onPlaying);
       video.removeEventListener('pause', onPause);
+      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
     };
   }, [src, captionSrc]);
 
-  // Fullscreen listener
   useEffect(() => {
     const handleFullscreenChange = () => {
       setIsFullscreen(Boolean(document.fullscreenElement));
@@ -103,12 +107,40 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const handleInteraction = () => {
+    setShowControls(true);
+    if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+    
+    controlsTimeoutRef.current = setTimeout(() => {
+      if (videoRef.current && !videoRef.current.paused) {
+        setShowControls(false);
+        setShowSettings(false);
+      }
+    }, 3000);
+  };
+
+  const handleVideoClick = () => {
+    if (!showControls) {
+      handleInteraction();
+    } 
+    else {
+      togglePlay();
+    }
+  };
+
   const togglePlay = () => {
     const video = videoRef.current;
     if (!video) return;
-    if (video.paused) video.play().catch(console.error);
-    else video.pause();
+    if (video.paused) {
+      video.play().catch(console.error);
+      handleInteraction();
+    } else {
+      video.pause();
+      setShowControls(true);
+      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+    }
   };
+  // -------------------------------------------
 
   const toggleMute = () => {
     const video = videoRef.current;
@@ -116,6 +148,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     video.muted = !video.muted;
     setIsMuted(video.muted);
     setVolume(video.muted ? 0 : video.volume);
+    handleInteraction();
   };
 
   const handleVolumeChange = (e) => {
@@ -126,6 +159,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     video.muted = vol === 0;
     setVolume(vol);
     setIsMuted(video.muted);
+    handleInteraction();
   };
 
   const handleProgressClick = (e) => {
@@ -134,6 +168,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     video.currentTime = (clickX / rect.width) * video.duration;
+    handleInteraction();
   };
 
   const handleProgressMouseMove = (e) => {
@@ -145,12 +180,14 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     const time = (hoverX / width) * video.duration;
     setPreviewTime(time);
     setPreviewPos((hoverX / width) * 100);
+    handleInteraction();
   };
 
   const toggleFullscreen = () => {
     const container = videoRef.current.parentElement;
     if (!document.fullscreenElement) container.requestFullscreen().catch(console.error);
     else document.exitFullscreen().catch(console.error);
+    handleInteraction();
   };
 
   const toggleCaptions = () => {
@@ -160,6 +197,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     if (!track) return;
     track.mode = track.mode === 'showing' ? 'hidden' : 'showing';
     setIsCaptionsOn(track.mode === 'showing');
+    handleInteraction();
   };
 
   const changePlaybackRate = (rate) => {
@@ -168,16 +206,31 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     video.playbackRate = rate;
     setPlaybackRate(rate);
     setShowSettings(false); 
+    handleInteraction();
   };
 
   const toggleSettings = (e) => {
     e.stopPropagation();
     setShowSettings((prev) => !prev);
+    handleInteraction();
   };
 
   return (
     <div className="video-player-container">
-      <div className="video-container">
+      <div 
+        className="video-container" 
+        onMouseMove={handleInteraction}
+        onTouchStart={handleInteraction} 
+        onMouseLeave={() => {
+            if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+            controlsTimeoutRef.current = setTimeout(() => {
+              if (videoRef.current && !videoRef.current.paused) {
+                setShowControls(false);
+                setShowSettings(false);
+              }
+            }, 3000);
+        }}
+      >
         <video
           ref={videoRef}
           className="video"
@@ -189,7 +242,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
           muted={isMuted}
           src={src}
           loop
-          onClick={togglePlay}
+          onClick={handleVideoClick} 
         >
           {captionSrc && (
             <track src={captionSrc} kind="subtitles" srcLang="en" label="English" default />
@@ -199,7 +252,8 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
 
         {loading && <div className="loading-spinner"></div>}
 
-        <div className="controls">
+        {/* Thêm class 'visible' dựa trên state showControls */}
+        <div className={`controls ${showControls ? 'visible' : ''}`}>
           <div
             className="progress-container"
             onClick={handleProgressClick}
