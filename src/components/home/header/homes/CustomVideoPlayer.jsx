@@ -276,27 +276,25 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     {isPlaying ? <PauseIcon fontSize="small" /> : <PlayArrowIcon fontSize="small" />}
   </button>
   
-  {/* --- PHẦN VOLUME ĐÃ CẬP NHẬT --- */}
   <div className="volume-container">
-    <button className="control-btn" onClick={toggleMute}>
-      {isMuted || volume === 0 ? <VolumeOffIcon fontSize="small" /> : <VolumeUpIcon fontSize="small" />}
-    </button>
-<input
-  type="range"
-  className="volume-slider"
-  min="0"
-  max="1"
-  step="0.01"
-  value={isMuted ? 0 : volume}
-  onChange={handleVolumeChange}
-  style={{
-    background: `linear-gradient(to right, var(--primary-color) ${
-      (isMuted ? 0 : volume) * 100
-    }%, rgba(255, 255, 255, 0.3) ${(isMuted ? 0 : volume) * 100}%)`,
-  }}
-/>
-  </div>
-  {/* ------------------------------ */}
+  <button className="control-btn" onClick={toggleMute}>
+    {isMuted || volume === 0 ? <VolumeOffIcon fontSize="small" /> : <VolumeUpIcon fontSize="small" />}
+  </button>
+  <input
+    type="range"
+    className="volume-slider"
+    min="0"
+    max="1"
+    step="0.01"
+    value={isMuted ? 0 : volume}
+    onChange={handleVolumeChange}
+    style={{
+      background: `linear-gradient(to right, var(--primary-color) ${
+        (isMuted ? 0 : volume) * 100
+      }%, rgba(255, 255, 255, 0.3) ${(isMuted ? 0 : volume) * 100}%)`,
+    }}
+  />
+</div>
 
   <span className="time-display">
     {formatTime(currentTime)} / {formatTime(duration)}
