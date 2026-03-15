@@ -248,9 +248,27 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
         {loading && <div className="loading-spinner"></div>}
 
         <div className={`controls ${showControls ? 'visible' : ''}`} onClick={(e) => e.stopPropagation()}>
-          <div className="progress-container" onClick={handleProgressClick}>
-            <div className="progress-bar" ref={progressBarRef}></div>
-          </div>
+{/* Thay thế đoạn cũ bằng đoạn này */}
+<div className="progress-wrapper">
+  <input
+    type="range"
+    className="progress-slider"
+    min="0"
+    max={duration || 0}
+    step="0.1"
+    value={currentTime}
+    onChange={(e) => {
+      const time = parseFloat(e.target.value);
+      videoRef.current.currentTime = time;
+      setCurrentTime(time);
+    }}
+    style={{
+      background: `linear-gradient(to right, var(--primary-color) ${
+        (currentTime / duration) * 100 || 0
+      }%, rgba(255, 255, 255, 0.3) ${(currentTime / duration) * 100 || 0}%)`,
+    }}
+  />
+</div>
 
           <div className="buttons-container">
 <div className="left-controls">
@@ -263,15 +281,20 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     <button className="control-btn" onClick={toggleMute}>
       {isMuted || volume === 0 ? <VolumeOffIcon fontSize="small" /> : <VolumeUpIcon fontSize="small" />}
     </button>
-    <input
-      type="range"
-      className="volume-slider"
-      min="0"
-      max="1"
-      step="0.1"
-      value={isMuted ? 0 : volume}
-      onChange={handleVolumeChange}
-    />
+<input
+  type="range"
+  className="volume-slider"
+  min="0"
+  max="1"
+  step="0.01"
+  value={isMuted ? 0 : volume}
+  onChange={handleVolumeChange}
+  style={{
+    background: `linear-gradient(to right, var(--primary-color) ${
+      (isMuted ? 0 : volume) * 100
+    }%, rgba(255, 255, 255, 0.3) ${(isMuted ? 0 : volume) * 100}%)`,
+  }}
+/>
   </div>
   {/* ------------------------------ */}
 
