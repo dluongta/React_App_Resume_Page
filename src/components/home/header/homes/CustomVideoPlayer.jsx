@@ -37,8 +37,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   const [loading, setLoading] = useState(false);
   const [previewTime, setPreviewTime] = useState(null);
   const [previewPos, setPreviewPos] = useState(null);
-  
-  const [showControls, setShowControls] = useState(true); 
+  const [showControls, setShowControls] = useState(true);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -55,7 +54,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
         track.mode = 'hidden';
         setIsCaptionsOn(false);
       }
-      handleInteraction(); 
+      handleInteraction();
     };
 
     const onTimeUpdate = () => {
@@ -110,7 +109,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   const handleInteraction = () => {
     setShowControls(true);
     if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
-    
+
     controlsTimeoutRef.current = setTimeout(() => {
       if (videoRef.current && !videoRef.current.paused) {
         setShowControls(false);
@@ -119,11 +118,11 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     }, 3000);
   };
 
-  const handleVideoClick = () => {
+  const handleVideoClick = (e) => {
     if (!showControls) {
+      e.preventDefault();
       handleInteraction();
-    } 
-    else {
+    } else {
       togglePlay();
     }
   };
@@ -140,7 +139,6 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
       if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
     }
   };
-  // -------------------------------------------
 
   const toggleMute = () => {
     const video = videoRef.current;
@@ -205,7 +203,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     if (!video) return;
     video.playbackRate = rate;
     setPlaybackRate(rate);
-    setShowSettings(false); 
+    setShowSettings(false);
     handleInteraction();
   };
 
@@ -217,18 +215,18 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
 
   return (
     <div className="video-player-container">
-      <div 
-        className="video-container" 
+      <div
+        className="video-container"
         onMouseMove={handleInteraction}
-        onTouchStart={handleInteraction} 
+        onTouchStart={handleInteraction}
         onMouseLeave={() => {
-            if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
-            controlsTimeoutRef.current = setTimeout(() => {
-              if (videoRef.current && !videoRef.current.paused) {
-                setShowControls(false);
-                setShowSettings(false);
-              }
-            }, 3000);
+          if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+          controlsTimeoutRef.current = setTimeout(() => {
+            if (videoRef.current && !videoRef.current.paused) {
+              setShowControls(false);
+              setShowSettings(false);
+            }
+          }, 3000);
         }}
       >
         <video
@@ -242,7 +240,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
           muted={isMuted}
           src={src}
           loop
-          onClick={handleVideoClick} 
+          onClick={handleVideoClick}
         >
           {captionSrc && (
             <track src={captionSrc} kind="subtitles" srcLang="en" label="English" default />
@@ -250,9 +248,11 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
           Your browser does not support the video tag.
         </video>
 
+        {/* Overlay chặn click khi controls ẩn */}
+        {!showControls && <div className="click-capture-overlay" onClick={handleVideoClick}></div>}
+
         {loading && <div className="loading-spinner"></div>}
 
-        {/* Thêm class 'visible' dựa trên state showControls */}
         <div className={`controls ${showControls ? 'visible' : ''}`}>
           <div
             className="progress-container"
@@ -281,7 +281,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
                 {isPlaying ? <PauseIcon fontSize="small" /> : <PlayArrowIcon fontSize="small" />}
               </button>
               <button className="control-btn mute-btn" title="Sound On/Sound Off" onClick={toggleMute}>
-                {isMuted ?  <VolumeOffIcon fontSize="small"/> : <VolumeUpIcon fontSize="small"/>}
+                {isMuted ? <VolumeOffIcon fontSize="small" /> : <VolumeUpIcon fontSize="small" />}
               </button>
               <div className="volume-container">
                 <input
