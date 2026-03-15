@@ -118,29 +118,29 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     }, 3000);
   };
 
-  const handleVideoClick = (e) => {
-    if (!showControls) {
-      e.preventDefault();
-      handleInteraction();
-    } else {
-      togglePlay();
-    }
+  // Hàm quan trọng: Chỉ bật controls nếu đang ẩn
+  const handleOverlayTouch = (e) => {
+    e.stopPropagation();
+    handleInteraction();
   };
 
-  const togglePlay = () => {
+  const togglePlay = (e) => {
+    if (e) e.stopPropagation();
     const video = videoRef.current;
     if (!video) return;
+
     if (video.paused) {
       video.play().catch(console.error);
       handleInteraction();
     } else {
       video.pause();
-      setShowControls(true);
+      setShowControls(true); // Luôn hiện khi pause
       if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
     }
   };
 
-  const toggleMute = () => {
+  const toggleMute = (e) => {
+    e.stopPropagation();
     const video = videoRef.current;
     if (!video) return;
     video.muted = !video.muted;
@@ -150,6 +150,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   };
 
   const handleVolumeChange = (e) => {
+    e.stopPropagation();
     const video = videoRef.current;
     if (!video) return;
     const vol = parseFloat(e.target.value);
@@ -161,34 +162,25 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   };
 
   const handleProgressClick = (e) => {
+    e.stopPropagation();
     const video = videoRef.current;
     if (!video) return;
     const rect = e.currentTarget.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
+    const clickX = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
     video.currentTime = (clickX / rect.width) * video.duration;
     handleInteraction();
   };
 
-  const handleProgressMouseMove = (e) => {
-    const video = videoRef.current;
-    if (!video) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const hoverX = e.clientX - rect.left;
-    const width = rect.width;
-    const time = (hoverX / width) * video.duration;
-    setPreviewTime(time);
-    setPreviewPos((hoverX / width) * 100);
-    handleInteraction();
-  };
-
-  const toggleFullscreen = () => {
+  const toggleFullscreen = (e) => {
+    e.stopPropagation();
     const container = videoRef.current.parentElement;
     if (!document.fullscreenElement) container.requestFullscreen().catch(console.error);
     else document.exitFullscreen().catch(console.error);
     handleInteraction();
   };
 
-  const toggleCaptions = () => {
+  const toggleCaptions = (e) => {
+    e.stopPropagation();
     const video = videoRef.current;
     if (!video) return;
     const track = video.textTracks[0];
@@ -207,138 +199,69 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     handleInteraction();
   };
 
-  const toggleSettings = (e) => {
-    e.stopPropagation();
-    setShowSettings((prev) => !prev);
-    handleInteraction();
-  };
-
   return (
     <div className="video-player-container">
       <div
         className="video-container"
         onMouseMove={handleInteraction}
-        onTouchStart={handleInteraction}
-        onMouseLeave={() => {
-          if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
-          controlsTimeoutRef.current = setTimeout(() => {
-            if (videoRef.current && !videoRef.current.paused) {
-              setShowControls(false);
-              setShowSettings(false);
-            }
-          }, 3000);
-        }}
       >
         <video
           ref={videoRef}
           className="video"
-          controls={false}
-          controlsList="nodownload"
-          preload="metadata"
           playsInline
           autoPlay
           muted={isMuted}
           src={src}
           loop
-          onClick={handleVideoClick}
+          onClick={showControls ? togglePlay : undefined} // Chỉ cho phép click video khi controls đang hiện
         >
           {captionSrc && (
             <track src={captionSrc} kind="subtitles" srcLang="en" label="English" default />
           )}
-          Your browser does not support the video tag.
         </video>
 
-        {/* Overlay chặn click khi controls ẩn */}
-        {!showControls && <div className="click-capture-overlay" onClick={handleVideoClick}></div>}
+        {/* LỚP PHỦ MOBILE: Khi controls ẨN, lớp này hiện lên chặn click vào video */}
+        {!showControls && (
+          <div className="mobile-touch-layer" onClick={handleOverlayTouch}></div>
+        )}
 
         {loading && <div className="loading-spinner"></div>}
 
-        <div className={`controls ${showControls ? 'visible' : ''}`}>
-          <div
-            className="progress-container"
-            onClick={handleProgressClick}
-            onMouseMove={handleProgressMouseMove}
-            onMouseLeave={() => {
-              setPreviewTime(null);
-              setPreviewPos(null);
-            }}
-          >
-            <div className="progress-bar" ref={progressBarRef}>
-              {previewTime !== null && (
-                <div
-                  className="progress-time"
-                  style={{ left: `${previewPos}%`, transform: 'translateX(-50%)' }}
-                >
-                  {formatTime(previewTime)}
-                </div>
-              )}
-            </div>
+        <div className={`controls ${showControls ? 'visible' : ''}`} onClick={(e) => e.stopPropagation()}>
+          <div className="progress-container" onClick={handleProgressClick}>
+            <div className="progress-bar" ref={progressBarRef}></div>
           </div>
 
           <div className="buttons-container">
             <div className="left-controls">
-              <button className="control-btn play-btn" title="Play/Pause" onClick={togglePlay}>
+              <button className="control-btn" onClick={togglePlay}>
                 {isPlaying ? <PauseIcon fontSize="small" /> : <PlayArrowIcon fontSize="small" />}
               </button>
-              <button className="control-btn mute-btn" title="Sound On/Sound Off" onClick={toggleMute}>
+              <button className="control-btn" onClick={toggleMute}>
                 {isMuted ? <VolumeOffIcon fontSize="small" /> : <VolumeUpIcon fontSize="small" />}
               </button>
-              <div className="volume-container">
-                <input
-                  type="range"
-                  className="volume-slider"
-                  min="0"
-                  max="1"
-                  step="0.01"
-                  value={volume}
-                  onChange={handleVolumeChange}
-                />
-              </div>
               <span className="time-display">
                 {formatTime(currentTime)} / {formatTime(duration)}
               </span>
             </div>
 
             <div className="right-controls">
-              <button
-                className={`control-btn captions-btn ${isCaptionsOn ? 'active' : ''}`}
-                title="Subtitles"
-                onClick={toggleCaptions}
-              >
-                CC
-              </button>
-
+              <button className={`control-btn ${isCaptionsOn ? 'active' : ''}`} onClick={toggleCaptions}>CC</button>
               <div className="settings-menu" ref={settingsRef}>
-                <button
-                  className={`control-btn settings-btn ${showSettings ? 'active' : ''}`}
-                  title="Settings"
-                  onClick={toggleSettings}
-                >
+                <button className="control-btn" onClick={(e) => { e.stopPropagation(); setShowSettings(!showSettings); }}>
                   <SettingsIcon fontSize="small" />
                 </button>
-
                 {showSettings && (
                   <div className="settings-content">
-                    {[0.5, 0.75, 1, 1.25, 1.5, 2].map((speed) => (
-                      <div
-                        key={speed}
-                        className={`settings-item playback-speed ${
-                          playbackRate === speed ? 'active' : ''
-                        }`}
-                        onClick={() => changePlaybackRate(speed)}
-                      >
+                    {[0.25, 0.5, 1, 1.5, 2].map((speed) => (
+                      <div key={speed} className={`settings-item ${playbackRate === speed ? 'active' : ''}`} onClick={() => changePlaybackRate(speed)}>
                         {speed === 1 ? 'Normal' : `${speed}x`}
                       </div>
                     ))}
                   </div>
                 )}
               </div>
-
-              <button
-                className="control-btn fullscreen-btn"
-                title="Fullscreen"
-                onClick={toggleFullscreen}
-              >
+              <button className="control-btn" onClick={toggleFullscreen}>
                 {isFullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
               </button>
             </div>
