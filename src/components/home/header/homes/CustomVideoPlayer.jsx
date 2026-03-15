@@ -149,17 +149,37 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     handleInteraction();
   };
 
+  // const handleVolumeChange = (e) => {
+  //   e.stopPropagation();
+  //   const video = videoRef.current;
+  //   if (!video) return;
+  //   const vol = parseFloat(e.target.value);
+  //   video.volume = vol;
+  //   video.muted = vol === 0;
+  //   setVolume(vol);
+  //   setIsMuted(video.muted);
+  //   handleInteraction();
+  // };
   const handleVolumeChange = (e) => {
-    e.stopPropagation();
+    e.stopPropagation(); 
+    
     const video = videoRef.current;
     if (!video) return;
+    
     const vol = parseFloat(e.target.value);
     video.volume = vol;
-    video.muted = vol === 0;
     setVolume(vol);
-    setIsMuted(video.muted);
-    handleInteraction();
-  };
+    
+    if (vol === 0) {
+        setIsMuted(true);
+        video.muted = true;
+    } else {
+        setIsMuted(false);
+        video.muted = false;
+    }
+    
+    handleInteraction(); 
+};
 
   const handleProgressClick = (e) => {
     e.stopPropagation();
@@ -233,18 +253,32 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
           </div>
 
           <div className="buttons-container">
-            <div className="left-controls">
-              <button className="control-btn" onClick={togglePlay}>
-                {isPlaying ? <PauseIcon fontSize="small" /> : <PlayArrowIcon fontSize="small" />}
-              </button>
-              <button className="control-btn" onClick={toggleMute}>
-                {isMuted ? <VolumeOffIcon fontSize="small" /> : <VolumeUpIcon fontSize="small" />}
-              </button>
-              <span className="time-display">
-                {formatTime(currentTime)} / {formatTime(duration)}
-              </span>
-            </div>
+<div className="left-controls">
+  <button className="control-btn" onClick={togglePlay}>
+    {isPlaying ? <PauseIcon fontSize="small" /> : <PlayArrowIcon fontSize="small" />}
+  </button>
+  
+  {/* --- PHẦN VOLUME ĐÃ CẬP NHẬT --- */}
+  <div className="volume-container">
+    <button className="control-btn" onClick={toggleMute}>
+      {isMuted || volume === 0 ? <VolumeOffIcon fontSize="small" /> : <VolumeUpIcon fontSize="small" />}
+    </button>
+    <input
+      type="range"
+      className="volume-slider"
+      min="0"
+      max="1"
+      step="0.1"
+      value={isMuted ? 0 : volume}
+      onChange={handleVolumeChange}
+    />
+  </div>
+  {/* ------------------------------ */}
 
+  <span className="time-display">
+    {formatTime(currentTime)} / {formatTime(duration)}
+  </span>
+</div>
             <div className="right-controls">
               <button className={`control-btn ${isCaptionsOn ? 'active' : ''}`} onClick={toggleCaptions}>CC</button>
               <div className="settings-menu" ref={settingsRef}>
