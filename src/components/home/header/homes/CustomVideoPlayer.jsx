@@ -408,10 +408,8 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
     
     controlsTimeoutRef.current = setTimeout(() => {
-      if (videoRef.current && !videoRef.current.paused) {
-        setShowControls(false);
-        setShowSettings(false);
-      }
+      setShowControls(false);
+      setShowSettings(false);
     }, 3000);
   };
 
@@ -422,12 +420,10 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
       const video = videoRef.current;
       if (video.paused) {
         video.play();
-        handleInteraction();
       } else {
         video.pause();
-        setShowControls(true);
-        if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
       }
+      handleInteraction();
     }
   };
 
