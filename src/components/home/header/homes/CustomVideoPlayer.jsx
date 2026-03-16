@@ -58,20 +58,35 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     };
 
     const onTimeUpdate = () => {
-      setCurrentTime(video.currentTime);
+      const video = videoRef.current;
+      if (!video) return;
+
+      let time = video.currentTime;
+
+      if (video.duration - time < 0.25) {
+        time = video.duration;
+      }
+
+      setCurrentTime(time);
+
       if (progressBarRef.current) {
-        const percent = (video.currentTime / video.duration) * 100;
+        const percent = (time / video.duration) * 100;
         progressBarRef.current.style.width = `${percent}%`;
       }
     };
 
+    const onEnded = () => {
+      const video = videoRef.current;
+      if (!video) return;
+      setCurrentTime(video.duration);
+    };
     // const onWaiting = () => setLoading(true);
     // const onWaiting = () => {
     //   if (videoRef.current.currentTime > 0) {
     //     setLoading(true);
     //   }
-    // };
-    const onWaiting = () => { };
+    // };   
+    const onWaiting = () => {};
     const onPlaying = () => {
       setLoading(false);
       setIsPlaying(true);
@@ -80,6 +95,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
 
     video.addEventListener('loadedmetadata', onLoadedMetadata);
     video.addEventListener('timeupdate', onTimeUpdate);
+    video.addEventListener('ended', onEnded);
     video.addEventListener('waiting', onWaiting);
     video.addEventListener('playing', onPlaying);
     video.addEventListener('pause', onPause);
@@ -87,6 +103,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     return () => {
       video.removeEventListener('loadedmetadata', onLoadedMetadata);
       video.removeEventListener('timeupdate', onTimeUpdate);
+      video.removeEventListener('ended', onEnded);
       video.removeEventListener('waiting', onWaiting);
       video.removeEventListener('playing', onPlaying);
       video.removeEventListener('pause', onPause);
@@ -124,7 +141,6 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     }, 3000);
   };
 
-  // Hàm quan trọng: Chỉ bật controls nếu đang ẩn
   const handleOverlayTouch = (e) => {
     e.stopPropagation();
     handleInteraction();
@@ -140,7 +156,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
       handleInteraction();
     } else {
       video.pause();
-      setShowControls(true); // Luôn hiện khi pause
+      setShowControls(true);
       if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
     }
   };
@@ -155,17 +171,6 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     handleInteraction();
   };
 
-  // const handleVolumeChange = (e) => {
-  //   e.stopPropagation();
-  //   const video = videoRef.current;
-  //   if (!video) return;
-  //   const vol = parseFloat(e.target.value);
-  //   video.volume = vol;
-  //   video.muted = vol === 0;
-  //   setVolume(vol);
-  //   setIsMuted(video.muted);
-  //   handleInteraction();
-  // };
   const handleVolumeChange = (e) => {
     e.stopPropagation();
 
@@ -225,12 +230,11 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     handleInteraction();
   };
 
+  const progressPercent = Math.min((currentTime / duration) * 100 || 0, 100);
+
   return (
     <div className="video-player-container">
-      <div
-        className="video-container"
-        onMouseMove={handleInteraction}
-      >
+      <div className="video-container" onMouseMove={handleInteraction}>
         <video
           ref={videoRef}
           className="video"
@@ -239,7 +243,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
           muted={isMuted}
           src={src}
           loop
-          onClick={showControls ? togglePlay : undefined} // Chỉ cho phép click video khi controls đang hiện
+          onClick={showControls ? togglePlay : undefined}
         >
           {captionSrc && (
             <track src={captionSrc} kind="subtitles" srcLang="en" label="English" default />
@@ -267,8 +271,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
                 setCurrentTime(time);
               }}
               style={{
-                background: `linear-gradient(to right, var(--primary-color) ${(currentTime / duration) * 100 || 0
-                  }%, rgba(255, 255, 255, 0.3) ${(currentTime / duration) * 100 || 0}%)`,
+                background: `linear-gradient(to right, var(--primary-color) ${progressPercent}%, rgba(255, 255, 255, 0.3) ${progressPercent}%)`,
               }}
             />
           </div>
