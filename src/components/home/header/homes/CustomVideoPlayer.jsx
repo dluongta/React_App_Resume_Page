@@ -65,7 +65,13 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
       }
     };
 
-    const onWaiting = () => setLoading(true);
+    // const onWaiting = () => setLoading(true);
+    // const onWaiting = () => {
+    //   if (videoRef.current.currentTime > 0) {
+    //     setLoading(true);
+    //   }
+    // };
+    const onWaiting = () => { };
     const onPlaying = () => {
       setLoading(false);
       setIsPlaying(true);
@@ -161,25 +167,25 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   //   handleInteraction();
   // };
   const handleVolumeChange = (e) => {
-    e.stopPropagation(); 
-    
+    e.stopPropagation();
+
     const video = videoRef.current;
     if (!video) return;
-    
+
     const vol = parseFloat(e.target.value);
     video.volume = vol;
     setVolume(vol);
-    
+
     if (vol === 0) {
-        setIsMuted(true);
-        video.muted = true;
+      setIsMuted(true);
+      video.muted = true;
     } else {
-        setIsMuted(false);
-        video.muted = false;
+      setIsMuted(false);
+      video.muted = false;
     }
-    
-    handleInteraction(); 
-};
+
+    handleInteraction();
+  };
 
   const handleProgressClick = (e) => {
     e.stopPropagation();
@@ -240,66 +246,62 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
           )}
         </video>
 
-        {/* LỚP PHỦ MOBILE: Khi controls ẨN, lớp này hiện lên chặn click vào video */}
         {!showControls && (
           <div className="mobile-touch-layer" onClick={handleOverlayTouch}></div>
         )}
 
-        {loading && <div className="loading-spinner"></div>}
+        {/* {loading && <div className="loading-spinner"></div>} */}
 
         <div className={`controls ${showControls ? 'visible' : ''}`} onClick={(e) => e.stopPropagation()}>
-{/* Thay thế đoạn cũ bằng đoạn này */}
-<div className="progress-wrapper">
-  <input
-    type="range"
-    className="progress-slider"
-    min="0"
-    max={duration || 0}
-    step="0.1"
-    value={currentTime}
-    onChange={(e) => {
-      const time = parseFloat(e.target.value);
-      videoRef.current.currentTime = time;
-      setCurrentTime(time);
-    }}
-    style={{
-      background: `linear-gradient(to right, var(--primary-color) ${
-        (currentTime / duration) * 100 || 0
-      }%, rgba(255, 255, 255, 0.3) ${(currentTime / duration) * 100 || 0}%)`,
-    }}
-  />
-</div>
+          <div className="progress-wrapper">
+            <input
+              type="range"
+              className="progress-slider"
+              min="0"
+              max={duration || 0}
+              step="0.1"
+              value={currentTime}
+              onChange={(e) => {
+                const time = parseFloat(e.target.value);
+                videoRef.current.currentTime = time;
+                setCurrentTime(time);
+              }}
+              style={{
+                background: `linear-gradient(to right, var(--primary-color) ${(currentTime / duration) * 100 || 0
+                  }%, rgba(255, 255, 255, 0.3) ${(currentTime / duration) * 100 || 0}%)`,
+              }}
+            />
+          </div>
 
           <div className="buttons-container">
-<div className="left-controls">
-  <button className="control-btn" onClick={togglePlay}>
-    {isPlaying ? <PauseIcon fontSize="small" /> : <PlayArrowIcon fontSize="small" />}
-  </button>
-  
-  <div className="volume-container">
-  <button className="control-btn" onClick={toggleMute}>
-    {isMuted || volume === 0 ? <VolumeOffIcon fontSize="small" /> : <VolumeUpIcon fontSize="small" />}
-  </button>
-  <input
-    type="range"
-    className="volume-slider"
-    min="0"
-    max="1"
-    step="0.01"
-    value={isMuted ? 0 : volume}
-    onChange={handleVolumeChange}
-    style={{
-      background: `linear-gradient(to right, var(--primary-color) ${
-        (isMuted ? 0 : volume) * 100
-      }%, rgba(255, 255, 255, 0.3) ${(isMuted ? 0 : volume) * 100}%)`,
-    }}
-  />
-</div>
+            <div className="left-controls">
+              <button className="control-btn" onClick={togglePlay}>
+                {isPlaying ? <PauseIcon fontSize="small" /> : <PlayArrowIcon fontSize="small" />}
+              </button>
 
-  <span className="time-display">
-    {formatTime(currentTime)} / {formatTime(duration)}
-  </span>
-</div>
+              <div className="volume-container">
+                <button className="control-btn" onClick={toggleMute}>
+                  {isMuted || volume === 0 ? <VolumeOffIcon fontSize="small" /> : <VolumeUpIcon fontSize="small" />}
+                </button>
+                <input
+                  type="range"
+                  className="volume-slider"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value={isMuted ? 0 : volume}
+                  onChange={handleVolumeChange}
+                  style={{
+                    background: `linear-gradient(to right, var(--primary-color) ${(isMuted ? 0 : volume) * 100
+                      }%, rgba(255, 255, 255, 0.3) ${(isMuted ? 0 : volume) * 100}%)`,
+                  }}
+                />
+              </div>
+
+              <span className="time-display">
+                {formatTime(currentTime)} / {formatTime(duration)}
+              </span>
+            </div>
             <div className="right-controls">
               <button className={`control-btn ${isCaptionsOn ? 'active' : ''}`} onClick={toggleCaptions}>CC</button>
               <div className="settings-menu" ref={settingsRef}>
@@ -308,7 +310,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
                 </button>
                 {showSettings && (
                   <div className="settings-content">
-                    {[0.125, 0.25, 0.5, 1, 1.5, 2, 4].map((speed) => (
+                    {[0.03125, 0.0625, 0.125, 0.25, 0.5, 1, 1.5, 2, 4, 8, 16].map((speed) => (
                       <div key={speed} className={`settings-item ${playbackRate === speed ? 'active' : ''}`} onClick={() => changePlaybackRate(speed)}>
                         {speed === 1 ? 'Normal' : `${speed}x`}
                       </div>
