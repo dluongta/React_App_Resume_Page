@@ -223,3 +223,24 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
+.settings-content {
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+  background: #1c1c1c;
+  border-radius: 6px;
+  min-width: 110px;
+  padding: 5px 0;
+  max-height: 200px;   
+  overflow-y: auto;    
+}
+
+.settings-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.settings-content::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.3);
+  border-radius: 4px;
+}
