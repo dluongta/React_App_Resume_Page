@@ -1,4 +1,4 @@
-:root {
+/* :root {
   --primary-color: #4285f4;
   --text-color: #fff;
 }
@@ -180,9 +180,9 @@
   width: 100%;
   padding: 10px 0; 
   cursor: pointer;
-}
+} */
 
-.progress-slider {
+/* .progress-slider {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
@@ -205,6 +205,51 @@
   cursor: pointer;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   transition: transform 0.1s;
+} */
+
+/* Tìm và thay thế đoạn .progress-slider và thumb */
+
+/* .progress-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  outline: none;
+  cursor: pointer;
+  /* Thêm dòng này để đảm bảo không có margin lạ 
+  margin: 0;
+}
+*/
+/* .progress-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px; 
+  height: 14px;
+  background: white; 
+  border-radius: 50%;
+  cursor: pointer;
+  border: none; 
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 2;
+}
+
+.progress-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.progress-wrapper {
+  width: 100%;
+  padding: 12px 0; 
+  display: flex;
+  align-items: center;
 }
 
 .progress-slider:hover::-webkit-slider-thumb {
@@ -243,4 +288,192 @@
 .settings-content::-webkit-scrollbar-thumb {
   background: rgba(255,255,255,0.3);
   border-radius: 4px;
+} */
+ :root {
+  --primary-color: #4285f4;
+  --text-color: #fff;
+}
+
+.video-player-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 32px auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: #000;
+  position: relative;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.mobile-touch-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 8;
+  background: transparent;
+}
+
+.controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.controls.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-controls, .right-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.control-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.control-btn.active {
+  color: var(--primary-color);
+}
+
+.time-display {
+  color: white;
+  font-size: 12px;
+}
+
+.progress-wrapper {
+  width: 100%;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+}
+
+.progress-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.progress-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 2;
+  margin-top: 0;
+}
+
+.progress-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.volume-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 60px;
+  height: 4px;
+  cursor: pointer;
+  border-radius: 2px;
+  outline: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+}
+
+.settings-menu {
+  position: relative;
+}
+
+.settings-content {
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+  background: #1c1c1c;
+  border-radius: 6px;
+  min-width: 110px;
+  padding: 5px 0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.settings-item {
+  padding: 8px 15px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.settings-item.active {
+  color: var(--primary-color);
+}
+
+@media (max-width: 600px) {
+  .volume-slider {
+    width: 45px;
+  }
 }
