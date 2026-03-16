@@ -372,62 +372,41 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-
     video.volume = 1;
     video.muted = true;
 
     const onLoadedMetadata = () => {
       setDuration(video.duration);
       setIsPlaying(!video.paused);
-      const track = video.textTracks[0];
-      if (track) track.mode = 'hidden';
     };
 
-    const onTimeUpdate = () => {
-      setCurrentTime(video.currentTime);
-    };
-
+    const onTimeUpdate = () => setCurrentTime(video.currentTime);
     const onEnded = () => {
       setCurrentTime(video.duration);
       setIsPlaying(false);
+      setShowControls(true);
     };
-
-    const onPlaying = () => setIsPlaying(true);
-    const onPause = () => setIsPlaying(false);
 
     video.addEventListener('loadedmetadata', onLoadedMetadata);
     video.addEventListener('timeupdate', onTimeUpdate);
     video.addEventListener('ended', onEnded);
-    video.addEventListener('playing', onPlaying);
-    video.addEventListener('pause', onPause);
+    video.addEventListener('playing', () => setIsPlaying(true));
+    video.addEventListener('pause', () => setIsPlaying(false));
+
+    handleInteraction();
 
     return () => {
       video.removeEventListener('loadedmetadata', onLoadedMetadata);
       video.removeEventListener('timeupdate', onTimeUpdate);
       video.removeEventListener('ended', onEnded);
-      video.removeEventListener('playing', onPlaying);
-      video.removeEventListener('pause', onPause);
       if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
     };
   }, [src]);
 
-  useEffect(() => {
-    const handleFullscreenChange = () => setIsFullscreen(!!document.fullscreenElement);
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (settingsRef.current && !settingsRef.current.contains(e.target)) setShowSettings(false);
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
   const handleInteraction = () => {
     setShowControls(true);
     if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+    
     controlsTimeoutRef.current = setTimeout(() => {
       if (videoRef.current && !videoRef.current.paused) {
         setShowControls(false);
@@ -436,12 +415,20 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     }, 3000);
   };
 
-  const togglePlay = (e) => {
-    if (e) e.stopPropagation();
-    const video = videoRef.current;
-    if (!video) return;
-    video.paused ? video.play() : video.pause();
-    handleInteraction();
+  const handleVideoClick = (e) => {
+    if (!showControls) {
+      handleInteraction();
+    } else {
+      const video = videoRef.current;
+      if (video.paused) {
+        video.play();
+        handleInteraction();
+      } else {
+        video.pause();
+        setShowControls(true);
+        if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+      }
+    }
   };
 
   const toggleMute = (e) => {
@@ -453,30 +440,11 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     handleInteraction();
   };
 
-  const handleVolumeChange = (e) => {
-    e.stopPropagation();
-    const vol = parseFloat(e.target.value);
-    videoRef.current.volume = vol;
-    setVolume(vol);
-    setIsMuted(vol === 0);
-    videoRef.current.muted = vol === 0;
-    handleInteraction();
-  };
-
   const toggleFullscreen = (e) => {
     e.stopPropagation();
     const container = videoRef.current.parentElement;
     if (!document.fullscreenElement) container.requestFullscreen();
     else document.exitFullscreen();
-    handleInteraction();
-  };
-
-  const toggleCaptions = (e) => {
-    e.stopPropagation();
-    const track = videoRef.current.textTracks[0];
-    if (!track) return;
-    track.mode = track.mode === 'showing' ? 'hidden' : 'showing';
-    setIsCaptionsOn(track.mode === 'showing');
     handleInteraction();
   };
 
@@ -493,7 +461,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
 
   return (
     <div className="video-player-container">
-      <div className="video-container" onMouseMove={handleInteraction} onClick={handleInteraction}>
+      <div className="video-container" onClick={handleVideoClick} onMouseMove={handleInteraction}>
         <video
           ref={videoRef}
           className="video"
@@ -502,10 +470,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
           muted={isMuted}
           src={src}
           loop
-          onClick={(e) => { e.stopPropagation(); togglePlay(); }}
-        >
-          {captionSrc && <track src={captionSrc} kind="subtitles" srcLang="en" label="English" />}
-        </video>
+        />
 
         <div className={`controls ${showControls ? 'visible' : ''}`} onClick={(e) => e.stopPropagation()}>
           <div className="progress-wrapper">
@@ -522,14 +487,14 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
                 setCurrentTime(time);
               }}
               style={{
-                background: `linear-gradient(to right, var(--primary-color) 0%, var(--primary-color) ${progressPercent}%, rgba(255, 255, 255, 0.3) ${progressPercent}%, rgba(255, 255, 255, 0.3) 100%)`
+                background: `linear-gradient(to right, var(--primary-color) ${progressPercent}%, rgba(255, 255, 255, 0.3) ${progressPercent}%)`
               }}
             />
           </div>
 
           <div className="buttons-container">
             <div className="left-controls">
-              <button className="control-btn" onClick={togglePlay}>
+              <button className="control-btn" onClick={handleVideoClick}>
                 {isPlaying ? <PauseIcon fontSize="small" /> : <PlayArrowIcon fontSize="small" />}
               </button>
               <div className="volume-container">
@@ -543,7 +508,13 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
                   max="1"
                   step="0.01"
                   value={isMuted ? 0 : volume}
-                  onChange={handleVolumeChange}
+                  onChange={(e) => {
+                    const vol = parseFloat(e.target.value);
+                    videoRef.current.volume = vol;
+                    setVolume(vol);
+                    setIsMuted(vol === 0);
+                    videoRef.current.muted = vol === 0;
+                  }}
                   style={{
                     background: `linear-gradient(to right, var(--primary-color) ${(isMuted ? 0 : volume) * 100}%, rgba(255, 255, 255, 0.3) ${(isMuted ? 0 : volume) * 100}%)`
                   }}
@@ -553,9 +524,15 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
             </div>
 
             <div className="right-controls">
-              <button className={`control-btn ${isCaptionsOn ? 'active' : ''}`} onClick={toggleCaptions}>CC</button>
+              <button className={`control-btn ${isCaptionsOn ? 'active' : ''}`} onClick={(e) => {
+                const track = videoRef.current.textTracks[0];
+                if (track) {
+                  track.mode = track.mode === 'showing' ? 'hidden' : 'showing';
+                  setIsCaptionsOn(track.mode === 'showing');
+                }
+              }}>CC</button>
               <div className="settings-menu" ref={settingsRef}>
-                <button className="control-btn" onClick={() => setShowSettings(!showSettings)}>
+                <button className="control-btn" onClick={(e) => { e.stopPropagation(); setShowSettings(!showSettings); }}>
                   <SettingsIcon fontSize="small" />
                 </button>
                 {showSettings && (
