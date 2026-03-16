@@ -85,7 +85,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     //   if (videoRef.current.currentTime > 0) {
     //     setLoading(true);
     //   }
-    // };   
+    // }; 
     const onWaiting = () => {};
     const onPlaying = () => {
       setLoading(false);
@@ -230,7 +230,9 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     handleInteraction();
   };
 
-  const progressPercent = Math.min((currentTime / duration) * 100 || 0, 100);
+  const safeTime = duration - currentTime < 0.2 ? duration : currentTime;
+
+  const progressPercent = Math.min((safeTime / duration) * 100 || 0, 100);
 
   return (
     <div className="video-player-container">
@@ -253,9 +255,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
         {!showControls && (
           <div className="mobile-touch-layer" onClick={handleOverlayTouch}></div>
         )}
-
         {/* {loading && <div className="loading-spinner"></div>} */}
-
         <div className={`controls ${showControls ? 'visible' : ''}`} onClick={(e) => e.stopPropagation()}>
           <div className="progress-wrapper">
             <input
@@ -264,7 +264,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
               min="0"
               max={duration || 0}
               step="0.1"
-              value={currentTime}
+              value={safeTime}
               onChange={(e) => {
                 const time = parseFloat(e.target.value);
                 videoRef.current.currentTime = time;
