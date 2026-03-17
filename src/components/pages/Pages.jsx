@@ -173,6 +173,11 @@ export const Pages = () => {
       id: "34",
       link: "https://dluongta.github.io/text_image.html",
       linkName: "Text Image",
+    },
+    {
+      id: "35",
+      link: "https://dluongta.github.io/math_editor.html",
+      linkName: "Math Editor",
     }
   ]
   return (

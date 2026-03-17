@@ -197,6 +197,11 @@ export const Portfolio = () => {
       id: "39",
       link: "https://dluongta.github.io/text_image.html",
       linkName: "Text Image",
+    },
+    {
+      id: "40",
+      link: "https://dluongta.github.io/math_editor.html",
+      linkName: "Math Editor",
     }
   ];
   return (
