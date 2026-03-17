@@ -106,9 +106,9 @@ export const Branding = ({ className }) => {
       {/* <img width={'100%'} src={logo} alt="Logo" /> */}
       <ParticleTextCanvas />
       {/* <CustomVideoPlayer src={ulmind_intro} captionSrc={caption_ulmind_intro} /> */}
-      <CustomVideoPlayer src={bgVideo} captionSrc={caption} />
       <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />
       <CustomVideoPlayer src={lumindAnimationVideo} captionSrc={lumind_animation_text} />
+      <CustomVideoPlayer src={bgVideo} captionSrc={caption} />
       <Hero />
     </>
   );
