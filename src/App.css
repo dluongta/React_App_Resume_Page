@@ -2666,10 +2666,4 @@ html,
 body {
   overflow-x: hidden !important;
 }
-.legal {
-  flex-wrap: wrap!important;
-  overflow-x: hidden!important;
-}
-.legal > p {
-  margin-left: 0 !important;
-}
+
