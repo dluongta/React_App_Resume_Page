@@ -8,7 +8,7 @@
 
 .carousel-inner {
   display: flex;
-  height: calc(100% - 60px);
+  height: 100%;
   cursor: grab;
 }
 
