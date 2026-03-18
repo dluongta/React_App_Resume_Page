@@ -2665,4 +2665,14 @@ body:has(.galaxy-page) .container {
   max-width: 100%;
 }
 
-
+.container.flex {
+  display: flex;
+  align-items: center;
+}
+.nav-items-icon {
+  margin-left: auto;
+  margin-right: -30px;
+}
+.container {
+  padding-right: -20px; 
+}

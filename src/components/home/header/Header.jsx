@@ -80,8 +80,7 @@ export const Header = () => {
                 </div>
             </header>
 
-{/* Mobile sidebar */}
-{/* Mobile sidebar */}
+
 <div className={`mobile-overlay ${sideBar ? "show" : ""}`}>
   <div className="overlay-bg" onClick={() => setSidebar(false)} />
 
