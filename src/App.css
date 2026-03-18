@@ -2680,3 +2680,32 @@ body:has(.galaxy-page) .container {
 }
 
 
+.socialIcon {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 15px 20px !important; 
+  align-items: center !important;
+  justify-content: flex-start !important;
+  margin-top: 15px !important;
+  width: 200px !important; 
+  max-width: 200px !important;
+}
+
+.socialIcon a, 
+.socialIcon .white {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: white;
+  font-size: 20px; 
+  transition: transform 0.2s ease, color 0.2s ease;
+  display: flex !important; 
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 calc(33.33% - 15px);
+}
+
+.socialIcon a:hover,
+.socialIcon .white:hover {
+  transform: scale(1.2);
+  color: #ffdd57;
+}
