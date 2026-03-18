@@ -2661,9 +2661,8 @@ body:has(.galaxy-page) .container {
   color: #fff;
   border-radius: 50px;
 }
-
-html,
-body {
-  overflow-x: hidden !important;
+* {
+  max-width: 100%;
 }
+
 
