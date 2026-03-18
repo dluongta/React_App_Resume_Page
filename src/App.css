@@ -610,7 +610,6 @@ footer .icon i {
 .legal p,
 .legal span {
   margin: 0;
-  /* Removes default margins */
 }
 
 .legal span {
@@ -1751,7 +1750,7 @@ footer .socialIcon {
 
 .legal>p {
   line-height: 1.6 !important;
-  margin-left: 125px !important;
+  margin-left: 0 !important;
 }
 
 @media (max-width: 768px) {
@@ -1762,6 +1761,9 @@ footer .socialIcon {
   }
 
   footer .legal .author {
+    margin-right: 20px !important;
+  }
+  footer .legal span.copyRight {
     margin-right: 20px !important;
   }
 
@@ -2676,3 +2678,5 @@ body:has(.galaxy-page) .container {
 .container {
   padding-right: -20px; 
 }
+
+

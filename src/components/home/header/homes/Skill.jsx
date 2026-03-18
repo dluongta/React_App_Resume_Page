@@ -57,7 +57,8 @@ export const Skill = ({ className }) => {
           style={{
             width: `calc(${width} - 20px)`,
             opacity: inView ? 1 : 0
-          }}   >
+          }}
+        >
           <span>{title}</span>
           <span>{count}%</span>
         </div>
@@ -68,8 +69,8 @@ export const Skill = ({ className }) => {
   const data = [
     {
       title: "Every Day is a New Challenge",
-      para: "I am a programmer skilled at Web Developer, Android Developer.",
-      para1: "I also learning about Artificial Intelligence And Hardware.",
+      para: "I am a programmer skilled in Web Development and Android Development.",
+      para1: "I am also learning about Artificial Intelligence and Hardware.",
     },
   ];
 
@@ -122,23 +123,23 @@ export const Skill = ({ className }) => {
             {[
               {
                 year: "2021",
-                title: "Bắt đầu học HTML/CSS",
-                desc: "Nắm vững kiến thức nền tảng về cấu trúc và thiết kế web.",
+                title: "Started learning HTML/CSS",
+                desc: "Strengthened my understanding of web structure and design fundamentals.",
               },
               {
                 year: "2022",
-                title: "Học JavaScript",
-                desc: "Phát triển kỹ năng logic và hiệu ứng.",
+                title: "Learned JavaScript",
+                desc: "Developed logical thinking and interactive effects.",
               },
               {
                 year: "2023",
                 title: "React JS & API",
-                desc: "Xây dựng ứng dụng và làm việc với REST API.",
+                desc: "Built applications and worked with API.",
               },
               {
                 year: "2024",
-                title: "Nâng cao & AI",
-                desc: "Tìm hiểu trí tuệ nhân tạo & kết hợp phần cứng.",
+                title: "Advanced & AI",
+                desc: "Explored Artificial Intelligence and hardware integration.",
               },
             ].map((item, i) => (
               <div className="timeline-item" key={i}>
