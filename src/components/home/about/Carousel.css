@@ -8,7 +8,8 @@
 
 .carousel-inner {
   display: flex;
-  height: 100%;
+  height: calc(100% - 60px);
+  cursor: grab;
 }
 
 .carousel-item {
@@ -46,14 +47,14 @@
   right: 20px;
 }
 
-/* dots */
-
 .carousel-dots {
   position: absolute;
-  bottom: 15px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+  height: 40px; 
   display: flex;
+  align-items: center;
   gap: 8px;
 }
 
@@ -68,10 +69,12 @@
   background: #444;
 }
 
-.carousel-inner {
-  display: flex;
-  height: 100%;
-  cursor: grab;
+.carousel-dots {
+  pointer-events: auto;
+}
+
+.dot {
+  cursor: pointer;
 }
 
 .carousel-inner:active {
@@ -84,5 +87,26 @@
   object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
-  pointer-events: none; 
+  pointer-events: none;
+}
+
+.dot {
+  width: 30px;
+  height: 8px;
+  background: #bbb;
+  cursor: pointer;
+}
+.carousel-dots {
+  position: absolute;
+  bottom: -10px; 
+  left: 50%;
+  transform: translateX(-50%);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+}
+.carousel-dots {
+  z-index: 10;
 }
