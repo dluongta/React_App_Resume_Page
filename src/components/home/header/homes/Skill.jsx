@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 
 export const Skill = ({ className }) => {
 
-  // ✅ Custom hook nên đặt ngoài component con
   const useInView = () => {
     const ref = useRef(null);
     const [inView, setInView] = useState(false);
@@ -55,8 +54,10 @@ export const Skill = ({ className }) => {
       <div className="progress" ref={ref}>
         <div
           className="progress-done"
-          style={{ width, opacity: inView ? 1 : 0 }}
-        >
+          style={{
+            width: `calc(${width} - 20px)`,
+            opacity: inView ? 1 : 0
+          }}   >
           <span>{title}</span>
           <span>{count}%</span>
         </div>
@@ -104,7 +105,6 @@ export const Skill = ({ className }) => {
                     <span></span>
                     <span></span>
 
-                    {/* ✅ sửa class */}
                     <span className="line2"></span>
                     <span className="line2"></span>
                     <span className="line2"></span>

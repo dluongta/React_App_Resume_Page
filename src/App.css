@@ -891,11 +891,11 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  height: 170vh; 
+  height: 170vh;
   width: 80%;
   margin-top: 80px;
   box-sizing: border-box;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .pdf {
@@ -904,26 +904,27 @@ iframe {
   width: 100%;
   max-width: 900px;
   height: 100%;
-  object-fit: contain; 
+  object-fit: contain;
 }
 
 @media (max-width: 768px) {
   .pdf-container {
     padding: 20px;
     margin-top: 100px;
-    height: 50vh; 
+    height: 50vh;
     width: 100%;
     display: flex;
     flex-direction: column;
   }
 
   .pdf {
-    height: 100vh; 
-    width: 90%; 
+    height: 100vh;
+    width: 90%;
     max-height: 550px;
     margin: 0 auto;
   }
 }
+
 .reveal {
   opacity: 0;
   transform: translateY(50px);
@@ -2303,7 +2304,6 @@ footer a:hover {
 
 
 
-/* ===== Sidebar Menu ===== */
 .nav-links-sidebar {
   margin: 0;
   padding: 0;
@@ -2314,12 +2314,10 @@ footer a:hover {
   flex-direction: column;
 }
 
-/* Item */
 .nav-links-sidebar li {
   width: 100%;
 }
 
-/* Link */
 .nav-links-sidebar li a {
   display: block;
   width: 100%;
@@ -2334,7 +2332,6 @@ footer a:hover {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Hover & Active */
 .nav-links-sidebar li a:hover,
 .nav-links-sidebar li.active-link a {
   background: linear-gradient(135deg, #406cfc, #8001ef);
@@ -2342,7 +2339,6 @@ footer a:hover {
   color: #fff;
 }
 
-/* ===== Desktop / Mobile Toggle ===== */
 .desktop-nav {
   display: block;
 }
@@ -2354,7 +2350,6 @@ footer a:hover {
   cursor: pointer;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .desktop-nav {
     display: none;
@@ -2525,7 +2520,6 @@ body {
   opacity: 1;
 }
 
-/* ===== Sidebar ===== */
 .mobile-sidebar {
   position: absolute;
   top: 0;
@@ -2623,7 +2617,7 @@ body:has(.galaxy-page) .container {
   border-radius: 10px;
 }
 
-.galaxy-container-wrapper div, 
+.galaxy-container-wrapper div,
 .galaxy-container-wrapper canvas {
   width: 100% !important;
   height: 100% !important;
@@ -2635,13 +2629,12 @@ body:has(.galaxy-page) .container {
 @media screen and (max-width: 767px) {
   .galaxy-container-wrapper {
     width: 80% !important;
-    max-width: 80% !important; 
+    max-width: 80% !important;
     height: 60vh !important;
-    margin-top: 8rem !important; 
+    margin-top: 8rem !important;
   }
 }
 
-/* --- CẤU HÌNH PC --- */
 @media screen and (min-width: 768px) {
   .galaxy-container-wrapper {
     width: 60% !important;
@@ -2651,5 +2644,20 @@ body:has(.galaxy-page) .container {
   }
 }
 
+.progress {
+  width: 100%;
+  background: #0d6efd;
+  border-radius: 50px;
+  overflow: hidden;
+}
 
-
+.progress-done {
+  background: orange;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  color: #fff;
+  border-radius: 50px;
+}

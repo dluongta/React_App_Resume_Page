@@ -94,12 +94,12 @@ const AppContent = () => {
 
       <Footer />
 
-      {!isGalaxyPage && (
+      {/* {!isGalaxyPage && (
         <>
           <FireworksEffect />
           <FireworkButton />
         </>
-      )}
+      )} */}
 
       <ScrollToTopButton />
     </>
