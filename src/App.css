@@ -2733,3 +2733,8 @@ body:has(.galaxy-page) .container {
     padding-top: 30px;
   }
 }
+
+section.about img {
+  width: 100%;
+  height: 100%;
+}

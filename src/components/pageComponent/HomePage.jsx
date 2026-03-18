@@ -131,7 +131,7 @@ export const HomePage = () => {
       {/* <ScrollHero/> */}
       <Skill className="reveal" />
       <Service className="reveal" />
-      <WrapperOne />
+      <WrapperOne className="reveal" />
     </>
   );
 };
