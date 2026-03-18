@@ -2709,3 +2709,27 @@ body:has(.galaxy-page) .container {
   transform: scale(1.2);
   color: #ffdd57;
 }
+.galaxy-container-wrapper {
+  margin-bottom: 100px;
+}
+@media (max-width: 768px) {
+  footer .box ul {
+    padding-left: 0;
+    margin-left: 0;
+    list-style: none;
+  }
+
+  footer .box ul li {
+    margin-left: 0;
+  }
+
+  footer .box ul li a {
+    display: block;
+    padding-left: 0;
+  }
+}
+@media (max-width: 768px) {
+  footer {
+    padding-top: 30px;
+  }
+}
