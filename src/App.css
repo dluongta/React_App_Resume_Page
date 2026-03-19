@@ -2680,7 +2680,7 @@ body:has(.galaxy-page) .container {
 }
 
 
-.socialIcon {
+footer .socialIcon {
   display: flex !important;
   flex-wrap: wrap !important;
   gap: 15px 20px !important; 
@@ -2691,8 +2691,8 @@ body:has(.galaxy-page) .container {
   max-width: 200px !important;
 }
 
-.socialIcon a, 
-.socialIcon .white {
+footer .socialIcon a, 
+footer .socialIcon .white {
   margin: 0 !important;
   padding: 0 !important;
   color: white;
