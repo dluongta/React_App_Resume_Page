@@ -89,7 +89,6 @@ const AppContent = () => {
         <Route path='/portfolio' exact component={Portfolio} />
         <Route path='/blog' exact component={Blog} />
         <Route path='/contact' exact component={Contact} />
-        <Route path='/galaxy' exact component={Galaxy} />
       </Switch>
 
       <Footer />

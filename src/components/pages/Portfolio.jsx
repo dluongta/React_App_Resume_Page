@@ -220,9 +220,9 @@ export const Portfolio = () => {
           <Link to="/contact" id="contact">
             Contact
           </Link>
-          <Link to='/galaxy' id="galaxy">
+          {/* <Link to='/galaxy' id="galaxy">
            Galaxy 
-           </Link>
+           </Link> */}
         </div>
         <div className="cards-wrapper">
 

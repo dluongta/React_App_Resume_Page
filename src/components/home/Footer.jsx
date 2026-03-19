@@ -39,7 +39,7 @@ export const Footer = () => {
             <li><Link to="/blog">Blog</Link></li>
             <li><Link to="/portfolio">Portfolio</Link></li>
             <li><Link to="/contact">Contact</Link></li>
-            <li><Link to="/galaxy">Galaxy</Link></li>
+            {/* <li><Link to="/galaxy">Galaxy</Link></li> */}
 
           </ul>
         </div>
