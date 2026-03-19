@@ -502,10 +502,6 @@
   transition: 0.3s;
 }
 
-.socialIcon i:hover {
-  background: #000;
-  color: #fff;
-}
 
 @media (max-width: 768px) {
   .home-flex-container {
@@ -547,3 +543,7 @@
 
 }
 
+.blue-link {
+  color: #0088ff;
+  margin-left: 8px;
+}
