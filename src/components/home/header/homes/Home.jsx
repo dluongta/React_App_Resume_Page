@@ -202,7 +202,6 @@ export const Home = ({ className }) => {
     <section className={`home ${className}`}>
       <div className="container home-flex-container">
         
-        {/* BÊN TRÁI: Video thay cho ảnh */}
         <div className="home-left">
           <div className="video-wrapper">
             <video
@@ -212,18 +211,16 @@ export const Home = ({ className }) => {
               muted
               playsInline
               className="side-video"
-              // Không có thuộc tính controls để ẩn thanh điều khiển
             />
           </div>
         </div>
 
-        {/* BÊN PHẢI: Nội dung căn giữa */}
         <div className="home-right">
           <div className="content-inner">
             
             <div className="headline" style={{ width: '100%', textAlign: 'center' }}>
               <h1 className="gradientTextStyle" style={{ marginBottom: '10px' }}>I AM A</h1>
-              <h1 style={{ display: 'block', width: '100%' }}>
+              <h1 className="rotatingTextStyle" style={{ display: 'block', width: '100%' }}>
                 <RotatingText
                   texts={textToRotate}
                   mainClassName="rotating-text-highlight"

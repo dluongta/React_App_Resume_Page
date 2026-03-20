@@ -2728,9 +2728,18 @@ footer .socialIcon .white {
     padding-left: 0;
   }
 }
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   footer {
     padding-top: 30px;
+  }
+  .home .gradientTextStyle {
+    font-size: 50px;
+  }
+  .home .rotatingTextStyle {
+    margin-top: 30px;
+  }
+  .home .text-rotate-container {
+    font-size: 30px;
   }
 }
 
