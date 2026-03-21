@@ -107,7 +107,7 @@ export const Pages = () => {
     {
       id: "21",
       link: "https://dluongta.github.io/caculator.html",
-      linkName: "Compact Caculator",
+      linkName: "Caculator",
     },
     {
       id: "22",

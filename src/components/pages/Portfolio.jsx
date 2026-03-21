@@ -126,7 +126,7 @@ export const Portfolio = () => {
     {
       id: "25",
       link: "https://dluongta.github.io/caculator.html",
-      linkName: "Digital Caculator",
+      linkName: "Caculator",
     },
     {
       id: "26",
