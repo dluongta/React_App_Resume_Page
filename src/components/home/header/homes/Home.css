@@ -443,7 +443,6 @@
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800;
   background: linear-gradient(90deg, #ff8800, #a033ff, #ff5c87);
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
