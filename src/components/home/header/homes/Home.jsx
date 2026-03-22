@@ -186,8 +186,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import RotatingText from './RotatingText';
-// Import video từ assets
-import finalEffectVideo from '../../../../assets/final_effect_with_audio.mp4'; 
+import finalEffectVideo from '../../../../assets/final_effect_with_audio.mp4';
+import mainImage from '../../../../assets/main.png';
 import './RotatingText.css';
 import './Home.css';
 
@@ -203,17 +203,12 @@ export const Home = ({ className }) => {
       <div className="container home-flex-container">
         
         <div className="home-left">
-          <div className="video-wrapper">
-            <video
-              src={finalEffectVideo}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="side-video"
-            />
-          </div>
-        </div>
+  <img
+    src={mainImage}
+    alt="Main"
+    className="side-image"
+  />
+</div>
 
         <div className="home-right">
           <div className="content-inner">

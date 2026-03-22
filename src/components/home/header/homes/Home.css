@@ -555,3 +555,29 @@
     justify-items: center;
   }
 }
+.side-image {
+  width: 100%;
+  max-width: 550px; 
+  height: auto;     
+  object-fit: contain;
+  display: block;
+}
+.home-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+}
+
+.home-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.side-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
