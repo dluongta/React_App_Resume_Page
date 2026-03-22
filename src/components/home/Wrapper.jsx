@@ -21,16 +21,6 @@ export const Wrapper = ({ className = "" }) => {
 
             <button className="primary-btn btn-led">
               Learn About Me
-
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-
-              <span className="line2"></span>
-              <span className="line2"></span>
-              <span className="line2"></span>
-              <span className="line2"></span>
             </button>
           </div>
         ))}
