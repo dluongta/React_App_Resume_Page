@@ -97,7 +97,6 @@ const Hero = ({
   );
 };
 
-// Giữ lại PropTypes để kiểm tra kiểu dữ liệu (tốt cho debug)
 Hero.propTypes = {
   image1Src: PropTypes.string,
   image1Alt: PropTypes.string,
