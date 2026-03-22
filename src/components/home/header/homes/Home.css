@@ -520,8 +520,11 @@
   }
 
   .rotating-text-highlight {
-    font-size: 1.3rem;
+    font-size: 2.2rem;
     padding: 15px 20px;
+  }
+  .gradientTextStyle {
+    font-size: 3.6rem!important;
   }
 }
 
@@ -579,4 +582,7 @@
   width: 100%;
   max-width: 500px;
   height: auto;
+}
+.left img{
+  width: 100%;
 }
