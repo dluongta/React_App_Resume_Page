@@ -198,7 +198,7 @@ export const Home = ({ className }) => {
   ];
 
   return (
-    <section className={`home ${className}`}>
+    <section className={`home-left ${className}`}>
        <div className="container flex">
           <div className="left">
             <div className="img">
