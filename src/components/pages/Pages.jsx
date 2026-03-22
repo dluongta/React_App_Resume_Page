@@ -121,61 +121,56 @@ export const Pages = () => {
     },
     {
       id: "24",
-      link: "https://run-code-online.w3spaces.com/",
-      linkName: "Run Code Online",
-    },
-    {
-      id: "25",
       link: "https://deeptankio.onrender.com/",
       linkName: "DeepTankIO",
     },
     {
-      id: "26",
+      id: "25",
       link: "https://dluongta.github.io/image_editor/index.html",
       linkName: "Image Editor",
     },
     {
-      id: "27",
+      id: "26",
       link: "https://dluongta.github.io/particles_hand_control.html",
       linkName: "Particle Hand Control",
     },
     {
-      id: "28",
+      id: "27",
       link: "https://dluongta.github.io/galaxy_love.html",
       linkName: "Galaxy Love",
     },
     {
-      id: "29",
+      id: "28",
       link: "https://dluongta.github.io/upload_avatar.html",
       linkName: "Upload Avatar",
     },
     {
-      id: "30",
+      id: "29",
       link: "https://react-app-bank-code.vercel.app/",
       linkName: "Confirm Payment",
     },
     {
-      id: "31",
+      id: "30",
       link: "https://github.com/luen2003/mysql-api",
       linkName: "MySQL API",
     },
     {
-      id: "32",
+      id: "31",
       link: "https://github.com/luen2003/php-mysql-api",
       linkName: "PHP MySQL API",
     },
     {
-      id: "33",
+      id: "32",
       link: "https://dluongta.github.io/flipbook3d.html",
       linkName: "3D PDF Flipbook",
     },
     {
-      id: "34",
+      id: "33",
       link: "https://dluongta.github.io/text_image.html",
       linkName: "Text Image",
     },
     {
-      id: "35",
+      id: "34",
       link: "https://dluongta.github.io/math_editor.html",
       linkName: "Math Editor",
     }
