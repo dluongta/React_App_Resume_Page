@@ -186,7 +186,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import RotatingText from './RotatingText';
-import finalEffectVideo from '../../../../assets/final_effect_with_audio.mp4';
 import mainImage from '../../../../assets/main.png';
 import './RotatingText.css';
 import './Home.css';
@@ -200,15 +199,12 @@ export const Home = ({ className }) => {
 
   return (
     <section className={`home ${className}`}>
-      <div className="container home-flex-container">
-        
-        <div className="home-left">
-  <img
-    src={mainImage}
-    alt="Main"
-    className="side-image"
-  />
-</div>
+       <div className="container flex">
+          <div className="left">
+            <div className="img">
+              <img src={mainImage} alt="" />
+            </div>
+          </div>
 
         <div className="home-right">
           <div className="content-inner">
