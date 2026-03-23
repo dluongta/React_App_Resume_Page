@@ -97,8 +97,7 @@ export const Skill = ({ className }) => {
                 <p>{val.para}</p>
                 <p>{val.para1}</p>
 
-                <div className="btn-pulse-wrapper">
-                  <span className="pulse-third"></span>
+
                   <button className="primary-btn btn-led">
                     Contact Me
                     <span></span>
@@ -112,7 +111,7 @@ export const Skill = ({ className }) => {
                     <span className="line2"></span>
                   </button>
                 </div>
-              </div>
+
             ))}
           </div>
         </div>

@@ -16,10 +16,10 @@
 //       <section className={`home ${className}`}>
 //         <div className="container single-column">
 //           <div className="content-wrapper">
-            
+
 //             <div className="headline" style={{ width: '100%', textAlign: 'center' }}>
 //   <h1 className="gradientTextStyle" style={{ marginBottom: '10px' }}>I AM A</h1>
-  
+
 //   <h1 style={{ display: 'block', width: '100%' }}>
 //     <RotatingText
 //       texts={textToRotate}
@@ -105,7 +105,7 @@
 //   return (
 //     <section className={`home ${className}`}>
 //       <div className="container home-flex-container">
-        
+
 //         {/* BÊN TRÁI: Ảnh */}
 //         <div className="home-left">
 //           <div className="img-wrapper">
@@ -116,7 +116,7 @@
 //         {/* BÊN PHẢI: Nội dung căn giữa */}
 //         <div className="home-right">
 //           <div className="content-inner">
-            
+
 //             <div className="headline" style={{ width: '100%', textAlign: 'center' }}>
 //               <h1 className="gradientTextStyle" style={{ marginBottom: '10px' }}>I AM A</h1>
 //               <h1 style={{ display: 'block', width: '100%' }}>
@@ -192,23 +192,23 @@ import './Home.css';
 
 export const Home = ({ className }) => {
   const textToRotate = [
-    "Proficient Programmer", 
-    "Software Developer", 
+    "Proficient Programmer",
+    "Software Developer",
     "Hardware Engineer"
   ];
 
   return (
     <section className={`home-left ${className}`}>
-       <div className="container flex">
-          <div className="left">
-            <div className="img">
-              <img src={mainImage} alt="" />
-            </div>
+      <div className="container flex">
+        <div className="left">
+          <div className="img">
+            <img src={mainImage} alt="" />
           </div>
+        </div>
 
         <div className="home-right">
           <div className="content-inner">
-            
+
             <div className="headline" style={{ width: '100%', textAlign: 'center' }}>
               <h1 className="gradientTextStyle" style={{ marginBottom: '10px' }}>I AM A</h1>
               <h1 className="rotatingTextStyle" style={{ display: 'block', width: '100%' }}>
@@ -218,31 +218,31 @@ export const Home = ({ className }) => {
                   staggerFrom="last"
                   staggerDuration={0.025}
                   rotationInterval={3000}
-                  splitBy="characters" 
+                  splitBy="characters"
                 />
               </h1>
             </div>
 
             <div className="socialIcon">
-  <a href="https://www.facebook.com/dluongta" target="_blank" rel="noopener noreferrer">
-    <i className="fab fa-facebook-f facebook"></i>
-  </a>
-  <a href="https://www.instagram.com/dluongta/" target="_blank" rel="noopener noreferrer">
-    <i className="fab fa-instagram instagram"></i>
-  </a>
-  <a href="https://www.linkedin.com/in/dinh-luong-ta-940ba2286/" target="_blank" rel="noopener noreferrer">
-    <i className="fab fa-linkedin likedin"></i>
-  </a>
-  <a href="https://www.youtube.com/@dinhluongta" target="_blank" rel="noopener noreferrer">
-    <i className="fab fa-youtube youtube"></i>
-  </a>
-  <a href="https://www.tiktok.com/@dluongta_" target="_blank" rel="noopener noreferrer">
-    <i className="fab fa-tiktok tiktok"></i>
-  </a>
-  <a href="https://github.com/dluongta" target="_blank" rel="noopener noreferrer">
-    <i className="fab fa-github github"></i>
-  </a>
-</div>
+              <a href="https://www.facebook.com/dluongta" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-facebook-f facebook"></i>
+              </a>
+              <a href="https://www.instagram.com/dluongta/" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-instagram instagram"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/dinh-luong-ta-940ba2286/" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-linkedin likedin"></i>
+              </a>
+              <a href="https://www.youtube.com/@dinhluongta" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-youtube youtube"></i>
+              </a>
+              <a href="https://www.tiktok.com/@dluongta_" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-tiktok tiktok"></i>
+              </a>
+              <a href="https://github.com/dluongta" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-github github"></i>
+              </a>
+            </div>
 
             <div className="description-text">
               <p>
@@ -258,16 +258,13 @@ export const Home = ({ className }) => {
               </p>
             </div>
 
-            <div className="btn-pulse-wrapper">
-              <span className="pulse-third"></span>
-              <button className="primary-btn btn-led">
-                Contact Me
-                <span></span><span></span><span></span><span></span>
-                <span className="line2"></span><span className="line2"></span>
-                <span className="line2"></span><span className="line2"></span>
-              </button>
-            </div>
 
+            <button className="primary-btn btn-led">
+              Contact Me
+              <span></span><span></span><span></span><span></span>
+              <span className="line2"></span><span className="line2"></span>
+              <span className="line2"></span><span className="line2"></span>
+            </button>
           </div>
         </div>
       </div>

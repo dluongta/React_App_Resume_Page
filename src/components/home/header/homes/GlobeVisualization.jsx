@@ -8,7 +8,6 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
     const [showDebug, setShowDebug] = useState(false);
     const isMobile = window.innerWidth < 768;
 
-    // Refs để truy cập vào các biến Three.js từ bên ngoài (cho Debug Panel)
     const configRef = useRef({
         backgroundColor: 0x081b2e,
         globeRadius: 11,
@@ -52,7 +51,6 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
     const impactEffectsRef = useRef([]);
     let isTouching = false;
 
-    // Ref chứa các hàm update để UI gọi
     const apiRef = useRef({});
 
     useEffect(() => {
@@ -133,8 +131,6 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
         scene.add(globeGroup);
         globeGroupRef.current = globeGroup;
 
-        // --- 2. Globe Construction ---
-        // Blue globe
         const globeGeometry = new THREE.SphereGeometry(CONFIG.globeRadius, CONFIG.globeSegments, CONFIG.globeSegments);
         const globeMaterial = new THREE.MeshPhongMaterial({
             color: 0x005280,
@@ -147,7 +143,6 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
         const globe = new THREE.Mesh(globeGeometry, globeMaterial);
         globeGroup.add(globe);
 
-        // Inner Glow
         const innerGlowGeometry = new THREE.SphereGeometry(CONFIG.globeRadius * 1.01, CONFIG.globeSegments, CONFIG.globeSegments);
         const innerGlowMaterial = new THREE.MeshBasicMaterial({
             color: 0x003466,
@@ -213,7 +208,6 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
         const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
         globeGroup.add(atmosphere);
 
-        // Lights
         const ambientLight = new THREE.AmbientLight(0x333344, 0.5);
         scene.add(ambientLight);
         const directionalLight = new THREE.DirectionalLight(0xffffff, 0.7);
@@ -235,13 +229,11 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
         atmosphereLight2.position.set(CONFIG.globeRadius * 0.2, -CONFIG.globeRadius * 0.1, CONFIG.globeRadius * 0.1);
         globeGroup.add(atmosphereLight2);
 
-        // --- 3. Land Points Logic ---
         const landDotsGroup = new THREE.Group();
         globeGroup.add(landDotsGroup);
         landDotsRef.current = landDotsGroup;
 
         const createLandPoints = () => {
-            // Cleanup existing
             while (landDotsGroup.children.length > 0) {
                 const child = landDotsGroup.children[0];
                 if (child.geometry) child.geometry.dispose();
@@ -266,7 +258,6 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
             const numPoints = CONFIG.numPoints;
             const radius = CONFIG.globeRadius;
 
-            // Helper to check land using worldMap bitmap
             const isLand = (lat, lon) => {
                 const latIndex = Math.min(worldMap.length - 1, Math.max(0, Math.floor((90 - lat) * worldMap.length / 180)));
                 const lonIndex = Math.min(worldMap[0].length - 1, Math.max(0, Math.floor((lon + 180) * worldMap[0].length / 360)));
@@ -434,7 +425,6 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
         const createImpactEffect = (position, color) => {
             const impactColor = color || new THREE.Color(0x88eeff);
 
-            // Rings
             const ringGeo = new THREE.RingGeometry(CONFIG.bullseyeSize * 0.67, CONFIG.bullseyeSize, 24);
             const ringMat = new THREE.MeshBasicMaterial({ color: impactColor, side: THREE.DoubleSide, transparent: true, opacity: 0.95, depthWrite: false, blending: THREE.AdditiveBlending });
             const ring = new THREE.Mesh(ringGeo, ringMat);
@@ -442,7 +432,6 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
             ring.lookAt(new THREE.Vector3(0, 0, 0));
             globeGroup.add(ring);
 
-            // Center Bullseye
             const dotGeo = new THREE.CircleGeometry(CONFIG.bullseyeSize, 24);
             const dotMat = new THREE.MeshBasicMaterial({ color: impactColor, side: THREE.DoubleSide, transparent: true, opacity: 0.85, depthWrite: false, blending: THREE.AdditiveBlending });
             const dot = new THREE.Mesh(dotGeo, dotMat);
@@ -461,7 +450,6 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
             const startIndex = Math.floor(Math.random() * landPointsRef.current.length);
             const startPoint = landPointsRef.current[startIndex];
 
-            // Tìm endpoint ngẫu nhiên
             let endPointIndex = -1;
             let attempts = 0;
             while (endPointIndex === -1 && attempts < 20) {
@@ -481,7 +469,6 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
             }
         };
 
-        // --- 5. Interaction (Rotation & Hover) ---
         const raycaster = new THREE.Raycaster();
         const mouse = new THREE.Vector2();
         let isDragging = false;
@@ -519,7 +506,6 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
         window.addEventListener('touchmove', onTouchMove, { passive: false });
         window.addEventListener('touchend', onTouchEnd);
 
-        // --- 6. Animation Loop ---
         let lastArcTime = 0;
         let lastFrameTime = 0;
 
@@ -527,37 +513,31 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
             const reqId = requestAnimationFrame(animate);
             const seconds = time / 1000;
 
-            // FPS Calc
-            if (time - lastFrameTime >= 100) { // Update FPS every 100ms
+            if (time - lastFrameTime >= 100) { 
                 setFps(Math.round(1000 / (time - lastFrameTime)));
                 lastFrameTime = time;
             }
 
-            // Auto Rotation
             if (!isDragging) {
                 globeRotation.y += CONFIG.rotationSpeed;
                 globeGroup.rotation.y = globeRotation.y;
             }
 
-            // Atmosphere Animation
             if (atmosphere.material.uniforms) {
                 atmosphere.material.uniforms.time.value = seconds;
                 atmosphere.material.uniforms.viewVector = new THREE.Vector3(camera.position.x, camera.position.y, camera.position.z);
             }
 
-            // Arc Generation
             if (seconds - lastArcTime > CONFIG.arcFrequency || (arcsRef.current.length < CONFIG.maxConcurrentArcs * 0.7 && seconds - lastArcTime > 0.1)) {
                 addRandomArc();
                 lastArcTime = seconds;
             }
 
-            // Update Arcs
             for (let i = arcsRef.current.length - 1; i >= 0; i--) {
                 const arc = arcsRef.current[i];
                 arc.age += 0.02;
 
                 if (arc.age < arc.growDuration) {
-                    // Growing
                     let progress = arc.age / arc.growDuration;
                     if (progress >= 0.9 && !arc.impactCreated) {
                         const effect = createImpactEffect(arc.destinationPoint, arc.endColor);
@@ -566,7 +546,6 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
                         arc.impactEffect = effect;
                     }
 
-                    // Update Geometry
                     const pointCount = Math.max(2, Math.floor(progress * arc.allPoints.length));
                     const currentPoints = arc.allPoints.slice(0, pointCount);
 
@@ -608,7 +587,6 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
                 }
             }
 
-            // Update Impacts
             for (let i = impactEffectsRef.current.length - 1; i >= 0; i--) {
                 const effect = impactEffectsRef.current[i];
                 effect.age += 0.02;
@@ -661,7 +639,6 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
                         matrix.compose(pos, quaternion, scale);
                         instancedDots.setMatrixAt(dot.index, matrix);
                     } else {
-                        // Reset (Optimization: only needed if previously moved, but doing all for safety)
                         pos.copy(dot.originalPosition);
                         const lookAt = pos.clone().add(pos.clone().normalize());
                         quaternion.setFromRotationMatrix(new THREE.Matrix4().lookAt(pos, lookAt, up));
@@ -695,12 +672,11 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
 
         window.addEventListener('resize', onResize);
 
-        // --- Expose update functions ---
         apiRef.current = {
             updateGlobe: () => {
                 globe.geometry.dispose();
                 globe.geometry = new THREE.SphereGeometry(configRef.current.globeRadius, configRef.current.globeSegments, configRef.current.globeSegments);
-                createLandPoints(); // Need to regenerate points if radius changes
+                createLandPoints(); 
             },
             updateAtmosphere: () => {
                 atmosphere.material.uniforms.opacity.value = configRef.current.atmosphereOpacity * 1.5;
@@ -733,7 +709,6 @@ const worldMap = ["0000000000000000000000000000000000000000000000000000000011111
         const parsedVal = type === 'int' ? parseInt(value) : (type === 'bool' ? value : parseFloat(value));
         configRef.current[key] = parsedVal;
 
-        // Trigger updates based on key
         if (key === 'globeRadius' || key === 'globeSegments') apiRef.current.updateGlobe();
         if (key === 'atmosphereOpacity') apiRef.current.updateAtmosphere();
         if (key === 'numPoints' || key === 'dotSize') apiRef.current.regenerateDots();

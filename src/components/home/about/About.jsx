@@ -20,7 +20,7 @@ export const About = ({ className = "" }) => {
         <div className="container flex">
           {data.map((value) => (
             <React.Fragment key={value.id}>
-              
+
               <div className="lef mtop">
                 <div className="heading">
                   <h3>About Me</h3>
@@ -29,26 +29,25 @@ export const About = ({ className = "" }) => {
 
                 <p>{value.desc}</p>
 
-                <div className="btn-pulse-wrapper">
-                  <span className="pulse-third"></span>
 
-                  <button className="primary-btn btn-led">
-                    Contact Me
 
-                    {/* LED animation spans */}
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <button className="primary-btn btn-led">
+                  Contact Me
 
-                    {/* fixed class -> className */}
-                    <span className="line2"></span>
-                    <span className="line2"></span>
-                    <span className="line2"></span>
-                    <span className="line2"></span>
-                  </button>
-                </div>
+                  {/* LED animation spans */}
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+
+                  {/* fixed class -> className */}
+                  <span className="line2"></span>
+                  <span className="line2"></span>
+                  <span className="line2"></span>
+                  <span className="line2"></span>
+                </button>
               </div>
+
 
               <div className="right">
                 <div className="img">
