@@ -7,7 +7,6 @@ import heroImage2 from '../../../../assets/luen_logo.png';
 import heroImage3 from '../../../../assets/hexagon-main.png';
 
 const Hero = ({
-  // Sử dụng Default Parameters thay cho defaultProps
   image1Src = heroImage1,
   image1Alt = 'Technology Devices',
   image2Src = heroImage2,
