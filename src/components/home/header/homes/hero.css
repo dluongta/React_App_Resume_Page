@@ -919,3 +919,49 @@
   }
 }
 
+.hero-header78 {
+  overflow: hidden; 
+}
+.hero-row-container1,
+.hero-row-container2 {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.thq-animated-group-horizontal,
+.thq-animated-group-horizontal-reverse {
+  display: flex;
+  gap: 12px;
+  min-width: max-content; 
+}
+.thq-animated-group-horizontal img,
+.thq-animated-group-horizontal-reverse img {
+  flex: 0 0 auto;     
+  width: 180px;      
+  height: 120px;
+  object-fit: cover;
+}
+
+.thq-img-ratio-1-1 {
+  width: auto !important;
+}
+@media (max-width: 768px) {
+  .thq-animated-group-horizontal img,
+  .thq-animated-group-horizontal-reverse img {
+    width: 120px;
+    height: 80px;
+  }
+
+  .thq-animated-group-horizontal,
+  .thq-animated-group-horizontal-reverse {
+    animation-duration: 40s;
+  }
+}
+
+@media (max-width: 480px) {
+  .thq-animated-group-horizontal img,
+  .thq-animated-group-horizontal-reverse img {
+    width: 100px;
+    height: 70px;
+  }
+}
