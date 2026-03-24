@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import main_bg from '../../assets/main-background.png';
 import iphone from '../../assets/iphone.png';
-import iphonex from '../../assets/iphone-x.png';
 import ipad from '../../assets/ipad.png';
 
 const ScrollEffect = () => {
@@ -105,13 +104,13 @@ const ScrollEffect = () => {
         >
           <img
             ref={(el) => (devicesRef.current[0] = el)}
-            src={iphonex}
+            src={ipad}
             alt="Device 1"
             style={{ position: 'absolute', width: isMobile ? '100px' : '150px', filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.15))' }}
           />
           <img
             ref={(el) => (devicesRef.current[1] = el)}
-            src={ipad}
+            src={iphone}
             alt="Device 2"
             style={{ position: 'absolute', width: isMobile ? '160px' : '250px', filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.15))' }}
           />
@@ -123,7 +122,7 @@ const ScrollEffect = () => {
           />
           <img
             ref={(el) => (devicesRef.current[3] = el)}
-            src={iphonex}
+            src={ipad}
             alt="Device 4"
             style={{ position: 'absolute', width: isMobile ? '110px' : '180px', filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.15))' }}
           />
