@@ -173,6 +173,11 @@ export const Pages = () => {
       id: "34",
       link: "https://dluongta.github.io/math_editor.html",
       linkName: "Math Editor",
+    },
+    {
+      id: "35",
+      link: "https://github.com/luen2003/enhance_image_quality",
+      linkName: "Enhance Image Quality",
     }
   ]
   return (
