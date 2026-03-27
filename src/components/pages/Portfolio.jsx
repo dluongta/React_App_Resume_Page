@@ -200,7 +200,7 @@ export const Portfolio = () => {
     },
     {
       id: "40",
-      link: "https://enhance-image-quality.onrender.com/",
+      link: "https://enhance-image-quality-app.onrender.com/",
       linkName: "Enhance Image Quality",
     }
   ];

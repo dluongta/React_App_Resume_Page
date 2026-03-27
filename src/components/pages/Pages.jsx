@@ -176,7 +176,7 @@ export const Pages = () => {
     },
     {
       id: "35",
-      link: "https://enhance-image-quality.onrender.com/",
+      link: "https://enhance-image-quality-app.onrender.com/",
       linkName: "Enhance Image Quality",
     }
   ]
