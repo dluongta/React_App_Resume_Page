@@ -200,7 +200,7 @@ export const Portfolio = () => {
     },
     {
       id: "40",
-      link: "https://github.com/luen2003/enhance_image_quality",
+      link: "https://enhance-image-quality.onrender.com/",
       linkName: "Enhance Image Quality",
     }
   ];
