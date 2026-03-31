@@ -548,7 +548,9 @@
 .blue-link {
   color: #0088ff;
   margin-left: 8px;
+  text-decoration: underline;
 }
+
 @media (max-width: 768px) {
   .socialIcon {
     display: grid;
@@ -585,4 +587,20 @@
 }
 .left img{
   width: 100%;
+}
+
+.gradientStyle {
+  background: linear-gradient(
+    94deg,
+    #fe954a 6.06%,
+    #f84063 34.53%,
+    #ad29e3 66.74%,
+    #008eff 100.96%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+  color: transparent;
+  font-weight: bolder;
 }

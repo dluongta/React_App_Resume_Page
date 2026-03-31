@@ -52,15 +52,15 @@ const ScrollEffect = () => {
       }
 
       if (dev2) {
-        dev2.style.transform = `translate(${isMobile ? horizontalDist *1.23: horizontalDist + extraRight*0.25}px, ${-verticalDist * 0.3}px) rotate(${contentProgress * 15}deg) scale(${isMobile ? 0.8 : 1})`;
+        dev2.style.transform = `translate(${isMobile ? horizontalDist * 1.23 : horizontalDist + extraRight * 0.25}px, ${-verticalDist * 0.3}px) rotate(${contentProgress * 15}deg) scale(${isMobile ? 0.8 : 1})`;
       }
 
       if (dev3) {
-        dev3.style.transform = `translate(${isMobile ? -horizontalDist *1.2 :-horizontalDist * 0.9}px, ${verticalDist * 0.6}px) rotate(${-contentProgress * 10}deg) scale(${isMobile ? 0.8 : 1})`;
+        dev3.style.transform = `translate(${isMobile ? -horizontalDist * 1.2 : -horizontalDist * 0.9}px, ${verticalDist * 0.6}px) rotate(${-contentProgress * 10}deg) scale(${isMobile ? 0.8 : 1})`;
       }
 
       if (dev4) {
-        dev4.style.transform = `translate(${isMobile ? horizontalDist *1.2 :horizontalDist * 0.9}px, ${verticalDist * 0.6}px) rotate(${contentProgress * 10}deg) scale(${isMobile ? 0.8 : 1})`;
+        dev4.style.transform = `translate(${isMobile ? horizontalDist * 1.2 : horizontalDist * 0.9}px, ${verticalDist * 0.6}px) rotate(${contentProgress * 10}deg) scale(${isMobile ? 0.8 : 1})`;
       }
     };
 
@@ -142,7 +142,13 @@ const ScrollEffect = () => {
                 fontSize: isMobile ? '1.6rem' : '2.5rem',
                 marginBottom: '12px',
                 fontWeight: 700,
-                lineHeight: 1.2
+                lineHeight: 1.2,
+                background: 'linear-gradient(94deg, #fe954a 6.06%, #f84063 34.53%, #ad29e3 66.74%, #008eff 100.96%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                color: 'transparent',
+                height: isMobile ? '69px': '50px'
               }}
             >
               Thông Minh & Mượt Mà
