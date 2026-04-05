@@ -368,6 +368,45 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   const [playbackRate, setPlaybackRate] = useState(1);
   const [showSettings, setShowSettings] = useState(false);
   const [showControls, setShowControls] = useState(true);
+  const [loading, setLoading] = useState(false);
+
+
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'video';
+    link.href = src;
+    document.head.appendChild(link);
+  }, [src]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // const onWaiting = () => setLoading(true);
+    const onWaiting = () => {
+      const video = videoRef.current;
+      if (video.readyState < 3) {
+        setLoading(true);
+      }
+    };
+    const onCanPlay = () => setLoading(false);
+    const onSeeking = () => setLoading(true);
+    const onSeeked = () => setLoading(false);
+
+    video.addEventListener('waiting', onWaiting);
+    video.addEventListener('canplay', onCanPlay);
+    video.addEventListener('seeking', onSeeking);
+    video.addEventListener('seeked', onSeeked);
+    video.addEventListener('playing', () => setLoading(false));
+
+    return () => {
+      video.removeEventListener('waiting', onWaiting);
+      video.removeEventListener('canplay', onCanPlay);
+      video.removeEventListener('seeking', onSeeking);
+      video.removeEventListener('seeked', onSeeked);
+    };
+  }, [src]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -406,11 +445,11 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   const handleInteraction = () => {
     setShowControls(true);
     if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
-    
+
     controlsTimeoutRef.current = setTimeout(() => {
       setShowControls(false);
       setShowSettings(false);
-    }, 3000);
+    }, 5000);
   };
 
   const handleVideoClick = (e) => {
@@ -466,8 +505,9 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
           muted={isMuted}
           src={src}
           loop
+          preload="auto"
         />
-
+        {loading && <div className="loading-spinner"></div>}
         <div className={`controls ${showControls ? 'visible' : ''}`} onClick={(e) => e.stopPropagation()}>
           <div className="progress-wrapper">
             <input
