@@ -173,13 +173,13 @@ export const Pages = () => {
   return (
     <>
       <section className='pages'>
-        <div id="mySidenav" class="sidenav">
+        {/* <div id="mySidenav" class="sidenav">
           <Link to='/pages' id="pages"> Pages </Link>
           <Link to='/blog' id="blog"> Blog </Link>
           <Link to='/portfolio' id="portfolio"> Portfolio </Link>
           <Link to='/contact' id="contact"> Contact </Link>
-          {/* <Link to='/galaxy' id="galaxy"> Galaxy </Link> */}
-        </div>
+          <Link to='/galaxy' id="galaxy"> Galaxy </Link>
+        </div> */}
         <div className="cards-wrapper">
 
           {data.map((value) => {

@@ -115,13 +115,13 @@ export const HomePage = () => {
       {/* <FireworksEffect />
       <FireworkButton /> */}
 
-      <div id="mySidenav" className="sidenav">
+      {/* <div id="mySidenav" className="sidenav">
         <Link to='/pages' id="pages"> Pages </Link>
         <Link to='/blog' id="blog"> Blog </Link>
         <Link to='/portfolio' id="portfolio"> Portfolio </Link>
         <Link to='/contact' id="contact"> Contact </Link>
-        {/* <Link to='/galaxy' id="galaxy"> Galaxy </Link> */}
-      </div>
+        <Link to='/galaxy' id="galaxy"> Galaxy </Link>
+      </div> */}
       <ScrollEffect/> 
       <Home className="reveal" />
       <Branding className="reveal" />
