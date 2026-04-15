@@ -42,9 +42,9 @@ const ScrollEffect = () => {
 
       const [dev1, dev2, dev3, dev4] = devicesRef.current;
 
-      const multiplier = isMobile ? 0.3 : 0.4;
+      const multiplier = isMobile ? 0.32 : 0.4;
       const horizontalDist = windowWidth * multiplier * contentProgress;
-      const verticalDist = (isMobile ? 120 : 300) * contentProgress;
+      const verticalDist = (isMobile ? 250 : 300) * contentProgress;
       const extraRight = isMobile ? windowWidth * 0.1 * contentProgress : 0;
 
       if (dev1) {
