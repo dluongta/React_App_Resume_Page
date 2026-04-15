@@ -57,7 +57,7 @@
 //             <p>
 //               I am Dinh Luong Ta. I am a programmer skilled at Web Development,
 //               Android Development. I am also learning Artificial Intelligence and Hardware.
-//               I am extremely fascinated by science and technology. All of my products are ULTRAMIND generation made by DLUONGTA.
+//               I am extremely fascinated by science, engineering and technology. All of my products are ULTRAMIND generation made by DLUONGTA.
 //             </p>
 
 //             <p>
