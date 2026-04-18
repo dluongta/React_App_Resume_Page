@@ -77,7 +77,7 @@ export const Branding = ({ className }) => {
         </div>
       </section>
       <CurvedLoop
-        marqueeText="Be ✦ Creative ✦ With ✦ DLUONGTA ✦ ULTRAMIND ✦"
+        marqueeText="Be ✦ Creative ✦ With ✦ DLUONGTA ✦ ULMIND ✦"
         speed={10}
         curveAmount={400}
         direction="right"
