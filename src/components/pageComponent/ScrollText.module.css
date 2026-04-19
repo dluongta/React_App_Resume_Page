@@ -1,5 +1,5 @@
 .scrollTextSection {
-  height: 350vh; /* Tăng thêm một chút để cuộn mượt hơn trên mobile */
+  height: 350vh; 
   position: relative;
   background-color: #000;
 }
@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 20px; /* Tránh chữ sát mép màn hình */
+  padding: 0 20px; 
 }
 
 .textContainer {
@@ -50,11 +50,11 @@
 
 @media (max-width: 768px) {
   .textContainer {
-    gap: 3rem;
+    gap: 2rem;
   }
   
   .revealLine {
-    font-size: 3rem; 
+    font-size: 1.5rem; 
     line-height: 1.3;
   }
 }
