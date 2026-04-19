@@ -33,7 +33,6 @@
   white-space: normal;
   word-wrap: break-word;
 
-  /* Thay đổi màu trắng (#fff) thành màu cam (#ff8c00 hoặc #ff4500) */
   background: linear-gradient(
     to right,
     #ff8c00 var(--line-progress, 0%),
