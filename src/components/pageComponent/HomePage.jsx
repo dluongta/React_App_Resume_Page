@@ -15,6 +15,7 @@ import ScrollEffect from './ScrollEffect';
 import ScrollHero from './ScrollHero';
 import { FireworksEffect } from './FireworksEffect';
 import { FireworkButton } from './FireworkButton';
+import { ScrollText } from './ScrollText';
 export const HomePage = () => {
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal');
@@ -128,6 +129,7 @@ export const HomePage = () => {
       <About className="reveal" />
       <Wrapper className="reveal" />
       <ScrollRevealText />
+      <ScrollText/>
       {/* <ScrollHero/> */}
       <Skill className="reveal" />
       <Service className="reveal" />

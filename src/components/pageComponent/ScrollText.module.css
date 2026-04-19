@@ -1,0 +1,44 @@
+.scrollTextSection {
+  height: 300vh;
+  position: relative;
+  background-color: #000;
+}
+
+.stickyWrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.revealLine {
+  font-size: 5rem;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  background: linear-gradient(
+    to right,
+    #fff var(--line-progress, 0%),
+    #333 var(--line-progress, 0%)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+  
+}
+
+@media (max-width: 768px) {
+  .revealLine {
+    font-size: 2.2rem;
+  }
+}
