@@ -27,6 +27,8 @@ export const ScrollText = () => {
         lineProgress = Math.max(0, Math.min(1, lineProgress));
 
         line.style.setProperty('--line-progress', `${lineProgress * 100}%`);
+        // Hiệu ứng phát sáng mượt hơn
+        line.style.setProperty('--line-opacity', lineProgress);
       });
     };
 

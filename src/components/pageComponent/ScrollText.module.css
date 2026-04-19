@@ -1,5 +1,5 @@
 .scrollTextSection {
-  height: 300vh;
+  height: 350vh; /* Tăng thêm một chút để cuộn mượt hơn trên mobile */
   position: relative;
   background-color: #000;
 }
@@ -11,34 +11,50 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 20px; /* Tránh chữ sát mép màn hình */
 }
 
 .textContainer {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .revealLine {
-  font-size: 5rem;
+  font-size: clamp(1.5rem, 8vw, 5rem); 
   font-weight: 800;
   text-align: center;
   text-transform: uppercase;
   position: relative;
+  display: block;
+  line-height: 1.1;
+  
+
+  white-space: normal; 
+  word-wrap: break-word;
+
   background: linear-gradient(
     to right,
     #fff var(--line-progress, 0%),
     #333 var(--line-progress, 0%)
   );
+  
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: block;
-  
+
+  /* filter: drop-shadow(0 0 calc(var(--line-opacity, 0) * 10px) rgba(255, 255, 255, 0.4)); */
 }
 
 @media (max-width: 768px) {
+  .textContainer {
+    gap: 3rem;
+  }
+  
   .revealLine {
-    font-size: 2.2rem;
+    font-size: 3rem; 
+    line-height: 1.3;
   }
 }
