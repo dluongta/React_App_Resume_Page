@@ -11,165 +11,155 @@ export const Pages = () => {
     },
     {
       id: "02",
-      link: "http://carttechnology.atwebpages.com",
-      linkName: "Shopping Cart And Comment",
-    },
-    {
-      id: "03",
       link: "https://note-task.onrender.com",
       linkName: "Note Task Website",
     },
     {
-      id: "04",
+      id: "03",
       link: "https://the-digital-shop.onrender.com",
       linkName: "The Shop Website",
     },
     {
-      id: "05",
+      id: "04",
       link: "https://mgpost.onrender.com",
       linkName: "Post office website with live chat",
     },
     {
-      id: "06",
+      id: "05",
       link: "https://github.com/luen2003/python-code",
       linkName: "Python Code",
     },
     {
-      id: "07",
+      id: "06",
       link: "https://vietnam-map-platform.vercel.app/",
       linkName: "Vietnam Map Platform",
     },
     {
-      id: "08",
+      id: "07",
       link: "https://qr-scanner-live.netlify.app/",
       linkName: "QR Code Scanner",
     },
     {
-      id: "09",
+      id: "08",
       link: "https://react-app-videocall.onrender.com/",
       linkName: "Voice Or Video Call Using WebRTC",
     },
     {
-      id: "10",
+      id: "09",
       link: "https://react-qr-code-generator-live.vercel.app/",
       linkName: "React QRCode Generator",
     },
     {
-      id: "11",
+      id: "10",
       link: "https://react-app-google-login-page.vercel.app/",
       linkName: "React App Google Login Page",
     },
     {
-      id: "12",
+      id: "11",
       link: "https://dluongta.github.io/pdf-excel-generator.html",
       linkName: "PDF And Excel Generator",
     },
     {
-      id: "13",
+      id: "12",
       link: "https://react-livestream-app.onrender.com/",
       linkName: "Livestream App",
     },
     {
-      id: "14",
-      link: "https://bank-qrcode.w3spaces.com/",
-      linkName: "Bank QRCode",
-    },
-    {
-      id: "15",
+      id: "13",
       link: "https://github.com/luen2003/Face-App",
       linkName: "Face Recognition Analysis",
     },
     {
-      id: "16",
+      id: "14",
       link: "https://dluongta.github.io/text_speech.html",
       linkName: "Text Speech",
     },
     {
-      id: "17",
+      id: "15",
       link: "https://github.com/luen2003/Styled_Python",
       linkName: "Styled Effect Python App",
     },
     {
-      id: "18",
+      id: "16",
       link: "https://dluongta.github.io/quiz-app.html",
       linkName: "Quizzes App",
     },
     {
-      id: "19",
+      id: "17",
       link: "https://dluongta.github.io/digital-calendar.html",
       linkName: "Digital Calendar",
     },
     {
-      id: "20",
+      id: "18",
       link: "https://dluongta.github.io/caculator.html",
       linkName: "Caculator",
     },
     {
-      id: "21",
+      id: "19",
       link: "https://github.com/luen2003/ASPNET_API",
       linkName: "ASPNET API",
     },
     {
-      id: "22",
+      id: "20",
       link: "https://github.com/luen2003/text-3d-video",
       linkName: "Text 3D Video",
     },
     {
-      id: "23",
+      id: "21",
       link: "https://deeptankio.onrender.com/",
       linkName: "DeepTankIO",
     },
     {
-      id: "24",
+      id: "22",
       link: "https://dluongta.github.io/image_editor/index.html",
       linkName: "Image Editor",
     },
     {
-      id: "25",
+      id: "23",
       link: "https://dluongta.github.io/galaxy_love.html",
       linkName: "Galaxy Love",
     },
     {
-      id: "26",
+      id: "24",
       link: "https://dluongta.github.io/upload_avatar.html",
       linkName: "Upload Avatar",
     },
     {
-      id: "27",
+      id: "25",
       link: "https://react-app-bank-code.vercel.app/",
       linkName: "Confirm Payment",
     },
     {
-      id: "28",
+      id: "26",
       link: "https://github.com/luen2003/mysql-api",
       linkName: "MySQL API",
     },
     {
-      id: "29",
+      id: "27",
       link: "https://github.com/luen2003/php-mysql-api",
       linkName: "PHP MySQL API",
     },
     {
-      id: "30",
+      id: "28",
       link: "https://dluongta.github.io/flipbook3d.html",
       linkName: "3D PDF Flipbook",
     },
     {
-      id: "31",
+      id: "29",
       link: "https://dluongta.github.io/text_image.html",
       linkName: "Text Image",
     },
     {
-      id: "32",
+      id: "30",
       link: "https://dluongta.github.io/math_editor.html",
       linkName: "Math Editor",
     },
     {
-      id: "33",
+      id: "31",
       link: "https://github.com/luen2003/enhance_image_quality",
       linkName: "Enhance Image Quality",
     }
-  ]
+  ];
   return (
     <>
       <section className='pages'>
