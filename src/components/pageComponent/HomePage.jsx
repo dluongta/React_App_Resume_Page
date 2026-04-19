@@ -130,7 +130,7 @@ export const HomePage = () => {
       <Wrapper className="reveal" />
       <ScrollRevealText />
       <ScrollText/>
-      {/* <ScrollHero/> */}
+      <ScrollHero/>
       <Skill className="reveal" />
       <Service className="reveal" />
       <WrapperOne className="reveal" />
