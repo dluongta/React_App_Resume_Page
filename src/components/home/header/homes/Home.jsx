@@ -252,7 +252,7 @@ export const Home = ({ className }) => {
 
               <p>
                 My Resume:
-                <Link to="/resume.pdf" target="_blank" className="blue-link">
+                <Link to="/dluongta_resume.pdf" target="_blank" className="blue-link">
                   Resume Viewer Page
                 </Link>
               </p>
