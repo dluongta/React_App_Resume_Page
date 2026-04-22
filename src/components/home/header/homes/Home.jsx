@@ -62,7 +62,7 @@
 
 //             <p>
 //               My Resume:
-//               <Link to={{ pathname: '/Resume.pdf' }} target="_blank" className="blue">
+//               <Link to={{ pathname: '/resume.pdf' }} target="_blank" className="blue">
 //                 Resume Viewer Page
 //               </Link>
 //             </p>
@@ -161,7 +161,7 @@
 
 //               <p>
 //                 My Resume:
-//                 <Link to="/Resume.pdf" target="_blank" className="blue-link">
+//                 <Link to="/resume.pdf" target="_blank" className="blue-link">
 //                   {" "}Resume Viewer Page
 //                 </Link>
 //               </p>
@@ -252,7 +252,7 @@ export const Home = ({ className }) => {
 
               <p>
                 My Resume:
-                <Link to="/Resume.pdf" target="_blank" className="blue-link">
+                <Link to="/resume.pdf" target="_blank" className="blue-link">
                   Resume Viewer Page
                 </Link>
               </p>
