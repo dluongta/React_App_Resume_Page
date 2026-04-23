@@ -108,7 +108,7 @@ export const Branding = ({ className }) => {
       {/* <CustomVideoPlayer src={ulmind_intro} captionSrc={caption_ulmind_intro} /> */}
       <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />
       <CustomVideoPlayer src={lumindAnimationVideo} captionSrc={lumind_animation_text} />
-      <CustomVideoPlayer src={bgVideo} captionSrc={caption} />
+      {/* <CustomVideoPlayer src={bgVideo} captionSrc={caption} /> */}
       <Hero />
     </>
   );
