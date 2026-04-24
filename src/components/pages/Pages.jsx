@@ -66,7 +66,7 @@ export const Pages = () => {
     },
     {
       id: "13",
-      link: "https://github.com/luen2003/Face-App",
+      link: "https://github.com/luen2003/Face-Recogniton-Analysis",
       linkName: "Face Recognition Analysis",
     },
     {
