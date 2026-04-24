@@ -85,7 +85,7 @@ export const Portfolio = () => {
     },
     {
       id: "17",
-      link: "https://github.com/luen2003/Face-Recogniton-Analysis",
+      link: "https://github.com/luen2003/Face-Recognition-Analysis",
       linkName: "Face Recognition Analysis",
     },
     {
