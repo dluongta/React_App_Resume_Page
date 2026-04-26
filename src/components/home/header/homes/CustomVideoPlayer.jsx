@@ -525,7 +525,17 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
           src={src}
           loop
           preload="auto"
-        />
+        >
+          {captionSrc && (
+            <track
+              src={captionSrc}
+              kind="subtitles"
+              srcLang="en"
+              label="English"
+              default
+            />
+          )}
+        </video>
         {loading && <div className="loading-spinner"></div>}
         <div className={`controls ${showControls ? 'visible' : ''}`} onClick={(e) => e.stopPropagation()}>
           <div className="progress-wrapper">
@@ -580,10 +590,18 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
 
             <div className="right-controls">
               <button className={`control-btn ${isCaptionsOn ? 'active' : ''}`} onClick={(e) => {
-                const track = videoRef.current.textTracks[0];
-                if (track) {
-                  track.mode = track.mode === 'showing' ? 'hidden' : 'showing';
-                  setIsCaptionsOn(track.mode === 'showing');
+                // const track = videoRef.current.textTracks[0];
+                // if (track) {
+                //   track.mode = track.mode === 'showing' ? 'hidden' : 'showing';
+                //   setIsCaptionsOn(track.mode === 'showing');
+                // }
+                const tracks = videoRef.current.textTracks;
+                if (tracks && tracks.length > 0) {
+                  const track = tracks[0];
+                  const isShowing = track.mode === 'showing';
+
+                  track.mode = isShowing ? 'hidden' : 'showing';
+                  setIsCaptionsOn(!isShowing);
                 }
               }}>CC</button>
               <div className="settings-menu" ref={settingsRef}>
