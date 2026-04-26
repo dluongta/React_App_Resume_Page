@@ -369,7 +369,12 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   const [showSettings, setShowSettings] = useState(false);
   const [showControls, setShowControls] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
 
+
+  useEffect(() => {
+    setHasStarted(false);
+  }, [src]);
 
   useEffect(() => {
     const link = document.createElement('link');
@@ -377,6 +382,10 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     link.as = 'video';
     link.href = src;
     document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
   }, [src]);
 
   useEffect(() => {
@@ -385,26 +394,36 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
 
     // const onWaiting = () => setLoading(true);
     const onWaiting = () => {
-      const video = videoRef.current;
-      if (video.readyState < 3) {
+      if (hasStarted && video.readyState < 3) {
         setLoading(true);
       }
     };
-    const onCanPlay = () => setLoading(false);
-    const onSeeking = () => setLoading(true);
-    const onSeeked = () => setLoading(false);
-
+    const onCanPlay = () => {
+      if (hasStarted) setLoading(false);
+    };
+    const onSeeking = () => {
+      if (hasStarted) setLoading(true);
+    };
+    const onSeeked = () => {
+      if (hasStarted) setLoading(false);
+    };
     video.addEventListener('waiting', onWaiting);
     video.addEventListener('canplay', onCanPlay);
     video.addEventListener('seeking', onSeeking);
     video.addEventListener('seeked', onSeeked);
-    video.addEventListener('playing', () => setLoading(false));
+    // video.addEventListener('playing', () => setLoading(false));
+    const onPlaying = () => {
+      setLoading(false);
+      setHasStarted(true);
+    };
 
+    video.addEventListener('playing', onPlaying);
     return () => {
       video.removeEventListener('waiting', onWaiting);
       video.removeEventListener('canplay', onCanPlay);
       video.removeEventListener('seeking', onSeeking);
       video.removeEventListener('seeked', onSeeked);
+      video.removeEventListener('playing', onPlaying);
     };
   }, [src]);
 
