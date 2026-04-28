@@ -532,7 +532,6 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
               kind="subtitles"
               srcLang="en"
               label="English"
-              default
             />
           )}
         </video>
