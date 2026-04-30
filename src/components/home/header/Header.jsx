@@ -42,12 +42,6 @@ export const Header = () => {
 
     return (
         <>
-            {/* <div className="marquee-container">
-                <marquee behavior="scroll" direction="left" scrollamount="10">
-                    Welcome to React App Resume Page
-                </marquee>
-            </div> */}
-
             <header className="header">
                 <div className="container flex">
                     <div className="logo">
