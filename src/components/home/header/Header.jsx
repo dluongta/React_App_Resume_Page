@@ -13,14 +13,14 @@ export const Header = () => {
     const navRef = useRef(null);
 
     // Scroll effect
-    useEffect(() => {
-        const handleScroll = () => {
-            const header = document.querySelector(".header");
-            header.classList.toggle("active", window.scrollY > 200);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         const header = document.querySelector(".header");
+    //         header.classList.toggle("active", window.scrollY > 200);
+    //     };
+    //     window.addEventListener("scroll", handleScroll);
+    //     return () => window.removeEventListener("scroll", handleScroll);
+    // }, []);
 
     // Close sidebar when click outside
     useEffect(() => {
@@ -42,6 +42,11 @@ export const Header = () => {
 
     return (
         <>
+            <div className="top-marquee">
+                <div className="marquee-content">
+                    <span>Welcome To React App Resume Page</span>
+                </div>
+            </div>
             <header className="header">
                 <div className="container flex">
                     <div className="logo">
@@ -75,24 +80,24 @@ export const Header = () => {
             </header>
 
 
-<div className={`mobile-overlay ${sideBar ? "show" : ""}`}>
-  <div className="overlay-bg" onClick={() => setSidebar(false)} />
+            <div className={`mobile-overlay ${sideBar ? "show" : ""}`}>
+                <div className="overlay-bg" onClick={() => setSidebar(false)} />
 
-  <div className={`mobile-sidebar ${sideBar ? "open" : ""}`} ref={navRef}>
-    <button className="close-sidebar-btn" onClick={() => setSidebar(false)}>
-      <CloseIcon fontSize="large" />
-    </button>
+                <div className={`mobile-sidebar ${sideBar ? "open" : ""}`} ref={navRef}>
+                    <button className="close-sidebar-btn" onClick={() => setSidebar(false)}>
+                        <CloseIcon fontSize="large" />
+                    </button>
 
-    <ul className="nav-links-sidebar" onClick={() => setSidebar(false)}>
-      <li className={isActive('/') ? 'active-link' : ''}><Link to="/">Home</Link></li>
-      <li className={isActive('/pages') ? 'active-link' : ''}><Link to="/pages">Pages</Link></li>
-      <li className={isActive('/blog') ? 'active-link' : ''}><Link to="/blog">Blog</Link></li>
-      <li className={isActive('/portfolio') ? 'active-link' : ''}><Link to="/portfolio">Portfolio</Link></li>
-      <li className={isActive('/contact') ? 'active-link' : ''}><Link to="/contact">Contact</Link></li>
-      {/* <li className={isActive('/galaxy') ? 'active-link' : ''}><Link to="/galaxy">Galaxy</Link></li> */}
-    </ul>
-  </div>
-</div>
+                    <ul className="nav-links-sidebar" onClick={() => setSidebar(false)}>
+                        <li className={isActive('/') ? 'active-link' : ''}><Link to="/">Home</Link></li>
+                        <li className={isActive('/pages') ? 'active-link' : ''}><Link to="/pages">Pages</Link></li>
+                        <li className={isActive('/blog') ? 'active-link' : ''}><Link to="/blog">Blog</Link></li>
+                        <li className={isActive('/portfolio') ? 'active-link' : ''}><Link to="/portfolio">Portfolio</Link></li>
+                        <li className={isActive('/contact') ? 'active-link' : ''}><Link to="/contact">Contact</Link></li>
+                        {/* <li className={isActive('/galaxy') ? 'active-link' : ''}><Link to="/galaxy">Galaxy</Link></li> */}
+                    </ul>
+                </div>
+            </div>
 
         </>
     );

@@ -1,5 +1,5 @@
 html {
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 .container {
@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   font-family: "Times New Roman", Times, serif;
 }
 
@@ -2091,7 +2091,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 .footer {
@@ -2758,3 +2758,48 @@ footer ul {
   color: transparent;
   font-weight: bolder;
 }
+.top-marquee {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background-color: #007bff;
+  color: white;
+  overflow: hidden;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.marquee-content {
+  display: inline-block; 
+  white-space: nowrap;
+  animation: marquee 8s linear infinite;
+}
+
+.marquee-content span {
+  padding-right: 100px;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(-100%); 
+  }
+  100% {
+    transform: translateX(400%);  
+  }
+}
+
+.header {
+  position: sticky;
+  top: 40px;  
+  z-index: 1000;
+}
+
+
+body {
+  padding-top: 40px;
+}
+
+
