@@ -964,6 +964,8 @@ iframe {
     text-align: center;
   }
 
+  
+
   .grid1 {
     display: flex;
     flex-direction: column;
@@ -2802,4 +2804,33 @@ body {
   padding-top: 40px;
 }
 
+
+.animated-text {
+  font-weight: bold;
+
+  background: linear-gradient(
+    120deg,
+    #00aaff 0%,
+    #00aaff 40%,
+    #a855f7 50%,
+    #00aaff 60%,
+    #00aaff 100%
+  );
+
+  background-size: 200% auto;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shineText 2s linear infinite;
+}
+
+@keyframes shineText {
+  0% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: -100% center;
+  }
+}
 

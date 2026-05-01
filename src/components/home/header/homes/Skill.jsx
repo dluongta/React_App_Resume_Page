@@ -78,8 +78,9 @@ export const Skill = ({ className }) => {
     <section className={`skill ${className}`}>
       <div className="container">
         <div className="heading">
-          <h3>WHY CHOOSE ME</h3>
-          <h1>Some of my skills</h1>
+          <div className="animated-text"></div>
+          <h3 className="animated-text">WHY CHOOSE ME</h3>
+          <h1 className="animated-text">Some of my skills</h1>
         </div>
 
         <div className="content flex">
@@ -93,7 +94,7 @@ export const Skill = ({ className }) => {
           <div className="right mtop">
             {data.map((val, index) => (
               <div key={index}>
-                <h1>{val.title}</h1>
+                <h1 className="animated-text">{val.title}</h1>
                 <p>{val.para}</p>
                 <p>{val.para1}</p>
 

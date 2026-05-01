@@ -1,10 +1,43 @@
 .wrapperOne {
     background: linear-gradient(to right, #7b2ff7, #f107a3);
-    /* hoặc giữ nguyên nền bạn có */
     padding: 4rem 2rem;
     overflow: hidden;
 }
 
+.wrapperOne {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: nowrap;
+    position: relative;
+    z-index: 1;
+}
+.wrapperOne::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+
+    background: linear-gradient(90deg, #4f46e5, #f107a3, #4f46e5);
+    background-size: 200% 100%;
+
+    animation: runningBorder 4s linear infinite;
+
+    z-index: -1;
+    border-radius: 10px;
+}
+
+@keyframes runningBorder {
+    0% {
+        background-position: 200% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));

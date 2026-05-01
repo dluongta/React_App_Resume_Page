@@ -23,7 +23,7 @@ export const About = ({ className = "" }) => {
 
               <div className="lef mtop">
                 <div className="heading">
-                  <h3>About Me</h3>
+                  <h3 className="animated-text">About Me</h3>
                   <h1 className='gradientStyle'>{value.title}</h1>
                 </div>
 
