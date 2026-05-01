@@ -2834,3 +2834,25 @@ body {
   }
 }
 
+
+.orangeGradientText {
+  display: inline-block;
+  font-weight: bold;
+
+  background: linear-gradient(90deg, #fe954a, #f84063, #fe954a);
+  background-size: 200% 100%;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: runningText 4s linear infinite;
+}
+
+@keyframes runningText {
+  0% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

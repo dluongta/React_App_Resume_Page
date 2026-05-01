@@ -15,7 +15,7 @@ export const Wrapper = ({ className = "" }) => {
       <div className="container">
         {data.map(({ id, title, heading, desc }) => (
           <div className="box" key={id}>
-            <h3>{title}</h3>
+            <h3 className="orangeGradientText">{title}</h3>
             <h2>{heading}</h2>
             <p>{desc}</p>
 
