@@ -2839,7 +2839,7 @@ body {
   display: inline-block;
   font-weight: bold;
 
-  background: linear-gradient(90deg, #fe954a, #f84063, #fe954a);
+  background: linear-gradient(120deg, #fe954a 0%,#fe954a 40%, #f84063 50%, #fe954a 60%, #fe954a 100%);
   background-size: 200% 100%;
 
   -webkit-background-clip: text;
