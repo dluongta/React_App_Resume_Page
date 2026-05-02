@@ -69,7 +69,7 @@ export const Skill = ({ className }) => {
   const data = [
     {
       title: "Every Day is a New Challenge",
-      para: "I am a programmer skilled in Web Development and Android Development.",
+      para: "I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android, Computer Systems, and Application Development.",
       para1: "I am also learning about Artificial Intelligence and Hardware.",
     },
   ];
