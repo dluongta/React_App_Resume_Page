@@ -246,7 +246,7 @@ export const Home = ({ className }) => {
 
             <div className="description-text">
               <p>
-                I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android, System Software, and Application Development. I am also learning about Artificial Intelligence and Hardware.
+                I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android, System Software and Application Development. I am also learning about Artificial Intelligence and Hardware.
                 I am extremely fascinated by science, engineering and technology. All of my products are from the ULMIND generation, made by DLUONGTA.
               </p>
 
