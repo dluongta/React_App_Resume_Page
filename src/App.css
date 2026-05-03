@@ -2775,9 +2775,9 @@ footer ul {
 }
 
 .marquee-content {
-  display: inline-block; 
+  display: inline-block;
   white-space: nowrap;
-  animation: marquee 18s linear infinite;
+  animation: marquee 15s linear infinite;
 }
 
 .marquee-content span {
@@ -2786,10 +2786,10 @@ footer ul {
 
 @keyframes marquee {
   0% {
-    transform: translateX(-100%); 
+    transform: translateX(-80%);
   }
   100% {
-    transform: translateX(400%);  
+    transform: translateX(380%);
   }
 }
 
