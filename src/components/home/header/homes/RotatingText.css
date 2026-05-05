@@ -4,12 +4,12 @@
   vertical-align: middle;
   overflow: hidden;
   align-items: center;
-  transition: width 0.3s ease-in-out; /* Giúp background co giãn mượt khi đổi chữ */
+  transition: width 0.3s ease-in-out; 
 }
 
 .text-rotate-wrapper {
   display: flex;
-  flex-wrap: nowrap; /* Giữ chữ trên một dòng để background đẹp hơn */
+  flex-wrap: nowrap;
   white-space: pre;
 }
 
@@ -148,4 +148,19 @@
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+@media (max-width: 768px) {
+  .rotating-text-highlight {
+    font-size: clamp(1.85rem, 3.8vw, 1.9rem) !important; 
+    padding: 20px 22px !important;
+    
+    display: inline-flex !important;
+    white-space: nowrap !important;
+    align-items: center;
+  }
+
+  .text-rotate-wrapper {
+    flex-wrap: nowrap !important; 
+  }
 }

@@ -73,7 +73,6 @@ const RotatingText = forwardRef((props, ref) => {
   const handleIndexChange = useCallback(
     (newIndex) => {
       setIsExiting(true);
-      // Thời gian chờ khớp với animation rotate-out trong CSS
       setTimeout(() => {
         setCurrentTextIndex(newIndex);
         setIsExiting(false);
