@@ -2863,7 +2863,7 @@ body {
 }
 
 
-.orangeGradientText {
+/* .orangeGradientText {
   display: inline-block;
   font-weight: bold;
 
@@ -2874,8 +2874,10 @@ body {
   -webkit-text-fill-color: transparent;
 
   animation: runningText 4s linear infinite;
+} */
+.orangeGradientText {
+  color: #fe954a;
 }
-
 @keyframes runningText {
   0% {
     background-position: 200% 50%;
