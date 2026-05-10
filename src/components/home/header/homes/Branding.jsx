@@ -13,6 +13,7 @@ import lumindAnimationVideo from '../../../../assets/lumind_animation.mp4';
 import ParticleTextCanvas from "./ParticleTextCanvas";
 import hexagonImg from '../../../../assets/hexagon-main.png';
 import CurvedLoop from './CurvedLoop';
+import CircularText from './CircularText';
 // import caption_ulmind_intro from '../../../../assets/caption_intro.vtt';
 // import ulmind_intro from '../../../../assets/ultramind_intro.mp4';
 // import Globe from './GlobeVisualization';
@@ -84,7 +85,25 @@ export const Branding = ({ className }) => {
         interactive
         className="custom-text-style"
       />
-      {/* {!isMobile && (
+<div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '40px',
+        margin: '60px auto',
+        width: '100%',
+        maxWidth: '1200px'
+      }}>
+        {/* <CircularText text="DIGITAL ✦ BRANDING ✦ PRODUCTS ✦ " color="#FFA500" onHover="speedUp" />
+        <CircularText text="TEAM ✦ MANAGEMENT ✦ SKILLS ✦ " color="#FFA500" onHover="slowDown" />
+        <CircularText text="CREATIVE ✦ MIND ✦ DEVELOPER ✦ " color="#FFA500" onHover="pause" />
+        <CircularText text="DLUONGTA ✦ ULMIND ✦ STUDIO ✦ " color="#FFA500" onHover="goBonkers" /> */}
+        <CircularText text="DLUONGTA ✦ FUTURE ✦ CREATIVE ✦ " color="#FFA500" onHover="speedUp" />
+        <CircularText text="FANTASTIC ✦ SOFTWARE ✦ DEVELOPER ✦ " color="#FFA500" onHover="speedUp" />
+        <CircularText text="OUTSTANDING ✦ HARDWARE ✦ ENGINEERING ✦ " color="#FFA500" onHover="speedUp" />
+        <CircularText text="MODERN ✦ DIGITAL ✦ SYSTEMS ✦ " color="#FFA500" onHover="speedUp" />
+      </div>      {/* {!isMobile && (
         <div style={{
           position: 'relative',
           width: '80%',
