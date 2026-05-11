@@ -36,8 +36,8 @@ export const Pages = () => {
     },
     {
       id: "07",
-      link: "https://qr-scanner-live.netlify.app/",
-      linkName: "QR Code Scanner",
+      link: "https://dluongta.github.io/qr-scanner.html",
+      linkName: "QRCode Scanner",
     },
     {
       id: "08",
@@ -46,8 +46,8 @@ export const Pages = () => {
     },
     {
       id: "09",
-      link: "https://react-qr-code-generator-live.vercel.app/",
-      linkName: "React QRCode Generator",
+      link: "https://dluongta.github.io/qr-generator.html",
+      linkName: "QRCode Generator",
     },
     {
       id: "10",
