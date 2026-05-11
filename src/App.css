@@ -2899,12 +2899,7 @@ body {
   font-size: 16px !important;
 }
 
-.normal-text-1 {
-  font-weight: normal !important;
-  font-size: 18px !important;
-}
-
-.normal-text-2 {
-  font-weight: normal !important;
-  font-size: 16px !important;
+.animated-text,.normal-text-1,.normal-text-2 {
+  font-weight: 500 !important;
+  font-size: 20px !important;
 }
