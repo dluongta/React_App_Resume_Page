@@ -2893,3 +2893,18 @@ body {
   cursor: default !important;
   pointer-events: none !important;
 }
+
+.normal-text {
+  font-weight: 5px !important;
+  font-size: 16px !important;
+}
+
+.normal-text-1 {
+  font-weight: normal !important;
+  font-size: 18px !important;
+}
+
+.normal-text-2 {
+  font-weight: normal !important;
+  font-size: 16px !important;
+}
