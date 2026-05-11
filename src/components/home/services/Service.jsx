@@ -45,8 +45,8 @@ export const Service = ({ className = "" }) => {
     <section className={`services topMargin ${className}`}>
       <div className="container">
         <div className="heading animated-text">
-          <h1 className="animated-text normal-text-1">MY SERVICES</h1>
-          <h1 className="animated-text normal-text-1">Interactive Services Offered By Me</h1>
+          <h1 className="animated-text normal-text-2">My Services</h1>
+          <h1 className="animated-text normal-text-2">Interactive Services Offered By Me</h1>
         </div>
 
         <div className="contain grid topMargin">

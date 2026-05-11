@@ -79,7 +79,7 @@ export const Skill = ({ className }) => {
       <div className="container">
         <div className="heading">
           <div className="animated-text"></div>
-          <h3 className="animated-text">WHY CHOOSE ME</h3>
+          <h3 className="animated-text">Why Choose Me</h3>
           <h1 className="animated-text">Some of my skills</h1>
         </div>
 
