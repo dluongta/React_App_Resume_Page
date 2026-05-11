@@ -2887,3 +2887,9 @@ body {
     background-position: 0% 50%;
   }
 }
+
+.icon,
+.HeaderIcon {
+  cursor: default !important;
+  pointer-events: none !important;
+}
