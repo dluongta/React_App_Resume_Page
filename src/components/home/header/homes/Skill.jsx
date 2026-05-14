@@ -79,8 +79,8 @@ export const Skill = ({ className }) => {
       <div className="container">
         <div className="heading">
           <div className="animated-text"></div>
-          <h3 className="animated-text">Why Choose Me</h3>
-          <h1 className="animated-text">Some of my skills</h1>
+          <h3 className="animated-text" style={{marginBottom:"20px", fontSize:"22px"}}>Why Choose Me</h3>
+          <h3 className="animated-text" style={{marginBottom:"20px", fontSize:"22px"}}>Some of my skills</h3>
         </div>
 
         <div className="content flex">

@@ -2896,25 +2896,33 @@ body {
 
 .normal-text {
   font-weight: 5px !important;
-  font-size: 16px !important;
+  font-size: 22px !important;
 }
 
 .animated-text,.normal-text-1 {
   font-weight: 500!important;
-  font-size: 20px!important;
+  font-size: 22px!important;
+  margin-bottom: 10px !important;
 }
 .normal-text-2 {
   font-weight: 100 !important;
-  font-size: 20px !important;
+  font-size: 22px !important;
   text-transform: none !important;
   text-decoration: none !important;
+  margin-bottom: 10px !important;
 }
 
 h3.animated-text {
-  font-size: 24px !important;
+  font-size: 22px !important;
+  margin-bottom: 10px !important;
 }
 
 .lef{
     padding-right: 0px!important;
     width: 100% !important;
+}
+
+.animated-text {
+  margin-bottom: 8px !important;
+  font-size: 22px !important;
 }
