@@ -78,9 +78,10 @@ export const Skill = ({ className }) => {
     <section className={`skill ${className}`}>
       <div className="container">
         <div className="heading">
-          <div className="animated-text"></div>
-          <h3 className="animated-text" style={{marginBottom:"20px", fontSize:"22px"}}>Why Choose Me</h3>
-          <h3 className="animated-text" style={{marginBottom:"20px", fontSize:"22px"}}>Some of my skills</h3>
+          <div className="animated-text">
+          <h3 className="animated-text" style={{marginBottom:"8px", fontSize:"22px"}}>Why Choose Me</h3>
+          <h3 className="animated-text" style={{marginBottom:"8px", fontSize:"22px"}}>Some of my skills</h3>
+          </div>
         </div>
 
         <div className="content flex">
