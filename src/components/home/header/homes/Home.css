@@ -616,7 +616,13 @@
 }
 
 @media (max-width: 768px) {
+  body, html {
+    overflow-x: hidden;
+  }
 
+  .home {
+    overflow-x: hidden;
+  }
   .headline {
     display: flex !important;
     flex-direction: row !important;
@@ -624,9 +630,9 @@
     justify-content: center !important;
 
     gap: 10px !important;
-    width: fit-content;
+    width: 100% !important;
     margin: 20px auto !important;
-    padding: 10px 16px !important;
+    padding: 0px 0px !important;
   }
 
   .gradientTextStyle {
@@ -646,7 +652,7 @@
     justify-content: center;
 
     width: fit-content !important;
-    min-width: 10ch;
+    /* min-width: 10ch; */
 
     padding: 18px 20px !important;
     border-radius: 10px;
