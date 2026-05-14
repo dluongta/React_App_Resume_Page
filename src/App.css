@@ -2913,3 +2913,8 @@ body {
 h3.animated-text {
   font-size: 24px !important;
 }
+
+.lef{
+    padding-right: 0px!important;
+    width: 100% !important;
+}
