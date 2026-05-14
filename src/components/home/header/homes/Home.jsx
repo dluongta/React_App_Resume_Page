@@ -279,7 +279,6 @@ import './RotatingText.css';
 import './Home.css';
 
 export const Home = ({ className }) => {
-  // 1. Thay đổi nội dung các từ xoay vòng
   const textToRotate = [
     "thinking",
     "coding",
@@ -298,7 +297,6 @@ export const Home = ({ className }) => {
         <div className="home-right">
           <div className="content-inner">
 
-            {/* 2 & 3. Áp dụng Flexbox để 2 phần tử cùng nằm trên 1 hàng */}
             <div 
               className="headline" 
               style={{ 
@@ -316,7 +314,8 @@ export const Home = ({ className }) => {
                 style={{ 
                   margin: '0', 
                   whiteSpace: 'nowrap',
-                  width: 'auto' 
+                  width: 'auto' ,
+                  fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
                 }}
               >
                 Creative

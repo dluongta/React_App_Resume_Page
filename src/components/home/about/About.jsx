@@ -21,10 +21,10 @@ export const About = ({ className = "" }) => {
           {data.map((value) => (
             <React.Fragment key={value.id}>
 
-              <div className="lef mtop">
+              <div className="left mtop">
                 <div className="heading">
                   <h3 className="animated-text">About Me</h3>
-                  <h1 className='gradientStyle'>{value.title}</h1>
+                  <h1 className="animated-text">{value.title}</h1>
                 </div>
 
                 <p>{value.desc}</p>
