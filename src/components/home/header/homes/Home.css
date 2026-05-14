@@ -630,7 +630,7 @@
     justify-content: center !important;
 
     gap: 10px !important;
-    width: 100% !important;
+    width: fit-content !important;
     margin: 20px auto !important;
     padding: 0px 0px !important;
   }
@@ -652,7 +652,7 @@
     justify-content: center;
 
     width: fit-content !important;
-    /* min-width: 10ch; */
+    min-width: 10ch;
 
     padding: 18px 20px !important;
     border-radius: 10px;
