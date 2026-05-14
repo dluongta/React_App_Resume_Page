@@ -211,7 +211,8 @@ export const Home = ({ className }) => {
 
             <div className="headline" style={{ width: '100%', textAlign: 'center' }}>
               <h1 className="gradientTextStyle" style={{ marginBottom: '10px' }}>I AM A</h1>
-              <h1 className="rotatingTextStyle" style={{ display: 'block', width: '100%' }}>
+              {/* Thêm overflow: 'hidden' và padding để chữ bị cắt mượt mà khi trượt lên, không bị tràn hay nhấp nháy */}
+              <h1 className="rotatingTextStyle" style={{ display: 'block', width: '100%', overflow: 'hidden', padding: '10px 0' }}>
                 <RotatingText
                   texts={textToRotate}
                   mainClassName="rotating-text-highlight"
@@ -257,7 +258,6 @@ export const Home = ({ className }) => {
                 </Link>
               </p>
             </div>
-
 
             <button className="primary-btn btn-led">
               Contact Me
