@@ -616,13 +616,16 @@
 }
 
 @media (max-width: 768px) {
-  body, html {
+
+  body,
+  html {
     overflow-x: hidden;
   }
 
   .home {
     overflow-x: hidden;
   }
+
   .headline {
     display: flex !important;
     flex-direction: row !important;
@@ -647,16 +650,21 @@
   }
 
   .rotatingTextStyle {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: center !important;
 
     width: fit-content !important;
     min-width: 10ch;
 
-    padding: 18px 20px !important;
-    border-radius: 10px;
+    /* padding: 18px 20px !important;
+    border-radius: 10px; */
+    height: 72px !important;
 
+    padding: 0 22px !important;
+
+    border-radius: 14px;
+    overflow: hidden;
     font-size: 1.6rem !important;
     white-space: nowrap;
 
