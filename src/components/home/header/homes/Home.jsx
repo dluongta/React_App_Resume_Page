@@ -183,6 +183,94 @@
 //     </section>
 //   );
 // };
+// import React from 'react';
+// import { Link } from 'react-router-dom';
+// import RotatingText from './RotatingText';
+// import mainImage from '../../../../assets/main.png';
+// import './RotatingText.css';
+// import './Home.css';
+
+// export const Home = ({ className }) => {
+//   const textToRotate = [
+//     "Proficient Programmer",
+//     "Software Developer",
+//     "Hardware Engineer"
+//   ];
+
+//   return (
+//     <section className={`home-left ${className}`}>
+//       <div className="container flex">
+//         <div className="left">
+//           <div className="img">
+//             <img src={mainImage} alt="" />
+//           </div>
+//         </div>
+
+//         <div className="home-right">
+//           <div className="content-inner">
+
+//             <div className="headline" style={{ width: '100%', textAlign: 'center' }}>
+//               <h1 className="gradientTextStyle" style={{ marginBottom: '10px' }}>I AM A</h1>
+//               {/* Thêm overflow: 'hidden' và padding để chữ bị cắt mượt mà khi trượt lên, không bị tràn hay nhấp nháy */}
+//               <h1 className="rotatingTextStyle" style={{ display: 'block', width: '100%', overflow: 'hidden', padding: '10px 0' }}>
+//                 <RotatingText
+//                   texts={textToRotate}
+//                   mainClassName="rotating-text-highlight"
+//                   staggerFrom="last"
+//                   staggerDuration={0.025}
+//                   rotationInterval={3000}
+//                   splitBy="characters"
+//                 />
+//               </h1>
+//             </div>
+
+//             <div className="socialIcon">
+//               <a href="https://www.facebook.com/dluongta" target="_blank" rel="noopener noreferrer">
+//                 <i className="fab fa-facebook-f facebook"></i>
+//               </a>
+//               <a href="https://www.instagram.com/dluongta/" target="_blank" rel="noopener noreferrer">
+//                 <i className="fab fa-instagram instagram"></i>
+//               </a>
+//               <a href="https://www.linkedin.com/in/dinh-luong-ta-940ba2286/" target="_blank" rel="noopener noreferrer">
+//                 <i className="fab fa-linkedin likedin"></i>
+//               </a>
+//               <a href="https://www.youtube.com/@dinhluongta" target="_blank" rel="noopener noreferrer">
+//                 <i className="fab fa-youtube youtube"></i>
+//               </a>
+//               <a href="https://www.tiktok.com/@dluongta_" target="_blank" rel="noopener noreferrer">
+//                 <i className="fab fa-tiktok tiktok"></i>
+//               </a>
+//               <a href="https://github.com/dluongta" target="_blank" rel="noopener noreferrer">
+//                 <i className="fab fa-github github"></i>
+//               </a>
+//             </div>
+
+//             <div className="description-text">
+//               <p>
+//                 I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android, System Software and Application Development. I am also learning about Artificial Intelligence and Hardware.
+//                 I am extremely fascinated by science, engineering and technology. All of my products are from the ULMIND generation, made by DLUONGTA.
+//               </p>
+
+//               <p>
+//                 My Resume:
+//                 <Link to="/dluongta_resume.pdf" target="_blank" className="blue-link">
+//                   Resume Viewer Page
+//                 </Link>
+//               </p>
+//             </div>
+
+//             <button className="primary-btn btn-led">
+//               Contact Me
+//               <span></span><span></span><span></span><span></span>
+//               <span className="line2"></span><span className="line2"></span>
+//               <span className="line2"></span><span className="line2"></span>
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
 import React from 'react';
 import { Link } from 'react-router-dom';
 import RotatingText from './RotatingText';
@@ -191,10 +279,11 @@ import './RotatingText.css';
 import './Home.css';
 
 export const Home = ({ className }) => {
+  // 1. Thay đổi nội dung các từ xoay vòng
   const textToRotate = [
-    "Proficient Programmer",
-    "Software Developer",
-    "Hardware Engineer"
+    "thinking",
+    "coding",
+    "components"
   ];
 
   return (
@@ -202,17 +291,49 @@ export const Home = ({ className }) => {
       <div className="container flex">
         <div className="left">
           <div className="img">
-            <img src={mainImage} alt="" />
+            <img src={mainImage} alt="Dinh Luong Ta Main" />
           </div>
         </div>
 
         <div className="home-right">
           <div className="content-inner">
 
-            <div className="headline" style={{ width: '100%', textAlign: 'center' }}>
-              <h1 className="gradientTextStyle" style={{ marginBottom: '10px' }}>I AM A</h1>
-              {/* Thêm overflow: 'hidden' và padding để chữ bị cắt mượt mà khi trượt lên, không bị tràn hay nhấp nháy */}
-              <h1 className="rotatingTextStyle" style={{ display: 'block', width: '100%', overflow: 'hidden', padding: '10px 0' }}>
+            {/* 2 & 3. Áp dụng Flexbox để 2 phần tử cùng nằm trên 1 hàng */}
+            <div 
+              className="headline" 
+              style={{ 
+                width: '100%', 
+                display: 'flex', 
+                flexDirection: 'row', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                gap: '15px',              
+                flexWrap: 'nowrap' 
+              }}
+            >
+              <h1 
+                className="gradientTextStyle" 
+                style={{ 
+                  margin: '0', 
+                  whiteSpace: 'nowrap',
+                  width: 'auto' 
+                }}
+              >
+                Creative
+              </h1>
+
+              <h1 
+                className="rotatingTextStyle" 
+                style={{ 
+                  margin: '0',
+                  display: 'flex', 
+                  overflow: 'hidden', 
+                  padding: '5px 20px',
+                  whiteSpace: 'nowrap',
+                  width: 'auto',       
+                  borderRadius: '12px'
+                }}
+              >
                 <RotatingText
                   texts={textToRotate}
                   mainClassName="rotating-text-highlight"
@@ -254,7 +375,7 @@ export const Home = ({ className }) => {
               <p>
                 My Resume:
                 <Link to="/dluongta_resume.pdf" target="_blank" className="blue-link">
-                  Resume Viewer Page
+                  {" "}Resume Viewer Page
                 </Link>
               </p>
             </div>
