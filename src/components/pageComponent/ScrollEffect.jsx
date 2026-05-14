@@ -102,7 +102,7 @@ const ScrollEffect = () => {
             padding: '0 20px'
           }}
         >
-          <img
+          {/* <img
             ref={(el) => (devicesRef.current[0] = el)}
             src={ipad}
             alt="Device 1"
@@ -125,7 +125,7 @@ const ScrollEffect = () => {
             src={ipad}
             alt="Device 4"
             style={{ position: 'absolute', width: isMobile ? '110px' : '180px', filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.15))' }}
-          />
+          /> */}
 
           <div
             style={{
