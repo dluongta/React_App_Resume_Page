@@ -123,7 +123,7 @@ export const HomePage = () => {
         <Link to='/contact' id="contact"> Contact </Link>
         <Link to='/galaxy' id="galaxy"> Galaxy </Link>
       </div> */}
-      <ScrollEffect/> 
+      {/* <ScrollEffect/>  */}
       <Home className="reveal" />
       <Branding className="reveal" />
       <About className="reveal" />
