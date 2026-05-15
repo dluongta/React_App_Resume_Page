@@ -2808,29 +2808,22 @@ body {
 .animated-text {
   font-weight: bold;
 
-  background: linear-gradient(
-    120deg,
-    #00aaff 0%,
-    #00aaff 40%,
-    #a855f7 50%,
-    #00aaff 60%,
-    #00aaff 100%
-  );
+  background: linear-gradient(-135deg, #418ae0, #56a0d8, #dc8bc3, #56a0d8, #418ae0, #56a0d8, #dc8bc3, #56a0d8, #418ae0);
   
-  background-size: 200% auto;
+  background-size: 200% 100%;
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  animation: shineText 4s linear infinite;
+  animation: shineText 3s linear infinite;
 }
 
 @keyframes shineText {
   0% {
-    background-position: 100% center;
+    background-position: 0 -100%;
   }
   100% {
-    background-position: -100% center;
+    background-position: -100% 0;
   }
 }
 
