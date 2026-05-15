@@ -2808,12 +2808,22 @@ body {
 .animated-text {
   font-weight: bold;
 
-  background: linear-gradient(
+  /* background: linear-gradient(
     120deg,
     #00aaff 0%,
     #00aaff 40%,
     #a855f7 50%,
     #00aaff 60%,
+    #00aaff 100%
+  ); */
+  background: linear-gradient(
+    120deg,
+    #00aaff 0%,
+    #00aaff 42%,
+    #c084fc 48%,
+    #a855f7 50%,
+    #c084fc 52%,
+    #00aaff 58%,
     #00aaff 100%
   );
 
@@ -2822,7 +2832,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  animation: shineText 2s linear infinite;
+  animation: shineText 3s linear infinite;
 }
 
 @keyframes shineText {
