@@ -318,30 +318,10 @@ export const Home = ({ className }) => {
                   fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
                 }}
               >
-                Creative
+                Creative Mind
               </h1>
 
-              <h1 
-                className="rotatingTextStyle" 
-                style={{ 
-                  margin: '0',
-                  display: 'flex', 
-                  overflow: 'hidden', 
-                  padding: '5px 20px',
-                  whiteSpace: 'nowrap',
-                  width: 'auto',       
-                  borderRadius: '12px'
-                }}
-              >
-                <RotatingText
-                  texts={textToRotate}
-                  mainClassName="rotating-text-highlight"
-                  staggerFrom="last"
-                  staggerDuration={0.025}
-                  rotationInterval={3000}
-                  splitBy="characters"
-                />
-              </h1>
+              
             </div>
 
             <div className="socialIcon">
