@@ -63,66 +63,68 @@ export const Branding = ({ className }) => {
   return (
     <>
       <section
-  className={`branding ${className}`}
-  style={{ marginTop: "100px" }}
->
-  <div
-    className="branding-container"
-    style={{
-      display: "grid",
-      gridTemplateColumns: "repeat(3, 1fr)",
-      gap: "30px",
-      width: "100%",
-      maxWidth: "1200px",
-      margin: "0 auto",
-    }}
-  >
-    {data.map((value) => (
-      <div
-        key={value.id}
-        className="box"
-        style={{
-          display: "flex",
-          gap: "20px",
-          padding: "30px",
-          borderRadius: "20px",
-        }}
+        className={`branding ${className}`}
+        style={{ marginTop: "100px" }}
       >
-        <div className="text">
-          <h1
-            style={{
-              fontSize: "48px",
-              color: "#ffffff",
-              margin: 0,
-            }}
-          >
-            {value.id}
-          </h1>
-        </div>
+        <div
+          className="branding-container"
+          style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
+            gap: "20px",
+            width: "100%",
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: isMobile ? "16px" : "0 16px",
+            boxSizing: "border-box",
+            marginTop: "21px",
+          }}
+        >
+          {data.map((value) => (
+            <div
+              key={value.id}
+              className="box"
+              style={{
+                display: "flex",
+                gap: "30px",
+                padding: isMobile ? "20px 0" : "30px",
+              }}
+            >
+              <div className="text">
+                <h1
+                  style={{
+                    fontSize: "48px",
+                    color: "#ffffff",
+                    margin: 0,
+                  }}
+                >
+                  {value.id}
+                </h1>
+              </div>
 
-        <div className="para">
-          <h2
-            style={{
-              color: "#fff",
-              marginBottom: "10px",
-            }}
-          >
-            {value.heading}
-          </h2>
+              <div className="para">
+                <h2
+                  style={{
+                    color: "#fff",
+                    marginBottom: "10px",
+                  }}
+                >
+                  {value.heading}
+                </h2>
 
-          <p
-            style={{
-              color: "#ccc",
-              lineHeight: "1.6",
-            }}
-          >
-            {value.desc}
-          </p>
+                <p
+                  style={{
+                    color: "#ccc",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  {value.desc}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    ))}
-  </div>
-</section>
+      </section>
       <CurvedLoop
         marqueeText="Be ✦ Creative ✦ With ✦ DLUONGTA ✦ ULMIND ✦"
         speed={10}
@@ -131,7 +133,7 @@ export const Branding = ({ className }) => {
         interactive
         className="custom-text-style"
       />
-<div style={{
+      <div style={{
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
