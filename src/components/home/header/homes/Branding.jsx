@@ -114,7 +114,7 @@ export const Branding = ({ className }) => {
 
                 <p
                   style={{
-                    color: "#ccc",
+                    color: "#fff",
                     lineHeight: "1.6",
                   }}
                 >
