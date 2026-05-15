@@ -655,15 +655,15 @@
     justify-content: center !important;
 
     width: fit-content !important;
-    min-width: 10ch;
+    min-width: 12ch;
 
     /* padding: 18px 20px !important;
     border-radius: 10px; */
-    height: 72px !important;
+    height:80px !important;
 
     padding: 0 22px !important;
 
-    border-radius: 14px;
+    border-radius: 0px;
     overflow: hidden;
     font-size: 1.6rem !important;
     white-space: nowrap;
