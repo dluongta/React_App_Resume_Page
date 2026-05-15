@@ -27,13 +27,13 @@ export const Branding = ({ className }) => {
     },
     {
       id: "02",
-      heading: "Team Management",
-      desc: "Working with team is also an important thing in programming.",
+      heading: "Efficient Performance",
+      desc: "High performance is also important in programming.",
     },
     {
       id: "03",
-      heading: "Creative Mind",
-      desc: "Creativity will be the core to develop programs.",
+      heading: "Outstanding Skills",
+      desc: "Outstanding skills will be the core to develop programs.",
     },
   ];
 
@@ -62,21 +62,67 @@ export const Branding = ({ className }) => {
 
   return (
     <>
-      <section className={`branding ${className}`} style={{ marginTop: "100px" }}>
-        <div className='container grid'>
-          {data.map((value) => (
-            <div key={value.id} className='box flex'>
-              <div className="text">
-                <h1>{value.id}</h1>
-              </div>
-              <div className="para">
-                <h2>{value.heading}</h2>
-                <p>{value.desc}</p>
-              </div>
-            </div>
-          ))}
+      <section
+  className={`branding ${className}`}
+  style={{ marginTop: "100px" }}
+>
+  <div
+    className="branding-container"
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: "30px",
+      width: "100%",
+      maxWidth: "1200px",
+      margin: "0 auto",
+    }}
+  >
+    {data.map((value) => (
+      <div
+        key={value.id}
+        className="box"
+        style={{
+          display: "flex",
+          gap: "20px",
+          padding: "30px",
+          borderRadius: "20px",
+        }}
+      >
+        <div className="text">
+          <h1
+            style={{
+              fontSize: "48px",
+              color: "#ffffff",
+              margin: 0,
+            }}
+          >
+            {value.id}
+          </h1>
         </div>
-      </section>
+
+        <div className="para">
+          <h2
+            style={{
+              color: "#fff",
+              marginBottom: "10px",
+            }}
+          >
+            {value.heading}
+          </h2>
+
+          <p
+            style={{
+              color: "#ccc",
+              lineHeight: "1.6",
+            }}
+          >
+            {value.desc}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
       <CurvedLoop
         marqueeText="Be ✦ Creative ✦ With ✦ DLUONGTA ✦ ULMIND ✦"
         speed={10}

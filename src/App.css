@@ -2919,3 +2919,10 @@ h3.animated-text {
   margin-bottom: 8px !important;
   font-size: 22px !important;
 }
+
+@media screen and (max-width: 768px) {
+  .branding-container {
+    grid-template-columns: 1fr !important;
+    padding: 0 20px;
+  }
+}
