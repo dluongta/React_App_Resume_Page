@@ -138,6 +138,11 @@ export const Pages = () => {
       id: "27",
       link: "https://github.com/luen2003/enhance_image_quality",
       linkName: "Enhance Image Quality",
+    },
+    {
+      id: "28",
+      link: "https://dluongta.github.io/voice_recording.html",
+      linkName: "Voice Recording",
     }
   ];
   return (

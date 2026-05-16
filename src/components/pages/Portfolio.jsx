@@ -162,6 +162,11 @@ export const Portfolio = () => {
       id: "32",
       link: "https://github.com/luen2003/enhance_image_quality",
       linkName: "Enhance Image Quality",
+    },
+    {
+      id: "33",
+      link: "https://dluongta.github.io/voice_recording.html",
+      linkName: "Voice Recording",
     }
   ];
   return (
