@@ -895,7 +895,7 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  height: 170vh;
+  height: 168vh;
   width: 80%;
   margin-top: 80px;
   box-sizing: border-box;
@@ -2924,4 +2924,12 @@ h3.animated-text {
     grid-template-columns: 1fr !important;
     padding: 0px;
   }
+}
+
+.cards-wrapper{
+  margin-top: -8px !important;
+}
+
+.pdf-container {
+  margin-top: -8px !important;
 }
