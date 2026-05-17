@@ -121,8 +121,8 @@ export const Pages = () => {
     },
     {
       id: "24",
-      link: "https://dluongta.github.io/flipcard3d.html",
-      linkName: "3D PDF Flipbook",
+      link: "https://dluongta.github.io/3dflipcard.html",
+      linkName: "3D Flip Card",
     },
     {
       id: "25",
