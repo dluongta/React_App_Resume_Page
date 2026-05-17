@@ -150,7 +150,7 @@ export const Branding = ({ className }) => {
         <CircularText text="DLUONGTA ✦ FUTURE ✦ CREATIVE ✦ " color="#FFA500" onHover="speedUp" />
         <CircularText text="FANTASTIC ✦ SOFTWARE ✦ DEVELOPER ✦ " color="#FFA500" onHover="speedUp" />
         <CircularText text="SKILLED ✦ HARDWARE ✦ ENGINEER ✦ " color="#FFA500" onHover="speedUp" />
-        <CircularText text="MODERN ✦ DIGITAL ✦ SYSTEMS ✦ " color="#FFA500" onHover="speedUp" />
+        <CircularText text="DIGITAL ✦ ULMIND ✦ SYSTEMS ✦ " color="#FFA500" onHover="speedUp" />
       </div>      {/* {!isMobile && (
         <div style={{
           position: 'relative',
