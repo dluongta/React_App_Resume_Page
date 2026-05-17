@@ -911,23 +911,6 @@ iframe {
   object-fit: contain;
 }
 
-@media (max-width: 768px) {
-  .pdf-container {
-    padding: 20px;
-    margin-top: 100px;
-    height: 50vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .pdf {
-    height: 100vh;
-    width: 90%;
-    max-height: 550px;
-    margin: 0 auto;
-  }
-}
 
 .reveal {
   opacity: 0;
@@ -2940,3 +2923,25 @@ h3.animated-text {
     padding-bottom: 300px!important;
 }
 
+@media (max-width: 768px) {
+  .pdf-container {
+    padding: 20px;
+    margin-top: 100px;
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pdf {
+    height: 100vh;
+    width: 90%;
+    max-height: 550px;
+    margin: 0 auto;
+  }
+  .contact{
+    min-height: 20vh!important;
+    padding: 0px !important;
+    margin-bottom: 0px !important;
+  }
+}

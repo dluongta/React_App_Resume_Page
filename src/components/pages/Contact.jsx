@@ -11,7 +11,7 @@ export const Contact = () => {
                 />
             </div>
 
-            <div style={{ height: '120px' }} />
+            <div className="spacer" style={{ height: '120px' }} />
         </section>
     );
 };
