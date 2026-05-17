@@ -172,6 +172,11 @@ export const Portfolio = () => {
       id: "34",
       link: "https://dluongta.github.io/video_recording.html",
       linkName: "Video Recording",
+    },
+    {
+      id: "35",
+      link: "https://dluongta.github.io/spin_wheel.html",
+      linkName: "Spin Wheel",
     }
   ];
   return (
