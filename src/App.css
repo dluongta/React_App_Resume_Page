@@ -895,7 +895,7 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  height: 170vh;
+  height: 180vh;
   width: 80%;
   margin-top: 80px;
   box-sizing: border-box;
@@ -1861,7 +1861,9 @@ section.contact {
   min-height: 80vh;
   min-width: 100vw !important;
 }
-
+section.contact {
+  margin-bottom: 54px !important;
+}
 .cards-wrapper {
   width: 100%;
   display: flex;
