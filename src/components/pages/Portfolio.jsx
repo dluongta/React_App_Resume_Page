@@ -167,6 +167,11 @@ export const Portfolio = () => {
       id: "33",
       link: "https://dluongta.github.io/voice_recording.html",
       linkName: "Voice Recording",
+    },
+    {
+      id: "34",
+      link: "https://dluongta.github.io/video_recording.html",
+      linkName: "Video Recording",
     }
   ];
   return (

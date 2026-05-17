@@ -143,6 +143,11 @@ export const Pages = () => {
       id: "28",
       link: "https://dluongta.github.io/voice_recording.html",
       linkName: "Voice Recording",
+    },
+    {
+      id: "29",
+      link: "https://dluongta.github.io/video_recording.html",
+      linkName: "Video Recording",
     }
   ];
   return (
