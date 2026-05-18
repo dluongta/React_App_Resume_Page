@@ -2979,8 +2979,8 @@ h3.animated-text {
   width: 53vw;
   margin-left: 0px !important;
   margin-right: 0px !important;
-  margin-bottom: 88px !important;
-  margin-top: 82px !important;
+  margin-bottom: 98px !important;
+  margin-top: 50px !important;
 
 }
 }
@@ -3010,9 +3010,14 @@ h3.animated-text {
   }
 }
 
-html,
-body,
-#root {
+.sub-root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body.sub-root,
+#root.sub-root {
   width: 100%;
   margin: 0;
   padding: 0;

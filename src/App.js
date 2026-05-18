@@ -22,23 +22,26 @@ const AppContent = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const root = document.getElementById('root');
+  const root = document.getElementById('root');
 
-    const enableRootStyle =
-      location.pathname.startsWith('/pages') ||
-      location.pathname.startsWith('/portfolio') ||
-      location.pathname.startsWith('/blog');
+  const enableRootStyle =
+    location.pathname.startsWith('/pages') ||
+    location.pathname.startsWith('/portfolio') ||
+    location.pathname.startsWith('/blog');
 
-    if (enableRootStyle) {
-      root.classList.add('sub-root');
-    } else {
-      root.classList.remove('sub-root');
-    }
+  if (enableRootStyle) {
+    root.classList.add('sub-root');
+    document.body.classList.add('sub-root');
+  } else {
+    root.classList.remove('sub-root');
+    document.body.classList.remove('sub-root');
+  }
 
-    return () => {
-      root.classList.remove('sub-root');
-    };
-  }, [location.pathname]);
+  return () => {
+    root.classList.remove('sub-root');
+    document.body.classList.remove('sub-root');
+  };
+}, [location.pathname]);
 
   return (
     <>
