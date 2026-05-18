@@ -756,17 +756,17 @@ footer .fa-github:hover {
   }
 }
 
-.pages,
+/* .pages,
 .blog,
 .portfolio {
   margin-left: 30px;
-}
+} */
 
 .pages .card {
   background-color: aliceblue;
   padding: 10px;
   margin-bottom: 15px;
-  width: 90%;
+  width: 100%;
   min-height: 50vh;
   border-radius: 10px;
   border-style: none;
@@ -1853,16 +1853,17 @@ footer .socialIcon {
 
 section.blog,
 section.pages,
-section.portfolio,
-section.contact {
+section.portfolio {
   padding: 24px !important;
-  margin: 0 auto !important;
+  margin: 24px auto !important;
   box-sizing: border-box;
   min-height: 80vh;
   min-width: 100vw !important;
 }
 section.contact {
-  margin-bottom: 54px !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  padding-bottom: 30px !important;
 }
 .cards-wrapper {
   width: 100%;
@@ -2912,11 +2913,13 @@ h3.animated-text {
 }
 
 .cards-wrapper{
-  margin-top: -8px !important;
+  margin-top: 40px !important;
+  width: 90% !important;
+  margin: 0 auto !important;
 }
 
 .pdf-container {
-  margin-top: -8px !important;
+  margin-top: 22px !important;
 }
 
 
@@ -2952,4 +2955,14 @@ h3.animated-text {
     padding: 0px !important;
     margin-bottom: 0px !important;
   }
+}
+
+
+html,
+body,
+#root {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
