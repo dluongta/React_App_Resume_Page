@@ -754,8 +754,16 @@ footer .fa-github:hover {
     margin-top: 60px;
     margin-bottom: -30px;
   }
+  .pages .card, .blog .card, .portfolio .card {
+    width: 100%!important;
+  }
 }
 
+/* .pages,
+.blog,
+.portfolio {
+  margin-left: 30px;
+} */
 
 .pages .card {
   background-color: aliceblue;
@@ -2904,7 +2912,7 @@ h3.animated-text {
 
 .cards-wrapper{
   margin-top: 40px !important;
-  margin-left: 5px !important;
+  margin-left: 6px !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -2914,7 +2922,7 @@ h3.animated-text {
   }
   .cards-wrapper{
     margin-top: 40px !important;
-    margin-left: 11.5px !important;
+    margin-left: 12px !important;
   }
 }
 
@@ -2923,7 +2931,9 @@ h3.animated-text {
   width: 90% !important;
   margin: 0 auto !important;
 } */
-
+.cards-wrapper{
+  margin-top: 40px !important;
+}
 
 .pdf-container {
   margin-top: 22px !important;
@@ -2964,16 +2974,11 @@ h3.animated-text {
   }
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
 
-#root.sub-root {
+html,
+body,
+#root {
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  box-sizing: border-box;
 }
