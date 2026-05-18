@@ -2955,13 +2955,15 @@ h3.animated-text {
   width: 90% !important;
   margin: 0 auto !important;
 } */
+ @media (min-width: 768px) {
+
 .cards-wrapper {
   margin-top: 40px !important;
 }
 
 .pdf-container {
   margin-top: 22px !important;
-  padding-bottom: 72px !important;
+  padding-bottom: 62px !important;
   padding-top: 32px !important;
   height: 200vh !important;
 }
@@ -2981,11 +2983,12 @@ h3.animated-text {
   margin-top: 82px !important;
 
 }
-
+}
 @media (max-width: 768px) {
   .pdf-container {
     padding: 20px;
-    margin-top: 100px;
+    margin-top: 80px;
+    margin-bottom: 80px;
     height: 50vh;
     width: 100%;
     display: flex;
