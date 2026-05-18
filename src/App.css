@@ -2925,6 +2925,12 @@ h3.animated-text {
     padding-bottom: 300px!important;
 }
 
+  .pdf {
+    height: 163vh;
+    width: 53vw;
+    margin: 0 auto;
+  }
+
 @media (max-width: 768px) {
   .pdf-container {
     padding: 20px;
