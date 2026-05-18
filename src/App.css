@@ -766,7 +766,7 @@ footer .fa-github:hover {
   background-color: aliceblue;
   padding: 10px;
   margin-bottom: 15px;
-  width: 100%;
+  width: 90%;
   min-height: 50vh;
   border-radius: 10px;
   border-style: none;
@@ -1855,10 +1855,11 @@ section.blog,
 section.pages,
 section.portfolio {
   padding: 24px !important;
-  margin: 24px auto !important;
+  margin: 25px auto !important;
   box-sizing: border-box;
   min-height: 80vh;
   min-width: 100vw !important;
+  margin-left: -12px !important;
 }
 section.contact {
   margin-top: 0px !important;
@@ -2557,14 +2558,15 @@ body {
   width: 100%;
 }
 
-.pages,
+/* .pages,
 .blog,
 .portfolio,
 .galaxy,
 .galaxy-page {
   margin-left: 0 !important;
   padding-left: 0 !important;
-}
+  margin: 0 auto !important;
+} */
 
 .galaxy-page {
   width: 100vw !important;
