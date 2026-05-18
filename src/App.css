@@ -2907,14 +2907,19 @@ h3.animated-text {
   font-size: 22px !important;
 }
 
+.cards-wrapper{
+  margin-top: 40px !important;
+  margin-left: 5px !important;
+}
+
 @media screen and (max-width: 768px) {
   .branding-container {
     grid-template-columns: 1fr !important;
     padding: 0px;
   }
   .cards-wrapper{
-  margin-left: 3px !important;
-  margin-right: auto !important;
+    margin-top: 40px !important;
+    margin-left: 11.5px !important;
   }
 }
 
@@ -2923,9 +2928,7 @@ h3.animated-text {
   width: 90% !important;
   margin: 0 auto !important;
 } */
-.cards-wrapper{
-  margin-top: 40px !important;
-}
+
 
 .pdf-container {
   margin-top: 22px !important;
@@ -2973,4 +2976,5 @@ body,
   width: 100%;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
