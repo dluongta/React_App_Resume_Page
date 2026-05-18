@@ -2912,12 +2912,19 @@ h3.animated-text {
     grid-template-columns: 1fr !important;
     padding: 0px;
   }
+  .cards-wrapper{
+  margin-left: 3px !important;
+  margin-right: auto !important;
+  }
 }
 
-.cards-wrapper{
+/* .cards-wrapper{
   margin-top: 40px !important;
   width: 90% !important;
   margin: 0 auto !important;
+} */
+.cards-wrapper{
+  margin-top: 40px !important;
 }
 
 .pdf-container {
