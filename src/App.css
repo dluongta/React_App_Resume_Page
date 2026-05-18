@@ -2972,8 +2972,10 @@ h3.animated-text {
 .pdf {
   height: 163vh;
   width: 53vw;
-  margin: 0 auto;
-  margin-bottom: 23px !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  margin-bottom: 88px !important;
+  margin-top: 32px !important;
 }
 
 @media (max-width: 768px) {
