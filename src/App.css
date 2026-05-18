@@ -2962,9 +2962,10 @@ h3.animated-text {
 }
 
 .pdf-container {
-  margin-top: 8px !important;
-  padding-bottom: 58px !important;
-  padding-top: 32px !important;
+  margin-top: -16px !important;
+  margin-bottom: -40px !important;
+  padding-bottom: 48px !important;
+  padding-top: 30px !important;
   height: 200vh !important;
 }
 
