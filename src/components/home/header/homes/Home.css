@@ -534,7 +534,8 @@
   }
 
   .gradientTextStyle {
-    font-size: 3.6rem !important;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
   }
 }
 
@@ -639,7 +640,8 @@
   }
 
   .gradientTextStyle {
-    font-size: 2.3rem !important;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
     line-height: 1 !important;
 
     margin: 8px !important;
