@@ -318,10 +318,9 @@ export const Home = ({ className }) => {
                   fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
                 }}
               >
-                Creative Mind
+                DLUONGTA
               </h1>
 
-              
             </div>
 
             <div className="socialIcon">
