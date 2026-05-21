@@ -29,7 +29,9 @@ const CurvedLoop = ({
   const dragRef = useRef(false);
   const lastXRef = useRef(0);
   const dirRef = useRef(direction);
-  const velRef = useRef(0);
+  
+  // THAY ĐỔI 1: Thay vì lưu vận tốc cuối, lưu tổng quãng đường đã kéo
+  const totalDragXRef = useRef(0); 
 
   const totalText = spacing
     ? Array(Math.ceil(1800 / spacing) + 2).fill(text).join('')
@@ -75,6 +77,7 @@ const CurvedLoop = ({
     if (!interactive) return;
     dragRef.current = true;
     lastXRef.current = e.clientX;
+    totalDragXRef.current = 0; // THAY ĐỔI 2: Reset tổng quãng đường khi bắt đầu click
     e.target.setPointerCapture(e.pointerId);
   };
 
@@ -82,6 +85,8 @@ const CurvedLoop = ({
     if (!interactive || !dragRef.current || !textPathRef.current) return;
     const dx = e.clientX - lastXRef.current;
     lastXRef.current = e.clientX;
+    
+    totalDragXRef.current += dx; // THAY ĐỔI 3: Cộng dồn quãng đường kéo
 
     let current = parseFloat(textPathRef.current.getAttribute('startOffset'));
     let next = current + dx;
@@ -90,12 +95,15 @@ const CurvedLoop = ({
     if (next > 0) next -= spacing;
 
     textPathRef.current.setAttribute('startOffset', next + 'px');
-    velRef.current = dx;
   };
 
   const endDrag = () => {
     dragRef.current = false;
-    dirRef.current = velRef.current > 0 ? 'right' : 'left';
+    
+    // THAY ĐỔI 4: Chỉ đổi hướng nếu kéo nhiều hơn 10px (tránh lỗi khi chỉ click)
+    if (Math.abs(totalDragXRef.current) > 10) {
+      dirRef.current = totalDragXRef.current > 0 ? 'right' : 'left';
+    }
   };
 
   return (
@@ -107,45 +115,44 @@ const CurvedLoop = ({
       onPointerLeave={endDrag}
     >
       <svg className="curved-loop-svg" viewBox="0 0 1440 120">
-  <defs>
-    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stopColor="#00e5ff">
-        <animate attributeName="offset" values="0;1" dur="6s" repeatCount="indefinite" />
-      </stop>
-      <stop offset="50%" stopColor="#7b2cff">
-        <animate attributeName="offset" values="0.5;1.5" dur="6s" repeatCount="indefinite" />
-      </stop>
-      <stop offset="100%" stopColor="#ff3cac">
-        <animate attributeName="offset" values="1;2" dur="6s" repeatCount="indefinite" />
-      </stop>
-    </linearGradient>
+        <defs>
+          <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#00e5ff">
+              <animate attributeName="offset" values="0;1" dur="6s" repeatCount="indefinite" />
+            </stop>
+            <stop offset="50%" stopColor="#7b2cff">
+              <animate attributeName="offset" values="0.5;1.5" dur="6s" repeatCount="indefinite" />
+            </stop>
+            <stop offset="100%" stopColor="#ff3cac">
+              <animate attributeName="offset" values="1;2" dur="6s" repeatCount="indefinite" />
+            </stop>
+          </linearGradient>
 
-    <path id={pathId} d={pathD} fill="none" />
-  </defs>
+          <path id={pathId} d={pathD} fill="none" />
+        </defs>
 
-  <text
-    ref={measureRef}
-    style={{ visibility: 'hidden' }}
-    xmlSpace="preserve"
-  >
-    {text}
-  </text>
+        <text
+          ref={measureRef}
+          style={{ visibility: 'hidden' }}
+          xmlSpace="preserve"
+        >
+          {text}
+        </text>
 
-  <text
-    className={className}
-    fill="url(#textGradient)"
-    fontWeight="800"
-  >
-    <textPath
-      ref={textPathRef}
-      href={`#${pathId}`}
-      startOffset={offset}
-    >
-      {totalText}
-    </textPath>
-  </text>
-</svg>
-
+        <text
+          className={className}
+          fill="url(#textGradient)"
+          fontWeight="800"
+        >
+          <textPath
+            ref={textPathRef}
+            href={`#${pathId}`}
+            startOffset={offset}
+          >
+            {totalText}
+          </textPath>
+        </text>
+      </svg>
     </div>
   );
 };
