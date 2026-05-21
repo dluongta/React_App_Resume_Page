@@ -318,7 +318,7 @@ export const Home = ({ className }) => {
                   fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
                 }}
               >
-                DLUONGTA
+                DINHLUONGTA
               </h1>
 
             </div>
