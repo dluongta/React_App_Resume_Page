@@ -125,14 +125,14 @@ export const Branding = ({ className }) => {
           ))}
         </div>
       </section>
-      <CurvedLoop
+      {/* <CurvedLoop
         marqueeText="Be ✦ Creative ✦ With ✦ DLUONGTA ✦ ULMIND ✦"
         speed={10}
         curveAmount={400}
         direction="right"
         interactive
         className="custom-text-style"
-      />
+      /> */}
       <div style={{
         display: 'flex',
         justifyContent: 'center',
