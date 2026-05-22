@@ -3043,7 +3043,8 @@ body.sub-root,
 }
 
 .nav-links li {
-    margin: 5px!important;
+    margin: 8px!important;
+    margin-right: 22px!important;
 }
 .nav-links{
     margin-right: 24px!important;
