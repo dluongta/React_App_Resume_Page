@@ -9,12 +9,31 @@ export const Footer = () => {
     if (el) el.textContent = year;
   }, []);
 
-  const currentDate = new Date().toLocaleDateString('en-GB', {
-    day: '2-digit',
-    month: 'long',
-    year: 'numeric',
-  });
+  // const currentDate = new Date().toLocaleDateString('en-GB', {
+  //   day: '2-digit',
+  //   month: 'long',
+  //   year: 'numeric',
+  // });
+  // Hàm xử lý lấy hậu tố (st, nd, rd, th) cho ngày
+  const getOrdinalSuffix = (day) => {
+    if (day > 3 && day < 21) return 'th'; // Các ngày từ 4 đến 20 đều là 'th'
+    switch (day % 10) {
+      case 1: return "st";
+      case 2: return "nd";
+      case 3: return "rd";
+      default: return "th";
+    }
+  };
 
+  // Tạo định dạng ngày tháng chuẩn Anh-Mỹ có hậu tố
+  const today = new Date();
+  const dayNum = today.getDate();
+  const suffix = getOrdinalSuffix(dayNum);
+  const monthName = today.toLocaleDateString('en-US', { month: 'long' }); // Ví dụ: "May"
+  const yearNum = today.getFullYear();
+
+  // Kết quả ra dạng: "22nd May 2026" (Chuẩn Anh) hoặc bạn có thể đổi vị trí thành `${monthName} ${dayNum}${suffix}, ${yearNum}` (Chuẩn Mỹ)
+  const currentDate = `${dayNum}${suffix} ${monthName} ${yearNum}`;
   return (
     <footer>
       <div className="container grid1">
