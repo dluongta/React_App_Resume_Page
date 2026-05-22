@@ -23,6 +23,12 @@
   margin-top: 25vh;
 }
 
+@media only screen and (max-width: 768px) {
+  .textContainer {
+    margin-top: 0vh;
+  }
+}
+
 .revealLine {
   font-size: clamp(1.5rem, 8vw, 5rem);
   font-weight: 800;
