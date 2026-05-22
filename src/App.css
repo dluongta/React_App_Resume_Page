@@ -3043,7 +3043,10 @@ body.sub-root,
 }
 
 .nav-links li {
-    margin: 10px;
+    margin: 5px!important;
+}
+.nav-links{
+    margin-right: 24px!important;
 }
 
 .socialIcon i {
