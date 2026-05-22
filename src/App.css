@@ -164,7 +164,7 @@ header.active {
 }
 
 .topMargin {
-  margin-top: 80px;
+  margin-top: 10px;
 }
 
 .home {
@@ -3022,4 +3022,8 @@ body.sub-root,
   width: 100%;
   margin: 0;
   padding: 0;
+}
+
+.bottomMargin{
+  margin-bottom: 75px !important;
 }

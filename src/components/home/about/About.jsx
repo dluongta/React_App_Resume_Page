@@ -16,7 +16,7 @@ export const About = ({ className = "" }) => {
     <>
       <Carousel />
 
-      <section className={`about topMargin ${className}`}>
+      <section className={`about topMargin bottomMargin ${className}`}>
         <div className="container flex">
           {data.map((value) => (
             <React.Fragment key={value.id}>
