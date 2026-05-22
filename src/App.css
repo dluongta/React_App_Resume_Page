@@ -2813,7 +2813,7 @@ body {
 .animated-text {
   font-weight: bold;
 
-  background: linear-gradient(-135deg, #418ae0, #56a0d8, #dc8bc3, #56a0d8, #418ae0, #56a0d8, #dc8bc3, #56a0d8, #418ae0);
+  background: linear-gradient(-135deg, #006deb, #006deb, #dc8bc3, #006deb, #006deb, #006deb, #dc8bc3, #006deb, #006deb);
 
   background-size: 200% 100%;
 

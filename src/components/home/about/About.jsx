@@ -49,7 +49,7 @@ export const About = ({ className = "" }) => {
               </div>
 
 
-              <div className="right">
+              {/* <div className="right">
                 <div className="img">
                   <img
                     src={value.cover}
@@ -58,7 +58,7 @@ export const About = ({ className = "" }) => {
                     height="400"
                   />
                 </div>
-              </div>
+              </div> */}
 
             </React.Fragment>
           ))}
