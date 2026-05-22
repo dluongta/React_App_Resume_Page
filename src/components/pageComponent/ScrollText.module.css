@@ -20,12 +20,12 @@
   gap: 2rem;
   width: 100%;
   max-width: 1200px;
-  margin-top: 25vh;
+  margin-top: 28vh;
 }
 
 @media only screen and (max-width: 768px) {
   .textContainer {
-    margin-top: 0vh;
+    margin-top: -2rem;
   }
 }
 

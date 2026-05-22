@@ -42,10 +42,10 @@
   -webkit-text-fill-color: transparent;
 
   will-change: background-image;
-  margin-top: 0rem;
+  margin-top: -3rem;
 }
 @media only screen and (max-width: 768px) {
   .revealText {
-    margin-top: -9rem;
+    margin-top: -11rem;
   }
 }
