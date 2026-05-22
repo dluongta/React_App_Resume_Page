@@ -216,10 +216,10 @@ header.active {
 }
 
 .socialIcon i {
-  width: 35px;
-  height: 35px;
+  width: 28px;
+  height: 28px;
   text-align: center;
-  line-height: 35px;
+  line-height: 28px;
   margin-right: 10px;
   border-radius: 50%;
   transition: 0.5s;
@@ -1912,6 +1912,7 @@ section.contact {
   padding: 10px 15px;
   cursor: pointer;
   overflow: hidden;
+  margin-right: 20px;
 }
 
 .nav-links li a {
@@ -2670,7 +2671,7 @@ body:has(.galaxy-page) .container {
 footer .socialIcon {
   display: flex !important;
   flex-wrap: wrap !important;
-  gap: 15px 6px !important;
+  gap: 15px 2px !important;
   align-items: center !important;
   justify-content: flex-start !important;
   margin-top: 15px !important;
@@ -3041,6 +3042,17 @@ body.sub-root,
   z-index: 999;
 }
 
-/* .icon a:hover {
-  color: #ffdd57;
-} */
+.nav-links li {
+    margin: 10px;
+}
+
+.socialIcon i {
+  width: 34px!important;
+  height: 34px!important;
+  text-align: center;
+  line-height: 34px!important;
+  margin-right: 10px;
+  border-radius: 50%;
+  transition: 0.5s;
+  cursor: pointer;
+}

@@ -64,11 +64,11 @@ export const Header = () => {
                             <li className={isActive('/portfolio') ? 'active-link' : ''}><Link to="/portfolio">Portfolio</Link></li>
                             <li className={isActive('/contact') ? 'active-link' : ''}><Link to="/contact">Contact</Link></li>
                             {/* <li className={isActive('/galaxy') ? 'active-link' : ''}><Link to="/galaxy">Galaxy</Link></li> */}
-                            <li className="icon">
+                            {/* <li className="icon">
                                 <SearchIcon className="HeaderIcon" />
                                 <DevicesIcon className="HeaderIcon" />
                                 <GridViewIcon className="HeaderIcon" />
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
 
