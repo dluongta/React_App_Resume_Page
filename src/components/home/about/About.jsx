@@ -1,5 +1,4 @@
 import React from 'react';
-import contactImage from '../../../assets/contact-img.png';
 import Carousel from './Carousel';
 
 export const About = ({ className = "" }) => {
@@ -8,7 +7,7 @@ export const About = ({ className = "" }) => {
       id: 1,
       title: "Who I Am And What I Do",
       desc: "I'm a skilled programmer, fascinated by science, engineering and technology.",
-      cover: contactImage,
+      // cover: contactImage,
     },
   ];
 
