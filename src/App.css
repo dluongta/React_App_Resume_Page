@@ -168,10 +168,10 @@ header.active {
 }
 
 .bottomMargin-1 {
-  margin-bottom: 30px!important;
+  margin-bottom: 34px!important;
   padding-bottom: 40px!important;
-  margin-top: -20px!important;
-  padding-top: -20px!important;
+  margin-top: -32px!important;
+  padding-top: -32px!important;
 }
 
 .home {
@@ -2934,7 +2934,7 @@ h3.animated-text {
 }
 
 .heading.animated-text{
-  margin-top: -20px !important;
+  margin-top: -24px !important;
   margin-bottom: 68px !important;
   font-size: 22px !important;
 }
@@ -3017,7 +3017,9 @@ h3.animated-text {
     margin-bottom: 0px !important;
   }
   .animated-text.bottomMargin-1{
-    padding-top: 30px !important;
+    padding-top: 55px !important;
+    padding-bottom: 0px !important;
+    margin-bottom: 60px !important;
   }
 
 }
