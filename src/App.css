@@ -2934,8 +2934,10 @@ h3.animated-text {
 }
 
 .heading.animated-text{
-  margin-top: -4px !important;
-  margin-bottom: 122px !important;
+  margin-top: 0px !important;
+  padding-top: 2px !important;
+  margin-bottom: 128px !important;
+  padding-bottom: 10px !important;
   font-size: 22px !important;
 }
 
@@ -3025,7 +3027,7 @@ h3.animated-text {
   .heading.animated-text{
   margin-top: 0px !important;
   padding-top: 8px !important;
-  padding-bottom: 10px !important;
+  padding-bottom: 12px !important;
   font-size: 22px !important;
 }
 
