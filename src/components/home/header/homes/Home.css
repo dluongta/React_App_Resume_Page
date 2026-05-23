@@ -439,7 +439,7 @@
   justify-content: center;
 }
 
-.gradientTextStyle {
+/* .gradientTextStyle {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800;
   background: linear-gradient(94deg,
@@ -448,7 +448,7 @@
       #ad29e3 66.74%,
       #6e0ef3 100.96%);
   -webkit-text-fill-color: transparent;
-}
+} */
 
 .rotating-text-highlight {
   display: inline-block;
@@ -466,6 +466,43 @@
 
 @keyframes gradientMove {
   0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.carousel_carousel_item {
+  display: inline-block;
+
+  background: linear-gradient(
+    90deg,
+    #FF8800
+    #A033FF,
+    #0088FF,
+    #FF5C87,
+    #FF8800
+  );
+
+  background-size: 300% 100%;
+  background-repeat: repeat;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  animation: gradientMove 4s linear infinite;
+
+  font-weight: 800;
+  font-size: clamp(1.5rem, 5vw, 3.5rem);
+}
+
+@keyframes gradientMove {
+  0% {
     background-position: 300% 50%;
   }
 
@@ -475,19 +512,6 @@
 }
 
 /* .carousel_carousel_item {
-  background: linear-gradient(90deg, #FF8800, #A033FF, #0088FF, #FF5C87);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  animation: gradientMove 6s linear infinite;
-  font-weight: 800;
-  font-size: clamp(1.5rem, 5vw, 3.5rem);
-  text-align: center;
-} */
-
-.carousel_carousel_item {
   font-weight: 800;
   font-size: clamp(1.5rem, 5vw, 3.5rem);
   text-align: center;
@@ -509,7 +533,7 @@
   display: inline-block;
   
   background-size: 100% 100%;
-}
+} */
 
 .description-text {
   margin: 20px 0;
@@ -565,10 +589,11 @@
 
 .gradientTextStyle {
   background-image: linear-gradient(94deg,
-      #fe954a 6.06%,
+      #ad29e3 6.06%,
       #f84063 34.53%,
-      #ad29e3 66.74%,
-      #6e0ef3 100.96%);
+      #fe954a 66.74%,
+      #fe954a 100.96%,
+      #6e0ef3 106.06%);
 
   background-clip: text;
   -webkit-background-clip: text;
