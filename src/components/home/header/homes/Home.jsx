@@ -271,7 +271,107 @@
 //     </section>
 //   );
 // };
-import React from 'react';
+// import React from 'react';
+// import { Link } from 'react-router-dom';
+// import RotatingText from './RotatingText';
+// import mainImage from '../../../../assets/main.png';
+// import './RotatingText.css';
+// import './Home.css';
+
+// export const Home = ({ className }) => {
+//   const textToRotate = [
+//     "thinking",
+//     "coding",
+//     "components"
+//   ];
+
+//   return (
+//     <section className={`home-left ${className}`}>
+//       <div className="container flex">
+//         <div className="left">
+//           <div className="img">
+//             <img src={mainImage} alt="Dinh Luong Ta Main" />
+//           </div>
+//         </div>
+
+//         <div className="home-right">
+//           <div className="content-inner">
+
+//             <div 
+//               className="headline" 
+//               style={{ 
+//                 width: '100%', 
+//                 display: 'flex', 
+//                 flexDirection: 'row', 
+//                 justifyContent: 'center', 
+//                 alignItems: 'center', 
+//                 gap: '15px',              
+//                 flexWrap: 'nowrap' 
+//               }}
+//             >
+//               <h1 
+//                 className="gradientTextStyle" 
+//                 style={{ 
+//                   margin: '0', 
+//                   whiteSpace: 'nowrap',
+//                   width: 'auto' ,
+//                   fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+//                 }}
+//               >
+//                 DINHLUONGTA
+//               </h1>
+
+//             </div>
+
+//             <div className="socialIcon">
+//               <a href="https://www.facebook.com/dluongta" target="_blank" rel="noopener noreferrer">
+//                 <i className="fab fa-facebook-f facebook"></i>
+//               </a>
+//               <a href="https://www.instagram.com/dluongta/" target="_blank" rel="noopener noreferrer">
+//                 <i className="fab fa-instagram instagram"></i>
+//               </a>
+//               <a href="https://www.linkedin.com/in/dinh-luong-ta-940ba2286/" target="_blank" rel="noopener noreferrer">
+//                 <i className="fab fa-linkedin likedin"></i>
+//               </a>
+//               <a href="https://www.youtube.com/@dinhluongta" target="_blank" rel="noopener noreferrer">
+//                 <i className="fab fa-youtube youtube"></i>
+//               </a>
+//               <a href="https://www.tiktok.com/@dluongta_" target="_blank" rel="noopener noreferrer">
+//                 <i className="fab fa-tiktok tiktok"></i>
+//               </a>
+//               <a href="https://github.com/dluongta" target="_blank" rel="noopener noreferrer">
+//                 <i className="fab fa-github github"></i>
+//               </a>
+//             </div>
+
+//             <div className="description-text">
+//               <p>
+//                 I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android, System Software and Application Development. I am also learning about Artificial Intelligence and Hardware.
+//                 I am extremely fascinated by science, engineering and technology. All of my products are from the ULMIND generation, made by DLUONGTA.
+//               </p>
+
+//               <p>
+//                 My Resume:
+//                 <Link to="/dluongta_resume.pdf" target="_blank" className="blue-link">
+//                   {" "}Resume Viewer Page
+//                 </Link>
+//               </p>
+//             </div>
+
+//             <button className="primary-btn btn-led">
+//               Contact Me
+//               <span></span><span></span><span></span><span></span>
+//               <span className="line2"></span><span className="line2"></span>
+//               <span className="line2"></span><span className="line2"></span>
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import RotatingText from './RotatingText';
 import mainImage from '../../../../assets/main.png';
@@ -279,11 +379,34 @@ import './RotatingText.css';
 import './Home.css';
 
 export const Home = ({ className }) => {
-  const textToRotate = [
-    "thinking",
-    "coding",
-    "components"
+  const originalToRotate = [
+    "DINHLUONGTA",
+    "Software Developer",
+    "Hardware Engineer"
   ];
+  
+  const [toRotate, setToRotate] = useState([...originalToRotate, originalToRotate[0]]);
+  const [currentLineIndex, setCurrentLineIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (currentLineIndex === toRotate.length - 1) {
+        setIsTransitioning(false);
+        setCurrentLineIndex(0);
+
+        setTimeout(() => {
+          setIsTransitioning(true);
+          setCurrentLineIndex(1);
+        }, 20);
+      } else {
+        setIsTransitioning(true);
+        setCurrentLineIndex((prevIndex) => prevIndex + 1);
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [currentLineIndex, toRotate.length]);
 
   return (
     <section className={`home-left ${className}`}>
@@ -310,17 +433,33 @@ export const Home = ({ className }) => {
               }}
             >
               <h1 
-                className="gradientTextStyle" 
                 style={{ 
                   margin: '0', 
                   whiteSpace: 'nowrap',
                   width: 'auto' ,
-                  fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+                  fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+                  marginBottom: '-30px'
                 }}
               >
-                DINHLUONGTA
+                <div className="carousel_carousel_container">
+                  <div
+                    className="carousel_carousel"
+                    style={{
+                      transform: `translateY(-${currentLineIndex * 25}%)`,
+                      transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
+                    }}
+                  >
+                    {toRotate.map((text, index) => (
+                      <div
+                        key={index}
+                        className="carousel_carousel_item gradientTextStyle"
+                      >
+                        {text}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </h1>
-
             </div>
 
             <div className="socialIcon">

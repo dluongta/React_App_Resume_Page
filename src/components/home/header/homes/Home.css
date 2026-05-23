@@ -474,7 +474,7 @@
   }
 }
 
-.carousel_carousel_item {
+/* .carousel_carousel_item {
   background: linear-gradient(90deg, #FF8800, #A033FF, #0088FF, #FF5C87);
   background-size: 300% 300%;
   -webkit-background-clip: text;
@@ -485,6 +485,30 @@
   font-weight: 800;
   font-size: clamp(1.5rem, 5vw, 3.5rem);
   text-align: center;
+} */
+
+.carousel_carousel_item {
+  font-weight: 800;
+  font-size: clamp(1.5rem, 5vw, 3.5rem);
+  text-align: center;
+}
+
+.gradientTextStyle {
+  background: linear-gradient(94deg, 
+      #fe954a 6.06%, 
+      #f84063 34.53%, 
+      #ad29e3 66.74%, 
+      #6e0ef3 100.96%);
+  
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  
+  font-weight: 800;
+  display: inline-block;
+  
+  background-size: 100% 100%;
 }
 
 .description-text {
@@ -534,7 +558,7 @@
   }
 
   .gradientTextStyle {
-    font-size: 3rem!important;
+    font-size: 2rem!important;
     font-weight: 900!important;
   }
 }
@@ -640,7 +664,7 @@
   }
 
   .gradientTextStyle {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2rem, 5vw, 3.5rem)!important;
     font-weight: 800;
     line-height: 1 !important;
 
@@ -703,3 +727,53 @@
   object-fit: contain;
 }
 
+
+@media (max-width: 768px) {
+  /* body, html {
+    overflow-x: hidden;
+  }
+
+  .home {
+    overflow-x: hidden;
+  } */
+
+  /* .headline {
+    display: flex !important;
+    flex-direction: row !important; 
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    width: 100% !important; 
+    margin: 20px auto !important;
+    padding: 0px 0px !important;
+  } */
+
+  /* .headline h1 {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  } */
+ 
+  .gradientTextStyle {
+    font-size: clamp(2.4rem, 6vw, 2.5rem) !important;
+    font-weight: 800;
+    line-height: 1.2 !important;
+
+    margin: 8px 0 !important; 
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important; 
+
+    white-space: normal !important;
+    text-align: center !important;  
+    width: 100% !important;
+  } 
+  
+  /* .carousel_carousel_container {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  } */
+
+
+}
