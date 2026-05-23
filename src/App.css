@@ -2934,10 +2934,10 @@ h3.animated-text {
 }
 
 .heading.animated-text{
-  margin-top: 0px !important;
+  margin-top: -6px !important;
   padding-top: 0px !important;
   margin-bottom: 76px !important;
-  padding-bottom: 26px !important;
+  padding-bottom: 32px !important;
   font-size: 22px !important;
 }
 
