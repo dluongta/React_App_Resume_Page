@@ -135,7 +135,7 @@ export const Skill = ({ className }) => {
               {
                 year: "2023",
                 title: "React JS & API",
-                desc: "Built applications and worked with flexible API.",
+                desc: "Built applications and worked with custom API.",
               },
               {
                 year: "2024",
