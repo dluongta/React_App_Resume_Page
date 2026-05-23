@@ -3022,6 +3022,12 @@ h3.animated-text {
     margin-bottom: 60px !important;
   }
 
+  .heading.animated-text{
+  margin-top: -16px !important;
+  padding-bottom: 12px !important;
+  font-size: 22px !important;
+}
+
 }
 .sub-root {
   width: 100%;
