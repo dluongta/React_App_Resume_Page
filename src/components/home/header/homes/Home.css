@@ -591,8 +591,9 @@
   background-image: linear-gradient(94deg,
       #ad29e3 6.06%,
       #f84063 34.53%,
-      #fe954a 66.74%,
-      #fe954a 100.96%,
+      #f84063 54.53%,
+      #ff2f00 66.74%,
+      #ff2f00 100.96%,
       #6e0ef3 106.06%);
 
   background-clip: text;
