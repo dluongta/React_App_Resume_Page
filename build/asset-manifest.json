@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f97fdb90.css",
+    "main.js": "/static/js/main.c536b9d9.js",
+    "static/media/main.png": "/static/media/main.46e4bda31bde3f5173f9.png",
+    "static/media/main-background.png": "/static/media/main-background.5da6c504ab37ffb54fd6.png",
+    "static/media/dluongta_animation.mp4": "/static/media/dluongta_animation.8e00712f87995a91dba5.mp4",
+    "static/media/lumind_animation.mp4": "/static/media/lumind_animation.988060857fbe0f9d0995.mp4",
+    "static/media/fa-solid-900.woff2": "/static/media/fa-solid-900.ce9a3fa740bd60b4ac3b.woff2",
+    "static/media/fa-brands-400.woff2": "/static/media/fa-brands-400.f276979f97f1cf375d23.woff2",
+    "static/media/lumind_logo.mp4": "/static/media/lumind_logo.df4875f21945a5ea9247.mp4",
+    "static/media/banner-bg.png": "/static/media/banner-bg.f67087d1c9931d7ccc75.png",
+    "static/media/hexagon.png": "/static/media/hexagon.4a2efb8663eceda0a4b6.png",
+    "static/media/luen-1.jpg": "/static/media/luen-1.b813df30aeecfdc54a6a.jpg",
+    "static/media/luen.jpg": "/static/media/luen.56b0f2187afef68a2d6c.jpg",
+    "static/media/fa-regular-400.woff2": "/static/media/fa-regular-400.cfbad32c79d9dda6af4a.woff2",
+    "static/media/hexagon-main.png": "/static/media/hexagon-main.068f159c444a3180f667.png",
+    "static/media/luen_logo.png": "/static/media/luen_logo.9de91ff6306a22184438.png",
+    "static/media/fa-v4compatibility.woff2": "/static/media/fa-v4compatibility.296da06936a3373940c8.woff2",
+    "index.html": "/index.html",
+    "static/media/caption_logo.vtt": "/static/media/caption_logo.75175c236c60850b1874.vtt",
+    "static/media/caption.vtt": "/static/media/caption.f60d51dda084efcb1f52.vtt",
+    "static/media/lumind_animation.vtt": "/static/media/lumind_animation.9fe9e5bffd53a7f0e2a8.vtt",
+    "main.f97fdb90.css.map": "/static/css/main.f97fdb90.css.map",
+    "main.c536b9d9.js.map": "/static/js/main.c536b9d9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f97fdb90.css",
+    "static/js/main.c536b9d9.js"
+  ]
+}
