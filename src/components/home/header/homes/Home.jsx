@@ -438,8 +438,8 @@ export const Home = ({ className }) => {
                   whiteSpace: 'nowrap',
                   width: 'auto' ,
                   fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-                  marginBottom: '-30px'
                 }}
+                className="gradientTextStyleFlexible"
               >
                 <div className="carousel_carousel_container">
                   <div

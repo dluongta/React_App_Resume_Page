@@ -3007,8 +3007,10 @@ h3.animated-text {
     padding: 0px !important;
     margin-bottom: 0px !important;
   }
-}
+  .gradientTextStyleFlexible{
 
+  }
+}
 .sub-root {
   width: 100%;
   margin: 0;
@@ -3059,4 +3061,17 @@ body.sub-root,
   border-radius: 50%;
   transition: 0.5s;
   cursor: pointer;
+}
+
+.gradientTextStyleFlexible{
+  margin-bottom: -30px !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .gradientTextStyleFlexible{
+    margin-top: -20px !important;
+    margin-bottom: 10px !important;
+    padding: 0 !important;
+  }
 }
