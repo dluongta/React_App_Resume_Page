@@ -78,7 +78,7 @@ export const Skill = ({ className }) => {
     <section className={`skill ${className}`}>
       <div className="container">
         <div className="heading">
-          <div className="animated-text">
+          <div className="animated-text bottomMargin-1">
           <h3 className="animated-text" style={{marginBottom:"8px", fontSize:"22px"}}>Why Choose Me</h3>
           <h3 className="animated-text" style={{marginBottom:"8px", fontSize:"22px"}}>Some of my skills</h3>
           </div>
@@ -135,7 +135,7 @@ export const Skill = ({ className }) => {
               {
                 year: "2023",
                 title: "React JS & API",
-                desc: "Built applications and worked with API.",
+                desc: "Built applications and worked with flexible API.",
               },
               {
                 year: "2024",
