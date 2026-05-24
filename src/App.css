@@ -3092,8 +3092,7 @@ body.sub-root,
 
 @media (max-width: 768px) {
   .gradientTextStyleFlexible{
-    margin-top: -30px !important;
-    margin-bottom: 10px !important;
+    margin-bottom: -30px !important;
     padding: 0 !important;
   }
 }

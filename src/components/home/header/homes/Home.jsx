@@ -388,7 +388,17 @@ export const Home = ({ className }) => {
   const [toRotate, setToRotate] = useState([...originalToRotate, originalToRotate[0]]);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
+const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
+useEffect(() => {
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
+
+  window.addEventListener("resize", handleResize);
+
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
   useEffect(() => {
     const interval = setInterval(() => {
       if (currentLineIndex === toRotate.length - 1) {
@@ -445,7 +455,7 @@ export const Home = ({ className }) => {
                   <div
                     className="carousel_carousel"
                     style={{
-                      transform: `translateY(-${currentLineIndex * 25}%)`,
+                      transform: `translateY(-${currentLineIndex * (isMobile ? 28 : 25)}%)`,
                       transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
                     }}
                   >

@@ -592,8 +592,8 @@
       #ad29e3 6.06%,
       #f84063 34.53%,
       #f84063 54.53%,
-      #ff2f00 66.74%,
-      #ff2f00 100.96%,
+      #ff6200 66.74%,
+      #ff6200 100.96%,
       #6e0ef3 106.06%);
 
   background-clip: text;
@@ -694,7 +694,7 @@
     font-weight: 800;
     line-height: 1 !important;
 
-    margin: 8px !important;
+    margin: 0px !important;
     display: flex !important;
     align-items: center !important;
 
@@ -785,7 +785,7 @@
     font-weight: 800;
     line-height: 1.2 !important;
 
-    margin: 8px 0 !important; 
+    margin: 0px !important; 
     display: flex !important;
     align-items: center !important;
     justify-content: center !important; 
@@ -795,11 +795,5 @@
     width: 100% !important;
   } 
   
-  /* .carousel_carousel_container {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-  } */
-
 
 }
