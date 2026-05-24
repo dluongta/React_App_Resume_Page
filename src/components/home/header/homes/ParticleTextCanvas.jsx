@@ -649,7 +649,7 @@ export default function ParticleTextCanvas() {
           rainCtx.fillStyle = drop.color;
           
           // Vẽ shadow ở đầu hạt mưa
-          rainCtx.shadowBlur = 8;
+          // rainCtx.shadowBlur = 8;
           rainCtx.shadowColor = drop.color;
           
           // Sử dụng drop.x * rainFontSize để ráp đúng cột thay vì i
