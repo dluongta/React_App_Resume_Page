@@ -9,10 +9,32 @@
   margin-top: 30px;
 }
 
-canvas {
-  display: block;
+.canvasContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+}
+
+.rainCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1; /* Nằm dưới chữ */
+}
+
+.particleCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 2; /* Nằm trên mưa code */
 }
 
 .overlay {
@@ -25,11 +47,11 @@ canvas {
   color: rgba(255, 255, 255, 0.85);
   text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
   user-select: none;
-  pointer-events: none; /* Để chuột không chặn canvas nếu click ra ngoài */
+  pointer-events: none;
 }
 
 .overlayContent {
-  pointer-events: auto; /* Bật lại tương tác cho nút bấm */
+  pointer-events: auto;
 }
 
 .title {
