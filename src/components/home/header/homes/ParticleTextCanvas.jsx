@@ -385,6 +385,7 @@ export default function ParticleTextCanvas() {
   const rafRef = useRef(null);
   const timeoutRef = useRef(null);
   const resizeTimeoutRef = useRef(null);
+  const lastRainDrawTimeRef = useRef(0); // Dùng để kiểm soát tốc độ rơi của mưa code
 
   const sequenceRef = useRef([]);
   const seqIndexRef = useRef(0);
@@ -412,10 +413,9 @@ export default function ParticleTextCanvas() {
 
     // --- CẤU HÌNH CODE RAIN ---
     const rainFontSize = 18;
-    // Chuỗi nội dung rơi xuống
     const rainString = "DINHLUONGTA ";
-    // Tím (#9370db), Xanh dương (#00bfff), Hồng (#ff69b4), Cam (#ffa500)
     const rainColors = ['#9370db', '#00bfff', '#ff69b4', '#ffa500'];
+    const rainUpdateInterval = 60; // Tính bằng ms. Số càng lớn thì mưa rơi càng chậm (60 là khá chậm, dễ nhìn)
 
     let DPR = window.devicePixelRatio || 1;
     let lastTime = performance.now();
@@ -624,9 +624,13 @@ export default function ParticleTextCanvas() {
       }, formDuration + holdDuration);
     }
 
-    // --- HÀM VẼ CODE RAIN ---
-    function drawRain(logicalW, logicalH) {
-      // Làm mờ đuôi: Alpha = 0.05 tạo hiệu ứng vệt dài, phần đầu sẽ rõ và đuôi mờ dần
+    // --- HÀM VẼ CODE RAIN (Đã cập nhật để chậm hơn & nhiều từ chung cột) ---
+    function drawRain(logicalW, logicalH, now) {
+      // Chỉ cập nhật nếu khoảng cách thời gian đủ lớn (kiểm soát tốc độ rơi độc lập với khung hình)
+      if (now - lastRainDrawTimeRef.current < rainUpdateInterval) return;
+      lastRainDrawTimeRef.current = now;
+
+      // Làm mờ đuôi
       rainCtx.fillStyle = 'rgba(7, 5, 10, 0.05)'; 
       rainCtx.fillRect(0, 0, logicalW, logicalH);
 
@@ -637,27 +641,31 @@ export default function ParticleTextCanvas() {
       for (let i = 0; i < drops.length; i++) {
         const drop = drops[i];
         
-        // Chọn chữ trong chuỗi "DINHLUONGTA " theo vị trí dọc để ráp thành chữ hoàn chỉnh
-        const charIndex = drop.y % rainString.length;
-        const text = rainString.charAt(charIndex);
-        
-        rainCtx.fillStyle = drop.color;
-        
-        // Chỉ vẽ shadow (độ sáng rực) ở đầu hạt mưa (điểm rơi hiện tại)
-        rainCtx.shadowBlur = 8;
-        rainCtx.shadowColor = drop.color;
-        
-        rainCtx.fillText(text, i * rainFontSize, drop.y * rainFontSize);
-        
-        // Reset bóng mờ
-        rainCtx.shadowBlur = 0;
-
-        // Reset về đỉnh (y=0) khi vượt quá chiều cao màn hình và random để không bị đồng loạt
-        if (drop.y * rainFontSize > logicalH && Math.random() > 0.975) {
-          drop.y = 0;
-          drop.color = rainColors[Math.floor(Math.random() * rainColors.length)];
+        // Chỉ vẽ khi vị trí Y >= 0 (các hạt có thể bắt đầu từ số âm để tạo độ mượt)
+        if (drop.y >= 0) {
+          const charIndex = drop.y % rainString.length;
+          const text = rainString.charAt(charIndex);
+          
+          rainCtx.fillStyle = drop.color;
+          
+          // Vẽ shadow ở đầu hạt mưa
+          rainCtx.shadowBlur = 8;
+          rainCtx.shadowColor = drop.color;
+          
+          // Sử dụng drop.x * rainFontSize để ráp đúng cột thay vì i
+          rainCtx.fillText(text, drop.x * rainFontSize, drop.y * rainFontSize);
+          
+          rainCtx.shadowBlur = 0;
         }
-        drop.y++;
+
+        // Nếu vượt quá màn hình -> Khởi tạo lại ngẫu nhiên ở trên và chọn một cột mới ngẫu nhiên
+        if (drop.y * rainFontSize > logicalH && Math.random() > 0.95) {
+          drop.y = Math.floor(Math.random() * -30); // Rớt lại từ tọa độ âm
+          drop.x = Math.floor(Math.random() * (logicalW / rainFontSize)); // Sang 1 cột mới
+          drop.color = rainColors[Math.floor(Math.random() * rainColors.length)];
+        } else {
+          drop.y++;
+        }
       }
     }
 
@@ -668,8 +676,8 @@ export default function ParticleTextCanvas() {
       const logicalW = window.innerWidth;
       const logicalH = window.innerHeight;
 
-      // 1. Vẽ Mưa Code (Dòng dọc, đuôi mờ, đầu rõ)
-      drawRain(logicalW, logicalH);
+      // 1. Vẽ Mưa Code (Đưa biến now vào để check khoảng cách thời gian)
+      drawRain(logicalW, logicalH, now);
 
       // 2. Vẽ Particles (Canvas này chỉ xóa và vẽ lại hạt)
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -739,10 +747,15 @@ export default function ParticleTextCanvas() {
       rainCanvas.style.height = h + 'px';
       rainCtx.setTransform(DPR, 0, 0, DPR, 0, 0);
 
-      // Khởi tạo các cột mưa code
+      // Khởi tạo các hạt mưa code độc lập
       const rainColumns = Math.floor(w / rainFontSize) + 1;
-      rainDropsRef.current = Array.from({ length: rainColumns }).map(() => ({
-          y: Math.floor(Math.random() * -100), // Random chiều cao bắt đầu rơi
+      const maxRows = Math.floor(h / rainFontSize);
+      // Thay vì mỗi cột 1 hạt, chúng ta tạo số lượng hạt gấp 3 lần số lượng cột.
+      const numDrops = rainColumns * 3; 
+
+      rainDropsRef.current = Array.from({ length: numDrops }).map(() => ({
+          x: Math.floor(Math.random() * rainColumns), // Cột ngẫu nhiên
+          y: Math.floor(Math.random() * maxRows) - 50, // Trải đều từ trên xuống dưới màn hình ngay từ đầu
           color: rainColors[Math.floor(Math.random() * rainColors.length)]
       }));
 
