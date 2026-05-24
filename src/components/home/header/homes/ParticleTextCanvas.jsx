@@ -811,7 +811,7 @@ export default function ParticleTextCanvas() {
       </div>
 
       <div className={styles.hint}>
-        Website được tạo bởi DINH LUONG TA và sử dụng hiệu ứng Particle Text Canvas
+        Website được tạo bởi DINH LUONG TA và sử dụng hiệu ứng Particle Text Canvas.
       </div>
     </div>
   );
