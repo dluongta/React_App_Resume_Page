@@ -277,9 +277,14 @@ export default function ParticleTextCanvas() {
         }
 
         // NẾU VƯỢT QUÁ MÀN HÌNH: Đưa trở lại ngay lập tức lên trên đỉnh
+        // CODE MỚI ĐÃ SỬA:
         if (drop.y * rainFontSize > logicalH) {
-          // Reset về đỉnh (0 hoặc giá trị âm nhỏ ngẫu nhiên để tạo độ so le tự nhiên)
-          drop.y = Math.floor(Math.random() * -3);
+          const rainColumns = Math.floor(logicalW / rainFontSize) + 1;
+          const midColumn = Math.floor(rainColumns / 2);
+          const distanceFromCenter = Math.abs(drop.x - midColumn);
+
+          // Tiếp tục duy trì hiệu ứng sóng đối xứng khi tái sinh hạt mới
+          drop.y = -Math.floor(distanceFromCenter * 0.8) - Math.floor(Math.random() * 3);
           drop.color = rainColors[Math.floor(Math.random() * rainColors.length)];
         } else {
           drop.y++;
@@ -377,7 +382,7 @@ export default function ParticleTextCanvas() {
         return {
           x: col,
           // Đặt Y âm sâu dần ngẫu nhiên (từ 0 đến -60) để các dòng đổ xuống sole nhau từ đỉnh
-          y: Math.floor(Math.random() * -60), 
+          y: Math.floor(Math.random() * -60),
           color: rainColors[Math.floor(Math.random() * rainColors.length)]
         };
       });
