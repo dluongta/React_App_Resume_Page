@@ -33,8 +33,8 @@ export default function ParticleTextCanvas() {
     const explodeDuration = 800;
     const betweenDuration = 200;
 
-    const textsUnaccented = ['3','2','1','CHUC', 'MUNG', 'SINH' ,'NHAT','09','01','2003','DINH','LUONG','TA'];
-    const textsAccented = ['3','2','1','CHÚC', 'MỪNG', 'SINH', 'NHẬT','09','01','2003','ĐÌNH','LƯƠNG','TẠ'];
+    const textsUnaccented = ['3','2','1','CHUC', 'MUNG', 'SINH' ,'NHAT','09','01','03','DLUONGTA'];
+    const textsAccented = ['3','2','1','CHÚC', 'MỪNG', 'SINH', 'NHẬT','09','01','03','DLUONGTA'];
 
     // --- CẤU HÌNH CODE RAIN ---
     const rainFontSize = 18;
