@@ -187,14 +187,14 @@ export default function ParticleTextCanvas() {
     function assignToTargets(targets, now) {
       const particles = particlesRef.current;
 
-      // Sinh thêm hạt nếu cần và cho alpha = 0 để fade-in
+      // 1. Tự động sinh thêm hạt nếu cần
       if (particles.length < targets.length) {
         const need = targets.length - particles.length;
         for (let i = 0; i < need; i++) {
           const px = Math.random() * (canvas.width / DPR);
           const py = Math.random() * (canvas.height / DPR);
           const p = createOrReuseParticle(px, py);
-          p.alpha = 0; 
+          p.alpha = 0; // Fade-in cho hạt mới
           particles.push(p);
         }
       }
@@ -202,22 +202,24 @@ export default function ParticleTextCanvas() {
       const cx = (canvas.width / DPR) / 2;
       const cy = (canvas.height / DPR) / 2;
       
-      // Sắp xếp hạt và điểm đích theo khoảng cách đến tâm để không bị đan chéo rối loạn
+      // Sắp xếp hạt và điểm đích theo khoảng cách đến tâm để Morphing mượt không bị đan chéo rối loạn
       particles.sort((a, b) => Math.hypot(a.x - cx, a.y - cy) - Math.hypot(b.x - cx, b.y - cy));
       targets.sort((a, b) => Math.hypot(a.x - cx, a.y - cy) - Math.hypot(b.x - cx, b.y - cy));
 
+      // 2. Phân bổ các hạt chính vào chữ mới
       for (let i = 0; i < targets.length; i++) {
         const t = targets[i];
         const p = particles[i];
         p.to(t.x + (Math.random() - 0.5) * 0.5, t.y + (Math.random() - 0.5) * 0.5, now, formDuration + Math.random() * 200, 1);
       }
 
-      // Hạt thừa trôi dạt nhẹ tại chỗ và fade-out biến mất
+      // 3. Phân bổ toàn bộ CÁC HẠT DƯ THỪA bay vào chữ mới
+      // Dùng lại các điểm đích của chữ mới (chia dư i % targets.length).
       for (let i = targets.length; i < particles.length; i++) {
+        const t = targets[i % targets.length];
         const p = particles[i];
-        const driftX = p.x + (Math.random() - 0.5) * 60;
-        const driftY = p.y + (Math.random() - 0.5) * 60;
-        p.to(driftX, driftY, now, formDuration, 0);
+        // Offset nhích ra một chút xíu (2.5) để làm dày nét chữ hơn
+        p.to(t.x + (Math.random() - 0.5) * 2.5, t.y + (Math.random() - 0.5) * 2.5, now, formDuration + Math.random() * 200, 1);
       }
     }
 
