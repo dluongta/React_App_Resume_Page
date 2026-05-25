@@ -10,7 +10,7 @@ export default function ParticleTextCanvas() {
   const rafRef = useRef(null);
   const timeoutRef = useRef(null);
   const resizeTimeoutRef = useRef(null);
-  const lastRainDrawTimeRef = useRef(0); // Kiểm soát tốc độ rơi của mưa code
+  const lastRainDrawTimeRef = useRef(0);
 
   const sequenceRef = useRef([]);
   const seqIndexRef = useRef(0);
@@ -27,20 +27,19 @@ export default function ParticleTextCanvas() {
 
     // --- CẤU HÌNH PARTICLE TEXT ---
     const particleSize = 2.2;
-    const sampleGap = 6;
     const formDuration = 900;
     const holdDuration = 700;
     const explodeDuration = 800;
     const betweenDuration = 200;
 
-    const textsUnaccented = ['3','2','1','CHUC', 'MUNG', 'SINH' ,'NHAT','09','01','03','DLUONGTA'];
-    const textsAccented = ['3','2','1','CHÚC', 'MỪNG', 'SINH', 'NHẬT','09','01','03','DLUONGTA'];
+    const textsUnaccented = ['3','2','1','CHUC', 'MUNG', 'SINH' ,'NHAT','09/01/2003','DINH LUONG TA'];
+    const textsAccented = ['3','2','1','CHÚC', 'MỪNG', 'SINH', 'NHẬT','09/01/2003','ĐÌNH LƯƠNG TẠ'];
 
     // --- CẤU HÌNH CODE RAIN ---
     const rainFontSize = 18;
     const rainString = "DINHLUONGTA ";
     const rainColors = ['#9370db', '#00bfff', '#ff69b4', '#ffa500'];
-    const rainUpdateInterval = 60; // Số càng lớn mưa rơi càng chậm
+    const rainUpdateInterval = 60; 
 
     let DPR = window.devicePixelRatio || 1;
     let lastTime = performance.now();
@@ -133,21 +132,35 @@ export default function ParticleTextCanvas() {
     function buildTargetsForText(text, maxWidth) {
       const w = Math.min(window.innerWidth, 1200);
       let fontSize;
+      
+      // Xử lý cơ bản font size
       if (text.length <= 3) {
         fontSize = Math.round(w * 0.45);
+      } else if (text.length >= 10) {
+        fontSize = Math.round(w * 0.09); // Chữ dài, hạ base font ngay từ đầu
       } else {
         fontSize = Math.round(w * 0.12);
       }
-      fontSize = Math.max(28, Math.min(fontSize, 420));
+      fontSize = Math.max(24, Math.min(fontSize, 420));
 
       off.width = Math.floor(Math.min(maxWidth, canvas.width / DPR));
       off.height = Math.floor(Math.min(400, canvas.height / DPR));
       offCtx.clearRect(0, 0, off.width, off.height);
 
+      // Cài đặt font để đo đạc chữ
+      offCtx.font = `bold ${fontSize}px "Segoe UI", "Roboto", Arial`;
+      let textWidth = offCtx.measureText(text).width;
+
+      // KIỂM TRA TRÀN CHỮ: Thu nhỏ font lại nếu chữ vượt quá giới hạn ngang của màn hình
+      const maxAllowedWidth = off.width - 20; 
+      if (textWidth > maxAllowedWidth) {
+        fontSize = Math.floor(fontSize * (maxAllowedWidth / textWidth));
+        offCtx.font = `bold ${fontSize}px "Segoe UI", "Roboto", Arial`;
+      }
+
       offCtx.textBaseline = "middle";
       offCtx.textAlign = "center";
       offCtx.fillStyle = "#fff";
-      offCtx.font = `bold ${fontSize}px "Segoe UI", "Roboto", Arial`;
 
       const cx = off.width / 2;
       const cy = off.height / 2;
@@ -157,8 +170,12 @@ export default function ParticleTextCanvas() {
       const data = img.data;
       const targets = [];
 
-      for (let y = 0; y < off.height; y += sampleGap) {
-        for (let x = 0; x < off.width; x += sampleGap) {
+      // MẬT ĐỘ LẤY MẪU (Sample Gap): Trên Mobile lấy mẫu dày hơn (gap nhỏ) để bù lại kích thước font bé.
+      const isMobile = window.innerWidth < 768;
+      const dynamicSampleGap = isMobile ? 3 : 6;
+
+      for (let y = 0; y < off.height; y += dynamicSampleGap) {
+        for (let x = 0; x < off.width; x += dynamicSampleGap) {
           const idx = (y * off.width + x) * 4;
           const alpha = data[idx + 3];
           if (alpha > 120) {
@@ -173,7 +190,9 @@ export default function ParticleTextCanvas() {
 
     function buildSequence() {
       const arr = useAccentRef.current ? textsAccented : textsUnaccented;
-      sequenceRef.current = arr.map(t => buildTargetsForText(t, Math.floor(canvas.width / DPR) - 80));
+      // Padding an toàn nhỏ hơn trên mobile để lấy tối đa không gian
+      const screenPadding = window.innerWidth < 768 ? 20 : 80;
+      sequenceRef.current = arr.map(t => buildTargetsForText(t, Math.floor(canvas.width / DPR) - screenPadding));
       seqIndexRef.current = 0;
     }
 
@@ -253,7 +272,6 @@ export default function ParticleTextCanvas() {
       if (now - lastRainDrawTimeRef.current < rainUpdateInterval) return;
       lastRainDrawTimeRef.current = now;
 
-      // Tạo hiệu ứng vệt mờ dần phía sau chữ
       rainCtx.fillStyle = 'rgba(7, 5, 10, 0.05)';
       rainCtx.fillRect(0, 0, logicalW, logicalH);
 
@@ -264,7 +282,6 @@ export default function ParticleTextCanvas() {
       for (let i = 0; i < drops.length; i++) {
         const drop = drops[i];
 
-        // Chỉ vẽ khi hạt đã bắt đầu xuất hiện trên màn hình (Y >= 0)
         if (drop.y >= 0) {
           const charIndex = drop.y % rainString.length;
           const text = rainString.charAt(charIndex);
@@ -276,9 +293,7 @@ export default function ParticleTextCanvas() {
           rainCtx.shadowBlur = 0;
         }
 
-        // NẾU VƯỢT QUÁ MÀN HÌNH: Đưa trở lại ngay lập tức lên trên đỉnh
         if (drop.y * rainFontSize > logicalH) {
-          // Reset về đỉnh (0 hoặc giá trị âm nhỏ ngẫu nhiên để tạo độ so le tự nhiên)
           drop.y = Math.floor(Math.random() * -3);
           drop.color = rainColors[Math.floor(Math.random() * rainColors.length)];
         } else {
@@ -294,10 +309,8 @@ export default function ParticleTextCanvas() {
       const logicalW = window.innerWidth;
       const logicalH = window.innerHeight;
 
-      // 1. Vẽ Mưa Code Matrix trước ở layer dưới
       drawRain(logicalW, logicalH, now);
 
-      // 2. Vẽ Particle Text ở layer trên
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const particles = particlesRef.current;
@@ -340,8 +353,9 @@ export default function ParticleTextCanvas() {
         particlePoolRef.current.push(...particlesRef.current);
         particlesRef.current = [];
       }
-
-      initParticles(Math.min(1500, maxCount + 200));
+      
+      // Nâng trần cho số lượng hạt khởi tạo (lên 3000) để mobile có đủ hạt
+      initParticles(Math.min(3000, maxCount + 200));
       seqIndexRef.current = 0;
       runNextStage();
     };
@@ -351,14 +365,12 @@ export default function ParticleTextCanvas() {
       const w = window.innerWidth;
       const h = window.innerHeight;
 
-      // Cập nhật kích thước Canvas Text
       canvas.width = Math.floor(w * DPR);
       canvas.height = Math.floor(h * DPR);
       canvas.style.width = w + 'px';
       canvas.style.height = h + 'px';
       ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 
-      // Cập nhật kích thước Canvas Rain
       rainCanvas.width = Math.floor(w * DPR);
       rainCanvas.height = Math.floor(h * DPR);
       rainCanvas.style.width = w + 'px';
@@ -366,9 +378,6 @@ export default function ParticleTextCanvas() {
       rainCtx.setTransform(DPR, 0, 0, DPR, 0, 0);
 
       const rainColumns = Math.floor(w / rainFontSize) + 1;
-
-      // MẸO QUAN TRỌNG: Gán mật độ hạt xuất phát lệch nhau ở phía TRÊN màn hình
-      // Giúp ban đầu màn hình trống trơn, chữ chạy dần từ trên xuống, rồi lặp lại vô tận.
       const dropsPerColumn = 2;
       const totalDrops = rainColumns * dropsPerColumn;
 
@@ -376,7 +385,6 @@ export default function ParticleTextCanvas() {
         const col = index % rainColumns;
         return {
           x: col,
-          // Đặt Y âm sâu dần ngẫu nhiên (từ 0 đến -60) để các dòng đổ xuống sole nhau từ đỉnh
           y: Math.floor(Math.random() * -60), 
           color: rainColors[Math.floor(Math.random() * rainColors.length)]
         };
@@ -440,9 +448,7 @@ export default function ParticleTextCanvas() {
       </div>
 
       <div className={styles.canvasContainer}>
-        {/* Canvas chứa hiệu ứng mưa Code */}
         <canvas ref={rainCanvasRef} className={styles.rainCanvas} />
-        {/* Canvas chứa chữ Particle Text */}
         <canvas ref={canvasRef} className={styles.particleCanvas} />
       </div>
 
