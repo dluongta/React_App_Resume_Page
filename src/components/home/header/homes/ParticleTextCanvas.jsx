@@ -192,9 +192,6 @@ export default function ParticleTextCanvas() {
         scale = maxAllowedWidth / drawnWidth;
       }
       if (isMobile) {
-        // text dài phải scale lớn hơn
-        // để chữ trải rộng như PC
-
         if (text.length >= 12) {
           scale *= 1.02;
 
