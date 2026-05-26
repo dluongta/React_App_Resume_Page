@@ -159,17 +159,17 @@ export default function ParticleTextCanvas() {
       const img = offCtx.getImageData(0, 0, offW, offH);
       const data = img.data;
       const targets = [];
-      let sampleGap = 4;
+      let sampleGap = 5;
 
       // MOBILE + TEXT DÀI
       // giảm mật độ particle để chữ thoáng như PC
 
       if (isMobile && text.length >= 8) {
-        sampleGap = 7;
+        sampleGap = 8;
       }
 
       if (isMobile && text.length >= 12) {
-        sampleGap = 8;
+        sampleGap = 10;
       }
       const actualCanvasWidth = canvas.width / DPR;
       const actualCanvasHeight = canvas.height / DPR;
