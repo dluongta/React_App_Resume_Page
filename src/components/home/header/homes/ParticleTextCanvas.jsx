@@ -357,7 +357,7 @@ export default function ParticleTextCanvas() {
         if (p.alpha <= 0.05) continue;
 
         // Tăng độ đậm màu trên mobile, giảm cường độ sáng quá gắt trên PC
-        const auraAlpha = isMobile ? 0.7 : 0.45;
+        const auraAlpha = isMobile ? 0.4 : 0.4;
         ctx.globalAlpha = p.alpha * auraAlpha;
         ctx.fillStyle = p.color;
         ctx.beginPath();
