@@ -26,7 +26,6 @@ export default function ParticleTextCanvas() {
     const rainCtx = rainCanvas.getContext("2d", { alpha: true });
 
     // --- CẤU HÌNH PARTICLE TEXT ---
-    const particleSize = 2.2;
     const formDuration = 1400; // Thời gian hạt di chuyển để ghép thành chữ mới
     const holdDuration = 1200; // Thời gian giữ chữ tĩnh để đọc
 
@@ -47,6 +46,9 @@ export default function ParticleTextCanvas() {
     const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
     const lerp = (a, b, t) => a + (b - a) * t;
 
+    // Hàm lấy kích thước hạt tự động tùy màn hình
+    const getParticleSize = () => window.innerWidth < 768 ? 1.6 : 2.2;
+
     class Particle {
       constructor(x = 0, y = 0) {
         this.init(x, y);
@@ -57,7 +59,7 @@ export default function ParticleTextCanvas() {
         this.y = y;
         this.tx = x;
         this.ty = y;
-        this.size = particleSize;
+        this.size = getParticleSize();
         this.phase = 2; // 0: Đang di chuyển, 2: Đang đứng yên nhấp nhô
         this.startX = x;
         this.startY = y;
@@ -70,7 +72,7 @@ export default function ParticleTextCanvas() {
 
       to(targetX, targetY, now, dur = formDuration, targetAlpha = 1) {
         this.phase = 0;
-        this.startX = this.x; // Kế thừa vị trí hiện tại (giúp hiệu ứng morphing mượt)
+        this.startX = this.x; 
         this.startY = this.y;
         this.tx = targetX;
         this.ty = targetY;
@@ -93,7 +95,7 @@ export default function ParticleTextCanvas() {
           this.alpha = lerp(this.startAlpha, this.targetAlpha, e);
           if (t >= 1) this.phase = 2;
         } else {
-          // Nhấp nhô khi đứng im tại chỗ
+          // Nhấp nhô nhẹ khi đứng im tại chỗ
           this.y += Math.sin(now / 800 + this.x * 0.001) * 0.02;
           this.alpha = this.targetAlpha;
         }
@@ -186,15 +188,15 @@ export default function ParticleTextCanvas() {
 
     function assignToTargets(targets, now) {
       const particles = particlesRef.current;
+      const isMobile = window.innerWidth < 768;
 
-      // 1. Tự động sinh thêm hạt nếu cần
       if (particles.length < targets.length) {
         const need = targets.length - particles.length;
         for (let i = 0; i < need; i++) {
           const px = Math.random() * (canvas.width / DPR);
           const py = Math.random() * (canvas.height / DPR);
           const p = createOrReuseParticle(px, py);
-          p.alpha = 0; // Fade-in cho hạt mới
+          p.alpha = 0; 
           particles.push(p);
         }
       }
@@ -202,24 +204,35 @@ export default function ParticleTextCanvas() {
       const cx = (canvas.width / DPR) / 2;
       const cy = (canvas.height / DPR) / 2;
       
-      // Sắp xếp hạt và điểm đích theo khoảng cách đến tâm để Morphing mượt không bị đan chéo rối loạn
       particles.sort((a, b) => Math.hypot(a.x - cx, a.y - cy) - Math.hypot(b.x - cx, b.y - cy));
       targets.sort((a, b) => Math.hypot(a.x - cx, a.y - cy) - Math.hypot(b.x - cx, b.y - cy));
 
-      // 2. Phân bổ các hạt chính vào chữ mới
+      // 1. Phân bổ các hạt TẠO HÌNH CHỮ CHÍNH
       for (let i = 0; i < targets.length; i++) {
         const t = targets[i];
         const p = particles[i];
-        p.to(t.x + (Math.random() - 0.5) * 0.5, t.y + (Math.random() - 0.5) * 0.5, now, formDuration + Math.random() * 200, 1);
+        
+        // Tản mác ngẫu nhiên dạng hình tròn với bán kính rất nhỏ để nét chữ gom sắc nét
+        const angle = Math.random() * Math.PI * 2;
+        const radius = Math.random() * 1.5; 
+        
+        p.to(t.x + Math.cos(angle)*radius, t.y + Math.sin(angle)*radius, now, formDuration + Math.random() * 200, 1);
       }
 
-      // 3. Phân bổ toàn bộ CÁC HẠT DƯ THỪA bay vào chữ mới
-      // Dùng lại các điểm đích của chữ mới (chia dư i % targets.length).
+      // 2. Phân bổ các HẠT DƯ THỪA (Tạo quầng sáng phép thuật bao quanh)
+      // Tùy biến phân tán lớn hơn để không đè lên nhau gây chói trắng ở màn hình nhỏ
+      const maxSpread = isMobile ? 18 : 8; 
+      const surplusTargetAlpha = isMobile ? 0.15 : 0.35; // Hạt dư sẽ mờ đi đáng kể để không gây chói
+
       for (let i = targets.length; i < particles.length; i++) {
         const t = targets[i % targets.length];
         const p = particles[i];
-        // Offset nhích ra một chút xíu (2.5) để làm dày nét chữ hơn
-        p.to(t.x + (Math.random() - 0.5) * 2.5, t.y + (Math.random() - 0.5) * 2.5, now, formDuration + Math.random() * 200, 1);
+        
+        // Phân tán xa ra xung quanh hạt chính tạo thành đám mây bụi sáng
+        const angle = Math.random() * Math.PI * 2;
+        const radius = 2 + Math.random() * maxSpread; // Cách lõi chữ ít nhất 2px, tản rộng ra maxSpread
+
+        p.to(t.x + Math.cos(angle)*radius, t.y + Math.sin(angle)*radius, now, formDuration + Math.random() * 200, surplusTargetAlpha);
       }
     }
 
@@ -233,7 +246,6 @@ export default function ParticleTextCanvas() {
 
       clearTimeout(timeoutRef.current);
 
-      // Chờ thời gian morph + giữ, sau đó qua từ tiếp theo
       timeoutRef.current = setTimeout(() => {
         seqIndexRef.current++;
         if (seqIndexRef.current >= sequence.length) {
@@ -294,10 +306,10 @@ export default function ParticleTextCanvas() {
       ctx.save();
       ctx.globalCompositeOperation = "lighter";
       
-      // Lượt vẽ 1: Quầng sáng
+      // Lượt vẽ 1: Quầng sáng màu (Aura)
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        if (p.alpha <= 0) continue;
+        if (p.alpha <= 0.05) continue; // Bỏ qua nếu quá mờ để tối ưu hiệu năng
         ctx.globalAlpha = Math.min(0.9, p.alpha * 0.9);
         ctx.fillStyle = p.color;
         ctx.beginPath();
@@ -305,11 +317,14 @@ export default function ParticleTextCanvas() {
         ctx.fill();
       }
 
-      // Lượt vẽ 2: Lõi hạt
+      // Lượt vẽ 2: Lõi hạt màu trắng
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        if (p.alpha <= 0) continue;
-        ctx.globalAlpha = Math.min(1, p.alpha);
+        if (p.alpha <= 0.05) continue;
+        
+        // Chỉ vẽ lõi trắng đậm nếu alpha của hạt cao (Hạt tạo hình chính)
+        // Các hạt mây bụi (surplus) sẽ có lõi nhạt hoặc biến mất lõi trắng để chống chói
+        ctx.globalAlpha = p.alpha * p.alpha; 
         ctx.fillStyle = "#fff";
         ctx.beginPath();
         ctx.arc(p.x, p.y, Math.max(0.9, p.size * 0.9), 0, Math.PI * 2);
@@ -364,6 +379,9 @@ export default function ParticleTextCanvas() {
         };
       });
 
+      // Cập nhật lại size hạt khi resize
+      particlesRef.current.forEach(p => p.size = getParticleSize());
+
       clearTimeout(resizeTimeoutRef.current);
       resizeTimeoutRef.current = setTimeout(() => {
         buildSequence();
@@ -379,7 +397,6 @@ export default function ParticleTextCanvas() {
     startSequence();
     rafRef.current = requestAnimationFrame(render);
 
-    // Gắn hàm startSequence vào ref để có thể gọi lại từ bên ngoài
     canvasRef.current.__startSequence = startSequence;
 
     return () => {
