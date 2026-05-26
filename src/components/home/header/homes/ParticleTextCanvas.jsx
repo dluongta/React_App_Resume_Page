@@ -46,8 +46,8 @@ export default function ParticleTextCanvas() {
     const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
     const lerp = (a, b, t) => a + (b - a) * t;
 
-    // Hàm lấy kích thước hạt tự động tùy màn hình
-    const getParticleSize = () => window.innerWidth < 768 ? 1.6 : 2.2;
+    // Giữ kích thước hạt cân đối để vừa thấy màu vừa thấy nét chữ
+    const getParticleSize = () => window.innerWidth < 768 ? 1.4 : 2.0;
 
     class Particle {
       constructor(x = 0, y = 0) {
@@ -79,8 +79,9 @@ export default function ParticleTextCanvas() {
         this.startTime = now;
         this.duration = dur;
         
+        // Dải màu: Hue từ 200 đến 340 (Chính xác là Xanh dương -> Tím -> Hồng)
         const hue = 200 + Math.random() * 140;
-        this.color = `hsla(${hue}, 85%, ${45 + Math.random() * 10}%, 1)`;
+        this.color = `hsla(${hue}, 85%, ${55 + Math.random() * 10}%, 1)`;
         
         this.startAlpha = this.alpha;
         this.targetAlpha = targetAlpha;
@@ -95,7 +96,7 @@ export default function ParticleTextCanvas() {
           this.alpha = lerp(this.startAlpha, this.targetAlpha, e);
           if (t >= 1) this.phase = 2;
         } else {
-          // Nhấp nhô nhẹ khi đứng im tại chỗ
+          // Nhấp nhô cực nhẹ
           this.y += Math.sin(now / 800 + this.x * 0.001) * 0.02;
           this.alpha = this.targetAlpha;
         }
@@ -113,54 +114,68 @@ export default function ParticleTextCanvas() {
       return p;
     }
 
-    function buildTargetsForText(text, maxWidth) {
-      const w = Math.min(window.innerWidth, 1200);
-      let fontSize;
+    // Luôn lấy mẫu ở độ phân giải siêu cao (để giữ dấu rõ ràng) rồi thu nhỏ lại
+    function buildTargetsForText(text) {
+      const isMobile = window.innerWidth < 768;
       
-      if (text.length <= 3) {
-        fontSize = Math.round(w * 0.45);
-      } else if (text.length >= 10) {
-        fontSize = Math.round(w * 0.09); 
-      } else {
-        fontSize = Math.round(w * 0.12);
-      }
-      fontSize = Math.max(24, Math.min(fontSize, 420));
+      const offW = 1600;
+      const offH = 600;
+      off.width = offW;
+      off.height = offH;
+      offCtx.clearRect(0, 0, offW, offH);
 
-      off.width = Math.floor(Math.min(maxWidth, canvas.width / DPR));
-      off.height = Math.floor(Math.min(400, canvas.height / DPR));
-      offCtx.clearRect(0, 0, off.width, off.height);
+      let fontSize = text.length <= 3 ? 300 : 130; 
 
       offCtx.font = `bold ${fontSize}px "Segoe UI", "Roboto", Arial`;
       let textWidth = offCtx.measureText(text).width;
 
-      const maxAllowedWidth = off.width - 20; 
-      if (textWidth > maxAllowedWidth) {
-        fontSize = Math.floor(fontSize * (maxAllowedWidth / textWidth));
+      if (textWidth > offW - 60) {
+        fontSize = Math.floor(fontSize * ((offW - 60) / textWidth));
         offCtx.font = `bold ${fontSize}px "Segoe UI", "Roboto", Arial`;
       }
 
       offCtx.textBaseline = "middle";
       offCtx.textAlign = "center";
       offCtx.fillStyle = "#fff";
+      offCtx.fillText(text, offW / 2, offH / 2);
 
-      const cx = off.width / 2;
-      const cy = off.height / 2;
-      offCtx.fillText(text, cx, cy);
-
-      const img = offCtx.getImageData(0, 0, off.width, off.height);
+      const img = offCtx.getImageData(0, 0, offW, offH);
       const data = img.data;
       const targets = [];
+      const sampleGap = 4; // Lấy mẫu dày để nét không bị đứt
 
-      const isMobile = window.innerWidth < 768;
-      const dynamicSampleGap = isMobile ? 3 : 6;
+      const actualCanvasWidth = canvas.width / DPR;
+      const actualCanvasHeight = canvas.height / DPR;
+      const screenPadding = isMobile ? 20 : 80;
+      const maxAllowedWidth = actualCanvasWidth - screenPadding;
 
-      for (let y = 0; y < off.height; y += dynamicSampleGap) {
-        for (let x = 0; x < off.width; x += dynamicSampleGap) {
-          const idx = (y * off.width + x) * 4;
+      let minX = offW, maxX = 0;
+      for (let y = 0; y < offH; y += sampleGap) {
+        for (let x = 0; x < offW; x += sampleGap) {
+          if (data[(y * offW + x) * 4 + 3] > 120) {
+            if (x < minX) minX = x;
+            if (x > maxX) maxX = x;
+          }
+        }
+      }
+      const drawnWidth = maxX - minX;
+
+      let scale = 1;
+      if (drawnWidth > 0 && drawnWidth > maxAllowedWidth) {
+        scale = maxAllowedWidth / drawnWidth;
+      }
+      if (isMobile) scale *= 0.85; 
+
+      for (let y = 0; y < offH; y += sampleGap) {
+        for (let x = 0; x < offW; x += sampleGap) {
+          const idx = (y * offW + x) * 4;
           const alpha = data[idx + 3];
           if (alpha > 120) {
-            const tx = (x - off.width / 2) + (canvas.width / DPR) / 2;
-            const ty = (y - off.height / 2) + (canvas.height / DPR) / 2;
+            const offsetX = (x - offW / 2) * scale;
+            const offsetY = (y - offH / 2) * scale;
+            
+            const tx = (actualCanvasWidth / 2) + offsetX;
+            const ty = (actualCanvasHeight / 2) + offsetY;
             targets.push({ x: tx, y: ty });
           }
         }
@@ -170,8 +185,7 @@ export default function ParticleTextCanvas() {
 
     function buildSequence() {
       const arr = useAccentRef.current ? textsAccented : textsUnaccented;
-      const screenPadding = window.innerWidth < 768 ? 20 : 80;
-      sequenceRef.current = arr.map(t => buildTargetsForText(t, Math.floor(canvas.width / DPR) - screenPadding));
+      sequenceRef.current = arr.map(t => buildTargetsForText(t));
       seqIndexRef.current = 0;
     }
 
@@ -212,25 +226,22 @@ export default function ParticleTextCanvas() {
         const t = targets[i];
         const p = particles[i];
         
-        // Tản mác ngẫu nhiên dạng hình tròn với bán kính rất nhỏ để nét chữ gom sắc nét
         const angle = Math.random() * Math.PI * 2;
-        const radius = Math.random() * 1.5; 
+        const radius = isMobile ? Math.random() * 0.5 : Math.random() * 1.2; 
         
         p.to(t.x + Math.cos(angle)*radius, t.y + Math.sin(angle)*radius, now, formDuration + Math.random() * 200, 1);
       }
 
-      // 2. Phân bổ các HẠT DƯ THỪA (Tạo quầng sáng phép thuật bao quanh)
-      // Tùy biến phân tán lớn hơn để không đè lên nhau gây chói trắng ở màn hình nhỏ
-      const maxSpread = isMobile ? 18 : 8; 
-      const surplusTargetAlpha = isMobile ? 0.15 : 0.35; // Hạt dư sẽ mờ đi đáng kể để không gây chói
+      // 2. Phân bổ các HẠT DƯ THỪA (ĐÃ FIX: Xóa sạch sự lộn xộn)
+      // Chỉnh alpha của các hạt thừa về 0 để nét chữ sắc sảo, không bị mờ đục xung quanh
+      const surplusTargetAlpha = 0; 
 
       for (let i = targets.length; i < particles.length; i++) {
         const t = targets[i % targets.length];
         const p = particles[i];
         
-        // Phân tán xa ra xung quanh hạt chính tạo thành đám mây bụi sáng
         const angle = Math.random() * Math.PI * 2;
-        const radius = 2 + Math.random() * maxSpread; // Cách lõi chữ ít nhất 2px, tản rộng ra maxSpread
+        const radius = 2 + Math.random() * 5; 
 
         p.to(t.x + Math.cos(angle)*radius, t.y + Math.sin(angle)*radius, now, formDuration + Math.random() * 200, surplusTargetAlpha);
       }
@@ -292,6 +303,7 @@ export default function ParticleTextCanvas() {
     function render(now) {
       const logicalW = window.innerWidth;
       const logicalH = window.innerHeight;
+      const isMobile = logicalW < 768;
 
       drawRain(logicalW, logicalH, now);
 
@@ -306,14 +318,18 @@ export default function ParticleTextCanvas() {
       ctx.save();
       ctx.globalCompositeOperation = "lighter";
       
-      // Lượt vẽ 1: Quầng sáng màu (Aura)
+      // Lượt vẽ 1: Quầng sáng màu (Hồng, Tím, Xanh)
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        if (p.alpha <= 0.05) continue; // Bỏ qua nếu quá mờ để tối ưu hiệu năng
-        ctx.globalAlpha = Math.min(0.9, p.alpha * 0.9);
+        if (p.alpha <= 0.05) continue; 
+        
+        // Tăng độ đậm màu trên mobile, giảm cường độ sáng quá gắt trên PC
+        const auraAlpha = isMobile ? 0.7 : 0.45; 
+        ctx.globalAlpha = p.alpha * auraAlpha;
         ctx.fillStyle = p.color;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * 2.8, 0, Math.PI * 2);
+        // Bán kính quầng màu đủ lớn để bao phủ
+        ctx.arc(p.x, p.y, p.size * (isMobile ? 2.2 : 2.6), 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -322,12 +338,12 @@ export default function ParticleTextCanvas() {
         const p = particles[i];
         if (p.alpha <= 0.05) continue;
         
-        // Chỉ vẽ lõi trắng đậm nếu alpha của hạt cao (Hạt tạo hình chính)
-        // Các hạt mây bụi (surplus) sẽ có lõi nhạt hoặc biến mất lõi trắng để chống chói
-        ctx.globalAlpha = p.alpha * p.alpha; 
+        // Giảm Alpha lõi trắng xuống một chút trên PC để tránh tình trạng "sáng quá"
+        ctx.globalAlpha = p.alpha * (isMobile ? 0.9 : 0.6); 
         ctx.fillStyle = "#fff";
         ctx.beginPath();
-        ctx.arc(p.x, p.y, Math.max(0.9, p.size * 0.9), 0, Math.PI * 2);
+        // Thu nhỏ nhẹ kích thước lõi trắng để nhường không gian cho quầng sáng màu hiển thị
+        ctx.arc(p.x, p.y, p.size * 0.75, 0, Math.PI * 2);
         ctx.fill();
       }
       ctx.restore();
@@ -379,7 +395,6 @@ export default function ParticleTextCanvas() {
         };
       });
 
-      // Cập nhật lại size hạt khi resize
       particlesRef.current.forEach(p => p.size = getParticleSize());
 
       clearTimeout(resizeTimeoutRef.current);
