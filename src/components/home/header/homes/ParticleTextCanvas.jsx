@@ -193,10 +193,10 @@ export default function ParticleTextCanvas() {
       }
       if (isMobile) {
         if (text.length >= 12) {
-          scale *= 1.02;
+          scale *= 1.0;
 
         } else if (text.length >= 8) {
-          scale *= 1.02;
+          scale *= 1.0;
         }
       }
       for (let y = 0; y < offH; y += sampleGap) {
