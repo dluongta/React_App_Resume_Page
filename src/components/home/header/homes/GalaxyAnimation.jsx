@@ -901,7 +901,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
 
   // Chỉ giữ lại các thông số góc nhìn cố định
   const state = useRef({
-    zoom: window.innerWidth < 768 ? 0.15 : 0.25,
+    zoom: window.innerWidth < 768 ? 0.25 : 0.30,
     rotX: 1.8,
     rotY: 0,
     shootingStar: { active: false, x: 0, y: 0, len: 0, speed: 0, opacity: 0 }
