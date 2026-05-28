@@ -459,6 +459,7 @@
 // };
 
 // export default GalaxyAnimation;
+
 import React, { useEffect, useRef, useState } from 'react';
 
 const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png", "hexagon-main.png", "luen-1.jpg"] }) => {
@@ -468,7 +469,6 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
   const [isLoading, setIsLoading] = useState(true);
   const [fadeLoading, setFadeLoading] = useState(false);
 
-  // Đặt cứng các góc nhìn và độ zoom, không còn các biến lưu trạng thái kéo/thả
   const state = useRef({
     zoom: window.innerWidth < 768 ? 0.25 : 0.35,
     rotX: 1.8,
@@ -815,7 +815,6 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
         </div>
       )}
 
-      {/* Xóa cursor: grab và touchAction: none */}
       <canvas 
         ref={canvasRef} 
         style={{ display: 'block', width: '100%', height: '100%' }} 
