@@ -916,8 +916,10 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
     let requestId;
 
     const isMobile = window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
-    const STAR_COUNT = isMobile ? 250 : 600;
-    const PARTICLE_COUNT = isMobile ? 400 : 1200;
+    // const STAR_COUNT = isMobile ? 250 : 600;
+    // const PARTICLE_COUNT = isMobile ? 400 : 1200;
+    const STAR_COUNT = 600;
+    const PARTICLE_COUNT = 1200;
     const IMAGE_SHOW_SCALE = 0.8;
     const PERSPECTIVE = 2000;
     const PLANET_RADIUS = 110;
