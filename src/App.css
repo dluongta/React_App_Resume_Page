@@ -3096,8 +3096,11 @@ body.sub-root,
     padding: 0 !important;
   }
   .header {
-        padding-top: 20px;  
-        padding-bottom: 20px; 
+        padding-top: 34px;  
+        padding-bottom: 24px; 
+  }
+  .top-marquee {
+    height: 50px;
   }
 }
 
@@ -3111,4 +3114,8 @@ body.sub-root,
         height: 100%;
         align-items: center;
     }
+}
+
+.marquee-content span {
+  font-size: 16px;
 }
