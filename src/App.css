@@ -3095,4 +3095,20 @@ body.sub-root,
     margin-bottom: -30px !important;
     padding: 0 !important;
   }
+  .header {
+        padding-top: 20px;  
+        padding-bottom: 20px; 
+  }
+}
+
+@media (min-width: 992px) {
+    .header {
+        height: 100px; 
+        padding: 0;   
+
+    }
+    .header .container.flex {
+        height: 100%;
+        align-items: center;
+    }
 }

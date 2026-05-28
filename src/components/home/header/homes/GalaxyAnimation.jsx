@@ -1,27 +1,23 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
+const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png", "hexagon-main.png", "luen-1.jpg"] }) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
 
+  const [isLoading, setIsLoading] = useState(true);
+  const [fadeLoading, setFadeLoading] = useState(false);
+
+  // useRef lưu trữ trạng thái để không gây re-render làm giật lag
   const state = useRef({
-    // zoom: window.innerWidth < 768 ? 0.25 : 0.4,
-    zoom: window.innerWidth < 768? 0.15 : 0.25,
+    zoom: window.innerWidth < 768 ? 0.15 : 0.25,
+    initialZoom: window.innerWidth < 768 ? 0.15 : 0.25,
     rotX: 1.8,
     rotY: 0,
     dragging: false,
     lastX: 0,
     lastY: 0,
     initialPinchDist: null,
-    initialZoom: 0.4,
-    shootingStar: {
-      active: false,
-      x: 0,
-      y: 0,
-      len: 0,
-      speed: 0,
-      opacity: 0
-    }
+    shootingStar: { active: false, x: 0, y: 0, len: 0, speed: 0, opacity: 0 }
   });
 
   useEffect(() => {
@@ -29,350 +25,428 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = [] }) => {
     const container = containerRef.current;
     if (!canvas || !container) return;
 
-    const ctx = canvas.getContext("2d");
-    let w, h, cx, cy;
+    const ctx = canvas.getContext("2d", { alpha: false });
     let requestId;
-    // const isMobile = window.innerWidth < 768;
 
-
+    const isMobile = window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
+    const STAR_COUNT = isMobile ? 250 : 600;
+    const PARTICLE_COUNT = isMobile ? 400 : 1200;
+    const IMAGE_SHOW_SCALE = 0.8;
     const PERSPECTIVE = 2000;
     const PLANET_RADIUS = 110;
-    const ORBIT_RADIUS = 280;
-    const ORBIT_TILT = -80;
-    const IMAGE_SHOW_SCALE = 0.8;
-    const BLUE_COLOR = "#00ccff";
+
+    let w, h, cx, cy;
+    let images = [], bgStars = [], particles = [];
+    const rand = (a, b) => Math.random() * (b - a) + a;
 
     const RINGS = [
       { text: "DINH ", radius: 220, tilt: -0.8, speed: 1.2, color: "#ff6200" },
-      { text: "LUONG ", radius: 320, tilt: 0.8, speed: 0.8, color: "#00ccff" },
+      { text: "LUONG ", radius: 320, tilt: 0.8, speed: 0.8, color: "#6a00ff" },
       { text: "TA ", radius: 420, tilt: "vertical", speed: 0.5, color: "#ff0066" }
     ];
 
-    // Khởi tạo hình ảnh
-    const images = imageUrls.map(src => {
-      const img = new Image();
-      img.src = src;
-      return img;
-    });
+    // --- HỆ THỐNG CACHE VẼ TRƯỚC (GIẢM LAG) ---
+    const caches = { text: {}, planet: null, auraOrange: null, auraPurple: null };
 
-    const rand = (a, b) => Math.random() * (b - a) + a;
+    const createCacheCanvas = (size, renderFunc) => {
+      const c = document.createElement('canvas');
+      c.width = size; c.height = size;
+      renderFunc(c.getContext('2d'), size / 2);
+      return c;
+    };
 
-    // Khởi tạo dữ liệu tĩnh (Stars, Particles)
-    const stars = Array.from({ length: 800 }, () => ({
+    const initCaches = () => {
+      caches.planet = createCacheCanvas(400, (ctxCache, center) => {
+        const pr = 60;
+        ctxCache.globalCompositeOperation = "lighter";
+        const glow = ctxCache.createRadialGradient(center, center, pr * 0.2, center, center, pr * 3);
+        glow.addColorStop(0, "rgba(255,255,220,0.9)");
+        glow.addColorStop(0.2, "rgba(255,180,0,0.8)");
+        glow.addColorStop(0.5, "rgba(255,120,0,0.35)");
+        glow.addColorStop(1, "rgba(255,80,0,0)");
+        ctxCache.fillStyle = glow;
+        ctxCache.beginPath(); ctxCache.arc(center, center, pr * 3, 0, Math.PI * 2); ctxCache.fill();
+        
+        const sun = ctxCache.createRadialGradient(center - pr * 0.3, center - pr * 0.3, pr * 0.1, center, center, pr);
+        sun.addColorStop(0, "#fff7cc"); sun.addColorStop(0.3, "#ffcc33");
+        sun.addColorStop(0.7, "#ff8800"); sun.addColorStop(1, "#ff5500");
+        ctxCache.fillStyle = sun;
+        ctxCache.beginPath(); ctxCache.arc(center, center, pr, 0, Math.PI * 2); ctxCache.fill();
+      });
 
-      x: rand(-3000, 3000), y: rand(-3000, 3000), z: rand(-3000, 3000),
-      size: rand(6, 8), color: "#ffffff"
-    }));
+      const buildAura = (colorRGB) => createCacheCanvas(400, (ctxCache, center) => {
+        const g = ctxCache.createRadialGradient(center, center, 0, center, center, center);
+        g.addColorStop(0, `rgba(${colorRGB}, 0.5)`);
+        g.addColorStop(0.3, `rgba(${colorRGB}, 0.25)`);
+        g.addColorStop(0.7, `rgba(${colorRGB}, 0.08)`);
+        g.addColorStop(1, "rgba(0,0,0,0)");
+        ctxCache.fillStyle = g;
+        ctxCache.beginPath(); ctxCache.arc(center, center, center, 0, Math.PI * 2); ctxCache.fill();
+      });
+      caches.auraOrange = buildAura("255, 140, 0");
+      caches.auraPurple = buildAura("180, 0, 255");
 
-    const particles = Array.from({ length: 1500 }, () => ({
+      RINGS.forEach(ring => {
+        const uniqueChars = [...new Set(ring.text)];
+        uniqueChars.forEach(char => {
+          const key = char + ring.color;
+          if (!caches.text[key]) {
+            caches.text[key] = createCacheCanvas(80, (ctxCache, center) => {
+              ctxCache.font = "bold 35px Impact, Arial";
+              ctxCache.textAlign = "center"; ctxCache.textBaseline = "middle";
+              ctxCache.shadowColor = ring.color; ctxCache.shadowBlur = 12;
+              ctxCache.strokeStyle = ring.color; ctxCache.lineWidth = 3; ctxCache.lineJoin = "round";
+              ctxCache.strokeText(char, center, center);
+              ctxCache.shadowBlur = 0;
+              ctxCache.fillStyle = "#ffffff";
+              ctxCache.fillText(char, center, center);
+            });
+          }
+        });
+      });
+    };
 
-      radius: rand(500, 900),
-      angle: Math.random() * Math.PI * 2,
-      speed: rand(0.0005, 0.002),
-      yOffset: rand(-50, 50),
-      size: rand(4, 7),
-      imgIndex: Math.floor(Math.random() * images.length)
-    }));
+    // --- KHỞI TẠO & PRELOAD ---
+    let isAppStarted = false;
+    const startUniverse = () => {
+      if (isAppStarted) return;
+      isAppStarted = true;
+
+      initCaches();
+      
+      bgStars = Array.from({ length: STAR_COUNT }, () => ({
+        x: rand(-3000, 3000), y: rand(-3000, 3000), z: rand(-3000, 3000), size: rand(4, 7), color: "#ffffff"
+      }));
+
+      particles = Array.from({ length: PARTICLE_COUNT }, () => ({
+        radius: rand(500, 900), angle: Math.random() * Math.PI * 2,
+        speed: rand(0.0005, 0.002), yOffset: rand(-50, 50), size: rand(4, 6),
+        imgIndex: Math.floor(Math.random() * imageUrls.length)
+      }));
+
+      resize();
+      requestAnimationFrame(animate);
+
+      setFadeLoading(true);
+      setTimeout(() => setIsLoading(false), 500);
+    };
+
+    const preloadImages = () => {
+      const promises = imageUrls.map(src => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve(img);
+          img.onerror = () => resolve(img);
+          img.src = src;
+        });
+      });
+
+      Promise.all(promises).then(loadedImages => {
+        images = loadedImages;
+        startUniverse();
+      });
+
+      setTimeout(() => startUniverse(), 3000); // Failsafe
+    };
 
     const resize = () => {
-      // w = canvas.width = container.offsetWidth;
-      // h = canvas.height = container.offsetHeight;
-      // cx = w / 2;
-      // cy = h / 2;
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-      canvas.width = container.offsetWidth * dpr;
-      canvas.height = container.offsetHeight * dpr;
-      canvas.style.width = container.offsetWidth + "px";
-      canvas.style.height = container.offsetHeight + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-      w = container.offsetWidth;
-      h = container.offsetHeight;
-      cx = w / 2;
-      cy = h / 2;
-
+      if (!containerRef.current) return;
+      w = canvas.width = containerRef.current.clientWidth;
+      h = canvas.height = containerRef.current.clientHeight;
+      cx = w / 2; cy = h / 2;
     };
 
-    const rotate3D = (x, y, z) => {
-      const { rotX, rotY } = state.current;
-      let y1 = y * Math.cos(rotX) - z * Math.sin(rotX);
-      let z1 = y * Math.sin(rotX) + z * Math.cos(rotX);
-      let x2 = x * Math.cos(rotY) + z1 * Math.sin(rotY);
-      let z2 = -x * Math.sin(rotY) + z1 * Math.cos(rotY);
-      return { x: x2, y: y1, z: z2 };
-    };
+    // ==========================================
+    // KIỂM SOÁT TƯƠNG TÁC (ĐÃ FIX CHO PC & MOBILE)
+    // ==========================================
+    const getTouchDist = (touches) => Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
 
-    const project = (p) => {
-      const s = (PERSPECTIVE / (PERSPECTIVE + p.z)) * state.current.zoom;
-      return { x: cx + p.x * s, y: cy + p.y * s, s, z: p.z };
-    };
-
-    // --- LOGIC SAO BĂNG CHẠY NGANG ---
-    const updateShootingStar = () => {
-      const ss = state.current.shootingStar;
-      if (!ss.active) {
-        if (Math.random() < 0.02) { // Tần suất xuất hiện
-          ss.active = true;
-          ss.x = -400;
-          ss.y = rand(50, h * 0.8);
-          ss.len = rand(200, 400);
-          ss.speed = rand(40, 60);
-          ss.opacity = 1;
-        }
-      } else {
-        ss.x += ss.speed;
-        ss.opacity -= 0.007;
-        if (ss.x > w + 400 || ss.opacity <= 0) {
-          ss.active = false;
-        }
-      }
-    };
-
-    const drawShootingStar = () => {
-      const ss = state.current.shootingStar;
-      if (!ss.active) return;
-
-      ctx.save();
-      ctx.globalCompositeOperation = "lighter";
-      const grad = ctx.createLinearGradient(ss.x, ss.y, ss.x - ss.len, ss.y);
-      grad.addColorStop(0, `rgba(255, 255, 255, ${ss.opacity})`);
-      grad.addColorStop(1, "rgba(255, 255, 255, 0)");
-
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(ss.x, ss.y);
-      ctx.lineTo(ss.x - ss.len, ss.y);
-      ctx.stroke();
-      ctx.restore();
-    };
-
-    // --- XỬ LÝ SỰ KIỆN TƯƠNG TÁC ---
+    // 1. Phóng to/Thu nhỏ bằng Chuột (PC)
     const onWheel = (e) => {
       e.preventDefault();
-      const delta = e.deltaY > 0 ? 0.95 : 1.05;
-      state.current.zoom = Math.max(0.05, Math.min(3, state.current.zoom * delta));
+      state.current.zoom = Math.max(0.05, Math.min(4, state.current.zoom * (e.deltaY > 0 ? 0.9 : 1.1)));
     };
 
-    const getTouchDist = (touches) => {
-      return Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
+    // 2. Kéo & Xoay ngân hà bằng Pointer Events (Hoạt động cho cả Chuột PC và 1 ngón tay Mobile)
+    const onPointerDown = (e) => {
+      state.current.dragging = true;
+      state.current.lastX = e.clientX;
+      state.current.lastY = e.clientY;
+      // Khóa pointer vào canvas để rê chuột ra ngoài mép màn hình vẫn xoay được
+      canvas.setPointerCapture(e.pointerId); 
     };
 
-    const handleTouchStart = (e) => {
-      if (e.touches.length === 1) {
-        state.current.dragging = true;
-        state.current.lastX = e.touches[0].clientX;
-        state.current.lastY = e.touches[0].clientY;
-      } else if (e.touches.length === 2) {
-        state.current.dragging = false;
+    const onPointerMove = (e) => {
+      if (!state.current.dragging) return;
+      state.current.rotY += (e.clientX - state.current.lastX) * 0.005;
+      state.current.rotX += (e.clientY - state.current.lastY) * 0.005;
+      state.current.lastX = e.clientX;
+      state.current.lastY = e.clientY;
+    };
+
+    const onPointerUp = (e) => {
+      state.current.dragging = false;
+      canvas.releasePointerCapture(e.pointerId);
+    };
+
+    // 3. Phóng to/Thu nhỏ bằng 2 ngón tay (Chỉ dành cho Mobile Touch)
+    const onTouchStart = (e) => {
+      if (e.touches.length === 2) {
+        state.current.dragging = false; // Vô hiệu hóa kéo xoay khi đang dùng 2 ngón
         state.current.initialPinchDist = getTouchDist(e.touches);
         state.current.initialZoom = state.current.zoom;
       }
     };
 
-    const handleTouchMove = (e) => {
-      if (e.touches.length === 1 && state.current.dragging) {
-        const touch = e.touches[0];
-        state.current.rotY += (touch.clientX - state.current.lastX) * 0.005;
-        state.current.rotX += (touch.clientY - state.current.lastY) * 0.005;
-        state.current.lastX = touch.clientX;
-        state.current.lastY = touch.clientY;
-      } else if (e.touches.length === 2 && state.current.initialPinchDist) {
-        e.preventDefault();
-        const currentDist = getTouchDist(e.touches);
-        const ratio = currentDist / state.current.initialPinchDist;
-        state.current.zoom = Math.max(0.05, Math.min(3, state.current.initialZoom * ratio));
+    const onTouchMove = (e) => {
+      if (e.touches.length === 2 && state.current.initialPinchDist) {
+        e.preventDefault(); // Chống cuộn trang web
+        const dist = getTouchDist(e.touches);
+        state.current.zoom = Math.max(0.05, Math.min(4, state.current.initialZoom * (dist / state.current.initialPinchDist)));
       }
     };
 
-    const handleTouchEnd = () => {
-      state.current.dragging = false;
-      state.current.initialPinchDist = null;
-    };
-
-    // --- RENDER LOGIC ---
-    function drawDynamicAura(time) {
-      ctx.save();
-      ctx.globalCompositeOperation = "screen";
-      const colors = ["rgba(0, 150, 255, 0.3)", "rgba(180, 0, 255, 0.3)", "rgba(255, 100, 0, 0.2)"];
-      colors.forEach((color, i) => {
-        const angle = time * (0.4 + i * 0.1) + i * 2;
-        const lx = cx + Math.cos(angle) * (w * 0.2);
-        const ly = cy + Math.sin(angle) * (h * 0.2);
-        const g = ctx.createRadialGradient(lx, ly, 0, lx, ly, w * 0.7);
-        g.addColorStop(0, color);
-        g.addColorStop(1, "transparent");
-        ctx.fillStyle = g;
-        ctx.fillRect(0, 0, w, h);
-      });
-      ctx.restore();
-    }
-
-    let time = 0;
-    let lastTime = 0;
-
-    const draw = () => {
-
-      // if (isMobile) time += 0.006;
-      // else time += 0.01;
-      time += 0.01;
-
-      ctx.fillStyle = "#000";
-      ctx.fillRect(0, 0, w, h);
-
-      drawDynamicAura(time);
-
-      // Vẽ sao băng ở lớp phía sau
-      updateShootingStar();
-      drawShootingStar();
-
-      const renderList = [];
-      stars.forEach(s => renderList.push({ type: 'star', ...rotate3D(s.x, s.y, s.z), size: s.size, color: s.color }));
-      renderList.push({ type: 'planet', ...rotate3D(0, 0, 0) });
-
-      // for (let i = 0; i < text.length; i++) {
-      //   const charA = time * 2.0 + (i * (Math.PI * 2 / text.length) * 0.5);
-      //   renderList.push({ type: 'text', char: text[i], ...rotate3D(Math.cos(charA) * ORBIT_RADIUS, Math.sin(charA) * ORBIT_TILT * 0.2, Math.sin(charA) * ORBIT_RADIUS) });
-      // }
-      RINGS.forEach((ring) => {
-        const repeatCount = Math.floor(ring.radius / 15);
-        const fullText = ring.text.repeat(repeatCount);
-        for (let i = 0; i < fullText.length; i++) {
-          const charAngle = (time * ring.speed) + (i * (Math.PI * 2 / fullText.length));
-          let x, y, z;
-          if (ring.tilt === "vertical") {
-            x = 0; y = Math.cos(charAngle) * ring.radius; z = Math.sin(charAngle) * ring.radius;
-          } else {
-            x = Math.cos(charAngle) * ring.radius;
-            z = Math.sin(charAngle) * ring.radius;
-            y = Math.cos(charAngle) * ring.radius * ring.tilt;
-          }
-          renderList.push({ type: 'text', char: fullText[i], color: ring.color, ...rotate3D(x, y, z) });
-        }
-      });
-
-      particles.forEach(p => {
-        const curA = p.angle + time + (time * p.speed * 120);
-        let px = p.radius * Math.cos(curA), pz = p.radius * Math.sin(curA), py = p.yOffset;
-        const PARTICLE_TILT_X = Math.PI / 2.3;
-        const PARTICLE_TILT_Z = Math.PI / 6;
-        let y1 = py * Math.cos(PARTICLE_TILT_X) - pz * Math.sin(PARTICLE_TILT_X);
-        let z1 = py * Math.sin(PARTICLE_TILT_X) + pz * Math.cos(PARTICLE_TILT_X);
-        let x2 = px * Math.cos(PARTICLE_TILT_Z) - y1 * Math.sin(PARTICLE_TILT_Z);
-        let y2 = px * Math.sin(PARTICLE_TILT_Z) + y1 * Math.cos(PARTICLE_TILT_Z);
-        renderList.push({ type: 'particle', original: p, ...rotate3D(x2, y2, z1) });
-      });
-
-      renderList.sort((a, b) => b.z - a.z);
-
-      renderList.forEach(item => {
-        const p = project(item);
-        if (p.s <= 0) return;
-
-        if (item.type === 'star') {
-          // ctx.fillStyle = "#fff";
-          // ctx.globalAlpha = Math.min(1, Math.max(0.1, (item.z + 3000) / 5000));
-          // ctx.beginPath(); ctx.arc(p.x, p.y, item.size * p.s, 0, Math.PI * 2); ctx.fill();
-          // ctx.globalAlpha = 1;
-          ctx.fillStyle = item.color;
-          // Giữ hiệu ứng mờ dần theo độ sâu z
-          ctx.globalAlpha = Math.min(1, Math.max(0.1, (item.z + 3000) / 5000));
-
-          // --- CHỈNH SỬA TẠI ĐÂY ---
-          const s = item.size * p.s; // Kích thước sau khi tính toán phối cảnh
-          // Vẽ hình vuông: x, y, width, height
-          // Trừ đi s/2 để tâm hình vuông nằm đúng vị trí tọa độ
-          ctx.fillRect(p.x - s / 2, p.y - s / 2, s, s);
-
-          ctx.globalAlpha = 1;
-        } else if (item.type === 'planet') {
-          const pr = PLANET_RADIUS * p.s;
-          const g = ctx.createRadialGradient(p.x, p.y, pr * 0.1, p.x, p.y, pr * 2);
-          g.addColorStop(0, "#fffbe6"); g.addColorStop(0.5, "#ff6600"); g.addColorStop(1, "transparent");
-          ctx.fillStyle = g;
-          ctx.beginPath(); ctx.arc(p.x, p.y, pr * 2, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = "#fff";
-          ctx.beginPath(); ctx.arc(p.x, p.y, pr * 0.7, 0, Math.PI * 2); ctx.fill();
-        } else if (item.type === 'particle') {
-          if (p.s > IMAGE_SHOW_SCALE) {
-            const img = images[item.original.imgIndex];
-            if (img && img.complete) {
-              const isize = item.original.size * p.s * 8;
-              ctx.drawImage(img, p.x - isize / 2, p.y - isize / 2, isize, isize);
-            }
-          } else {
-            const sq = item.original.size * p.s;
-            ctx.fillStyle = BLUE_COLOR;
-            ctx.globalAlpha = Math.min(1, (item.z + 2000) / 3000);
-            ctx.fillRect(p.x - sq / 2, p.y - sq / 2, sq, sq);
-            ctx.globalAlpha = 1;
-          }
-        } else if (item.type === 'text') {
-                 ctx.font = `bold ${50 * p.s}px Impact, Arial, sans-serif`;
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
-
-            ctx.shadowColor = item.color;
-            ctx.shadowBlur = 12 * p.s;
-
-            ctx.strokeStyle = item.color;
-            ctx.lineWidth = 4 * p.s;
-            ctx.strokeText(item.char, p.x, p.y);
-
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = "#ffffff";
-            ctx.fillText(item.char, p.x, p.y);
-        }
-      }
-      );
-
-      requestId = requestAnimationFrame(draw);
-    };
-
-    // Đăng ký sự kiện
+    // Gắn sự kiện chuẩn xác vào Canvas
     window.addEventListener("resize", resize);
     canvas.addEventListener("wheel", onWheel, { passive: false });
-    canvas.addEventListener("touchstart", handleTouchStart, { passive: false });
-    canvas.addEventListener("touchmove", handleTouchMove, { passive: false });
-    canvas.addEventListener("touchend", handleTouchEnd);
+    
+    // Gắn Pointer Events (Thay thế cho mousedown/mousemove cũ)
+    canvas.addEventListener("pointerdown", onPointerDown);
+    canvas.addEventListener("pointermove", onPointerMove);
+    canvas.addEventListener("pointerup", onPointerUp);
+    canvas.addEventListener("pointercancel", onPointerUp); // Xử lý khi chuột bị ngắt đột ngột
+    
+    // Gắn Touch Events dành riêng cho Pinch 2 ngón tay
+    canvas.addEventListener("touchstart", onTouchStart, { passive: true });
+    canvas.addEventListener("touchmove", onTouchMove, { passive: false });
 
-    const onMouseDown = (e) => {
-      state.current.dragging = true;
-      state.current.lastX = e.clientX;
-      state.current.lastY = e.clientY;
+    // --- CORE RENDER ---
+    const MAX_RENDER = STAR_COUNT + PARTICLE_COUNT + 300;
+    const renderPool = Array.from({ length: MAX_RENDER }, () => ({
+      type: 0, x: 0, y: 0, z: 0, size: 0, charKey: '', imgIdx: 0, cache: null
+    }));
+    
+    const PTX = Math.PI / 2.3, PTZ = Math.PI / 6;
+    const cPTX = Math.cos(PTX), sPTX = Math.sin(PTX), cPTZ = Math.cos(PTZ), sPTZ = Math.sin(PTZ);
+
+    const animate = () => {
+      const time = performance.now() * 0.0004;
+      ctx.fillStyle = "#000"; ctx.fillRect(0, 0, w, h);
+
+      const st = state.current;
+      const ss = st.shootingStar;
+
+      // SAO BĂNG CHẠY CHẬM VÀ ĐẸP HƠN
+      if (!ss.active && Math.random() < 0.01) { 
+        ss.active = true; ss.x = -400; ss.y = rand(50, h * 0.7);
+        ss.len = rand(150, 300); 
+        ss.speed = rand(15, 25); // Tốc độ bay chậm
+        ss.opacity = 1;
+      } else if (ss.active) {
+        ss.x += ss.speed; 
+        ss.opacity -= 0.003; // Hiệu ứng mờ dần chậm hơn
+        if (ss.x > w + 400 || ss.opacity <= 0) ss.active = false;
+        
+        ctx.save(); ctx.globalCompositeOperation = "lighter";
+        const grad = ctx.createLinearGradient(ss.x, ss.y, ss.x - ss.len, ss.y);
+        grad.addColorStop(0, `rgba(255, 255, 255, ${ss.opacity})`);
+        grad.addColorStop(1, "rgba(255, 255, 255, 0)");
+        ctx.strokeStyle = grad; ctx.lineWidth = 2; ctx.beginPath();
+        ctx.moveTo(ss.x, ss.y); ctx.lineTo(ss.x - ss.len, ss.y);
+        ctx.stroke(); ctx.restore();
+      }
+
+      let cosRX = Math.cos(st.rotX), sinRX = Math.sin(st.rotX);
+      let cosRY = Math.cos(st.rotY), sinRY = Math.sin(st.rotY);
+      let rCount = 0;
+
+      const auraData = [
+        { cache: caches.auraOrange, tx: -1200 + Math.sin(time*0.5)*150, ty: 300 + Math.cos(time*0.3)*150, tz: -300 + Math.sin(time*0.5)*100, radius: 3200 },
+        { cache: caches.auraPurple, tx: 1200 + Math.sin(time*0.4)*150, ty: 300 + Math.cos(time*0.2)*150, tz: -300 + Math.sin(time*0.4)*100, radius: 3200 }
+      ];
+      for(let a of auraData) {
+        let y1 = a.ty * cosRX - a.tz * sinRX, z1 = a.ty * sinRX + a.tz * cosRX;
+        let r = renderPool[rCount++];
+        r.type = 5; r.x = a.tx * cosRY + z1 * sinRY; r.y = y1; r.z = -a.tx * sinRY + z1 * cosRY;
+        r.cache = a.cache; r.size = a.radius;
+      }
+
+      let rp = renderPool[rCount++];
+      rp.type = 3; rp.x = 0; rp.y = 0; rp.z = 0;
+
+      for (let i = 0; i < RINGS.length; i++) {
+        let ring = RINGS[i];
+        let repeatCount = Math.floor(ring.radius / 15);
+        let fullText = ring.text.repeat(repeatCount);
+        for (let j = 0; j < fullText.length; j++) {
+          let cA = (time * ring.speed) + (j * (Math.PI * 2 / fullText.length));
+          let tx = (ring.tilt === "vertical") ? 0 : Math.cos(cA) * ring.radius;
+          let tz = Math.sin(cA) * ring.radius;
+          let ty = (ring.tilt === "vertical") ? Math.cos(cA) * ring.radius : tx * ring.tilt;
+          
+          let y1 = ty * cosRX - tz * sinRX, z1 = ty * sinRX + tz * cosRX;
+          let r = renderPool[rCount++];
+          r.type = 4; r.x = tx * cosRY + z1 * sinRY; r.y = y1; r.z = -tx * sinRY + z1 * cosRY;
+          r.charKey = fullText[j] + ring.color;
+        }
+      }
+
+      for (let i = 0; i < particles.length; i++) {
+        let p = particles[i];
+        let curA = p.angle + time + (time * p.speed * 80);
+        let px = p.radius * Math.cos(curA), pz = p.radius * Math.sin(curA), py = p.yOffset;
+        let py1 = py * cPTX - pz * sPTX, pz1 = py * sPTX + pz * cPTX;
+        let tx = px * cPTZ - py1 * sPTZ, ty = px * sPTZ + py1 * cPTZ;
+        let y1 = ty * cosRX - pz1 * sinRX, z1 = ty * sinRX + pz1 * cosRX;
+        
+        let r = renderPool[rCount++];
+        r.type = 2; r.x = tx * cosRY + z1 * sinRY; r.y = y1; r.z = -tx * sinRY + z1 * cosRY;
+        r.size = p.size; r.imgIdx = p.imgIndex;
+      }
+
+      for (let i = 0; i < bgStars.length; i++) {
+        let s = bgStars[i];
+        let y1 = s.y * cosRX - s.z * sinRX, z1 = s.y * sinRX + s.z * cosRX;
+        let r = renderPool[rCount++];
+        r.type = 1; r.x = s.x * cosRY + z1 * sinRY; r.y = y1; r.z = -s.x * sinRY + z1 * cosRY;
+        r.size = s.size;
+      }
+
+      let activeRender = renderPool.slice(0, rCount).sort((a, b) => b.z - a.z);
+      let currentBlend = "source-over";
+
+      for (let i = 0; i < rCount; i++) {
+        let item = activeRender[i];
+        let scale = (PERSPECTIVE / (PERSPECTIVE + item.z)) * st.zoom;
+        if (scale <= 0) continue;
+
+        let px = cx + item.x * scale;
+        let py = cy + item.y * scale;
+
+        if (item.type === 1) {
+          if (currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
+          let sSize = item.size * scale;
+          ctx.fillStyle = "#ffffff";
+          ctx.globalAlpha = Math.min(1, Math.max(0.1, (item.z + 3000) / 5000));
+          ctx.fillRect(px - sSize/2, py - sSize/2, sSize, sSize);
+        } 
+        else if (item.type === 2) {
+          if (currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
+          if (scale > IMAGE_SHOW_SCALE) {
+            let img = images[item.imgIdx];
+            if (img && img.complete && img.naturalWidth > 0) {
+              let isize = item.size * scale * 8;
+              ctx.globalAlpha = 1;
+              ctx.drawImage(img, px - isize/2, py - isize/2, isize, isize);
+            }
+          } else {
+            let sq = item.size * scale;
+            ctx.fillStyle = "#FF8C00";
+            ctx.globalAlpha = Math.min(1, (item.z + 2000) / 3000);
+            ctx.fillRect(px - sq/2, py - sq/2, sq, sq);
+          }
+        } 
+        else if (item.type === 3 && caches.planet) {
+          if (currentBlend !== "lighter") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
+          ctx.globalAlpha = 1;
+          let pr = PLANET_RADIUS * scale * 3.5; 
+          ctx.drawImage(caches.planet, px - pr, py - pr, pr * 2, pr * 2);
+        }
+        else if (item.type === 4) {
+          if (currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
+          ctx.globalAlpha = 1;
+          let txtImg = caches.text[item.charKey];
+          if (txtImg) {
+            let ts = 30 * scale; 
+            ctx.drawImage(txtImg, px - ts, py - ts, ts * 2, ts * 2);
+          }
+        }
+        else if (item.type === 5 && item.cache) {
+          if (currentBlend !== "lighter") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
+          ctx.globalAlpha = 1;
+          let gradRadius = item.size * scale;
+          if (gradRadius > 10) {
+            ctx.drawImage(item.cache, px - gradRadius, py - gradRadius, gradRadius * 2, gradRadius * 2);
+          }
+        }
+      }
+      
+      ctx.globalAlpha = 1; 
+      requestId = requestAnimationFrame(animate);
     };
-    const onMouseMove = (e) => {
-      if (!state.current.dragging) return;
-      state.current.rotY += (e.clientX - state.current.lastX) * 0.003;
-      state.current.rotX += (e.clientY - state.current.lastY) * 0.003;
-      state.current.lastX = e.clientX;
-      state.current.lastY = e.clientY;
-    };
-    const onMouseUp = () => state.current.dragging = false;
 
-    canvas.addEventListener("mousedown", onMouseDown);
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mouseup", onMouseUp);
+    preloadImages(); 
 
-    resize();
-    draw();
-
+    // Dọn dẹp sự kiện
     return () => {
       cancelAnimationFrame(requestId);
       window.removeEventListener("resize", resize);
+      
       canvas.removeEventListener("wheel", onWheel);
-      canvas.removeEventListener("touchstart", handleTouchStart);
-      canvas.removeEventListener("touchmove", handleTouchMove);
-      canvas.removeEventListener("touchend", handleTouchEnd);
-      canvas.removeEventListener("mousedown", onMouseDown);
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseup", onMouseUp);
+      canvas.removeEventListener("pointerdown", onPointerDown);
+      canvas.removeEventListener("pointermove", onPointerMove);
+      canvas.removeEventListener("pointerup", onPointerUp);
+      canvas.removeEventListener("pointercancel", onPointerUp);
+      
+      canvas.removeEventListener("touchstart", onTouchStart);
+      canvas.removeEventListener("touchmove", onTouchMove);
     };
   }, [text, imageUrls]);
 
   return (
-    <div ref={containerRef} style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden', background: '#000' }}>
-      <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%', touchAction: 'none' }} />
+    <div className="galaxy-container" ref={containerRef}>
+      
+      {/* Loading Screen */}
+      {isLoading && (
+        <div style={{
+          position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+          backgroundColor: '#000', display: 'flex', flexDirection: 'column',
+          justifyContent: 'center', alignItems: 'center', zIndex: 9999,
+          opacity: fadeLoading ? 0 : 1, transition: 'opacity 0.5s ease'
+        }}>
+          <div style={{
+            width: '40px', height: '40px', border: '4px solid rgba(255, 140, 0, 0.2)',
+            borderTop: '4px solid #FF8C00', borderRadius: '50%',
+            animation: 'spin 1s linear infinite'
+          }} />
+          <div style={{ color: '#FF8C00', marginTop: '15px', fontWeight: 'bold', letterSpacing: '2px', fontSize: '14px' }}>
+            LOADING UNIVERSE...
+          </div>
+        </div>
+      )}
+
+      {/* Canvas */}
+      <canvas 
+        ref={canvasRef} 
+        style={{ display: 'block', width: '100%', height: '100%', touchAction: 'none' }} 
+      />
+
+      {/* CSS Nhúng */}
+      <style>
+        {`
+          .galaxy-container {
+            width: 100%;
+            height: 60vh; /* Giảm chiều cao trên PC */
+            min-height: 400px; /* Tránh bị quá bẹp */
+            position: relative;
+            overflow: hidden;
+            background-color: #000;
+            cursor: grab; /* Chỉ báo tương tác kéo thả */
+          }
+          
+          .galaxy-container:active {
+            cursor: grabbing; /* Thay đổi icon khi nhấn giữ */
+          }
+
+          @media (max-width: 768px) {
+            .galaxy-container {
+              height: 50vh; /* Thu gọn cho Mobile */
+            }
+          }
+
+          @keyframes spin { 100% { transform: rotate(360deg); } }
+        `}
+      </style>
     </div>
   );
 };
