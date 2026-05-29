@@ -417,7 +417,7 @@ useEffect(() => {
 
     return () => clearInterval(interval);
   }, [currentLineIndex, toRotate.length]);
-
+const itemHeight = isMobile ? 40 : 60;
   return (
     <section className={`home-left ${className}`}>
       <div className="container flex">
@@ -455,7 +455,7 @@ useEffect(() => {
                   <div
                     className="carousel_carousel"
                     style={{
-                      transform: `translateY(-${currentLineIndex * (isMobile ? 28 : 25)}%)`,
+                      transform: `translateY(-${currentLineIndex * (isMobile ? 25 : 25)}%)`,
                       transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
                     }}
                   >
