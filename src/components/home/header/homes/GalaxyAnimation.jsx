@@ -362,19 +362,19 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
       <style>
         {`
           .galaxy-container {
-            width: 80%;
+            width: 100%;
             max-width: 1400px;
             height: 100vh;
             position: relative;
             overflow: hidden;
             background-color: #000;
             margin: 0 auto;
-            border-radius: 16px;
+            border-radius: 0px;
           }
 
           @media (max-width: 1024px) {
             .galaxy-container {
-              width: 95%;          
+              width: 100%;          
             }
           }
 
