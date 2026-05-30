@@ -796,16 +796,6 @@
   } 
   
 
-}
-
-/* Khung chứa bên ngoài, che đi phần chữ bị thừa */
-.carousel_carousel_container {
-  height: 60px; /* Khớp với itemHeight desktop */
-    overflow: hidden; /* Bắt buộc để che các dòng chữ khác */
-      display: flex;
-        align-items: center; /* Căn giữa dọc */
-        }
-
         /* Từng dòng chữ hiển thị bên trong */
         .carousel_carousel_item {
           height: 60px; /* Bắt buộc bằng height của container */
@@ -821,4 +811,3 @@
                         height: 40px; /* Khớp với itemHeight mobile */
                           }
                           }
-                          
