@@ -811,3 +811,21 @@
                         height: 40px; /* Khớp với itemHeight mobile */
                           }
                           }
+/* --- FIX LỖI LẤN ICON --- */
+.headline {
+  margin-bottom: 40px !important; /* Tạo khoảng trống 40px phía dưới cụm chữ */
+}
+
+.socialIcon {
+  margin-top: 20px !important; /* Đẩy cụm icon xuống thêm 20px so với bên trên */
+}
+
+@media (max-width: 768px) {
+  .headline {
+    margin-bottom: 50px !important; /* Trên mobile khoảng cách cần rộng hơn một chút */
+  }
+  
+  .socialIcon {
+    margin-top: 30px !important;
+  }
+}
