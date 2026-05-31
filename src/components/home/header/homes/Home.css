@@ -477,14 +477,11 @@
 .carousel_carousel_item {
   display: inline-block;
 
-  background: linear-gradient(
-    90deg,
-    #FF8800
-    #A033FF,
-    #0088FF,
-    #FF5C87,
-    #FF8800
-  );
+  background: linear-gradient(90deg,
+      #FF8800 #A033FF,
+      #0088FF,
+      #FF5C87,
+      #FF8800);
 
   background-size: 300% 100%;
   background-repeat: repeat;
@@ -582,8 +579,8 @@
   }
 
   .gradientTextStyle {
-    font-size: 2rem!important;
-    font-weight: 900!important;
+    font-size: 2rem !important;
+    font-weight: 900 !important;
   }
 }
 
@@ -690,7 +687,7 @@
   }
 
   .gradientTextStyle {
-    font-size: clamp(2rem, 5vw, 3.5rem)!important;
+    font-size: clamp(2rem, 5vw, 3.5rem) !important;
     font-weight: 800;
     line-height: 1 !important;
 
@@ -711,7 +708,7 @@
 
     /* padding: 18px 20px !important;
     border-radius: 10px; */
-    height:80px !important;
+    height: 80px !important;
 
     padding: 0 22px !important;
 
@@ -779,54 +776,53 @@
     justify-content: center !important;
     width: 100% !important;
   } */
- 
+
   .gradientTextStyle {
     font-size: clamp(2.4rem, 6vw, 2.5rem) !important;
     font-weight: 800;
     line-height: 1.2 !important;
 
-    margin: 0px !important; 
+    margin: 0px !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important; 
+    justify-content: center !important;
 
     white-space: normal !important;
-    text-align: center !important;  
+    text-align: center !important;
     width: 100% !important;
-  } 
-  
+  }
 
-        /* Từng dòng chữ hiển thị bên trong */
-        .carousel_carousel_item {
-          height: 60px; /* Bắt buộc bằng height của container */
-            display: flex;
-              align-items: center; 
-                white-space: nowrap; /* QUAN TRỌNG: Ngăn chặn chữ rớt xuống 2 dòng trên màn hình nhỏ */
-                }
 
-                /* Responsive cho Mobile */
-                @media (max-width: 768px) {
-                  .carousel_carousel_container,
-                    .carousel_carousel_item {
-                        height: 40px; /* Khớp với itemHeight mobile */
-                          }
-                          }
-/* --- FIX LỖI LẤN ICON --- */
-.headline {
-  margin-bottom: 40px !important; /* Tạo khoảng trống 40px phía dưới cụm chữ */
-}
+  .carousel_carousel_item {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
 
-.socialIcon {
-  margin-top: 20px !important; /* Đẩy cụm icon xuống thêm 20px so với bên trên */
-}
+  @media (max-width: 768px) {
 
-@media (max-width: 768px) {
+    .carousel_carousel_container,
+    .carousel_carousel_item {
+      height: 40px;
+    }
+  }
+
   .headline {
-    margin-bottom: 50px !important; /* Trên mobile khoảng cách cần rộng hơn một chút */
+    margin-bottom: 40px !important;
   }
-  
+
   .socialIcon {
-    margin-top: 30px !important;
+    margin-top: 20px !important;
   }
-}
+
+  @media (max-width: 768px) {
+    .headline {
+      margin-bottom: 50px !important;
+    }
+
+    .socialIcon {
+      margin-top: 30px !important;
+    }
+  }
 }

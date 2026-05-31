@@ -151,15 +151,17 @@ export const Branding = ({ className }) => {
         <CircularText text="FANTASTIC ✦ SOFTWARE ✦ DEVELOPER ✦ " color="#FFA500" onHover="speedUp" />
         <CircularText text="SKILLED ✦ HARDWARE ✦ ENGINEER ✦ " color="#FFA500" onHover="speedUp" />
         <CircularText text="DIGITAL ✦ ULMIND ✦ SYSTEMS ✦ " color="#FFA500" onHover="speedUp" />
-      </div>      {/* {!isMobile && (
+      </div>
+      {/* {!isMobile && (
         <div style={{
           position: 'relative',
-          width: '80%',
+          width: '86%',
           height: '100vh',
           overflow: 'hidden',
           background: '#000',
           margin: '0 auto',
-          marginTop: '30px'
+          marginTop: '30px',
+          borderRadius: '20px',
         }} className='galaxy'>
 
           <GalaxyAnimation
@@ -169,12 +171,11 @@ export const Branding = ({ className }) => {
 
         </div>
 
-      )} 
-      <GalaxyAnimation
+      )} */}
+      {/* <GalaxyAnimation
         text="DINH LUONG TA"
         imageUrls={galaxyImages}
-      /> 
-      */}
+      /> */}
       {/* <img width={'100%'} src={logo} alt="Logo" /> */}
       <ParticleTextCanvas />
       {/* <CustomVideoPlayer src={ulmind_intro} captionSrc={caption_ulmind_intro} /> */}
