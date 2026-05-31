@@ -804,7 +804,7 @@
 
     .carousel_carousel_container,
     .carousel_carousel_item {
-      height: 40px;
+      height: 80px;
     }
   }
 
@@ -818,7 +818,7 @@
 
   @media (max-width: 768px) {
     .headline {
-      margin-bottom: 50px !important;
+      margin-bottom: 58px !important;
     }
 
     .socialIcon {
