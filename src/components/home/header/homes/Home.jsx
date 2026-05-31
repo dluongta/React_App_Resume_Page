@@ -455,7 +455,8 @@ const itemHeight = isMobile ? 40 : 60;
                   <div
                     className="carousel_carousel"
                     style={{
-                      transform: isMobile ? `translateY(-${currentLineIndex * 25}%)` : `translateY(-${currentLineIndex * 25}%)`,
+                      transform: isMobile 
+      ? `translateY(calc(-${currentLineIndex * 25}% - 12px))` :  `translateY(-${currentLineIndex * 25}%)`,
                       transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
                     }}
                   >

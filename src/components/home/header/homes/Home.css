@@ -477,11 +477,7 @@
 .carousel_carousel_item {
   display: inline-block;
 
-  background: linear-gradient(90deg,
-      #FF8800 #A033FF,
-      #0088FF,
-      #FF5C87,
-      #FF8800);
+  background: linear-gradient(90deg, #FF8800, #A033FF, #0088FF, #FF5C87, #FF8800);
 
   background-size: 300% 100%;
   background-repeat: repeat;
@@ -585,13 +581,7 @@
 }
 
 .gradientTextStyle {
-  background-image: linear-gradient(94deg,
-      #ad29e3 6.06%,
-      #f84063 34.53%,
-      #f84063 54.53%,
-      #ff6200 66.74%,
-      #ff6200 100.96%,
-      #6e0ef3 106.06%);
+  background-image: linear-gradient(90deg, #FF8800, #A033FF, #0088FF, #FF5C87, #FF8800);
 
   background-clip: text;
   -webkit-background-clip: text;
@@ -650,11 +640,7 @@
 }
 
 .gradientStyle {
-  background: linear-gradient(94deg,
-      #fe954a 6.06%,
-      #f84063 34.53%,
-      #ad29e3 66.74%,
-      #008eff 100.96%);
+  background: linear-gradient(90deg, #FF8800, #A033FF, #0088FF, #FF5C87, #FF8800);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -804,7 +790,7 @@
 
     .carousel_carousel_container,
     .carousel_carousel_item {
-      height: 60px;
+      height: 90px;
     }
   }
 
@@ -822,7 +808,8 @@
     }
 
     .socialIcon {
-      margin-top: 30px !important;
+      margin-top: 6px !important;
     }
   }
 }
+
