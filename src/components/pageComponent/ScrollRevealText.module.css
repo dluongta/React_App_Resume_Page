@@ -13,6 +13,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 20vh;
+  padding-top: 5vh;
 
   pointer-events: none;
 }
@@ -46,6 +48,6 @@
 }
 @media only screen and (max-width: 768px) {
   .revealText {
-    margin-top: -12.3rem;
+    margin-top: -10.3rem;
   }
 }

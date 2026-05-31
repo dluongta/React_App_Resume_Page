@@ -12,6 +12,8 @@
   align-items: center;
   justify-content: center;
   padding: 0 20px;
+  padding-bottom: 20vh;
+  padding-top: 5vh;
 }
 
 .textContainer {
@@ -20,12 +22,12 @@
   gap: 2rem;
   width: 100%;
   max-width: 1200px;
-  margin-top: 28vh;
+  margin-top: 26vh;
 }
 
 @media only screen and (max-width: 768px) {
   .textContainer {
-    margin-top: -2.8rem;
+    margin-top: 0.6rem;
   }
 }
 
@@ -36,7 +38,7 @@
   text-transform: uppercase;
   position: relative;
   display: block;
-  line-height: 1.1;
+  line-height: 0.8;
   white-space: normal;
   word-wrap: break-word;
 
@@ -59,7 +61,7 @@
   }
   
   .revealLine {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     line-height: 1.3;
   }
 }

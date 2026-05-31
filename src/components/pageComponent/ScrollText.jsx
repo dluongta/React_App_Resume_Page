@@ -42,7 +42,7 @@ export const ScrollText = () => {
     <section ref={sectionRef} className={styles.scrollTextSection}>
       <div className={styles.stickyWrapper}>
         <div ref={containerRef} className={styles.textContainer}>
-          <div className={styles.revealLine}>PROFICIENT PROGRAMMER</div>
+          <div className={styles.revealLine}>SKILLED PROGRAMMER</div>
           <div className={styles.revealLine}>SOFTWARE DEVELOPER</div>
           <div className={styles.revealLine}>HARDWARE ENGINEER</div>
         </div>
