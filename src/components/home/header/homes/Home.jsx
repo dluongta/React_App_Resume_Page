@@ -503,7 +503,7 @@ const itemHeight = isMobile ? 40 : 60;
               <p>
                 My Resume:
                 <Link to="/dluongta_resume.pdf" target="_blank" className="blue-link">
-                  {" "}Resume Viewer Page
+                  Resume Viewer Page
                 </Link>
               </p>
             </div>
