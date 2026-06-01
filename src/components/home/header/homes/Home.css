@@ -804,7 +804,8 @@
 
   @media (max-width: 768px) {
     .headline {
-      margin-bottom: 40px !important;
+      margin-bottom: 43px !important;
+      margin-top: 10px !important;
     }
 
     .socialIcon {
@@ -813,7 +814,7 @@
     }
 
     .home-right{
-      margin-bottom: 20px !important;
+      margin-bottom: 13px !important;
     }
   }
 }
