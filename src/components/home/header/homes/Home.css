@@ -805,16 +805,16 @@
   @media (max-width: 768px) {
     .headline {
       margin-bottom: 43px !important;
-      margin-top: 10px !important;
+      margin-top: 18px !important;
     }
 
     .socialIcon {
-      margin-top: 0px !important;
+      margin-top: 6px !important;
       margin-bottom: 48px !important;
     }
 
     .home-right{
-      margin-bottom: 13px !important;
+      margin-bottom: 20px !important;
     }
   }
 }
