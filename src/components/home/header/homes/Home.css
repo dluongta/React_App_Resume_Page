@@ -809,7 +809,11 @@
 
     .socialIcon {
       margin-top: 0px !important;
-      margin-bottom: 50px !important;
+      margin-bottom: 48px !important;
+    }
+
+    .home-right{
+      margin-bottom: 20px !important;
     }
   }
 }
