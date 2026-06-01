@@ -809,12 +809,12 @@
     }
 
     .socialIcon {
-      margin-top: 6px !important;
-      margin-bottom: 54px !important;
+      margin-top: 0px !important;
+      margin-bottom: 46px !important;
     }
 
     .home-right{
-      margin-bottom: 32px !important;
+      margin-bottom: 10px !important;
     }
   }
 }
