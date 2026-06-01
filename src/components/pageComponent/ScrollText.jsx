@@ -10,26 +10,34 @@ export const ScrollText = () => {
       if (!sectionRef.current || !containerRef.current) return;
 
       const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const totalHeight = rect.height - windowHeight;
-      
-      let overallProgress = -rect.top / totalHeight;
-      overallProgress = Math.max(0, Math.min(1, overallProgress));
+
+const start = window.innerHeight * 0.2;
+const end =
+  sectionRef.current.offsetHeight - window.innerHeight;
+
+let overallProgress =
+  (-rect.top - start) / (end - start);
+
+overallProgress = Math.max(0, Math.min(1, overallProgress));
 
       const lines = containerRef.current.querySelectorAll(`.${styles.revealLine}`);
       const numLines = lines.length;
+lines.forEach((line, index) => {
+  const segment = 1 / numLines;
 
-      lines.forEach((line, index) => {
-        const start = index / numLines;
-        const end = (index + 1) / numLines;
-        
-        let lineProgress = (overallProgress - start) / (end - start);
-        lineProgress = Math.max(0, Math.min(1, lineProgress));
+  const vhPerLine = 1 / numLines;
 
-        line.style.setProperty('--line-progress', `${lineProgress * 100}%`);
-        // Hiệu ứng phát sáng mượt hơn
-        line.style.setProperty('--line-opacity', lineProgress);
-      });
+const start = index * vhPerLine;
+const end = start + vhPerLine;
+
+let lineProgress =
+  (overallProgress - start) / vhPerLine;
+
+  line.style.setProperty(
+    '--line-progress',
+    `${lineProgress * 100}%`
+  );
+});
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
