@@ -790,7 +790,7 @@
 
     .carousel_carousel_container,
     .carousel_carousel_item {
-      height: 90px;
+      height: 110px;
     }
   }
 
@@ -808,7 +808,7 @@
     }
 
     .socialIcon {
-      margin-top: 6px !important;
+      margin-top: 0px !important;
     }
   }
 }
