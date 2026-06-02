@@ -814,8 +814,8 @@
     }
 
     .home-right {
-      margin-bottom: 0px !important;
-      margin-top: 6px !important;
+      margin-bottom: -1px !important;
+      margin-top: 5px !important;
     }
   }
 }
