@@ -1699,7 +1699,7 @@ footer .legal {
   border-top: 1px solid #555;
   padding-top: 20px;
   font-size: 14px;
-  margin-left: 10px;
+  margin-left: 0px;
   margin-right: 10px;
 }
 
@@ -1733,7 +1733,7 @@ footer .socialIcon {
 
 .legal>p {
   line-height: 1.6 !important;
-  margin-left: 0 !important;
+  margin-left: 12px !important;
 }
 
 @media (max-width: 768px) {
@@ -1744,15 +1744,15 @@ footer .socialIcon {
   }
 
   footer .legal .author {
-    margin-right: 20px !important;
+    margin-right: 10px !important;
   }
 
   footer .legal span.copyRight {
-    margin-right: 20px !important;
+    margin-right: 10px !important;
   }
 
   footer .legal>p {
-    margin-left: 10px !important;
+    margin-left: 15px !important;
   }
 
 }
