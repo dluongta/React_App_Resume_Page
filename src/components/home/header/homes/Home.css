@@ -804,19 +804,18 @@
 
   @media (max-width: 768px) {
     .headline {
-      margin-bottom: 43px !important;
-      margin-top: 18px !important;
+      margin-bottom: 38px !important;
+      margin-top: 10px !important;
     }
 
     .socialIcon {
-      margin-top: 18px !important;
-      margin-bottom: 70px !important;
+      margin-top: 10px !important;
+      margin-bottom: 10px !important;
     }
 
-    .home-right{
-      margin-bottom: 52px !important;
+    .home-right {
+      margin-bottom: 0px !important;
       margin-top: 0px !important;
     }
   }
 }
-
