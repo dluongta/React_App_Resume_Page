@@ -46,7 +46,7 @@ export const Service = ({ className = "" }) => {
       <div className="container">
         <div className="heading animated-text">
           <h1 className="animated-text normal-text-2">My Services</h1>
-          <h1 className="animated-text normal-text-2">Interactive Services Offered By Me</h1>
+          <h1 className="animated-text normal-text-2 normal-text-3">Interactive Services Offered By Me</h1>
         </div>
 
         <div className="contain grid topMargin">
