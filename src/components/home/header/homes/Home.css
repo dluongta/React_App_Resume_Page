@@ -810,12 +810,12 @@
 
     .socialIcon {
       margin-top: 0px !important;
-      margin-bottom: 10px !important;
+      margin-bottom: 26px !important;
     }
 
     .home-right {
-      margin-bottom: -3px !important;
-      margin-top: 10px !important;
+      margin-bottom: -1px !important;
+      margin-top: 8px !important;
     }
   }
 }
