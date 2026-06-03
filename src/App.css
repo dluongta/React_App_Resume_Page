@@ -2939,9 +2939,9 @@ h3.animated-text {
 
 .heading.animated-text{
   margin-top: 2px !important;
-  padding-top: 1px !important;
+  padding-top: 0px !important;
   margin-bottom: 80px !important;
-  padding-bottom: 68px !important;
+  padding-bottom: 70px !important;
   font-size: 22px !important;
 }
 
@@ -2974,8 +2974,8 @@ h3.animated-text {
   font-size: 22px !important;
   text-transform: none !important;
   text-decoration: none !important;
-  margin-bottom:24px !important;
-  padding-top: 10px !important;
+  margin-bottom:21px !important;
+  padding-top: 11px !important;
 }
 .normal-text-4 {
   padding-top: 0px !important;
