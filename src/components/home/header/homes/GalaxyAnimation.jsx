@@ -10,7 +10,7 @@
 //   const [fadeLoading, setFadeLoading] = useState(false);
 
 //   const state = useRef({
-//     zoom: typeof window !== 'undefined' && window.innerWidth < 768 ? 0.25 : 0.35,
+//     zoom: typeof window !== 'undefined' && window.innerWidth < 768 ? 0.35 : 0.35,
 //     rotX: 1.8,
 //     rotY: 0,
 //     shootingStar: { active: false, x: 0, y: 0, len: 0, speed: 0, opacity: 0 }
@@ -287,7 +287,7 @@
 
 //       const auraData = [
 //         { cache: caches.auraOrange, tx: -1200 + Math.sin(time*0.5)*150, ty: 300 + Math.cos(time*0.3)*150, tz: -300 + Math.sin(time*0.5)*100, radius: 3200 },
-//         { cache: caches.auraPurple, tx: 1200 + Math.sin(time*0.4)*150, ty: 300 + Math.cos(time*0.2)*150, tz: -300 + Math.sin(time*0.4)*100, radius: 3200 }
+//         { cache: caches.auraPurple, tx: 1200 + Math.sin(time*0.5)*150, ty: 300 + Math.cos(time*0.3)*150, tz: -300 + Math.sin(time*0.5)*100, radius: 3200 }
 //       ];
 //       for(let a of auraData) {
 //         let y1 = a.ty * cosRX - a.tz * sinRX, z1 = a.ty * sinRX + a.tz * cosRX;
@@ -497,7 +497,7 @@ const GalaxyAnimation = ({
   const [fadeLoading, setFadeLoading] = useState(false);
 
   const state = useRef({
-    zoom: typeof window !== 'undefined' && window.innerWidth < 768 ? 0.25 : 0.35,
+    zoom: typeof window !== 'undefined' && window.innerWidth < 768 ? 0.35 : 0.35,
     rotX: 1.8,
     rotY: 0,
     shootingStar: { active: false, x: 0, y: 0, len: 0, speed: 0, opacity: 0 }
@@ -706,7 +706,7 @@ const GalaxyAnimation = ({
 
       const auraData = [
         { cache: caches.auraOrange, tx: -1200 + Math.sin(time*0.5)*150, ty: 300 + Math.cos(time*0.3)*150, tz: -300 + Math.sin(time*0.5)*100, radius: 3200 },
-        { cache: caches.auraPurple, tx: 1200 + Math.sin(time*0.4)*150, ty: 300 + Math.cos(time*0.2)*150, tz: -300 + Math.sin(time*0.4)*100, radius: 3200 }
+        { cache: caches.auraPurple, tx: 1200 + Math.sin(time*0.5)*150, ty: 300 + Math.cos(time*0.2)*150, tz: -300 + Math.sin(time*0.5)*100, radius: 3200 }
       ];
       for(let a of auraData) {
         let y1 = a.ty * cosRX - a.tz * sinRX, z1 = a.ty * sinRX + a.tz * cosRX;
