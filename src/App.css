@@ -2939,9 +2939,9 @@ h3.animated-text {
 
 .heading.animated-text{
   margin-top: 2px !important;
-  padding-top: 2px !important;
+  padding-top: 1px !important;
   margin-bottom: 86px !important;
-  padding-bottom: 68px !important;
+  padding-bottom: 64px !important;
   font-size: 22px !important;
 }
 
