@@ -790,7 +790,7 @@
 
     .carousel_carousel_container,
     .carousel_carousel_item {
-      height: 80px;
+      height: 60px;
     }
   }
 
@@ -814,7 +814,7 @@
     }
 
     .home-right {
-      margin-bottom: 0px !important;
+      margin-bottom: -2px !important;
       margin-top: 0px !important;
     }
   }
