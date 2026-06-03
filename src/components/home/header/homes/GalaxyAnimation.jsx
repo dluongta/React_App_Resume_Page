@@ -28,7 +28,7 @@
 //     let requestId;
 
 //     // GIỮ NGUYÊN 100% CẤU HÌNH TỪ HTML
-//     const STAR_COUNT = 200;
+//     const STAR_COUNT = 400;
 //     const PARTICLE_COUNT = 1200;
 //     const IMAGE_SHOW_SCALE = 0.8;
 //     const PERSPECTIVE = 2000;
@@ -117,7 +117,7 @@
 //       initCaches();
       
 //       bgStars = Array.from({ length: STAR_COUNT }, () => ({
-//         x: rand(-1000, 1000), y: rand(-1000, 1000), z: rand(-1000, 1000),
+//         x: rand(-2000, 2000), y: rand(-2000, 2000), z: rand(-2000, 2000),
 //         size: rand(4, 7), color: "#ffffff"
 //       }));
 
@@ -514,7 +514,7 @@ const GalaxyAnimation = ({
     
     let requestId;
 
-    const STAR_COUNT = 200;
+    const STAR_COUNT = 400;
     const PARTICLE_COUNT = 1200;
     const IMAGE_SHOW_SCALE = 0.8;
     const PERSPECTIVE = 2000;
@@ -601,7 +601,7 @@ const GalaxyAnimation = ({
       initCaches();
       
       bgStars = Array.from({ length: STAR_COUNT }, () => ({
-        x: rand(-1000, 1000), y: rand(-1000, 13000), z: rand(-1000, 1000),
+        x: rand(-2000, 2000), y: rand(-2000, 2000), z: rand(-2000, 2000),
         size: rand(4, 7), color: "#ffffff"
       }));
 
