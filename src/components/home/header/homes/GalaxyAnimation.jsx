@@ -1,13 +1,14 @@
 // import React, { useEffect, useRef, useState } from 'react';
 
-// const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png", "hexagon-main.png", "luen-1.jpg"] }) => {
+// const GalaxyAnimation = ({ 
+//   imageUrls = ["luen_logo.png", "hexagon-main.png", "luen-1.jpg"] 
+// }) => {
 //   const canvasRef = useRef(null);
 //   const containerRef = useRef(null);
 
 //   const [isLoading, setIsLoading] = useState(true);
 //   const [fadeLoading, setFadeLoading] = useState(false);
 
-//   // Dùng useRef để lưu các giá trị thay đổi liên tục mà không làm re-render component
 //   const state = useRef({
 //     zoom: typeof window !== 'undefined' && window.innerWidth < 768 ? 0.25 : 0.35,
 //     rotX: 1.8,
@@ -26,11 +27,12 @@
     
 //     let requestId;
 
+//     // GIỮ NGUYÊN 100% CẤU HÌNH TỪ HTML
 //     const STAR_COUNT = 600;
 //     const PARTICLE_COUNT = 1200;
 //     const IMAGE_SHOW_SCALE = 0.8;
 //     const PERSPECTIVE = 2000;
-//     const PLANET_RADIUS = 110;
+//     const PLANET_RADIUS = 180;
 
 //     let w, h, cx, cy;
 //     let images = [], bgStars = [], particles = [];
@@ -52,7 +54,8 @@
 //     };
 
 //     const initCaches = () => {
-//       caches.planet = createCacheCanvas(400, (ctxCache, center) => {
+//       // GIỮ NGUYÊN CACHE PLANET 1000px
+//       caches.planet = createCacheCanvas(1000, (ctxCache, center) => {
 //         const pr = 60;
 //         ctxCache.globalCompositeOperation = "lighter";
 //         const glow = ctxCache.createRadialGradient(center, center, pr * 0.2, center, center, pr * 3);
@@ -63,24 +66,27 @@
 //         ctxCache.fillStyle = glow;
 //         ctxCache.beginPath(); ctxCache.arc(center, center, pr * 3, 0, Math.PI * 2); ctxCache.fill();
         
-//         const sun = ctxCache.createRadialGradient(center - pr * 0.3, center - pr * 0.3, pr * 0.1, center, center, pr);
+//         const sun = ctxCache.createRadialGradient(center - pr*0.3, center - pr*0.3, pr*0.1, center, center, pr);
 //         sun.addColorStop(0, "#fff7cc"); sun.addColorStop(0.3, "#ffcc33");
 //         sun.addColorStop(0.7, "#ff8800"); sun.addColorStop(1, "#ff5500");
 //         ctxCache.fillStyle = sun;
 //         ctxCache.beginPath(); ctxCache.arc(center, center, pr, 0, Math.PI * 2); ctxCache.fill();
 //       });
 
+//       // GIỮ NGUYÊN GRADIENT AURA
 //       const buildAura = (colorRGB) => createCacheCanvas(400, (ctxCache, center) => {
 //         const g = ctxCache.createRadialGradient(center, center, 0, center, center, center);
-//         g.addColorStop(0, `rgba(${colorRGB}, 0.5)`);
-//         g.addColorStop(0.3, `rgba(${colorRGB}, 0.25)`);
-//         g.addColorStop(0.7, `rgba(${colorRGB}, 0.08)`);
-//         g.addColorStop(1, "rgba(0,0,0,0)");
+//         g.addColorStop(0, `rgba(${colorRGB}, 1.0)`);
+//         g.addColorStop(0.2, `rgba(${colorRGB}, 0.8)`);
+//         g.addColorStop(0.5, `rgba(${colorRGB}, 0.4)`);
+//         g.addColorStop(0.8, `rgba(${colorRGB}, 0.15)`);
+//         g.addColorStop(1, `rgba(${colorRGB}, 0)`);
 //         ctxCache.fillStyle = g;
-//         ctxCache.beginPath(); ctxCache.arc(center, center, center, 0, Math.PI * 2); ctxCache.fill();
+//         ctxCache.beginPath(); ctxCache.arc(center, center, center, 0, Math.PI*2); ctxCache.fill();
 //       });
+
 //       caches.auraOrange = buildAura("255, 140, 0");
-//       caches.auraPurple = buildAura("180, 0, 255");
+//       caches.auraPurple = buildAura("255, 100, 255"); // Màu gốc của bạn
 
 //       RINGS.forEach(ring => {
 //         const uniqueChars = [...new Set(ring.text)];
@@ -105,7 +111,7 @@
 //     let isAppStarted = false;
 
 //     const startUniverse = () => {
-//       if (isAppStarted) return;
+//       if (isAppStarted) return; 
 //       isAppStarted = true;
 
 //       initCaches();
@@ -117,13 +123,14 @@
 
 //       particles = Array.from({ length: PARTICLE_COUNT }, () => ({
 //         radius: rand(500, 900), angle: Math.random() * Math.PI * 2,
-//         speed: rand(0.00005, 0.0002), yOffset: rand(-50, 50), size: rand(4, 6),
+//         speed: rand(0.00005, 0.0002), yOffset: rand(-50, 50),
+//         size: rand(4, 6),
 //         imgIndex: Math.floor(Math.random() * imageUrls.length)
 //       }));
 
 //       resize();
 //       requestAnimationFrame(animate);
-
+      
 //       setFadeLoading(true);
 //       setTimeout(() => setIsLoading(false), 500);
 //     };
@@ -147,7 +154,7 @@
 //             }
 //           };
 //           img.onerror = () => resolve(null);
-//           img.src = src;
+//           img.src = src; 
 //         });
 //       });
 
@@ -163,6 +170,11 @@
 //       if (!containerRef.current) return;
 //       const dpr = window.devicePixelRatio || 1;
       
+//       w = window.innerWidth;
+//       h = window.innerHeight;
+
+//       // Nếu container có chiều cao nhỏ hơn (như giao diện component), 
+//       // dùng w = containerRef.current.clientWidth và h = containerRef.current.clientHeight
 //       w = containerRef.current.clientWidth;
 //       h = containerRef.current.clientHeight;
 
@@ -172,15 +184,17 @@
 //       canvas.style.height = h + "px";
 
 //       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-//       cx = w / 2; cy = h / 2;
+//       cx = w / 2;
+//       cy = h / 2;
 //     };
 
 //     window.addEventListener("resize", resize);
 
-//     // ===== PHẦN TƯƠNG TÁC ĐƯỢC BỔ SUNG =====
-//     let dragging = false, lastX = 0, lastY = 0, initialPinchDist = null, initialZoom = state.current.zoom;
-
-//     const onTouchStart = (e) => {
+//     /* ===== TƯƠNG TÁC (TOUCH & MOUSE) ===== */
+//     let dragging = false, lastX = 0, lastY = 0, initialPinchDist = null;
+//     let initialZoom = state.current.zoom;
+    
+//     const handleTouchStart = (e) => {
 //       if (e.touches.length === 1) { 
 //         dragging = true; 
 //         lastX = e.touches[0].clientX; 
@@ -192,7 +206,7 @@
 //       }
 //     };
 
-//     const onTouchMove = (e) => {
+//     const handleTouchMove = (e) => {
 //       if (e.touches.length === 1 && dragging) {
 //         e.preventDefault();
 //         state.current.rotY -= (e.touches[0].clientX - lastX) * 0.005; 
@@ -207,31 +221,35 @@
 //       }
 //     };
 
-//     const onTouchEnd = () => { dragging = false; initialPinchDist = null; };
-//     const onMouseDown = (e) => { dragging = true; lastX = e.clientX; lastY = e.clientY; };
-//     const onMouseMove = (e) => {
+//     const handleTouchEnd = () => { dragging = false; initialPinchDist = null; };
+    
+//     const handleMouseDown = (e) => { dragging = true; lastX = e.clientX; lastY = e.clientY; canvas.style.cursor = "grabbing"; };
+    
+//     const handleMouseMove = (e) => {
 //       if (!dragging) return;
 //       state.current.rotY -= (e.clientX - lastX) * 0.005; 
 //       state.current.rotX -= (e.clientY - lastY) * 0.005;
 //       lastX = e.clientX; 
 //       lastY = e.clientY;
 //     };
-//     const onMouseUp = () => dragging = false;
-//     const onWheel = (e) => { 
+    
+//     const handleMouseUp = () => { dragging = false; canvas.style.cursor = "grab"; };
+    
+//     const handleWheel = (e) => { 
 //       e.preventDefault();
 //       state.current.zoom -= e.deltaY * 0.001;
 //       state.current.zoom = Math.max(0.1, Math.min(3.0, state.current.zoom)); 
 //     };
 
-//     canvas.addEventListener("touchstart", onTouchStart, { passive: false });
-//     canvas.addEventListener("touchmove", onTouchMove, { passive: false });
-//     canvas.addEventListener("touchend", onTouchEnd);
-//     canvas.addEventListener("mousedown", onMouseDown);
-//     window.addEventListener("mousemove", onMouseMove);
-//     window.addEventListener("mouseup", onMouseUp);
-//     canvas.addEventListener("wheel", onWheel, { passive: false });
+//     canvas.addEventListener("touchstart", handleTouchStart, { passive: false });
+//     canvas.addEventListener("touchmove", handleTouchMove, { passive: false });
+//     canvas.addEventListener("touchend", handleTouchEnd);
+//     canvas.addEventListener("mousedown", handleMouseDown);
+//     window.addEventListener("mousemove", handleMouseMove);
+//     window.addEventListener("mouseup", handleMouseUp);
+//     canvas.addEventListener("wheel", handleWheel, { passive: false });
 
-//     // --- CORE RENDER ---
+//     /* ===== RENDERING CORE ===== */
 //     const MAX_RENDER = STAR_COUNT + PARTICLE_COUNT + 300;
 //     const renderPool = Array.from({ length: MAX_RENDER }, () => ({
 //       type: 0, x: 0, y: 0, z: 0, size: 0, charKey: '', imgIdx: 0, cache: null
@@ -241,20 +259,17 @@
 //     const cPTX = Math.cos(PTX), sPTX = Math.sin(PTX), cPTZ = Math.cos(PTZ), sPTZ = Math.sin(PTZ);
 
 //     const animate = () => {
-//       const time = performance.now() * 0.0004;
-//       ctx.fillStyle = "#000"; ctx.fillRect(0, 0, w, h);
+//       let time = performance.now() * 0.0004;
+//       ctx.fillStyle = "#000"; ctx.fillRect(0, 0, w, h); 
 
 //       const st = state.current;
 //       const ss = st.shootingStar;
 
-//       if (!ss.active && Math.random() < 0.01) { 
+//       if (!ss.active && Math.random() < 0.01) {
 //         ss.active = true; ss.x = -400; ss.y = rand(50, h * 0.7);
-//         ss.len = rand(150, 300); 
-//         ss.speed = rand(20, 40); 
-//         ss.opacity = 1;
+//         ss.len = rand(150, 300); ss.speed = rand(10, 20); ss.opacity = 1;
 //       } else if (ss.active) {
-//         ss.x += ss.speed; 
-//         ss.opacity -= 0.003; 
+//         ss.x += ss.speed; ss.opacity -= 0.003;
 //         if (ss.x > w + 400 || ss.opacity <= 0) ss.active = false;
         
 //         ctx.save(); ctx.globalCompositeOperation = "lighter";
@@ -289,7 +304,7 @@
 //         let repeatCount = Math.floor(ring.radius / 15);
 //         let fullText = ring.text.repeat(repeatCount);
 //         for (let j = 0; j < fullText.length; j++) {
-//           let cA = (time * ring.speed) + (j * (Math.PI * 2 / fullText.length));
+//           let cA = (time * ring.speed) + (j * (Math.PI * 2 / fullText.length));                    
 //           let tx = (ring.tilt === "vertical") ? 0 : Math.cos(cA) * ring.radius;
 //           let tz = Math.sin(cA) * ring.radius;
 //           let ty = (ring.tilt === "vertical") ? Math.cos(cA) * ring.radius : tx * ring.tilt;
@@ -342,22 +357,18 @@
 //           ctx.fillRect(px - sSize/2, py - sSize/2, sSize, sSize);
 //         } 
 //         else if (item.type === 2) {
-//           if(currentBlend !== "source-over") { 
-//             ctx.globalCompositeOperation = "source-over"; 
-//             currentBlend = "source-over"; 
-//           }
+//           if(currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
 //           if (scale > IMAGE_SHOW_SCALE) {
 //             let img = images[item.imgIdx];
-//             if (img && img.width > 0) { 
+//             if (img && img.width > 0) {
 //               let isize = item.size * scale * 5;
-//               isize = Math.min(isize, 1200); 
-              
+//               isize = Math.min(isize, 1200);
 //               ctx.globalAlpha = 1;
-//               ctx.drawImage(img, px - isize / 2, py - isize / 2, isize, isize);
+//               ctx.drawImage(img, px - isize/2, py - isize/2, isize, isize);
 //             }
 //           } else {
 //             let sq = item.size * scale;
-//             ctx.fillStyle = "#FF8C00";
+//             ctx.fillStyle = "#FF3366"; // Màu hạt thu nhỏ đúng như bản gốc
 //             ctx.globalAlpha = Math.min(1, (item.z + 2000) / 3000);
 //             ctx.fillRect(px - sq/2, py - sq/2, sq, sq);
 //           }
@@ -365,7 +376,7 @@
 //         else if (item.type === 3 && caches.planet) {
 //           if(currentBlend !== "lighter") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
 //           ctx.globalAlpha = 1;
-//           let pr = PLANET_RADIUS * scale * 3.5; 
+//           let pr = PLANET_RADIUS * scale * 6; // Đã đổi lại tỷ lệ * 6 như gốc
 //           ctx.drawImage(caches.planet, px - pr, py - pr, pr * 2, pr * 2);
 //         }
 //         else if (item.type === 4) {
@@ -378,7 +389,12 @@
 //           }
 //         }
 //         else if (item.type === 5 && item.cache) {
-//           if(currentBlend !== "lighter") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
+//           // Sao chép chính xác logic pha trộn màu quầng sáng trong HTML
+//           if(currentBlend !== "lighter") { 
+//             ctx.globalCompositeOperation = "source-over";
+//             ctx.globalAlpha = 0.3; 
+//             currentBlend = "lighter"; 
+//           }
 //           ctx.globalAlpha = 1;
 //           let gradRadius = item.size * scale;
 //           if (gradRadius > 10) {
@@ -391,25 +407,26 @@
 //       requestId = requestAnimationFrame(animate);
 //     };
 
-//     preloadImages(); 
+//     preloadImages();
 
-//     // Cleanup khi component unmount
+//     // Cleanup Component
 //     return () => {
 //       cancelAnimationFrame(requestId);
 //       window.removeEventListener("resize", resize);
-//       canvas.removeEventListener("touchstart", onTouchStart);
-//       canvas.removeEventListener("touchmove", onTouchMove);
-//       canvas.removeEventListener("touchend", onTouchEnd);
-//       canvas.removeEventListener("mousedown", onMouseDown);
-//       window.removeEventListener("mousemove", onMouseMove);
-//       window.removeEventListener("mouseup", onMouseUp);
-//       canvas.removeEventListener("wheel", onWheel);
+//       window.removeEventListener("mousemove", handleMouseMove);
+//       window.removeEventListener("mouseup", handleMouseUp);
+//       if (canvas) {
+//         canvas.removeEventListener("touchstart", handleTouchStart);
+//         canvas.removeEventListener("touchmove", handleTouchMove);
+//         canvas.removeEventListener("touchend", handleTouchEnd);
+//         canvas.removeEventListener("mousedown", handleMouseDown);
+//         canvas.removeEventListener("wheel", handleWheel);
+//       }
 //     };
-//   }, [text, imageUrls]);
+//   }, [imageUrls]);
 
 //   return (
 //     <div className="galaxy-container" ref={containerRef}>
-      
 //       {isLoading && (
 //         <div style={{
 //           position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
@@ -434,39 +451,30 @@
 //         style={{ 
 //           display: 'block', 
 //           width: '100%', 
-//           height: '100%', 
+//           height: '100%',
 //           cursor: 'grab' 
 //         }} 
-//         onMouseDown={(e) => e.target.style.cursor = 'grabbing'}
-//         onMouseUp={(e) => e.target.style.cursor = 'grab'}
-//         onMouseLeave={(e) => e.target.style.cursor = 'grab'}
 //       />
 
 //       <style>
 //         {`
 //           .galaxy-container {
-//             width: 100%;
+//             width: 100vw;
 //             height: 100vh;
 //             position: relative;
-//             overflow: hidden;
+//             overflow: hidden; 
 //             background-color: #000;
-//             margin: 0 auto;
-//             touch-action: none; /* Rất quan trọng để chặn cuộn trang khi vuốt trên mobile */
+//             margin: 0;
+//             padding: 0;
+//             touch-action: none; 
 //             user-select: none;
 //             -webkit-user-select: none;
 //           }
-
-//           @media (max-width: 1024px) {
-//             .galaxy-container { width: 100%; }
-//           }
-
-//           @media (max-width: 768px) {
-//             .galaxy-container {
-//               width: 100%;
-//               height: 60vh;
-//               border-radius: 0px;
-//             }
-//           }
+//          @media (max-width: 768px) {
+//            .galaxy-container {
+//            height: 60vh;
+//            }
+//          }
 
 //           @keyframes spin { 100% { transform: rotate(360deg); } }
 //         `}
@@ -476,9 +484,12 @@
 // };
 
 // export default GalaxyAnimation;
+
 import React, { useEffect, useRef, useState } from 'react';
 
-const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png", "hexagon-main.png", "luen-1.jpg"] }) => {
+const GalaxyAnimation = ({ 
+  imageUrls = ["luen_logo.png", "hexagon-main.png", "luen-1.jpg"] 
+}) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -507,7 +518,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
     const PARTICLE_COUNT = 1200;
     const IMAGE_SHOW_SCALE = 0.8;
     const PERSPECTIVE = 2000;
-    const PLANET_RADIUS = 110;
+    const PLANET_RADIUS = 180;
 
     let w, h, cx, cy;
     let images = [], bgStars = [], particles = [];
@@ -529,7 +540,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
     };
 
     const initCaches = () => {
-      caches.planet = createCacheCanvas(400, (ctxCache, center) => {
+      caches.planet = createCacheCanvas(1000, (ctxCache, center) => {
         const pr = 60;
         ctxCache.globalCompositeOperation = "lighter";
         const glow = ctxCache.createRadialGradient(center, center, pr * 0.2, center, center, pr * 3);
@@ -540,7 +551,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
         ctxCache.fillStyle = glow;
         ctxCache.beginPath(); ctxCache.arc(center, center, pr * 3, 0, Math.PI * 2); ctxCache.fill();
         
-        const sun = ctxCache.createRadialGradient(center - pr * 0.3, center - pr * 0.3, pr * 0.1, center, center, pr);
+        const sun = ctxCache.createRadialGradient(center - pr*0.3, center - pr*0.3, pr*0.1, center, center, pr);
         sun.addColorStop(0, "#fff7cc"); sun.addColorStop(0.3, "#ffcc33");
         sun.addColorStop(0.7, "#ff8800"); sun.addColorStop(1, "#ff5500");
         ctxCache.fillStyle = sun;
@@ -549,15 +560,17 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
 
       const buildAura = (colorRGB) => createCacheCanvas(400, (ctxCache, center) => {
         const g = ctxCache.createRadialGradient(center, center, 0, center, center, center);
-        g.addColorStop(0, `rgba(${colorRGB}, 0.5)`);
-        g.addColorStop(0.3, `rgba(${colorRGB}, 0.25)`);
-        g.addColorStop(0.7, `rgba(${colorRGB}, 0.08)`);
-        g.addColorStop(1, "rgba(0,0,0,0)");
+        g.addColorStop(0, `rgba(${colorRGB}, 1.0)`);
+        g.addColorStop(0.2, `rgba(${colorRGB}, 0.8)`);
+        g.addColorStop(0.5, `rgba(${colorRGB}, 0.4)`);
+        g.addColorStop(0.8, `rgba(${colorRGB}, 0.15)`);
+        g.addColorStop(1, `rgba(${colorRGB}, 0)`);
         ctxCache.fillStyle = g;
-        ctxCache.beginPath(); ctxCache.arc(center, center, center, 0, Math.PI * 2); ctxCache.fill();
+        ctxCache.beginPath(); ctxCache.arc(center, center, center, 0, Math.PI*2); ctxCache.fill();
       });
+
       caches.auraOrange = buildAura("255, 140, 0");
-      caches.auraPurple = buildAura("180, 0, 255");
+      caches.auraPurple = buildAura("255, 100, 255"); 
 
       RINGS.forEach(ring => {
         const uniqueChars = [...new Set(ring.text)];
@@ -582,7 +595,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
     let isAppStarted = false;
 
     const startUniverse = () => {
-      if (isAppStarted) return;
+      if (isAppStarted) return; 
       isAppStarted = true;
 
       initCaches();
@@ -594,13 +607,14 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
 
       particles = Array.from({ length: PARTICLE_COUNT }, () => ({
         radius: rand(500, 900), angle: Math.random() * Math.PI * 2,
-        speed: rand(0.00005, 0.0002), yOffset: rand(-50, 50), size: rand(4, 6),
+        speed: rand(0.00005, 0.0002), yOffset: rand(-50, 50),
+        size: rand(4, 6),
         imgIndex: Math.floor(Math.random() * imageUrls.length)
       }));
 
       resize();
       requestAnimationFrame(animate);
-
+      
       setFadeLoading(true);
       setTimeout(() => setIsLoading(false), 500);
     };
@@ -624,7 +638,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
             }
           };
           img.onerror = () => resolve(null);
-          img.src = src;
+          img.src = src; 
         });
       });
 
@@ -649,12 +663,12 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
       canvas.style.height = h + "px";
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      cx = w / 2; cy = h / 2;
+      cx = w / 2;
+      cy = h / 2;
     };
 
     window.addEventListener("resize", resize);
 
-    // --- CORE RENDER ---
     const MAX_RENDER = STAR_COUNT + PARTICLE_COUNT + 300;
     const renderPool = Array.from({ length: MAX_RENDER }, () => ({
       type: 0, x: 0, y: 0, z: 0, size: 0, charKey: '', imgIdx: 0, cache: null
@@ -664,20 +678,17 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
     const cPTX = Math.cos(PTX), sPTX = Math.sin(PTX), cPTZ = Math.cos(PTZ), sPTZ = Math.sin(PTZ);
 
     const animate = () => {
-      const time = performance.now() * 0.0004;
-      ctx.fillStyle = "#000"; ctx.fillRect(0, 0, w, h);
+      let time = performance.now() * 0.0004;
+      ctx.fillStyle = "#000"; ctx.fillRect(0, 0, w, h); 
 
       const st = state.current;
       const ss = st.shootingStar;
 
-      if (!ss.active && Math.random() < 0.01) { 
+      if (!ss.active && Math.random() < 0.01) {
         ss.active = true; ss.x = -400; ss.y = rand(50, h * 0.7);
-        ss.len = rand(150, 300); 
-        ss.speed = rand(20, 40); 
-        ss.opacity = 1;
+        ss.len = rand(150, 300); ss.speed = rand(10, 20); ss.opacity = 1;
       } else if (ss.active) {
-        ss.x += ss.speed; 
-        ss.opacity -= 0.003; 
+        ss.x += ss.speed; ss.opacity -= 0.003;
         if (ss.x > w + 400 || ss.opacity <= 0) ss.active = false;
         
         ctx.save(); ctx.globalCompositeOperation = "lighter";
@@ -712,7 +723,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
         let repeatCount = Math.floor(ring.radius / 15);
         let fullText = ring.text.repeat(repeatCount);
         for (let j = 0; j < fullText.length; j++) {
-          let cA = (time * ring.speed) + (j * (Math.PI * 2 / fullText.length));
+          let cA = (time * ring.speed) + (j * (Math.PI * 2 / fullText.length));                    
           let tx = (ring.tilt === "vertical") ? 0 : Math.cos(cA) * ring.radius;
           let tz = Math.sin(cA) * ring.radius;
           let ty = (ring.tilt === "vertical") ? Math.cos(cA) * ring.radius : tx * ring.tilt;
@@ -765,22 +776,18 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
           ctx.fillRect(px - sSize/2, py - sSize/2, sSize, sSize);
         } 
         else if (item.type === 2) {
-          if(currentBlend !== "source-over") { 
-            ctx.globalCompositeOperation = "source-over"; 
-            currentBlend = "source-over"; 
-          }
+          if(currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
           if (scale > IMAGE_SHOW_SCALE) {
             let img = images[item.imgIdx];
-            if (img && img.width > 0) { 
+            if (img && img.width > 0) {
               let isize = item.size * scale * 5;
-              isize = Math.min(isize, 1200); 
-              
+              isize = Math.min(isize, 1200);
               ctx.globalAlpha = 1;
-              ctx.drawImage(img, px - isize / 2, py - isize / 2, isize, isize);
+              ctx.drawImage(img, px - isize/2, py - isize/2, isize, isize);
             }
           } else {
             let sq = item.size * scale;
-            ctx.fillStyle = "#FF8C00";
+            ctx.fillStyle = "#FF3366"; 
             ctx.globalAlpha = Math.min(1, (item.z + 2000) / 3000);
             ctx.fillRect(px - sq/2, py - sq/2, sq, sq);
           }
@@ -788,7 +795,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
         else if (item.type === 3 && caches.planet) {
           if(currentBlend !== "lighter") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
           ctx.globalAlpha = 1;
-          let pr = PLANET_RADIUS * scale * 3.5; 
+          let pr = PLANET_RADIUS * scale * 6; 
           ctx.drawImage(caches.planet, px - pr, py - pr, pr * 2, pr * 2);
         }
         else if (item.type === 4) {
@@ -801,7 +808,11 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
           }
         }
         else if (item.type === 5 && item.cache) {
-          if(currentBlend !== "lighter") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
+          if(currentBlend !== "lighter") { 
+            ctx.globalCompositeOperation = "source-over";
+            ctx.globalAlpha = 0.3; 
+            currentBlend = "lighter"; 
+          }
           ctx.globalAlpha = 1;
           let gradRadius = item.size * scale;
           if (gradRadius > 10) {
@@ -814,17 +825,16 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
       requestId = requestAnimationFrame(animate);
     };
 
-    preloadImages(); 
+    preloadImages();
 
     return () => {
       cancelAnimationFrame(requestId);
       window.removeEventListener("resize", resize);
     };
-  }, [text, imageUrls]);
+  }, [imageUrls]);
 
   return (
     <div className="galaxy-container" ref={containerRef}>
-      
       {isLoading && (
         <div style={{
           position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
@@ -849,7 +859,7 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
         style={{ 
           display: 'block', 
           width: '100%', 
-          height: '100%',
+          height: '100%'
         }} 
       />
 
@@ -861,18 +871,13 @@ const GalaxyAnimation = ({ text = "DINH LUONG TA", imageUrls = ["luen_logo.png",
             position: relative;
             overflow: hidden; 
             background-color: #000;
-            margin: 0 auto;
+            margin: 0;
+            padding: 0;
+            
           }
-
-          @media (max-width: 1024px) {
-            .galaxy-container { width: 100%; }
-          }
-
           @media (max-width: 768px) {
             .galaxy-container {
-              width: 100%;
               height: 60vh;
-              border-radius: 0px;
             }
           }
 

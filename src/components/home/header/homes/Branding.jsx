@@ -172,10 +172,10 @@ export const Branding = ({ className }) => {
         </div>
 
       )} */}
-      {/* <GalaxyAnimation
+      <GalaxyAnimation
         text="DINH LUONG TA"
         imageUrls={galaxyImages}
-      /> */}
+      />
       {/* <img width={'100%'} src={logo} alt="Logo" /> */}
       <ParticleTextCanvas />
       {/* <CustomVideoPlayer src={ulmind_intro} captionSrc={caption_ulmind_intro} /> */}
