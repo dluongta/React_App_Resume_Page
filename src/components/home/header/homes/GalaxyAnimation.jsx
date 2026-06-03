@@ -9,10 +9,16 @@
 //   const [isLoading, setIsLoading] = useState(true);
 //   const [fadeLoading, setFadeLoading] = useState(false);
 
+//   // Trạng thái lưu trữ các biến animation và tương tác
 //   const state = useRef({
-//     zoom: typeof window !== 'undefined' && window.innerWidth < 768 ? 0.35 : 0.35,
+//     zoom: typeof window !== 'undefined' && window.innerWidth < 768 ? 0.30 : 0.35,
 //     rotX: 1.8,
 //     rotY: 0,
+//     isDragging: false,
+//     lastX: 0,
+//     lastY: 0,
+//     initialPinchDist: null,
+//     initialZoom: 0.35,
 //     shootingStar: { active: false, x: 0, y: 0, len: 0, speed: 0, opacity: 0 }
 //   });
 
@@ -27,7 +33,7 @@
     
 //     let requestId;
 
-//     // GIỮ NGUYÊN 100% CẤU HÌNH TỪ HTML
+//     // Cấu hình thông số
 //     const STAR_COUNT = 400;
 //     const PARTICLE_COUNT = 1200;
 //     const IMAGE_SHOW_SCALE = 0.8;
@@ -46,6 +52,91 @@
 
 //     const caches = { text: {}, planet: null, auraOrange: null, auraPurple: null };
 
+//     // --- KHỞI TẠO TƯƠNG TÁC ---
+    
+//     const handleMouseDown = (e) => {
+//       state.current.isDragging = true;
+//       state.current.lastX = e.clientX;
+//       state.current.lastY = e.clientY;
+//     };
+
+//     const handleMouseMove = (e) => {
+//       if (!state.current.isDragging) return;
+//       const deltaX = e.clientX - state.current.lastX;
+//       const deltaY = e.clientY - state.current.lastY;
+      
+//       state.current.rotY += deltaX * 0.005;
+//       state.current.rotX += deltaY * 0.005;
+      
+//       state.current.lastX = e.clientX;
+//       state.current.lastY = e.clientY;
+//     };
+
+//     const handleMouseUp = () => {
+//       state.current.isDragging = false;
+//     };
+
+//     const handleWheel = (e) => {
+//       e.preventDefault();
+//       const zoomSpeed = 0.001;
+//       state.current.zoom -= e.deltaY * zoomSpeed;
+//       state.current.zoom = Math.max(0.1, Math.min(2.0, state.current.zoom));
+//     };
+
+//     // Tương tác Mobile
+//     const handleTouchStart = (e) => {
+//       if (e.touches.length === 1) {
+//         state.current.isDragging = true;
+//         state.current.lastX = e.touches[0].clientX;
+//         state.current.lastY = e.touches[0].clientY;
+//       } else if (e.touches.length === 2) {
+//         // Chuẩn bị cho Pinch Zoom
+//         const dist = Math.hypot(
+//           e.touches[0].clientX - e.touches[1].clientX,
+//           e.touches[0].clientY - e.touches[1].clientY
+//         );
+//         state.current.initialPinchDist = dist;
+//         state.current.initialZoom = state.current.zoom;
+//       }
+//     };
+
+//     const handleTouchMove = (e) => {
+//       if (e.touches.length === 1 && state.current.isDragging) {
+//         const deltaX = e.touches[0].clientX - state.current.lastX;
+//         const deltaY = e.touches[0].clientY - state.current.lastY;
+        
+//         state.current.rotY += deltaX * 0.007;
+//         state.current.rotX += deltaY * 0.007;
+        
+//         state.current.lastX = e.touches[0].clientX;
+//         state.current.lastY = e.touches[0].clientY;
+//       } else if (e.touches.length === 2 && state.current.initialPinchDist) {
+//         const dist = Math.hypot(
+//           e.touches[0].clientX - e.touches[1].clientX,
+//           e.touches[0].clientY - e.touches[1].clientY
+//         );
+//         const ratio = dist / state.current.initialPinchDist;
+//         state.current.zoom = Math.max(0.1, Math.min(2.0, state.current.initialZoom * ratio));
+//       }
+//     };
+
+//     const handleTouchEnd = () => {
+//       state.current.isDragging = false;
+//       state.current.initialPinchDist = null;
+//     };
+
+//     // Đăng ký sự kiện
+//     canvas.addEventListener('mousedown', handleMouseDown);
+//     window.addEventListener('mousemove', handleMouseMove);
+//     window.addEventListener('mouseup', handleMouseUp);
+//     canvas.addEventListener('wheel', handleWheel, { passive: false });
+    
+//     canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
+//     canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
+//     canvas.addEventListener('touchend', handleTouchEnd);
+
+//     // --- LOGIC ANIMATION CŨ ---
+
 //     const createCacheCanvas = (size, renderFunc) => {
 //       const c = document.createElement('canvas');
 //       c.width = size; c.height = size;
@@ -54,7 +145,6 @@
 //     };
 
 //     const initCaches = () => {
-//       // GIỮ NGUYÊN CACHE PLANET 1000px
 //       caches.planet = createCacheCanvas(1000, (ctxCache, center) => {
 //         const pr = 60;
 //         ctxCache.globalCompositeOperation = "lighter";
@@ -73,7 +163,6 @@
 //         ctxCache.beginPath(); ctxCache.arc(center, center, pr, 0, Math.PI * 2); ctxCache.fill();
 //       });
 
-//       // GIỮ NGUYÊN GRADIENT AURA
 //       const buildAura = (colorRGB) => createCacheCanvas(400, (ctxCache, center) => {
 //         const g = ctxCache.createRadialGradient(center, center, 0, center, center, center);
 //         g.addColorStop(0, `rgba(${colorRGB}, 1.0)`);
@@ -86,7 +175,7 @@
 //       });
 
 //       caches.auraOrange = buildAura("255, 140, 0");
-//       caches.auraPurple = buildAura("255, 100, 255"); // Màu gốc của bạn
+//       caches.auraPurple = buildAura("255, 100, 255"); 
 
 //       RINGS.forEach(ring => {
 //         const uniqueChars = [...new Set(ring.text)];
@@ -113,24 +202,19 @@
 //     const startUniverse = () => {
 //       if (isAppStarted) return; 
 //       isAppStarted = true;
-
 //       initCaches();
-      
 //       bgStars = Array.from({ length: STAR_COUNT }, () => ({
 //         x: rand(-2000, 2000), y: rand(-2000, 2000), z: rand(-2000, 2000),
 //         size: rand(4, 7), color: "#ffffff"
 //       }));
-
 //       particles = Array.from({ length: PARTICLE_COUNT }, () => ({
 //         radius: rand(500, 900), angle: Math.random() * Math.PI * 2,
 //         speed: rand(0.00005, 0.0002), yOffset: rand(-50, 50),
 //         size: rand(4, 6),
 //         imgIndex: Math.floor(Math.random() * imageUrls.length)
 //       }));
-
 //       resize();
 //       requestAnimationFrame(animate);
-      
 //       setFadeLoading(true);
 //       setTimeout(() => setIsLoading(false), 500);
 //     };
@@ -149,40 +233,28 @@
 //               offCtx.filter = "contrast(1.15) saturate(1.1)";
 //               offCtx.drawImage(img, 0, 0);
 //               resolve(offCanvas); 
-//             } catch (e) {
-//               resolve(img); 
-//             }
+//             } catch (e) { resolve(img); }
 //           };
 //           img.onerror = () => resolve(null);
 //           img.src = src; 
 //         });
 //       });
-
 //       Promise.all(promises).then(loadedImages => {
 //         images = loadedImages.filter(img => img !== null);
 //         startUniverse();
 //       });
-
 //       setTimeout(() => startUniverse(), 3000);
 //     };
 
 //     const resize = () => {
 //       if (!containerRef.current) return;
 //       const dpr = window.devicePixelRatio || 1;
-      
-//       w = window.innerWidth;
-//       h = window.innerHeight;
-
-//       // Nếu container có chiều cao nhỏ hơn (như giao diện component), 
-//       // dùng w = containerRef.current.clientWidth và h = containerRef.current.clientHeight
 //       w = containerRef.current.clientWidth;
 //       h = containerRef.current.clientHeight;
-
 //       canvas.width = w * dpr;
 //       canvas.height = h * dpr;
 //       canvas.style.width = w + "px";
 //       canvas.style.height = h + "px";
-
 //       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 //       cx = w / 2;
 //       cy = h / 2;
@@ -190,66 +262,6 @@
 
 //     window.addEventListener("resize", resize);
 
-//     /* ===== TƯƠNG TÁC (TOUCH & MOUSE) ===== */
-//     let dragging = false, lastX = 0, lastY = 0, initialPinchDist = null;
-//     let initialZoom = state.current.zoom;
-    
-//     const handleTouchStart = (e) => {
-//       if (e.touches.length === 1) { 
-//         dragging = true; 
-//         lastX = e.touches[0].clientX; 
-//         lastY = e.touches[0].clientY; 
-//       } else if (e.touches.length === 2) { 
-//         dragging = false; 
-//         initialPinchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); 
-//         initialZoom = state.current.zoom; 
-//       }
-//     };
-
-//     const handleTouchMove = (e) => {
-//       if (e.touches.length === 1 && dragging) {
-//         e.preventDefault();
-//         state.current.rotY -= (e.touches[0].clientX - lastX) * 0.005; 
-//         state.current.rotX -= (e.touches[0].clientY - lastY) * 0.005;
-//         lastX = e.touches[0].clientX; 
-//         lastY = e.touches[0].clientY;
-//       } else if (e.touches.length === 2 && initialPinchDist) {
-//         e.preventDefault();
-//         const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
-//         const scale = dist / initialPinchDist;
-//         state.current.zoom = Math.max(0.1, Math.min(3.0, initialZoom * scale));
-//       }
-//     };
-
-//     const handleTouchEnd = () => { dragging = false; initialPinchDist = null; };
-    
-//     const handleMouseDown = (e) => { dragging = true; lastX = e.clientX; lastY = e.clientY; canvas.style.cursor = "grabbing"; };
-    
-//     const handleMouseMove = (e) => {
-//       if (!dragging) return;
-//       state.current.rotY -= (e.clientX - lastX) * 0.005; 
-//       state.current.rotX -= (e.clientY - lastY) * 0.005;
-//       lastX = e.clientX; 
-//       lastY = e.clientY;
-//     };
-    
-//     const handleMouseUp = () => { dragging = false; canvas.style.cursor = "grab"; };
-    
-//     const handleWheel = (e) => { 
-//       e.preventDefault();
-//       state.current.zoom -= e.deltaY * 0.001;
-//       state.current.zoom = Math.max(0.1, Math.min(3.0, state.current.zoom)); 
-//     };
-
-//     canvas.addEventListener("touchstart", handleTouchStart, { passive: false });
-//     canvas.addEventListener("touchmove", handleTouchMove, { passive: false });
-//     canvas.addEventListener("touchend", handleTouchEnd);
-//     canvas.addEventListener("mousedown", handleMouseDown);
-//     window.addEventListener("mousemove", handleMouseMove);
-//     window.addEventListener("mouseup", handleMouseUp);
-//     canvas.addEventListener("wheel", handleWheel, { passive: false });
-
-//     /* ===== RENDERING CORE ===== */
 //     const MAX_RENDER = STAR_COUNT + PARTICLE_COUNT + 300;
 //     const renderPool = Array.from({ length: MAX_RENDER }, () => ({
 //       type: 0, x: 0, y: 0, z: 0, size: 0, charKey: '', imgIdx: 0, cache: null
@@ -271,7 +283,6 @@
 //       } else if (ss.active) {
 //         ss.x += ss.speed; ss.opacity -= 0.003;
 //         if (ss.x > w + 400 || ss.opacity <= 0) ss.active = false;
-        
 //         ctx.save(); ctx.globalCompositeOperation = "lighter";
 //         const grad = ctx.createLinearGradient(ss.x, ss.y, ss.x - ss.len, ss.y);
 //         grad.addColorStop(0, `rgba(255, 255, 255, ${ss.opacity})`);
@@ -287,7 +298,7 @@
 
 //       const auraData = [
 //         { cache: caches.auraOrange, tx: -1200 + Math.sin(time*0.5)*150, ty: 300 + Math.cos(time*0.3)*150, tz: -300 + Math.sin(time*0.5)*100, radius: 3200 },
-//         { cache: caches.auraPurple, tx: 1200 + Math.sin(time*0.5)*150, ty: 300 + Math.cos(time*0.3)*150, tz: -300 + Math.sin(time*0.5)*100, radius: 3200 }
+//         { cache: caches.auraPurple, tx: 1200 + Math.sin(time*0.5)*150, ty: 300 + Math.cos(time*0.2)*150, tz: -300 + Math.sin(time*0.5)*100, radius: 3200 }
 //       ];
 //       for(let a of auraData) {
 //         let y1 = a.ty * cosRX - a.tz * sinRX, z1 = a.ty * sinRX + a.tz * cosRX;
@@ -308,7 +319,6 @@
 //           let tx = (ring.tilt === "vertical") ? 0 : Math.cos(cA) * ring.radius;
 //           let tz = Math.sin(cA) * ring.radius;
 //           let ty = (ring.tilt === "vertical") ? Math.cos(cA) * ring.radius : tx * ring.tilt;
-          
 //           let y1 = ty * cosRX - tz * sinRX, z1 = ty * sinRX + tz * cosRX;
 //           let r = renderPool[rCount++];
 //           r.type = 4; r.x = tx * cosRY + z1 * sinRY; r.y = y1; r.z = -tx * sinRY + z1 * cosRY;
@@ -320,11 +330,9 @@
 //         let p = particles[i];
 //         let curA = p.angle - (time * 0.1) - (time * p.speed * 20);
 //         let px = p.radius * Math.cos(curA), pz = p.radius * Math.sin(curA), py = p.yOffset;
-        
 //         let py1 = py * cPTX - pz * sPTX, pz1 = py * sPTX + pz * cPTX;
 //         let tx = px * cPTZ - py1 * sPTZ, ty = px * sPTZ + py1 * cPTZ;
 //         let y1 = ty * cosRX - pz1 * sinRX, z1 = ty * sinRX + pz1 * cosRX;
-        
 //         let r = renderPool[rCount++];
 //         r.type = 2; r.x = tx * cosRY + z1 * sinRY; r.y = y1; r.z = -tx * sinRY + z1 * cosRY;
 //         r.size = p.size; r.imgIdx = p.imgIndex;
@@ -345,7 +353,6 @@
 //         let item = activeRender[i];
 //         let scale = (PERSPECTIVE / (PERSPECTIVE + item.z)) * st.zoom;
 //         if (scale <= 0) continue;
-
 //         let px = cx + item.x * scale;
 //         let py = cy + item.y * scale;
 
@@ -368,7 +375,7 @@
 //             }
 //           } else {
 //             let sq = item.size * scale;
-//             ctx.fillStyle = "#FF3366"; // Màu hạt thu nhỏ đúng như bản gốc
+//             ctx.fillStyle = "#FF3366"; 
 //             ctx.globalAlpha = Math.min(1, (item.z + 2000) / 3000);
 //             ctx.fillRect(px - sq/2, py - sq/2, sq, sq);
 //           }
@@ -376,7 +383,7 @@
 //         else if (item.type === 3 && caches.planet) {
 //           if(currentBlend !== "lighter") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
 //           ctx.globalAlpha = 1;
-//           let pr = PLANET_RADIUS * scale * 6; // Đã đổi lại tỷ lệ * 6 như gốc
+//           let pr = PLANET_RADIUS * scale * 6; 
 //           ctx.drawImage(caches.planet, px - pr, py - pr, pr * 2, pr * 2);
 //         }
 //         else if (item.type === 4) {
@@ -389,7 +396,6 @@
 //           }
 //         }
 //         else if (item.type === 5 && item.cache) {
-//           // Sao chép chính xác logic pha trộn màu quầng sáng trong HTML
 //           if(currentBlend !== "lighter") { 
 //             ctx.globalCompositeOperation = "source-over";
 //             ctx.globalAlpha = 0.3; 
@@ -402,40 +408,35 @@
 //           }
 //         }
 //       }
-      
-//       ctx.globalAlpha = 1; 
 //       requestId = requestAnimationFrame(animate);
 //     };
 
 //     preloadImages();
 
-//     // Cleanup Component
 //     return () => {
 //       cancelAnimationFrame(requestId);
 //       window.removeEventListener("resize", resize);
-//       window.removeEventListener("mousemove", handleMouseMove);
-//       window.removeEventListener("mouseup", handleMouseUp);
-//       if (canvas) {
-//         canvas.removeEventListener("touchstart", handleTouchStart);
-//         canvas.removeEventListener("touchmove", handleTouchMove);
-//         canvas.removeEventListener("touchend", handleTouchEnd);
-//         canvas.removeEventListener("mousedown", handleMouseDown);
-//         canvas.removeEventListener("wheel", handleWheel);
-//       }
+//       canvas.removeEventListener('mousedown', handleMouseDown);
+//       window.removeEventListener('mousemove', handleMouseMove);
+//       window.removeEventListener('mouseup', handleMouseUp);
+//       canvas.removeEventListener('wheel', handleWheel);
+//       canvas.removeEventListener('touchstart', handleTouchStart);
+//       canvas.removeEventListener('touchmove', handleTouchMove);
+//       canvas.removeEventListener('touchend', handleTouchEnd);
 //     };
 //   }, [imageUrls]);
 
 //   return (
 //     <div className="galaxy-container" ref={containerRef}>
 //       {isLoading && (
-//         <div style={{
+//         <div className="loading-screen" style={{
 //           position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
 //           backgroundColor: '#000', display: 'flex', flexDirection: 'column',
 //           justifyContent: 'center', alignItems: 'center', zIndex: 9999,
 //           opacity: fadeLoading ? 0 : 1, transition: 'opacity 0.5s ease',
 //           pointerEvents: 'none'
 //         }}>
-//           <div style={{
+//           <div className="spinner" style={{
 //             width: '40px', height: '40px', border: '4px solid rgba(255, 140, 0, 0.2)',
 //             borderTop: '4px solid #FF8C00', borderRadius: '50%',
 //             animation: 'spin 1s linear infinite'
@@ -452,30 +453,20 @@
 //           display: 'block', 
 //           width: '100%', 
 //           height: '100%',
-//           cursor: 'grab' 
+//           cursor: state.current.isDragging ? 'grabbing' : 'grab',
+//           touchAction: 'none' // Cực kỳ quan trọng để chặn scroll trang khi xoay galaxy
 //         }} 
 //       />
 
 //       <style>
 //         {`
 //           .galaxy-container {
-//             width: 100vw;
+//             width: 100%;
 //             height: 100vh;
 //             position: relative;
-//             overflow: hidden; 
 //             background-color: #000;
-//             margin: 0;
-//             padding: 0;
-//             touch-action: none; 
-//             user-select: none;
-//             -webkit-user-select: none;
+//             overflow: hidden;
 //           }
-//          @media (max-width: 768px) {
-//            .galaxy-container {
-//            height: 60vh;
-//            }
-//          }
-
 //           @keyframes spin { 100% { transform: rotate(360deg); } }
 //         `}
 //       </style>
@@ -496,8 +487,9 @@ const GalaxyAnimation = ({
   const [isLoading, setIsLoading] = useState(true);
   const [fadeLoading, setFadeLoading] = useState(false);
 
+  // Lưu trữ các trạng thái không cần re-render
   const state = useRef({
-    zoom: typeof window !== 'undefined' && window.innerWidth < 768 ? 0.35 : 0.35,
+    zoom: typeof window !== 'undefined' && window.innerWidth < 768 ? 0.30 : 0.35,
     rotX: 1.8,
     rotY: 0,
     shootingStar: { active: false, x: 0, y: 0, len: 0, speed: 0, opacity: 0 }
@@ -514,6 +506,7 @@ const GalaxyAnimation = ({
     
     let requestId;
 
+    // Cấu hình thông số
     const STAR_COUNT = 400;
     const PARTICLE_COUNT = 1200;
     const IMAGE_SHOW_SCALE = 0.8;
@@ -532,6 +525,7 @@ const GalaxyAnimation = ({
 
     const caches = { text: {}, planet: null, auraOrange: null, auraPurple: null };
 
+    // Kỹ thuật Caching Off-screen
     const createCacheCanvas = (size, renderFunc) => {
       const c = document.createElement('canvas');
       c.width = size; c.height = size;
@@ -647,6 +641,7 @@ const GalaxyAnimation = ({
         startUniverse();
       });
 
+      // Fallback nếu ảnh load quá lâu
       setTimeout(() => startUniverse(), 3000);
     };
 
@@ -682,6 +677,9 @@ const GalaxyAnimation = ({
       ctx.fillStyle = "#000"; ctx.fillRect(0, 0, w, h); 
 
       const st = state.current;
+      
+      // st.rotY += 0.001; 
+
       const ss = st.shootingStar;
 
       if (!ss.active && Math.random() < 0.01) {
@@ -835,6 +833,7 @@ const GalaxyAnimation = ({
 
   return (
     <div className="galaxy-container" ref={containerRef}>
+      {/* Loading Screen */}
       {isLoading && (
         <div style={{
           position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
@@ -854,6 +853,7 @@ const GalaxyAnimation = ({
         </div>
       )}
 
+      {/* Canvas */}
       <canvas 
         ref={canvasRef} 
         style={{ 
@@ -869,15 +869,15 @@ const GalaxyAnimation = ({
             width: 100%;
             height: 100vh;
             position: relative;
-            overflow: hidden; 
             background-color: #000;
             margin: 0;
             padding: 0;
-            
+            /* Đã xóa overflow: hidden để không block tính năng scroll của trang web */
           }
+          
           @media (max-width: 768px) {
             .galaxy-container {
-              height: 60vh;
+              height: 60vh; /* Tùy chỉnh chiều cao trên Mobile nếu muốn tích hợp vào trang dạng block */
             }
           }
 
