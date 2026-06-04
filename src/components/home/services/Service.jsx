@@ -37,7 +37,7 @@ export const Service = ({ className = "" }) => {
     {
       id: 6,
       title: "Technical Solutions",
-      desc: "Providing expert guidance for digital project success.",
+      desc: "Developing high-performance and scalable technology solutions.",
       cover: bannerImage,
     },
   ];
