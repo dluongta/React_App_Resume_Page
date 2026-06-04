@@ -3,28 +3,29 @@ import bannerImage from "../../../assets/banner-bg.png";
 
 export const Service = ({ className = "" }) => {
   const servicesData = [
+
     {
       id: 1,
-      title: "Web Design",
-      desc: "Designing modern and user-friendly layouts.",
+      title: "UI/UX Design",
+      desc: "Creating intuitive and visually appealing user experiences.",
       cover: bannerImage,
     },
     {
       id: 2,
-      title: "Web Development",
-      desc: "Building fast and responsive web applications.",
+      title: "Frontend Development",
+      desc: "Building responsive interfaces with modern web technologies.",
       cover: bannerImage,
     },
     {
       id: 3,
-      title: "Performance Optimization",
-      desc: "Improving website performance for better user experience.",
+      title: "Backend Development",
+      desc: "Developing secure and scalable server-side solutions.",
       cover: bannerImage,
     },
     {
       id: 4,
-      title: "Updates & Support",
-      desc: "Providing continuous improvements, updates and reliable technical support for users.",
+      title: "Website Enhancement",
+      desc: "Keeping websites updated, stable, and running smoothly.",
       cover: bannerImage,
     },
     {
@@ -35,8 +36,8 @@ export const Service = ({ className = "" }) => {
     },
     {
       id: 6,
-      title: "Time Management",
-      desc: "Managing time effectively to meet deadlines.",
+      title: "Technical Solutions",
+      desc: "Providing expert guidance for digital project success.",
       cover: bannerImage,
     },
   ];
