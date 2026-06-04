@@ -3,7 +3,6 @@ import bannerImage from "../../../assets/banner-bg.png";
 
 export const Service = ({ className = "" }) => {
   const servicesData = [
-
     {
       id: 1,
       title: "UI/UX Design",
@@ -30,13 +29,13 @@ export const Service = ({ className = "" }) => {
     },
     {
       id: 5,
-      title: "Project Planning",
-      desc: "Planning projects efficiently before development.",
+      title: "Project Development",
+      desc: "Building and deploying projects with a focus on quality and performance.",
       cover: bannerImage,
     },
     {
       id: 6,
-      title: "Technical Solutions",
+      title: "Technology Solutions",
       desc: "Developing high-performance and scalable technology solutions.",
       cover: bannerImage,
     },
