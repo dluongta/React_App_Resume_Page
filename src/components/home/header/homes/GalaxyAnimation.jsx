@@ -148,7 +148,7 @@
 //       caches.planet = createCacheCanvas(1000, (ctxCache, center) => {
 //         const pr = 60;
 //         ctxCache.globalCompositeOperation = "lighter";
-//         const glow = ctxCache.createRadialGradient(center, center, pr * 0.2, center, center, pr * 2.5);
+//         const glow = ctxCache.createRadialGradient(center, center, pr * 0.2, center, center, pr * 3.0);
 //         glow.addColorStop(0, "rgba(255,255,220,0.9)");
 //         glow.addColorStop(0.2, "rgba(255,180,0,0.8)");
 //         glow.addColorStop(0.5, "rgba(255,120,0,0.35)");
@@ -537,7 +537,7 @@ const GalaxyAnimation = ({
       caches.planet = createCacheCanvas(1000, (ctxCache, center) => {
         const pr = 60;
         ctxCache.globalCompositeOperation = "lighter";
-        const glow = ctxCache.createRadialGradient(center, center, pr * 0.2, center, center, pr * 2.5);
+        const glow = ctxCache.createRadialGradient(center, center, pr * 0.2, center, center, pr * 3.0);
         glow.addColorStop(0, "rgba(255,255,220,0.9)");
         glow.addColorStop(0.2, "rgba(255,180,0,0.8)");
         glow.addColorStop(0.5, "rgba(255,120,0,0.35)");
