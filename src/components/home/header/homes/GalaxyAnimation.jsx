@@ -34,7 +34,7 @@
 //     let requestId;
 
 //     // Cấu hình thông số
-//     const STAR_COUNT = 400;
+//     const STAR_COUNT = 200;
 //     const PARTICLE_COUNT = 1200;
 //     const IMAGE_SHOW_SCALE = 0.8;
 //     const PERSPECTIVE = 2000;
@@ -148,7 +148,7 @@
 //       caches.planet = createCacheCanvas(1000, (ctxCache, center) => {
 //         const pr = 60;
 //         ctxCache.globalCompositeOperation = "lighter";
-//         const glow = ctxCache.createRadialGradient(center, center, pr * 0.2, center, center, pr * 1.0);
+//         const glow = ctxCache.createRadialGradient(center, center, pr * 0.2, center, center, pr * 1.6);
 //         glow.addColorStop(0, "rgba(255,255,220,0.9)");
 //         glow.addColorStop(0.2, "rgba(255,180,0,0.8)");
 //         glow.addColorStop(0.5, "rgba(255,120,0,0.35)");
@@ -204,7 +204,7 @@
 //       isAppStarted = true;
 //       initCaches();
 //       bgStars = Array.from({ length: STAR_COUNT }, () => ({
-//         x: rand(-2000, 2000), y: rand(-2000, 2000), z: rand(-2000, 2000),
+//         x: rand(-1200, 1200), y: rand(-1200, 1200), z: rand(-1200, 1200),
 //         size: rand(4, 7), color: "#ffffff"
 //       }));
 //       particles = Array.from({ length: PARTICLE_COUNT }, () => ({
@@ -507,7 +507,7 @@ const GalaxyAnimation = ({
     let requestId;
 
     // Cấu hình thông số
-    const STAR_COUNT = 400;
+    const STAR_COUNT = 200;
     const PARTICLE_COUNT = 1200;
     const IMAGE_SHOW_SCALE = 0.8;
     const PERSPECTIVE = 2000;
@@ -537,7 +537,7 @@ const GalaxyAnimation = ({
       caches.planet = createCacheCanvas(1000, (ctxCache, center) => {
         const pr = 60;
         ctxCache.globalCompositeOperation = "lighter";
-        const glow = ctxCache.createRadialGradient(center, center, pr * 0.2, center, center, pr * 1.0);
+        const glow = ctxCache.createRadialGradient(center, center, pr * 0.2, center, center, pr * 1.6);
         glow.addColorStop(0, "rgba(255,255,220,0.9)");
         glow.addColorStop(0.2, "rgba(255,180,0,0.8)");
         glow.addColorStop(0.5, "rgba(255,120,0,0.35)");
@@ -595,7 +595,7 @@ const GalaxyAnimation = ({
       initCaches();
       
       bgStars = Array.from({ length: STAR_COUNT }, () => ({
-        x: rand(-2000, 2000), y: rand(-2000, 2000), z: rand(-2000, 2000),
+        x: rand(-1200, 1200), y: rand(-1200, 1200), z: rand(-1200, 1200),
         size: rand(4, 7), color: "#ffffff"
       }));
 
