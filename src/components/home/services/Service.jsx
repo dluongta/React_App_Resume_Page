@@ -17,14 +17,14 @@ export const Service = ({ className = "" }) => {
     },
     {
       id: 3,
-      title: "Content Writing",
-      desc: "Creating clear and engaging content.",
+      title: "Performance Optimization",
+      desc: "Improving website performance for better user experience.",
       cover: bannerImage,
     },
     {
       id: 4,
-      title: "Online Support",
-      desc: "Providing reliable support for users.",
+      title: "Updates & Support",
+      desc: "Providing continuous improvements, updates and reliable technical support for users.",
       cover: bannerImage,
     },
     {
