@@ -23,7 +23,7 @@ export const Service = ({ className = "" }) => {
     },
     {
       id: 4,
-      title: "Website Enhancement",
+      title: "Website Maintenance",
       desc: "Keeping websites updated, stable, and running smoothly.",
       cover: bannerImage,
     },
