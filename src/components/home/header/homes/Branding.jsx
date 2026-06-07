@@ -126,7 +126,7 @@ export const Branding = ({ className }) => {
         </div>
       </section>
       {/* <CurvedLoop
-        marqueeText="Be ✦ Creative ✦ With ✦ DLUONGTA ✦ TRANSCENDENCE ✦"
+        marqueeText="Be ✦ Creative ✦ With ✦ DLUONGTA ✦ TSMIND ✦"
         speed={10}
         curveAmount={400}
         direction="right"
@@ -146,11 +146,11 @@ export const Branding = ({ className }) => {
         {/* <CircularText text="DIGITAL ✦ BRANDING ✦ PRODUCTS ✦ " color="#FFA500" onHover="speedUp" />
         <CircularText text="TEAM ✦ MANAGEMENT ✦ SKILLS ✦ " color="#FFA500" onHover="slowDown" />
         <CircularText text="CREATIVE ✦ MIND ✦ DEVELOPER ✦ " color="#FFA500" onHover="pause" />
-        <CircularText text="DLUONGTA ✦ TRANSCENDENCE ✦ STUDIO ✦ " color="#FFA500" onHover="goBonkers" /> */}
+        <CircularText text="DLUONGTA ✦ TSMIND ✦ STUDIO ✦ " color="#FFA500" onHover="goBonkers" /> */}
         <CircularText text="DLUONGTA ✦ FUTURE ✦ CREATIVE ✦ " color="#FFA500" onHover="speedUp" />
         <CircularText text="FANTASTIC ✦ SOFTWARE ✦ DEVELOPER ✦ " color="#FFA500" onHover="speedUp" />
         <CircularText text="SKILLED ✦ HARDWARE ✦ ENGINEER ✦ " color="#FFA500" onHover="speedUp" />
-        <CircularText text="DIGITAL ✦ TRANSCENDENCE ✦ SYSTEMS ✦ " color="#FFA500" onHover="speedUp" />
+        <CircularText text="DIGITAL ✦ TSMIND ✦ SYSTEMS ✦ " color="#FFA500" onHover="speedUp" />
       </div>
       {/* {!isMobile && (
         <div style={{

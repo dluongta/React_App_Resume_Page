@@ -57,7 +57,7 @@
 //             <p>
 //               I am Dinh Luong Ta. I am a programmer skilled at Web Development,
 //               Android Development. I am also learning Artificial Intelligence and Hardware.
-//               I am extremely fascinated by science, engineering and technology. All of my products are TRANSCENDENCE generation made by DLUONGTA.
+//               I am extremely fascinated by science, engineering and technology. All of my products are TSMIND generation made by DLUONGTA.
 //             </p>
 
 //             <p>
@@ -156,7 +156,7 @@
 //               <p>
 //                 I am Dinh Luong Ta. I am a programmer skilled at Web Development,
 //                 Android Development. I am also learning Artificial Intelligence and Hardware.
-//                 I am extremely fascinated by science and technology. All of my products are TRANSCENDENCE generation made by DLUONGTA.
+//                 I am extremely fascinated by science and technology. All of my products are TSMIND generation made by DLUONGTA.
 //               </p>
 
 //               <p>
@@ -248,7 +248,7 @@
 //             <div className="description-text">
 //               <p>
 //                 I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android, System Software and Application Development. I am also learning about Artificial Intelligence and Hardware.
-//                 I am extremely fascinated by science, engineering and technology. All of my products are from the TRANSCENDENCE generation, made by DLUONGTA.
+//                 I am extremely fascinated by science, engineering and technology. All of my products are from the TSMIND generation, made by DLUONGTA.
 //               </p>
 
 //               <p>
@@ -347,7 +347,7 @@
 //             <div className="description-text">
 //               <p>
 //                 I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android, System Software and Application Development. I am also learning about Artificial Intelligence and Hardware.
-//                 I am extremely fascinated by science, engineering and technology. All of my products are from the TRANSCENDENCE generation, made by DLUONGTA.
+//                 I am extremely fascinated by science, engineering and technology. All of my products are from the TSMIND generation, made by DLUONGTA.
 //               </p>
 
 //               <p>
@@ -497,7 +497,7 @@ const itemHeight = isMobile ? 40 : 60;
             <div className="description-text">
               <p>
                 I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android, System Software and Application Development. I am also learning about Artificial Intelligence and Hardware.
-                I am extremely fascinated by science, engineering and technology. All of my products are from the TRANSCENDENCE generation, made by DLUONGTA.
+                I am extremely fascinated by science, engineering and technology. All of my products are from the TSMIND generation, made by DLUONGTA.
               </p>
 
               <p>
