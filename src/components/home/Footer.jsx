@@ -39,7 +39,7 @@ export const Footer = () => {
       <div className="container grid1">
         <div className="box">
           <img width="95" height="60" src={logo_brand} alt='' />
-          <p>DLUONGTA - TSMIND</p>
+          <p>DLUONGTA - TSCEND</p>
           <div className="socialIcon">
             <Link className='white' to={{ pathname: 'https://www.facebook.com/dluongta' }} target="_blank"><i className='fab fa-facebook-f'></i></Link>
             <Link className='white' to={{ pathname: 'https://www.instagram.com/dluongta/' }} target="_blank"> <i className='fab fa-instagram '></i></Link>
@@ -73,7 +73,7 @@ export const Footer = () => {
         </div>
         <div className="box">
           <h2>Get in Touch</h2>
-          <p>"DLUONGTA TSMIND"</p>
+          <p>"DLUONGTA TSCEND"</p>
           <div className="icon"><i className="fa fa-map-marker-alt"></i><span>Location: Hanoi, Vietnam</span></div>
           <div className="icon"><i className="fa fa-phone"></i><a href="tel:+84383402036">Phone: +84 383402036</a></div>
           <div className="icon"><i className="fa fa-envelope"></i><a href="mailto:dluongta@gmail.com">Email: dluongta@gmail.com</a></div>
@@ -146,7 +146,7 @@ export const Footer = () => {
 //         <div className="box centerBox">
 //           <img width="95" height="60" src={logo_brand} alt="logo" />
 //           <p>
-//            DLUONGTA - TSMIND <br/>
+//            DLUONGTA - TSCEND <br/>
 //           </p>
 //           <div className="socialIcon">
 //             <a href="https://www.facebook.com/dluongta" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f"></i></a>
@@ -181,7 +181,7 @@ export const Footer = () => {
 
 //         <div className="box">
 //           <h2>Get in Touch</h2>
-//           <p>"DLUONGTA TSMIND"</p>
+//           <p>"DLUONGTA TSCEND"</p>
 //           <div className="icon"><i className="fa fa-map-marker-alt"></i><span>Location: Hanoi, Vietnam</span></div>
 //           <div className="icon"><i className="fa fa-phone"></i><a href="tel:+84383402036">Phone: +84 383402036</a></div>
 //           <div className="icon"><i className="fa fa-envelope"></i><a href="mailto:dluongta@gmail.com">Email: dluongta@gmail.com</a></div>
