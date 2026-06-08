@@ -380,7 +380,7 @@ import './Home.css';
 
 export const Home = ({ className }) => {
   const originalToRotate = [
-    "DINHLUONGTA",
+    "Skilled Programmer",
     "Software Developer",
     "Hardware Engineer"
   ];
