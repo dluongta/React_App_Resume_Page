@@ -9,7 +9,7 @@ import bgVideo from '../../../../assets/dluongta_animation.mp4';
 import caption_logo from '../../../../assets/caption_logo.vtt';
 import bgLogoVideo from '../../../../assets/lumind_logo.mp4';
 import lumind_animation_text from '../../../../assets/lumind_animation.vtt';
-import lumindAnimationVideo from '../../../../assets/lumind_animation.mp4';
+import lumindAnimationVideo from '../../../../assets/intro_video.mp4';
 import ParticleTextCanvas from "./ParticleTextCanvas";
 import hexagonImg from '../../../../assets/hexagon-main.png';
 import CurvedLoop from './CurvedLoop';
@@ -180,7 +180,7 @@ export const Branding = ({ className }) => {
       <ParticleTextCanvas />
       {/* <CustomVideoPlayer src={ulmind_intro} captionSrc={caption_ulmind_intro} /> */}
       <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />
-      {/* <CustomVideoPlayer src={lumindAnimationVideo} captionSrc={lumind_animation_text} /> */}
+      <CustomVideoPlayer src={lumindAnimationVideo} captionSrc={lumind_animation_text} />
       {/* <CustomVideoPlayer src={bgVideo} captionSrc={caption} /> */}
       <Hero />
     </>

@@ -1,7 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.11e04119.css",
-    "main.js": "/static/js/main.37a283e6.js",
+    "main.js": "/static/js/main.29a5f94e.js",
+    "static/media/intro_video.mp4": "/static/media/intro_video.b946cd008b4f1a84464e.mp4",
     "static/media/hexagon.png": "/static/media/hexagon.58e95d8c57a22ef95a74.png",
     "static/media/hexagon-main.png": "/static/media/hexagon-main.eebc67755b1340217ae0.png",
     "static/media/main.png": "/static/media/main.46e4bda31bde3f5173f9.png",
@@ -10,7 +11,6 @@
     "static/media/luen.jpg": "/static/media/luen.93167e549004b937e253.jpg",
     "static/media/lumind_logo.mp4": "/static/media/lumind_logo.9214f5b1ea5d0dfe47f7.mp4",
     "static/media/dluongta_animation.mp4": "/static/media/dluongta_animation.8e00712f87995a91dba5.mp4",
-    "static/media/lumind_animation.mp4": "/static/media/lumind_animation.988060857fbe0f9d0995.mp4",
     "static/media/luen_logo.png": "/static/media/luen_logo.a79037dac5068823c9cf.png",
     "static/media/fa-solid-900.woff2": "/static/media/fa-solid-900.ce9a3fa740bd60b4ac3b.woff2",
     "static/media/fa-brands-400.woff2": "/static/media/fa-brands-400.f276979f97f1cf375d23.woff2",
@@ -20,12 +20,12 @@
     "index.html": "/index.html",
     "static/media/caption_logo.vtt": "/static/media/caption_logo.75175c236c60850b1874.vtt",
     "static/media/caption.vtt": "/static/media/caption.f60d51dda084efcb1f52.vtt",
-    "static/media/lumind_animation.vtt": "/static/media/lumind_animation.9fe9e5bffd53a7f0e2a8.vtt",
+    "static/media/lumind_animation.vtt": "/static/media/lumind_animation.ec38adc6d78e9ae95f91.vtt",
     "main.11e04119.css.map": "/static/css/main.11e04119.css.map",
-    "main.37a283e6.js.map": "/static/js/main.37a283e6.js.map"
+    "main.29a5f94e.js.map": "/static/js/main.29a5f94e.js.map"
   },
   "entrypoints": [
     "static/css/main.11e04119.css",
-    "static/js/main.37a283e6.js"
+    "static/js/main.29a5f94e.js"
   ]
 }
