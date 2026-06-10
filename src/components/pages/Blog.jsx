@@ -15,21 +15,16 @@ export const Blog = () => {
     },
     {
       id: "03",
-      link: "https://github.com/luen2003/ChatApp/releases/download/v1.0.0/app-release.apk",
-      linkName: "Chat App",
-    },
-    {
-      id: "04",
       link: "https://github.com/luen2003/NewsApp/releases/download/v1.0.0/app-release.apk",
       linkName: "News App",
     },
     {
-      id: "05",
+      id: "04",
       link: "https://github.com/luen2003/Flutter_Weather_App/releases/download/v1.0.0/app-release.apk",
       linkName: "Flutter Weather App",
     },
     {
-      id: "06",
+      id: "05",
       link: "https://github.com/luen2003/Fingerprint/releases/download/v1.0.0/app-release.apk",
       linkName: "Fingerprint",
     }
