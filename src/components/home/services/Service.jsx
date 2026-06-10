@@ -5,8 +5,8 @@ export const Service = ({ className = "" }) => {
   const servicesData = [
     {
       id: 1,
-      title: "UI/UX Design",
-      desc: "Creating intuitive and visually appealing user experiences.",
+      title: "Responsive Websites",
+      desc: "Creating websites that look great on every device.",
       cover: bannerImage,
     },
     {
@@ -23,8 +23,8 @@ export const Service = ({ className = "" }) => {
     },
     {
       id: 4,
-      title: "Website Maintenance",
-      desc: "Keeping websites updated, stable, and running smoothly.",
+      title: "Website Optimization",
+      desc: "Enhancing speed, efficiency, and overall user experience.",
       cover: bannerImage,
     },
     {
