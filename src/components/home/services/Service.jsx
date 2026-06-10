@@ -18,7 +18,7 @@ export const Service = ({ className = "" }) => {
     {
       id: 3,
       title: "Backend Development",
-      desc: "Developing secure and scalable server-side solutions.",
+      desc: "Developing flexible and scalable server-side solutions.",
       cover: bannerImage,
     },
     {
@@ -36,7 +36,7 @@ export const Service = ({ className = "" }) => {
     {
       id: 6,
       title: "Technology Solutions",
-      desc: "Developing high-performance and scalable technology solutions.",
+      desc: "Developing high-performance and efficient technology solutions.",
       cover: bannerImage,
     },
   ];
