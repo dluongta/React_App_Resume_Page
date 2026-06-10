@@ -6,7 +6,7 @@ export const About = ({ className = "" }) => {
     {
       id: 1,
       title: "Who I Am And What I Do",
-      desc: "I'm a skilled programmer, fascinated by science, engineering and technology.",
+      desc: "I am extremely fascinated by science, engineering and technology.",
       // cover: contactImage,
     },
   ];
