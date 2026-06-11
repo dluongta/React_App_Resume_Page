@@ -22,6 +22,11 @@ export const Blog = () => {
       id: "04",
       link: "https://github.com/luen2003/Fingerprint/releases/download/v1.0.0/app-release.apk",
       linkName: "Fingerprint",
+    },
+    {
+      id: "05",
+      link: "https://github.com/luen2003/WeatherApp/releases/download/v1.0.0/app-release.apk",
+      linkName: "Weather App",
     }
   ]
   return (

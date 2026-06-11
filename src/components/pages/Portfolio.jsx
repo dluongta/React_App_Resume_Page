@@ -167,6 +167,11 @@ export const Portfolio = () => {
       id: "33",
       link: "https://dluongta.github.io/spin_wheel.html",
       linkName: "Spin Wheel",
+    },
+    {
+      id: "34",
+      link: "https://github.com/luen2003/WeatherApp/releases/download/v1.0.0/app-release.apk",
+      linkName: "Weather App",
     }
   ];
   return (
