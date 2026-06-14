@@ -2246,7 +2246,7 @@ footer a:hover {
 }
 
 .card {
-  min-height: 50svh !important;
+  min-height: 50vh !important;
   display: flex !important;
   flex-direction: column !important;
   padding-bottom: 60px !important;
@@ -2256,7 +2256,7 @@ footer a:hover {
 
 .card-content {
   flex-grow: 1 !important;
-  min-height: 50svh !important;
+  min-height: 50vh !important;
 
 }
 
