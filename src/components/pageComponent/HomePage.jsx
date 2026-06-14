@@ -128,7 +128,7 @@ export const HomePage = () => {
       <Branding className="reveal" />
       <About className="reveal" />
       <Wrapper className="reveal" />
-      {/* <ScrollRevealText /> */}
+      <ScrollRevealText />
       <ScrollText/>
       {/* <ScrollHero/> */}
       <Skill className="reveal" />
