@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   padding-bottom: 60px;
-  padding-top: -10px;
+  padding-top: -8px;
 }
 
 .textContainer {
@@ -51,7 +51,7 @@
 
 @media screen and (max-width: 768px) {
   .textContainer {
-    margin-top: 16px;
+    margin-top: 0px;
   }
 
   .textContainer {
