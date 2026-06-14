@@ -48,12 +48,9 @@
 @media screen and (max-width: 768px) {
 
   .stickyWrapper {
-    padding-top: 0px !important;
+    padding-top: 8px !important;
   }
 
-  .textContainer {
-    gap: 0.5rem;
-  }
 
   .revealText {
     font-size: 2.8rem;
@@ -62,5 +59,9 @@
 
   .revealText {
     margin-top: 0px;
+  }
+
+  .revealText {
+    gap: 0.5rem;
   }
 }
