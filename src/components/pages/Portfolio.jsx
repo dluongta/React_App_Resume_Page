@@ -172,6 +172,11 @@ export const Portfolio = () => {
       id: "34",
       link: "https://github.com/luen2003/WeatherApp/releases/download/v1.0.0/app-release.apk",
       linkName: "Weather App",
+    },
+    {
+      id: "30",
+      link: "https://dluongta.github.io/vn-input.html",
+      linkName: "VN Input",
     }
   ];
   return (

@@ -153,6 +153,11 @@ export const Pages = () => {
       id: "29",
       link: "https://dluongta.github.io/spin_wheel.html",
       linkName: "Spin Wheel",
+    },
+    {
+      id: "30",
+      link: "https://dluongta.github.io/vn-input.html",
+      linkName: "VN Input",
     }
   ];
   return (
