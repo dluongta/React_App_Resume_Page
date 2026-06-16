@@ -5,26 +5,21 @@ export const Blog = () => {
   const data = [
     {
       id: "01",
-      link: "https://github.com/luen2003/SDLGAME/archive/refs/tags/1.0.zip",
-      linkName: "SDL Game - Water Pipe ",
-    },
-    {
-      id: "02",
       link: "https://github.com/luen2003/NoteApp/releases/download/v1.0.0/app-release.apk",
       linkName: "Note App",
     },
     {
-      id: "03",
+      id: "02",
       link: "https://github.com/luen2003/NewsApp/releases/download/v1.0.0/app-release.apk",
       linkName: "News App",
     },
     {
-      id: "04",
+      id: "03",
       link: "https://github.com/luen2003/Fingerprint/releases/download/v1.0.0/app-release.apk",
       linkName: "Fingerprint",
     },
     {
-      id: "05",
+      id: "04",
       link: "https://github.com/luen2003/WeatherApp/releases/download/v1.0.0/app-release.apk",
       linkName: "Weather App",
     }
