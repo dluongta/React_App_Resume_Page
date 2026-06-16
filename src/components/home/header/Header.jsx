@@ -62,7 +62,7 @@ export const Header = () => {
                             <li className={isActive('/web') ? 'active-link' : ''}><Link to="/web">Web</Link></li>
                             <li className={isActive('/mobile') ? 'active-link' : ''}><Link to="/mobile">Mobile</Link></li>
                             <li className={isActive('/app') ? 'active-link' : ''}><Link to="/app">App</Link></li>
-                            <li className={isActive('/portfolio') ? 'active-link' : ''}><Link to="/portfolio">Portfolio</Link></li>
+                            <li className={isActive('/resume') ? 'active-link' : ''}><Link to="/resume">Resume</Link></li>
                             {/* <li className={isActive('/galaxy') ? 'active-link' : ''}><Link to="/galaxy">Galaxy</Link></li> */}
                             {/* <li className="icon">
                                 <SearchIcon className="HeaderIcon" />
@@ -93,7 +93,7 @@ export const Header = () => {
                         <li className={isActive('/web') ? 'active-link' : ''}><Link to="/web">Web</Link></li>
                         <li className={isActive('/mobile') ? 'active-link' : ''}><Link to="/mobile">Mobile</Link></li>
                         <li className={isActive('/app') ? 'active-link' : ''}><Link to="/app">App</Link></li>
-                        <li className={isActive('/portfolio') ? 'active-link' : ''}><Link to="/portfolio">Portfolio</Link></li>
+                        <li className={isActive('/resume') ? 'active-link' : ''}><Link to="/resume">Resume</Link></li>
                         {/* <li className={isActive('/galaxy') ? 'active-link' : ''}><Link to="/galaxy">Galaxy</Link></li> */}
                     </ul>
                 </div>

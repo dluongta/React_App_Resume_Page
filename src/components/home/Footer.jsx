@@ -57,7 +57,7 @@ export const Footer = () => {
             <li><Link to="/web">Web</Link></li>
             <li><Link to="/mobile">Mobile</Link></li>
             <li><Link to="/app">App</Link></li>
-            <li><Link to="/portfolio">Portfolio</Link></li>
+            <li><Link to="/resume">Resume</Link></li>
             {/* <li><Link to="/galaxy">Galaxy</Link></li> */}
 
           </ul>
