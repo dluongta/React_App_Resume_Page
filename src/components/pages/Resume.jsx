@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Contact = () => {
+export const Resume = () => {
     return (
         <section className="contact contact-page">
             <div className="pdf-container">

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const Blog = () => {
+export const Mobile = () => {
   const data = [
     {
       id: "01",

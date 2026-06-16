@@ -12,10 +12,10 @@ import {
 
 import { HomePage } from './components/pageComponent/HomePage';
 import { Footer } from './components/home/Footer';
-import { Pages } from './components/pages/Pages';
-import { Portfolio } from './components/pages/Portfolio';
-import { Blog } from './components/pages/Blog';
-import { Contact } from './components/pages/Contact';
+import { Web } from './components/pages/Web';
+import { AppComponent } from './components/pages/App';
+import { Blog, Mobile } from './components/pages/Mobile';
+import { Resume } from './components/pages/Resume';
 import ScrollToTopButton from './components/button/ScrollToTopButton';
 
 const AppContent = () => {
@@ -49,10 +49,10 @@ const AppContent = () => {
 
       <Switch>
         <Route path="/" exact component={HomePage} />
-        <Route path="/web" exact component={Pages} />
-        <Route path="/app" exact component={Portfolio} />
-        <Route path="/mobile" exact component={Blog} />
-        <Route path="/resume" exact component={Contact} />
+        <Route path="/web" exact component={Web} />
+        <Route path="/app" exact component={AppComponent} />
+        <Route path="/mobile" exact component={Mobile} />
+        <Route path="/resume" exact component={Resume} />
       </Switch>
 
       <Footer />
