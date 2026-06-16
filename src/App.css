@@ -3145,3 +3145,54 @@ body.sub-root,
 .marquee-content span {
   font-size: 16px;
 }
+
+.contact-page {
+    width: 100% !important;
+    min-height: 100vh !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+}
+
+.pdf-container {
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    height: calc(100vh - 40px) !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    background: #fff !important;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.12) !important,
+        0 2px 10px rgba(0, 0, 0, 0.08) !important;
+}
+
+.pdf-container iframe,
+.pdf {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .pdf-container {
+        height: calc(100vh - 80px) !important;
+        min-height: 900px !important;
+    }
+}
+
+/* Laptop thấp */
+@media (max-height: 900px) and (min-width: 1024px) {
+    .pdf-container {
+        min-height: 800px !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .pdf-container {
+        height: calc(100vh - 20px) !important;
+        border-radius: 8px !important;
+    }
+}
