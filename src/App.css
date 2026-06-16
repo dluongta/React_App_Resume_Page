@@ -3175,24 +3175,24 @@ body.sub-root,
 }
 
 /* Desktop */
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
     .pdf-container {
         height: calc(100vh - 80px) !important;
         min-height: 900px !important;
     }
-}
+} */
 
 /* Laptop thấp */
-@media (max-height: 900px) and (min-width: 1024px) {
+/* @media (max-height: 900px) and (min-width: 1024px) {
     .pdf-container {
         min-height: 800px !important;
     }
-}
+} */
 
 /* Mobile */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .pdf-container {
         height: calc(100vh - 20px) !important;
         border-radius: 8px !important;
     }
-}
+} */
