@@ -59,10 +59,10 @@ export const Header = () => {
                     <div className="nav desktop-nav">
                         <ul className="nav-links">
                             <li className={isActive('/') ? 'active-link' : ''}><Link to="/">Home</Link></li>
-                            <li className={isActive('/pages') ? 'active-link' : ''}><Link to="/pages">Pages</Link></li>
-                            <li className={isActive('/blog') ? 'active-link' : ''}><Link to="/blog">Blog</Link></li>
+                            <li className={isActive('/web') ? 'active-link' : ''}><Link to="/web">Web</Link></li>
+                            <li className={isActive('/mobile') ? 'active-link' : ''}><Link to="/mobile">Mobile</Link></li>
+                            <li className={isActive('/app') ? 'active-link' : ''}><Link to="/app">App</Link></li>
                             <li className={isActive('/portfolio') ? 'active-link' : ''}><Link to="/portfolio">Portfolio</Link></li>
-                            <li className={isActive('/contact') ? 'active-link' : ''}><Link to="/contact">Contact</Link></li>
                             {/* <li className={isActive('/galaxy') ? 'active-link' : ''}><Link to="/galaxy">Galaxy</Link></li> */}
                             {/* <li className="icon">
                                 <SearchIcon className="HeaderIcon" />
@@ -90,10 +90,10 @@ export const Header = () => {
 
                     <ul className="nav-links-sidebar" onClick={() => setSidebar(false)}>
                         <li className={isActive('/') ? 'active-link' : ''}><Link to="/">Home</Link></li>
-                        <li className={isActive('/pages') ? 'active-link' : ''}><Link to="/pages">Pages</Link></li>
-                        <li className={isActive('/blog') ? 'active-link' : ''}><Link to="/blog">Blog</Link></li>
+                        <li className={isActive('/web') ? 'active-link' : ''}><Link to="/web">Web</Link></li>
+                        <li className={isActive('/mobile') ? 'active-link' : ''}><Link to="/mobile">Mobile</Link></li>
+                        <li className={isActive('/app') ? 'active-link' : ''}><Link to="/app">App</Link></li>
                         <li className={isActive('/portfolio') ? 'active-link' : ''}><Link to="/portfolio">Portfolio</Link></li>
-                        <li className={isActive('/contact') ? 'active-link' : ''}><Link to="/contact">Contact</Link></li>
                         {/* <li className={isActive('/galaxy') ? 'active-link' : ''}><Link to="/galaxy">Galaxy</Link></li> */}
                     </ul>
                 </div>

@@ -25,9 +25,9 @@ const AppContent = () => {
   const root = document.getElementById('root');
 
   const enableRootStyle =
-    location.pathname.startsWith('/pages') ||
-    location.pathname.startsWith('/portfolio') ||
-    location.pathname.startsWith('/blog');
+    location.pathname.startsWith('/web') ||
+    location.pathname.startsWith('/mobile') ||
+    location.pathname.startsWith('/app');
 
   if (enableRootStyle) {
     root.classList.add('sub-root');
@@ -49,10 +49,10 @@ const AppContent = () => {
 
       <Switch>
         <Route path="/" exact component={HomePage} />
-        <Route path="/pages" exact component={Pages} />
-        <Route path="/portfolio" exact component={Portfolio} />
-        <Route path="/blog" exact component={Blog} />
-        <Route path="/contact" exact component={Contact} />
+        <Route path="/web" exact component={Pages} />
+        <Route path="/app" exact component={Portfolio} />
+        <Route path="/mobile" exact component={Blog} />
+        <Route path="/portfolio" exact component={Contact} />
       </Switch>
 
       <Footer />

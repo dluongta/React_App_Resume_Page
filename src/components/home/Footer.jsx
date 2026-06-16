@@ -54,10 +54,10 @@ export const Footer = () => {
           <h2>Quick Links</h2>
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/pages">Pages</Link></li>
-            <li><Link to="/blog">Blog</Link></li>
+            <li><Link to="/web">Web</Link></li>
+            <li><Link to="/mobile">Mobile</Link></li>
+            <li><Link to="/app">App</Link></li>
             <li><Link to="/portfolio">Portfolio</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
             {/* <li><Link to="/galaxy">Galaxy</Link></li> */}
 
           </ul>
