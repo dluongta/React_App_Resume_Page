@@ -44,7 +44,7 @@ const Flap = ({ char, isStatic = false }) => {
   );
 };
 
-export default function SplitFlapLog() {
+export default function SplitFlapLog( { className = "" }){
   const words = ["USER", "SERVICE", "DEPLOYMENT", "REQUEST", "LOG"];
   const [counters, setCounters] = useState([995, 850, 100, 9995, 0]);
 

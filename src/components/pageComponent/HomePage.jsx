@@ -135,7 +135,7 @@ export const HomePage = () => {
       <Skill className="reveal" />
       <Service className="reveal" />
       <WrapperOne className="reveal" />
-      <SplitFlapLog />
+      <SplitFlapLog className="reveal" />
     </>
   );
 };
