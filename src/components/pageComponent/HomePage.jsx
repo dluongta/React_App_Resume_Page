@@ -16,6 +16,7 @@ import ScrollHero from './ScrollHero';
 import { FireworksEffect } from './FireworksEffect';
 import { FireworkButton } from './FireworkButton';
 import { ScrollText } from './ScrollText';
+import SplitFlapLog from './SplitFlapLog';
 export const HomePage = () => {
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal');
@@ -134,6 +135,7 @@ export const HomePage = () => {
       <Skill className="reveal" />
       <Service className="reveal" />
       <WrapperOne className="reveal" />
+      <SplitFlapLog />
     </>
   );
 };
