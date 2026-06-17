@@ -57,7 +57,7 @@ export default function SplitFlapLog( { className = "" }){
   }, []);
 
   return (
-    <div className="split-flap-container">
+    <div className="split-flap-container ${className}">
       <div id="board">
         {words.map((word, rowIndex) => {
           const numStr = counters[rowIndex].toString().padStart(6, '0');
