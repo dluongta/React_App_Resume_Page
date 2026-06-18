@@ -419,8 +419,10 @@ export const Home = ({ className }) => {
     return () => clearInterval(interval);
   }, [currentLineIndex, toRotate.length]);
 
+  const itemHeight = isMobile ? 40 : 60;
+
   return (
-    <section className={`home-left ${className || ''}`}>
+    <section className={`home-left ${className}`}>
       <div className="container flex">
         <div className="left">
           <div className="img">
@@ -431,48 +433,47 @@ export const Home = ({ className }) => {
         <div className="home-right">
           <div className="content-inner">
 
+            {/* Vùng Tiêu đề đã được fix layout */}
             <div 
               className="headline" 
               style={{ 
                 width: '100%', 
                 display: 'flex', 
-                flexDirection: 'column', /* Đảm bảo I AM A nằm trên dòng chữ chạy */
+                flexDirection: 'column', /* Ép xếp dọc để I AM A nằm trên */
                 justifyContent: 'center', 
                 alignItems: 'center', 
-                gap: '5px', /* Khoảng cách giữa 2 dòng */
+                gap: '5px', 
               }}
             >
-              {/* Dòng chữ I AM A màu gradient */}
+              {/* Chữ I AM A màu cam */}
               <h1 
                 style={{ 
                   margin: '0', 
+                  color: 'orange', /* Cài đặt màu cam */
                   whiteSpace: 'nowrap',
                   fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-                  background: 'linear-gradient(to right, orange, red, pink, purple, blue)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  textAlign: 'center',
-                  fontSize: isMobile ? '24px' : '36px', /* Thu nhỏ chữ trên mobile */
-                  fontWeight: 'bold'
+                  fontSize: isMobile ? '24px' : '36px',
+                  fontWeight: 'bold',
+                  textAlign: 'center'
                 }}
               >
                 I AM A
               </h1>
 
-              {/* Dòng chữ chạy (Carousel) không bị thay đổi logic */}
+              {/* Dòng chữ chạy - Ép 1 dòng */}
               <h1 
                 style={{ 
                   margin: '0', 
-                  whiteSpace: 'nowrap', /* Ép không cho rớt xuống 2 dòng */
+                  whiteSpace: 'nowrap', /* Ngăn chặn rớt dòng */
                   width: '100%',
                   display: 'flex',
                   justifyContent: 'center',
                   fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-                  fontSize: isMobile ? '20px' : '32px', /* Điều chỉnh chữ chạy trên mobile để vừa 1 dòng */
+                  fontSize: isMobile ? '22px' : '32px', /* Căn chỉnh kích thước để không tràn trên mobile */
                 }}
                 className="gradientTextStyleFlexible"
               >
-                <div className="carousel_carousel_container" style={{ width: '100%', textAlign: 'center' }}>
+                <div className="carousel_carousel_container" style={{ textAlign: 'center' }}>
                   <div
                     className="carousel_carousel"
                     style={{
@@ -485,9 +486,9 @@ export const Home = ({ className }) => {
                         key={index}
                         className="carousel_carousel_item gradientTextStyle"
                         style={{
-                          whiteSpace: 'nowrap', /* Quan trọng: Không cho phép text trong item bị gãy dòng */
-                          width: '100%',
-                          textAlign: 'center'
+                          whiteSpace: 'nowrap', /* Quan trọng: bắt buộc chữ bên trong cũng không gãy dòng */
+                          textAlign: 'center',
+                          width: '100%'
                         }}
                       >
                         {text}
