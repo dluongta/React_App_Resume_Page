@@ -373,142 +373,119 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import RotatingText from './RotatingText';
 import mainImage from '../../../../assets/main.png';
-// Đảm bảo các file CSS này tồn tại ở đúng đường dẫn
-import './RotatingText.css'; 
+import './RotatingText.css';
 import './Home.css';
 
 export const Home = ({ className }) => {
-  // Danh sách các kỹ năng để xoay vòng
   const originalToRotate = [
     "Skilled Programmer",
     "Software Developer",
     "Hardware Engineer"
   ];
   
-  // State để xử lý logic carousel (thêm phần tử đầu vào cuối để tạo loop vô tận mượt mà)
   const [toRotate, setToRotate] = useState([...originalToRotate, originalToRotate[0]]);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  // Xử lý kiểm tra kích thước màn hình để responsive
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
     window.addEventListener("resize", handleResize);
-    // Cleanup event listener
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Logic tự động chạy Carousel
   useEffect(() => {
     const interval = setInterval(() => {
-      // Nếu đang ở phần tử cuối cùng (bản sao của phần tử đầu)
       if (currentLineIndex === toRotate.length - 1) {
-        // Tắt animation chuyển cảnh
         setIsTransitioning(false);
-        // Nhảy ngay lập tức về phần tử đầu tiên thực sự
         setCurrentLineIndex(0);
 
-        // Đợi một chút xíu (20ms) để DOM cập nhật xong việc nhảy index
         setTimeout(() => {
-          // Bật lại animation và chuyển sang phần tử thứ 2
           setIsTransitioning(true);
           setCurrentLineIndex(1);
         }, 20);
       } else {
-        // Chuyển sang phần tử tiếp theo bình thường
         setIsTransitioning(true);
         setCurrentLineIndex((prevIndex) => prevIndex + 1);
       }
-    }, 3000); // Thời gian chuyển đổi (3 giây)
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [currentLineIndex, toRotate.length]);
 
+  const itemHeight = isMobile ? 40 : 60;
+
   return (
-    <section className={`home-left ${className || ''}`}>
+    <section className={`home-left ${className}`}>
       <div className="container flex">
-        {/* BÊN TRÁI: Khu vực chứa ảnh */}
         <div className="left">
           <div className="img">
             <img src={mainImage} alt="Dinh Luong Ta Main" />
           </div>
         </div>
 
-        {/* BÊN PHẢI: Khu vực chứa nội dung text */}
         <div className="home-right">
           <div className="content-inner">
 
-            {/* --- KHU VỰC TIÊU ĐỀ (Headline) ĐÃ FIX --- */}
+            {/* Đã sửa flexDirection thành 'column' để chữ I AM A luôn nằm trên ở mọi thiết bị */}
             <div 
               className="headline" 
               style={{ 
                 width: '100%', 
                 display: 'flex', 
-                flexDirection: 'column', /* Xếp dọc: I AM A ở trên, chữ chạy ở dưới */
+                flexDirection: 'column', /* Ép xếp dọc */
                 justifyContent: 'center', 
-                alignItems: 'center', /* Căn giữa theo chiều ngang */
-                gap: '10px', /* Khoảng cách giữa dòng trên và dòng dưới */
-                marginBottom: isMobile ? '15px' : '20px' /* Khoảng cách với khu vực social icon */
+                alignItems: 'center', 
+                gap: '5px', /* Khoảng cách giữa chữ I AM A và chữ chạy */
               }}
             >
-              {/* Dòng 1: I AM A cố định với dải màu Gradient tùy chỉnh */}
-              <h1 
-                style={{ 
-                  margin: '0', 
+              {/* Thêm chữ I AM A ở trên cùng với dải màu gradient như yêu cầu */}
+              <h1
+                style={{
+                  margin: '0',
                   fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-                  fontWeight: 'bold',
-                  fontSize: isMobile ? '24px' : '36px', /* Responsive font size */
-                  // Dải màu: Cam - Đỏ - Hồng - Tím - Xanh dương
-                  background: 'linear-gradient(to right, #FF8C00, #FF0000, #FF69B4, #800080, #0000FF)',
+                  background: 'linear-gradient(to right, orange, red, pink, purple, blue)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   textAlign: 'center',
-                  textTransform: 'uppercase', /* Viết hoa toàn bộ */
-                  lineHeight: '1.2'
+                  fontSize: isMobile ? '28px' : '36px',
+                  fontWeight: 'bold',
+                  textTransform: 'uppercase'
                 }}
               >
                 I AM A
               </h1>
 
-              {/* Dòng 2: Carousel chữ chạy kỹ năng */}
+              {/* Giữ nguyên dòng chữ chạy của bạn ở phía dưới */}
               <h1 
                 style={{ 
                   margin: '0', 
                   whiteSpace: 'nowrap',
                   width: 'auto' ,
                   fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center'
                 }}
                 className="gradientTextStyleFlexible"
               >
-                {/* Container bọc ngoài carousel (thường có overflow: hidden trong CSS) */}
                 <div className="carousel_carousel_container">
                   <div
                     className="carousel_carousel"
                     style={{
-                      // Di chuyển container theo chiều dọc dựa trên index hiện tại
-                      // Giả sử mỗi item chiếm 25% chiều cao tổng của container carousel (vì có 4 items: 3 thật + 1 copy)
-                      transform: `translateY(calc(-${currentLineIndex * 25}%))`,
-                      // Hiệu ứng mượt mà khi chuyển cảnh, tắt khi loop về đầu
+                      transform: isMobile 
+                        ? `translateY(calc(-${currentLineIndex * 25}%))` 
+                        : `translateY(calc(-${currentLineIndex * 25}%))`,
                       transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
                     }}
                   >
                     {toRotate.map((text, index) => (
                       <div
                         key={index}
-                        // Style gradient cho chữ chạy này thường được định nghĩa trong file CSS .gradientTextStyle
                         className="carousel_carousel_item gradientTextStyle"
-                        style={{
-                          fontSize: isMobile ? '22px' : '34px', /* Responsive font size cho chữ chạy */
-                          textAlign: 'center'
-                        }}
                       >
                         {text}
                       </div>
@@ -517,9 +494,7 @@ export const Home = ({ className }) => {
                 </div>
               </h1>
             </div>
-            {/* --- HẾT KHU VỰC TIÊU ĐỀ --- */}
 
-            {/* Khu vực các Icon mạng xã hội */}
             <div className="socialIcon">
               <a href="https://www.facebook.com/dluongta" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-facebook-f facebook"></i>
@@ -541,7 +516,6 @@ export const Home = ({ className }) => {
               </a>
             </div>
 
-            {/* Khu vực text giới thiệu bản thân */}
             <div className="description-text">
               <p>
                 I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android and Application Development. I am also learning about Artificial Intelligence and Hardware.
@@ -556,10 +530,8 @@ export const Home = ({ className }) => {
               </p>
             </div>
 
-            {/* Nút Contact Me */}
             <button className="primary-btn btn-led">
               Contact Me
-              {/* Các thẻ span bổ trợ hiệu ứng led/pulse nếu có trong CSS */}
               <span></span><span></span><span></span><span></span>
               <span className="line2"></span><span className="line2"></span>
               <span className="line2"></span><span className="line2"></span>
