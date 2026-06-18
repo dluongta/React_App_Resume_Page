@@ -419,8 +419,6 @@ export const Home = ({ className }) => {
     return () => clearInterval(interval);
   }, [currentLineIndex, toRotate.length]);
 
-  const itemHeight = isMobile ? 40 : 60;
-
   return (
     <section className={`home-left ${className}`}>
       <div className="container flex">
@@ -433,22 +431,30 @@ export const Home = ({ className }) => {
         <div className="home-right">
           <div className="content-inner">
 
-            {/* Đã tách I AM A ra một div riêng biệt nằm trên cùng để không bị ảnh hưởng bởi CSS của .headline */}
-            <div style={{ width: '100%', textAlign: 'center', marginBottom: '10px' }}>
+            {/* Khối I AM A đã được chỉnh font-size, font-weight và thêm màu Gradient */}
+            <div style={{ width: '100%', textAlign: 'center', marginBottom: '5px' }}>
               <h1 
                 style={{ 
                   margin: '0', 
-                  color: 'orange', 
-                  fontWeight: 'bold',
-                  fontSize: isMobile ? '24px' : '36px',
-                  fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+                  fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+                  // Sử dụng clamp() để kích thước tự động co giãn giống hệt file CSS của chữ chạy
+                  fontSize: isMobile ? 'clamp(2.4rem, 6vw, 2.5rem)' : 'clamp(1.5rem, 5vw, 3.5rem)',
+                  fontWeight: isMobile ? 900 : 800,
+                  lineHeight: '1.2',
+                  // Mã màu gradient: cam, đỏ, hồng, tím, xanh
+                  background: 'linear-gradient(to right, #FF8C00, #FF0000, #FF69B4, #800080, #0000FF)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  color: 'transparent',
+                  display: 'inline-block'
                 }}
               >
                 I AM A
               </h1>
             </div>
 
-            {/* Khối headline gốc chứa dòng chữ chạy (giữ nguyên hoàn toàn) */}
+            {/* Khối chữ chạy giữ nguyên */}
             <div 
               className="headline" 
               style={{ 
