@@ -442,7 +442,7 @@ export const Home = ({ className }) => {
                   fontWeight: isMobile ? 900 : 800,
                   lineHeight: '1.2',
                   // Mã màu gradient: cam, đỏ, hồng, tím, xanh
-                  background: 'linear-gradient(to right, #FF8C00, #FF0000, #FF69B4, #800080, #0000FF)',
+                  background: 'linear-gradient(94deg,#fe954a 6.06%,#f84063 34.53%,#ad29e3 66.74%,#008eff 100.96%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
