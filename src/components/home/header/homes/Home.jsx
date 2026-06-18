@@ -442,7 +442,7 @@ export const Home = ({ className }) => {
                   fontSize: isMobile ? 'clamp(2.4rem, 6vw, 2.5rem)' : 'clamp(1.5rem, 5vw, 3.5rem)',
                   fontWeight: isMobile ? 900 : 800,
                   lineHeight: '1.2',
-                  background: 'linear-gradient(94deg, #FF6B00 0%, #FF3366 50%, #6200ff 100%)', 
+                  background: 'linear-gradient(94deg, #FF6B00 0%, #FF3366 50%, #6A00FF 100%)', 
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
