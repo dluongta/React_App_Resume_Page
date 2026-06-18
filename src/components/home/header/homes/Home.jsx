@@ -439,7 +439,7 @@ export const Home = ({ className }) => {
                   fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
                   // Sử dụng clamp() để kích thước tự động co giãn giống hệt file CSS của chữ chạy
                   // fontSize: isMobile ? 'clamp(2.4rem, 6vw, 2.5rem)' : 'clamp(1.5rem, 5vw, 3.5rem)',
-                  fontSize: isMobile ? 'clamp(2.6rem, 6.3vw, 2.8rem)' : 'clamp(1.5rem, 5vw, 3.5rem)',
+                  fontSize: isMobile ? 'clamp(2.5rem, 6.2vw, 2.6rem)' : 'clamp(1.5rem, 5vw, 3.5rem)',
                   fontWeight: isMobile ? 900 : 800,
                   lineHeight: '1.2',
                   // Mã màu gradient: cam, đỏ, hồng, tím, xanh
