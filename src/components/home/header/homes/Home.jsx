@@ -433,51 +433,50 @@ export const Home = ({ className }) => {
         <div className="home-right">
           <div className="content-inner">
 
-            {/* Vùng Tiêu đề đã được fix layout */}
+            {/* Đã tách I AM A ra một div riêng biệt nằm trên cùng để không bị ảnh hưởng bởi CSS của .headline */}
+            <div style={{ width: '100%', textAlign: 'center', marginBottom: '10px' }}>
+              <h1 
+                style={{ 
+                  margin: '0', 
+                  color: 'orange', 
+                  fontWeight: 'bold',
+                  fontSize: isMobile ? '24px' : '36px',
+                  fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+                }}
+              >
+                I AM A
+              </h1>
+            </div>
+
+            {/* Khối headline gốc chứa dòng chữ chạy (giữ nguyên hoàn toàn) */}
             <div 
               className="headline" 
               style={{ 
                 width: '100%', 
                 display: 'flex', 
-                flexDirection: 'column', /* Ép xếp dọc để I AM A nằm trên */
+                flexDirection: 'row', 
                 justifyContent: 'center', 
                 alignItems: 'center', 
-                gap: '5px', 
+                gap: '15px',              
+                flexWrap: 'nowrap' 
               }}
             >
-              {/* Chữ I AM A màu cam */}
               <h1 
                 style={{ 
                   margin: '0', 
-                  color: 'orange', /* Cài đặt màu cam */
                   whiteSpace: 'nowrap',
+                  width: 'auto' ,
                   fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-                  fontSize: isMobile ? '24px' : '36px',
-                  fontWeight: 'bold',
-                  textAlign: 'center'
-                }}
-              >
-                I AM A
-              </h1>
-
-              {/* Dòng chữ chạy - Ép 1 dòng */}
-              <h1 
-                style={{ 
-                  margin: '0', 
-                  whiteSpace: 'nowrap', /* Ngăn chặn rớt dòng */
-                  width: '100%',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-                  fontSize: isMobile ? '22px' : '32px', /* Căn chỉnh kích thước để không tràn trên mobile */
                 }}
                 className="gradientTextStyleFlexible"
               >
-                <div className="carousel_carousel_container" style={{ textAlign: 'center' }}>
+                <div className="carousel_carousel_container">
                   <div
                     className="carousel_carousel"
                     style={{
-                      transform: `translateY(calc(-${currentLineIndex * 25}%))`,
+                      transform: isMobile 
+                        ? `translateY(calc(-${currentLineIndex * 25}%))` 
+                        : `translateY(calc(-${currentLineIndex * 25}%))`,
                       transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
                     }}
                   >
@@ -485,11 +484,6 @@ export const Home = ({ className }) => {
                       <div
                         key={index}
                         className="carousel_carousel_item gradientTextStyle"
-                        style={{
-                          whiteSpace: 'nowrap', /* Quan trọng: bắt buộc chữ bên trong cũng không gãy dòng */
-                          textAlign: 'center',
-                          width: '100%'
-                        }}
                       >
                         {text}
                       </div>
@@ -529,7 +523,7 @@ export const Home = ({ className }) => {
               <p>
                 My Resume:
                 <Link to="/dluongta_resume.pdf" target="_blank" className="blue-link">
-                  &nbsp;Resume Viewer Page
+                  Resume Viewer Page
                 </Link>
               </p>
             </div>
