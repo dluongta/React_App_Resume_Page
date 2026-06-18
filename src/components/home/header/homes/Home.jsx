@@ -444,7 +444,7 @@ export const Home = ({ className }) => {
                   lineHeight: '1.2',
                   // Mã màu gradient: cam, đỏ, hồng, tím, xanh
                   // background: 'linear-gradient(94deg,#fe954a 6.06%,#f84063 34.53%,#ad29e3 66.74%,#008eff 100.96%)',
-                  background: 'linear-gradient(94deg, #fe8b00 0%, #f84063 100%)', 
+                  background: 'linear-gradient(94deg, #ff9800 0%, #ff4d6d 100%)', 
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
