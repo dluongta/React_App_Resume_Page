@@ -442,9 +442,8 @@ export const Home = ({ className }) => {
                   fontSize: isMobile ? 'clamp(2.4rem, 6vw, 2.5rem)' : 'clamp(1.5rem, 5vw, 3.5rem)',
                   fontWeight: isMobile ? 900 : 800,
                   lineHeight: '1.2',
-                  // Mã màu gradient: cam, đỏ, hồng, tím, xanh
-                  // background: 'linear-gradient(94deg,#fe954a 6.06%,#f84063 34.53%,#ad29e3 66.74%,#008eff 100.96%)',
-                  background: 'linear-gradient(94deg, #FF6B00 0%, #FF3366 50%, #6a00ff 100%)', 
+                  // background: 'linear-gradient(94deg, #FF6B00 0%, #FF3366 50%, #6200ff 100%)', 
+                  background: 'linear-gradient(94deg, #ff4e02, #6a00ff)', 
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
