@@ -419,10 +419,8 @@ export const Home = ({ className }) => {
     return () => clearInterval(interval);
   }, [currentLineIndex, toRotate.length]);
 
-  const itemHeight = isMobile ? 40 : 60;
-
   return (
-    <section className={`home-left ${className}`}>
+    <section className={`home-left ${className || ''}`}>
       <div className="container flex">
         <div className="left">
           <div className="img">
@@ -433,52 +431,52 @@ export const Home = ({ className }) => {
         <div className="home-right">
           <div className="content-inner">
 
-            {/* Đã sửa flexDirection thành 'column' để chữ I AM A luôn nằm trên ở mọi thiết bị */}
             <div 
               className="headline" 
               style={{ 
                 width: '100%', 
                 display: 'flex', 
-                flexDirection: 'column', /* Ép xếp dọc */
+                flexDirection: 'column', /* Đảm bảo I AM A nằm trên dòng chữ chạy */
                 justifyContent: 'center', 
                 alignItems: 'center', 
-                gap: '5px', /* Khoảng cách giữa chữ I AM A và chữ chạy */
+                gap: '5px', /* Khoảng cách giữa 2 dòng */
               }}
             >
-              {/* Thêm chữ I AM A ở trên cùng với dải màu gradient như yêu cầu */}
-              <h1
-                style={{
-                  margin: '0',
+              {/* Dòng chữ I AM A màu gradient */}
+              <h1 
+                style={{ 
+                  margin: '0', 
+                  whiteSpace: 'nowrap',
                   fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
                   background: 'linear-gradient(to right, orange, red, pink, purple, blue)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   textAlign: 'center',
-                  fontSize: isMobile ? '28px' : '36px',
-                  fontWeight: 'bold',
-                  textTransform: 'uppercase'
+                  fontSize: isMobile ? '24px' : '36px', /* Thu nhỏ chữ trên mobile */
+                  fontWeight: 'bold'
                 }}
               >
                 I AM A
               </h1>
 
-              {/* Giữ nguyên dòng chữ chạy của bạn ở phía dưới */}
+              {/* Dòng chữ chạy (Carousel) không bị thay đổi logic */}
               <h1 
                 style={{ 
                   margin: '0', 
-                  whiteSpace: 'nowrap',
-                  width: 'auto' ,
+                  whiteSpace: 'nowrap', /* Ép không cho rớt xuống 2 dòng */
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
                   fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+                  fontSize: isMobile ? '20px' : '32px', /* Điều chỉnh chữ chạy trên mobile để vừa 1 dòng */
                 }}
                 className="gradientTextStyleFlexible"
               >
-                <div className="carousel_carousel_container">
+                <div className="carousel_carousel_container" style={{ width: '100%', textAlign: 'center' }}>
                   <div
                     className="carousel_carousel"
                     style={{
-                      transform: isMobile 
-                        ? `translateY(calc(-${currentLineIndex * 25}%))` 
-                        : `translateY(calc(-${currentLineIndex * 25}%))`,
+                      transform: `translateY(calc(-${currentLineIndex * 25}%))`,
                       transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
                     }}
                   >
@@ -486,6 +484,11 @@ export const Home = ({ className }) => {
                       <div
                         key={index}
                         className="carousel_carousel_item gradientTextStyle"
+                        style={{
+                          whiteSpace: 'nowrap', /* Quan trọng: Không cho phép text trong item bị gãy dòng */
+                          width: '100%',
+                          textAlign: 'center'
+                        }}
                       >
                         {text}
                       </div>
