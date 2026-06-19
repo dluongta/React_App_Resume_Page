@@ -609,7 +609,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
                 </button>
                 {showSettings && (
                   <div className="settings-content">
-                    {[0.0625, 0.125, 0.25, 0.5, 1, 1.5, 2, 4, 8, 16].map((speed) => (
+                    {[0.125, 0.25, 0.5, 1, 1.5, 2, 4].map((speed) => (
                       <div key={speed} className={`settings-item ${playbackRate === speed ? 'active' : ''}`} onClick={() => changePlaybackRate(speed)}>
                         {speed === 1 ? 'Normal' : `${speed}x`}
                       </div>
