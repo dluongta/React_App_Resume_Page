@@ -384,7 +384,7 @@ export const Home = ({ className }) => {
     "Software Developer",
     "Hardware Engineer"
   ];
-  
+
   const [toRotate, setToRotate] = useState([...originalToRotate, originalToRotate[0]]);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
@@ -431,22 +431,17 @@ export const Home = ({ className }) => {
         <div className="home-right">
           <div className="content-inner">
 
-            {/* Khối I AM A đã được chỉnh font-size, font-weight và thêm màu Gradient */}
             <div style={{ width: '100%', textAlign: 'center', marginBottom: '5px' }}>
-              <h1 
-                style={{ 
-                  margin: '0', 
+              <h1
+                className="animated-gradient-text"
+                style={{
+                  margin: '0',
                   fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-                  // Sử dụng clamp() để kích thước tự động co giãn giống hệt file CSS của chữ chạy
-                  // fontSize: isMobile ? 'clamp(2.5rem, 6.2vw, 2.6rem)' : 'clamp(1.5rem, 5vw, 3.5rem)',
-                  fontSize: isMobile ? 'clamp(2.4rem, 6vw, 2.5rem)' : 'clamp(1.5rem, 5vw, 3.5rem)',
+                  fontSize: isMobile
+                    ? 'clamp(2.4rem, 6vw, 2.5rem)'
+                    : 'clamp(1.5rem, 5vw, 3.5rem)',
                   fontWeight: isMobile ? 900 : 800,
                   lineHeight: '1.2',
-                  background: '#FF6A00', 
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  color: 'transparent',
                   display: 'inline-block'
                 }}
               >
@@ -455,23 +450,23 @@ export const Home = ({ className }) => {
             </div>
 
             {/* Khối chữ chạy giữ nguyên */}
-            <div 
-              className="headline" 
-              style={{ 
-                width: '100%', 
-                display: 'flex', 
-                flexDirection: 'row', 
-                justifyContent: 'center', 
-                alignItems: 'center', 
-                gap: '15px',              
-                flexWrap: 'nowrap' 
+            <div
+              className="headline"
+              style={{
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '15px',
+                flexWrap: 'nowrap'
               }}
             >
-              <h1 
-                style={{ 
-                  margin: '0', 
+              <h1
+                style={{
+                  margin: '0',
                   whiteSpace: 'nowrap',
-                  width: 'auto' ,
+                  width: 'auto',
                   fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
                 }}
                 className="gradientTextStyleFlexible"
@@ -480,8 +475,8 @@ export const Home = ({ className }) => {
                   <div
                     className="carousel_carousel"
                     style={{
-                      transform: isMobile 
-                        ? `translateY(calc(-${currentLineIndex * 25}%))` 
+                      transform: isMobile
+                        ? `translateY(calc(-${currentLineIndex * 25}%))`
                         : `translateY(calc(-${currentLineIndex * 25}%))`,
                       transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
                     }}
