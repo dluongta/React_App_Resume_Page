@@ -17,6 +17,7 @@ import { FireworksEffect } from './FireworksEffect';
 import { FireworkButton } from './FireworkButton';
 import { ScrollText } from './ScrollText';
 import SplitFlapLog from './SplitFlapLog';
+import { CounterSection } from './CounterSection';
 export const HomePage = () => {
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal');
@@ -134,6 +135,7 @@ export const HomePage = () => {
       {/* <ScrollHero/> */}
       <Skill className="reveal" />
       <Service className="reveal" />
+      <CounterSection className="reveal" />
       <WrapperOne className="reveal" />
       <SplitFlapLog className="reveal" />
     </>

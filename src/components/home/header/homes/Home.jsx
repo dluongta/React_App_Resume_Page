@@ -57,7 +57,7 @@
 //             <p>
 //               I am Dinh Luong Ta. I am a programmer skilled at Web Development,
 //               Android Development. I am also learning Artificial Intelligence and Hardware.
-//               I am extremely fascinated by science, engineering and technology. All of my products are TSCEND generation made by DLUONGTA.
+//               I am extremely fascinated by science, engineering and technology. All of my products are TSCEND brand made by DLUONGTA.
 //             </p>
 
 //             <p>
@@ -156,7 +156,7 @@
 //               <p>
 //                 I am Dinh Luong Ta. I am a programmer skilled at Web Development,
 //                 Android Development. I am also learning Artificial Intelligence and Hardware.
-//                 I am extremely fascinated by science and technology. All of my products are TSCEND generation made by DLUONGTA.
+//                 I am extremely fascinated by science and technology. All of my products are TSCEND brand made by DLUONGTA.
 //               </p>
 
 //               <p>
@@ -248,7 +248,7 @@
 //             <div className="description-text">
 //               <p>
 //                 I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android and Application Development. I am also learning about Artificial Intelligence and Hardware.
-//                 I am extremely fascinated by science, engineering and technology. All of my products are from the TSCEND generation, made by DLUONGTA.
+//                 I am extremely fascinated by science, engineering and technology. All of my products are from the TSCEND brand, made by DLUONGTA.
 //               </p>
 
 //               <p>
@@ -347,7 +347,7 @@
 //             <div className="description-text">
 //               <p>
 //                 I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android and Application Development. I am also learning about Artificial Intelligence and Hardware.
-//                 I am extremely fascinated by science, engineering and technology. All of my products are from the TSCEND generation, made by DLUONGTA.
+//                 I am extremely fascinated by science, engineering and technology. All of my products are from the TSCEND brand, made by DLUONGTA.
 //               </p>
 
 //               <p>
@@ -518,7 +518,7 @@ export const Home = ({ className }) => {
             <div className="description-text">
               <p>
                 I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android and Application Development. I am also learning about Artificial Intelligence and Hardware.
-                I am extremely fascinated by science, engineering and technology. All of my products are from the TSCEND generation, made by DLUONGTA. As technology continues to evolve at an unprecedented speed, I want to study, innovate and contribute to solutions that create a significant, beneficial and huge impact on the world.
+                I am extremely fascinated by science, engineering and technology. All of my products are from the TSCEND brand, made by DLUONGTA. As technology continues to evolve at an unprecedented speed, I want to study, innovate and contribute to solutions that create a significant, beneficial and huge impact on the world.
               </p>
 
               <p>
