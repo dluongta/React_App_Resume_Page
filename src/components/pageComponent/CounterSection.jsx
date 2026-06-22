@@ -3,10 +3,10 @@ import styles from "./CounterSection.module.css";
 
 // Dữ liệu mới với nội dung khác
 const counterData = [
-    { num: 900, suffix: "", text: "ACTIVE CUSTOMERS" },
-    { num: 350, suffix: "", text: "CREATIVE PROJECTS" },
-    { num: 820, suffix: "", text: "DIGITAL PRODUCTS" },
-    { num: 45, suffix: "", text: "SUCCESS SOLUTIONS" },
+    { num: 900, suffix: "+", text: "ACTIVE CUSTOMERS" },
+    { num: 350, suffix: "+", text: "CREATIVE PROJECTS" },
+    { num: 820, suffix: "+", text: "DIGITAL PRODUCTS" },
+    { num: 45, suffix: "+", text: "SUCCESS SOLUTIONS" },
 ];
 
 // Component xử lý việc nhảy số

@@ -13,6 +13,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
+    padding: 40px 0px;
 }
 
 .box {
@@ -21,7 +22,7 @@
     justify-content: center;
     gap: 15px;
     flex: 1;
-    min-width: 250px; /* Đảm bảo box có đủ không gian hiển thị trên 1 dòng */
+    min-width: 250px;
 }
 
 .animatedNumber {
@@ -29,9 +30,10 @@
     font-weight: bold;
     margin: 0;
     line-height: 1;
-    white-space: nowrap; /* Giữ số không bị rớt dòng */
+    white-space: nowrap;
 }
 
+/* --- ĐÃ SỬA Ở ĐÂY DÀNH CHO PC --- */
 .label {
     font-size: 1rem;
     font-weight: 500;
@@ -39,28 +41,32 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     line-height: 1.4;
-    white-space: nowrap; /* Ép chữ nằm trên 1 dòng trên desktop */
+    
+    /* Xoá white-space: nowrap và thêm 2 dòng dưới */
+    width: min-content; /* Ép khung chữ co lại bằng từ dài nhất -> tự rớt dòng ở khoảng trắng */
+    text-align: left;   /* Canh trái chữ để thẳng hàng đẹp mắt bên cạnh số */
 }
 
 /* RESPONSIVE CHO MOBILE & TABLET NHỎ */
 @media screen and (max-width: 768px) {
     .container {
-        gap: 40px; /* Tăng khoảng cách giữa các khối khi xếp dọc */
+        gap: 40px;
     }
 
     .box {
-        flex-direction: column; /* Chuyển thành xếp dọc: Số ở trên, chữ ở dưới */
-        text-align: center; /* Căn giữa nội dung */
-        gap: 8px; /* Giảm khoảng cách giữa số và chữ */
-        min-width: 100%; /* Chiếm trọn chiều ngang màn hình mobile */
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+        min-width: 100%;
     }
 
     .animatedNumber {
-        font-size: 3rem; /* Thu nhỏ size số một chút trên mobile */
+        font-size: 3rem;
     }
 
+    /* --- ĐÃ SỬA Ở ĐÂY ĐỂ TRẢ LẠI GIAO DIỆN MOBILE --- */
     .label {
-        white-space: normal; /* Cho phép rớt dòng nếu chữ quá dài trên màn hình quá nhỏ */
-        text-align: center;
+        width: auto; /* Reset lại độ rộng để không bị bó hẹp trên mobile */
+        text-align: center; /* Canh giữa lại khi chữ nằm dưới số */
     }
 }
