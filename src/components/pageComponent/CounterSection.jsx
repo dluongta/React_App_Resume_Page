@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./CounterSection.module.css";
 
-// Dữ liệu mới với nội dung khác
 const counterData = [
     { num: 2999, suffix: "+", text: "ACTIVE CUSTOMERS" },
     { num: 99, suffix: "+", text: "CREATIVE PROJECTS" },
@@ -9,7 +8,6 @@ const counterData = [
     { num: 99, suffix: "+", text: "SUCCESS SOLUTIONS" },
 ];
 
-// Component xử lý việc nhảy số
 const CountUpNumber = ({ target, duration = 2000, suffix = "" }) => {
     const [count, setCount] = useState(0);
 
@@ -21,10 +19,8 @@ const CountUpNumber = ({ target, duration = 2000, suffix = "" }) => {
             if (!startTime) startTime = timestamp;
             const progress = timestamp - startTime;
             
-            // Tính toán % thời gian đã trôi qua (tối đa là 1 tương đương 100%)
             const percentage = Math.min(progress / duration, 1);
             
-            // Tính toán số hiện tại dựa trên % thời gian
             const currentVal = Math.floor(target * percentage);
 
             setCount(currentVal);

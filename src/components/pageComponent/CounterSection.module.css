@@ -1,5 +1,5 @@
 .wrapperOne {
-    background-color: #1a3673; /* Màu xanh nền */
+    background-color: #1a3673; 
     padding: 60px 20px;
     color: white;
     font-family: sans-serif;
@@ -33,7 +33,6 @@
     white-space: nowrap;
 }
 
-/* --- ĐÃ SỬA Ở ĐÂY DÀNH CHO PC --- */
 .label {
     font-size: 1rem;
     font-weight: 500;
@@ -42,12 +41,10 @@
     letter-spacing: 1px;
     line-height: 1.4;
     
-    /* Xoá white-space: nowrap và thêm 2 dòng dưới */
-    width: min-content; /* Ép khung chữ co lại bằng từ dài nhất -> tự rớt dòng ở khoảng trắng */
-    text-align: left;   /* Canh trái chữ để thẳng hàng đẹp mắt bên cạnh số */
+    width: min-content;
+    text-align: left;  
 }
 
-/* RESPONSIVE CHO MOBILE & TABLET NHỎ */
 @media screen and (max-width: 768px) {
     .container {
         gap: 40px;
@@ -64,9 +61,8 @@
         font-size: 3rem;
     }
 
-    /* --- ĐÃ SỬA Ở ĐÂY ĐỂ TRẢ LẠI GIAO DIỆN MOBILE --- */
     .label {
-        width: auto; /* Reset lại độ rộng để không bị bó hẹp trên mobile */
-        text-align: center; /* Canh giữa lại khi chữ nằm dưới số */
+        width: auto;
+        text-align: center; 
     }
 }
