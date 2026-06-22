@@ -494,33 +494,33 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     handleInteraction();
   };
 
-  // const toggleFullscreen = (e) => {
-  //   e.stopPropagation();
-  //   const container = videoRef.current.parentElement;
-  //   if (!document.fullscreenElement) container.requestFullscreen();
-  //   else document.exitFullscreen();
-  //   handleInteraction();
-  // };
-
-  const toggleFullscreen = async (e) => {
+  const toggleFullscreen = (e) => {
     e.stopPropagation();
-
     const container = videoRef.current.parentElement;
-
-    try {
-      if (!document.fullscreenElement) {
-        await container.requestFullscreen();
-        setIsFullscreen(true);
-      } else {
-        await document.exitFullscreen();
-        setIsFullscreen(false);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-
+    if (!document.fullscreenElement) container.requestFullscreen();
+    else document.exitFullscreen();
     handleInteraction();
   };
+
+  // const toggleFullscreen = async (e) => {
+  //   e.stopPropagation();
+
+  //   const container = videoRef.current.parentElement;
+
+  //   try {
+  //     if (!document.fullscreenElement) {
+  //       await container.requestFullscreen();
+  //       setIsFullscreen(true);
+  //     } else {
+  //       await document.exitFullscreen();
+  //       setIsFullscreen(false);
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+
+  //   handleInteraction();
+  // };
 
   const changePlaybackRate = (rate) => {
     videoRef.current.playbackRate = rate;
