@@ -6,7 +6,7 @@ const random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 const data = [
     { num: "99%", text: "AWARDS WINNING" },
     { num: "99%", text: "SATISFIED CLIENTS" },
-    { num: "20", text: "CREATIVE PROJECTS" },
+    { num: "99", text: "CREATIVE PROJECTS" },
     { num: "2999", text: "LINES OF CODE" },
 ];
 
