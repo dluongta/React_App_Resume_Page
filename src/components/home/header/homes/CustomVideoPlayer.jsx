@@ -494,11 +494,31 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     handleInteraction();
   };
 
-  const toggleFullscreen = (e) => {
+  // const toggleFullscreen = (e) => {
+  //   e.stopPropagation();
+  //   const container = videoRef.current.parentElement;
+  //   if (!document.fullscreenElement) container.requestFullscreen();
+  //   else document.exitFullscreen();
+  //   handleInteraction();
+  // };
+
+  const toggleFullscreen = async (e) => {
     e.stopPropagation();
+
     const container = videoRef.current.parentElement;
-    if (!document.fullscreenElement) container.requestFullscreen();
-    else document.exitFullscreen();
+
+    try {
+      if (!document.fullscreenElement) {
+        await container.requestFullscreen();
+        setIsFullscreen(true);
+      } else {
+        await document.exitFullscreen();
+        setIsFullscreen(false);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+
     handleInteraction();
   };
 
@@ -512,6 +532,24 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   const displayTime = duration - currentTime < 0.1 ? duration : currentTime;
   let progressPercent = (displayTime / duration) * 100 || 0;
   if (progressPercent > 99.6) progressPercent = 100;
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener(
+      'fullscreenchange',
+      handleFullscreenChange
+    );
+
+    return () => {
+      document.removeEventListener(
+        'fullscreenchange',
+        handleFullscreenChange
+      );
+    };
+  }, []);
 
   return (
     <div className="video-player-container">
