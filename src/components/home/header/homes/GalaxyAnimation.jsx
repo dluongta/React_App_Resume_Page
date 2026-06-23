@@ -826,7 +826,7 @@ const GalaxyAnimation = ({
       const ss = st.shootingStar;
       if (!ss.active && Math.random() < 0.01) {
         ss.active = true; ss.x = -400; ss.y = rand(50, h * 0.7);
-        ss.len = rand(150, 300); ss.speed = rand(10, 20); ss.opacity = 1;
+        ss.len = rand(150, 300); ss.speed = rand(20, 40); ss.opacity = 1;
       } else if (ss.active) {
         ss.x += ss.speed; ss.opacity -= 0.003;
         if (ss.x > w + 400 || ss.opacity <= 0) ss.active = false;
