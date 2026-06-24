@@ -160,37 +160,54 @@ export default function PixelCard({ variant = 'default', gap, speed, colors, noF
     const pxs = [];
     const gapStep = parseInt(finalGap, 10);
 
-    // 1. Tạo trước danh sách các tọa độ X và Y thực tế sẽ chạy
     const xValues = [];
     for (let x = 0; x < width; x += gapStep) xValues.push(x);
 
     const yValues = [];
     for (let y = 0; y < height; y += gapStep) yValues.push(y);
 
-    // 2. Xác định chính xác vị trí biên đầu tiên và biên cuối cùng
-    const firstX = xValues[0];
-    const lastX = xValues[xValues.length - 1];
-    const firstY = yValues[0];
-    const lastY = yValues[yValues.length - 1];
-
-    // 3. Chạy vòng lặp để dựng pixel
     for (let i = 0; i < xValues.length; i++) {
       for (let j = 0; j < yValues.length; j++) {
         const x = xValues[i];
         const y = yValues[j];
 
-        // ĐIỀU KIỆN FIX: Chỉ đúng hạt đầu tiên hoặc cuối cùng của trục X kết hợp Y mới là Corner (Tạo đúng cấu hình 1x1 ở mỗi góc)
-        const isCorner = (x === firstX || x === lastX) && (y === firstY || y === lastY);
+        // Biến tạm để dịch chuyển tọa độ vẽ mà không làm hỏng vòng lặp
+        let drawX = x;
+        let drawY = y;
+        let isCorner = false;
 
-        // Chỉ đúng 4 hạt góc này mới có màu cam đậm định sẵn
+        // Bắt chính xác 4 góc thông qua index của vòng lặp
+        if (i === 0 && j === 0) {
+          // Top-Left: Đẩy vào trong 16px
+          drawX += 16; 
+          drawY += 16; 
+          isCorner = true;
+        } else if (i === xValues.length - 1 && j === 0) {
+          // Top-Right: Đẩy vào trong 16px
+          drawX -= 16; 
+          drawY += 16; 
+          isCorner = true;
+        } else if (i === 0 && j === yValues.length - 1) {
+          // Bottom-Left: Đẩy vào trong 16px và đẩy Y lên 24px để xa viền dưới
+          drawX += 16; 
+          drawY -= 24; 
+          isCorner = true;
+        } else if (i === xValues.length - 1 && j === yValues.length - 1) {
+          // Bottom-Right: Đẩy vào trong 16px và đẩy Y lên 24px để xa viền dưới
+          drawX -= 16; 
+          drawY -= 24; 
+          isCorner = true;
+        }
+
         const color = isCorner ? '#ea580c' : colorsArray[Math.floor(Math.random() * colorsArray.length)];
 
-        const dx = x - width / 2;
-        const dy = y - height / 2;
+        const dx = drawX - width / 2;
+        const dy = drawY - height / 2;
         const distance = Math.sqrt(dx * dx + dy * dy);
         const delay = reducedMotion ? 0 : distance;
 
-        pxs.push(new Pixel(canvasRef.current, ctx, x, y, color, getEffectiveSpeed(finalSpeed, reducedMotion), delay, isCorner));
+        // Sử dụng drawX, drawY thay vì x, y
+        pxs.push(new Pixel(canvasRef.current, ctx, drawX, drawY, color, getEffectiveSpeed(finalSpeed, reducedMotion), delay, isCorner));
       }
     }
     pixelsRef.current = pxs;
