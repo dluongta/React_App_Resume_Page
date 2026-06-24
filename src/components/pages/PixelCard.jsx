@@ -126,6 +126,13 @@ pink: {
     speed: 80,
     colors: '#ff9ebd,#ff6b9e,#ff1461', 
     noFocus: true
+  },
+  orange: {
+    activeColor: '#ffedd5',
+    gap: 6,
+    speed: 60,
+    colors: '#ffedd5,#fdba74,#f97316', 
+    noFocus: true
   }
 };
 

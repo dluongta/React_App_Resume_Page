@@ -40,7 +40,7 @@ export const Mobile = () => {
 
           {data.map((value) => {
             return (
-              <PixelCard key={value.id} variant="pink" className='card '>
+              <PixelCard key={value.id} variant="orange" className='card '>
                 <div className="card-content" style={{ position: 'absolute', zIndex: 10, width: '100%', top: 0, left: 0 }}>
                   <h1>{value.linkName}</h1>
                 </div>

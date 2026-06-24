@@ -167,7 +167,7 @@ export const Web = () => {
         <div className="cards-wrapper">
           {data.map((value) => {
             return (
-              <PixelCard key={value.id} variant="pink" className='card'>
+              <PixelCard key={value.id} variant="orange" className='card'>
                 
                 {/* Bọc nội dung bằng position: absolute và z-index để không bị che bởi hiệu ứng canvas */}
                 <div className="card-content" style={{ position: 'absolute', zIndex: 10, top: 0, left: 0, width: '100%' }}>

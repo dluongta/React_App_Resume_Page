@@ -193,7 +193,7 @@ export const AppComponent = () => {
         <div className="cards-wrapper">
 
           {/* Card giới thiệu tĩnh */}
-          <PixelCard variant="pink" className="card ">
+          <PixelCard variant="orange" className="card ">
             <div className="card-content" style={{ position: 'absolute', zIndex: 10, width: '100%', top: 0, left: 0 }}>
               <h1>Major: Information Of Technology - UET - VNU</h1>
               <h1>Time: 2021 - 2025</h1>
@@ -203,7 +203,7 @@ export const AppComponent = () => {
           {/* Map danh sách data */}
           {data.map((value) => {
             return (
-              <PixelCard key={value.id} variant="pink" className="card ">
+              <PixelCard key={value.id} variant="orange" className="card ">
                 <div className="card-content" style={{ position: 'absolute', zIndex: 10, width: '100%', top: 0, left: 0 }}>
                   <h1>{value.linkName}</h1>
                 </div>
