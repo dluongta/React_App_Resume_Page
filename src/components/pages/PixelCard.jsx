@@ -11,11 +11,15 @@ class Pixel {
     this.color = color;
     this.speed = this.getRandomValue(0.1, 0.9) * speed;
     this.size = 0;
-    this.sizeStep = Math.random() * 0.4 + (isCorner ? 0.2 : 0); // Góc xuất hiện nhanh hơn
-    this.minSize = isCorner ? 2 : 0.5; // Giữ kích thước hạt ở góc rõ nét, không bị quá bé
     this.maxSizeInteger = 2.5;
-    this.maxSize = isCorner ? 2.5 : this.getRandomValue(this.minSize, this.maxSizeInteger);
-    this.delay = isCorner ? delay * 0.4 : delay;
+    // this.sizeStep = Math.random() * 0.4 + (isCorner ? 0.2 : 0);
+    // this.minSize = isCorner ? 2 : 0.5;
+    // this.maxSize = isCorner ? 2.5 : this.getRandomValue(this.minSize, this.maxSizeInteger);
+    // this.delay = isCorner ? delay * 0.4 : delay;
+    this.sizeStep = Math.random() * 0.4;
+    this.minSize = 0.5;
+    this.maxSize = this.getRandomValue(this.minSize, this.maxSizeInteger);
+    this.delay = delay;
     this.counter = 0;
     this.counterStep = Math.random() * 4 + (this.width + this.height) * 0.01;
     this.isIdle = false;
@@ -148,24 +152,31 @@ export default function PixelCard({ variant = 'default', gap, speed, colors, noF
 
         let drawX = x;
         let drawY = y;
-        let isCorner = false;
+        // let isCorner = false;
 
-        if (
-          (i === 0 && j === 0) || 
-          (i === xValues.length - 1 && j === 0) || 
-          (i === 0 && j === yValues.length - 1) || 
-          (i === xValues.length - 1 && j === yValues.length - 1)
-        ) {
-          isCorner = true;
-        }
+        // if (
+        //   (i === 0 && j === 0) || 
+        //   (i === xValues.length - 1 && j === 0) || 
+        //   (i === 0 && j === yValues.length - 1) || 
+        //   (i === xValues.length - 1 && j === yValues.length - 1)
+        // ) {
+        //   isCorner = true;
+        // }
+
+        // if (j === yValues.length - 1) {
+        //   drawY -= bottomOffset;
+        // }
+
+        // const color = isCorner ? '#ea580c' : colorsArray[Math.floor(Math.random() * colorsArray.length)];
+        let isCorner = false; // Luôn để false để tắt hiệu ứng góc
 
         // Áp dụng khoảng cách linh hoạt theo thiết bị
         if (j === yValues.length - 1) {
           drawY -= bottomOffset;
         }
 
-        const color = isCorner ? '#ea580c' : colorsArray[Math.floor(Math.random() * colorsArray.length)];
-
+        // Xóa điều kiện isCorner, cho random màu như mọi hạt khác
+        const color = colorsArray[Math.floor(Math.random() * colorsArray.length)];
         const dx = drawX - width / 2;
         const dy = drawY - height / 2 - bottomOffset; // Áp dụng đồng bộ offset cho khoảng cách delay
         const distance = Math.sqrt(dx * dx + dy * dy);
