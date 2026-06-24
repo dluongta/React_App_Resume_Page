@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import './PixelCard.css';
 
 class Pixel {
-  constructor(canvas, context, x, y, color, speed, delay) {
+  constructor(canvas, context, x, y, color, speed, delay, isCorner = false) {
     this.width = canvas.width;
     this.height = canvas.height;
     this.ctx = context;
@@ -11,11 +11,11 @@ class Pixel {
     this.color = color;
     this.speed = this.getRandomValue(0.1, 0.9) * speed;
     this.size = 0;
-    this.sizeStep = Math.random() * 0.4;
-    this.minSize = 0.5;
-    this.maxSizeInteger = 2;
-    this.maxSize = this.getRandomValue(this.minSize, this.maxSizeInteger);
-    this.delay = delay;
+    this.sizeStep = Math.random() * 0.4 + (isCorner ? 0.2 : 0); // Góc xuất hiện nhanh hơn
+    this.minSize = isCorner ? 2 : 0.5; // Giữ kích thước hạt ở góc rõ nét, không bị quá bé
+    this.maxSizeInteger = 2.5;
+    this.maxSize = isCorner ? 2.5 : this.getRandomValue(this.minSize, this.maxSizeInteger);
+    this.delay = isCorner ? delay * 0.4 : delay;
     this.counter = 0;
     this.counterStep = Math.random() * 4 + (this.width + this.height) * 0.01;
     this.isIdle = false;
@@ -113,25 +113,18 @@ const VARIANTS = {
     colors: '#fef08a,#fde047,#eab308',
     noFocus: false
   },
-//   pink: {
-//     activeColor: '#fecdd3',
-//     gap: 6,
-//     speed: 80,
-//     colors: '#fecdd3,#fda4af,#e11d48',
-//     noFocus: true
-//   }
-pink: {
+  pink: {
     activeColor: '#fecdd3',
     gap: 6,
     speed: 80,
-    colors: '#ff9ebd,#ff6b9e,#ff1461', 
+    colors: '#ff9ebd,#ff6b9e,#ff1461',
     noFocus: true
   },
   orange: {
     activeColor: '#ffedd5',
     gap: 6,
     speed: 60,
-    colors: '#ffedd5,#fdba74,#f97316', 
+    colors: '#ffedd5,#fdba74,#f97316',
     noFocus: true
   }
 };
@@ -165,16 +158,39 @@ export default function PixelCard({ variant = 'default', gap, speed, colors, noF
 
     const colorsArray = finalColors.split(',');
     const pxs = [];
-    for (let x = 0; x < width; x += parseInt(finalGap, 10)) {
-      for (let y = 0; y < height; y += parseInt(finalGap, 10)) {
-        const color = colorsArray[Math.floor(Math.random() * colorsArray.length)];
+    const gapStep = parseInt(finalGap, 10);
+
+    // 1. Tạo trước danh sách các tọa độ X và Y thực tế sẽ chạy
+    const xValues = [];
+    for (let x = 0; x < width; x += gapStep) xValues.push(x);
+
+    const yValues = [];
+    for (let y = 0; y < height; y += gapStep) yValues.push(y);
+
+    // 2. Xác định chính xác vị trí biên đầu tiên và biên cuối cùng
+    const firstX = xValues[0];
+    const lastX = xValues[xValues.length - 1];
+    const firstY = yValues[0];
+    const lastY = yValues[yValues.length - 1];
+
+    // 3. Chạy vòng lặp để dựng pixel
+    for (let i = 0; i < xValues.length; i++) {
+      for (let j = 0; j < yValues.length; j++) {
+        const x = xValues[i];
+        const y = yValues[j];
+
+        // ĐIỀU KIỆN FIX: Chỉ đúng hạt đầu tiên hoặc cuối cùng của trục X kết hợp Y mới là Corner (Tạo đúng cấu hình 1x1 ở mỗi góc)
+        const isCorner = (x === firstX || x === lastX) && (y === firstY || y === lastY);
+
+        // Chỉ đúng 4 hạt góc này mới có màu cam đậm định sẵn
+        const color = isCorner ? '#ea580c' : colorsArray[Math.floor(Math.random() * colorsArray.length)];
 
         const dx = x - width / 2;
         const dy = y - height / 2;
         const distance = Math.sqrt(dx * dx + dy * dy);
         const delay = reducedMotion ? 0 : distance;
 
-        pxs.push(new Pixel(canvasRef.current, ctx, x, y, color, getEffectiveSpeed(finalSpeed, reducedMotion), delay));
+        pxs.push(new Pixel(canvasRef.current, ctx, x, y, color, getEffectiveSpeed(finalSpeed, reducedMotion), delay, isCorner));
       }
     }
     pixelsRef.current = pxs;
