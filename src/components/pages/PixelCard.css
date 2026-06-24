@@ -22,7 +22,7 @@
   user-select: none;
 } */
 .pixel-card {
-  height: 450px;        /* TĂNG TỪ 400px LÊN 450px theo ý bạn */
+  height: 400px;      
   width: 300px;
   position: relative;
   overflow: hidden;

@@ -136,6 +136,11 @@ export default function PixelCard({ variant = 'default', gap, speed, colors, noF
     const yValues = [];
     for (let y = 0; y < height; y += gapStep) yValues.push(y);
 
+    // Kiểm tra kích thước màn hình để quyết định xem có phải Mobile không (<= 768px là Mobile)
+    const isMobile = window.innerWidth <= 768;
+    // PC thì trừ 6px, Mobile thì trừ 0px
+    const bottomOffset = isMobile ? 0 : 6;
+
     for (let i = 0; i < xValues.length; i++) {
       for (let j = 0; j < yValues.length; j++) {
         const x = xValues[i];
@@ -145,7 +150,6 @@ export default function PixelCard({ variant = 'default', gap, speed, colors, noF
         let drawY = y;
         let isCorner = false;
 
-        // 1. Kiểm tra 4 góc tuyệt đối dựa trên index hệ thống để làm chấm cam đậm
         if (
           (i === 0 && j === 0) || 
           (i === xValues.length - 1 && j === 0) || 
@@ -155,15 +159,15 @@ export default function PixelCard({ variant = 'default', gap, speed, colors, noF
           isCorner = true;
         }
 
-        // 2. Ép hiệu ứng kéo lùi: Đẩy toàn bộ hàng pixel dưới cùng lên -4px
+        // Áp dụng khoảng cách linh hoạt theo thiết bị
         if (j === yValues.length - 1) {
-          drawY -= 6;
+          drawY -= bottomOffset;
         }
 
         const color = isCorner ? '#ea580c' : colorsArray[Math.floor(Math.random() * colorsArray.length)];
 
         const dx = drawX - width / 2;
-        const dy = drawY - height / 2 - 6;
+        const dy = drawY - height / 2 - bottomOffset; // Áp dụng đồng bộ offset cho khoảng cách delay
         const distance = Math.sqrt(dx * dx + dy * dy);
         const delay = reducedMotion ? 0 : distance;
 
