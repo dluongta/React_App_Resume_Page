@@ -285,4 +285,4 @@ export default function PixelCard({ variant = 'default', gap, speed, colors, noF
       {children}
     </div>
   );
-}
+} 
