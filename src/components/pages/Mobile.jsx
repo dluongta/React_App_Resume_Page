@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import PixelCard from './PixelCard'; // Import PixelCard
 
 export const Mobile = () => {
   const data = [
@@ -38,17 +39,23 @@ export const Mobile = () => {
         <div className="cards-wrapper">
 
           {data.map((value) => {
-            return (<div className='card '>
-              <div className="card-content">
-                <h1>{value.linkName}</h1>
-              </div>
-              <Link className='link' to={{ pathname: value.link }} target="_blank">&rarr; {value.link}</Link>
-
-            </div>)
-
-          }
-
-          )}
+            return (
+              <PixelCard key={value.id} variant="pink" className='card '>
+                <div className="card-content" style={{ position: 'absolute', zIndex: 10, width: '100%', top: 0, left: 0 }}>
+                  <h1>{value.linkName}</h1>
+                </div>
+                <Link 
+                  className='link' 
+                  to={{ pathname: value.link }} 
+                  target="_blank"
+                  style={{ position: 'absolute', zIndex: 10 }}
+                >
+                  &rarr; {value.link}
+                </Link>
+              </PixelCard>
+            )
+          })}
+          
         </div>
       </section>
     </>

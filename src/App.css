@@ -1017,7 +1017,7 @@ iframe {
   }
 }
 
-.card {
+/* .card {
   position: relative;
   background-color: rgb(255, 248, 240);
   padding: 20px;
@@ -1079,7 +1079,7 @@ iframe {
 .card-content {
   position: relative;
   z-index: 1;
-}
+} */
 
 .swiper-slide {
   height: 700px;
