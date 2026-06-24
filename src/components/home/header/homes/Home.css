@@ -821,14 +821,7 @@
 }
 
 .animated-gradient-text {
-  background: linear-gradient(
-    90deg,
-    #FF8C00,
-    #FF2D55, 
-    #FF2D55,
-    #FF2D55, 
-    #FF8C00
-  );
+  background: #0095ff;
 
   background-size: 300% 100%;
 
