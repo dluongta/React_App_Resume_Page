@@ -829,7 +829,7 @@ const GalaxyAnimation = ({
         ss.len = rand(150, 300); ss.speed = rand(25, 40); ss.opacity = 1;
       } else if (ss.active) {
         ss.x += ss.speed; ss.opacity -= 0.003;
-        if (ss.x > w + 400 || ss.opacity <= 0) ss.active = false; 
+        if (ss.x > w + 400 || ss.opacity <= 0) ss.active = false;
         
         ctx.save(); 
         // Đổi thành source-over để màu trắng không bị pha với màu nền
