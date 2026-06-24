@@ -45,7 +45,7 @@
   /* Đổi màu nền mờ khi hover thành màu cam nhạt hài hòa với viền */
   background: radial-gradient(circle, #ffedd5, transparent 85%);
   opacity: 0;
-  transition: opacity 800ms cubic-bezier(0.5, 1, 0.89, 1); 
+  transition: opacity 800ms cubic-bezier(0.5, 1, 0.89, 1);
 }
 
 .pixel-card:hover::before,
