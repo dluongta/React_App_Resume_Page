@@ -821,7 +821,8 @@
 }
 
 .animated-gradient-text {
-  background: #0988ed;
+  /* background: #0988ed; */
+  background: #ff4d00;
 
   background-size: 300% 100%;
 
