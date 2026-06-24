@@ -92,41 +92,11 @@ function getEffectiveSpeed(value, reducedMotion) {
 }
 
 const VARIANTS = {
-  default: {
-    activeColor: null,
-    gap: 5,
-    speed: 35,
-    colors: '#f8fafc,#f1f5f9,#cbd5e1',
-    noFocus: false
-  },
-  blue: {
-    activeColor: '#e0f2fe',
-    gap: 10,
-    speed: 25,
-    colors: '#e0f2fe,#7dd3fc,#0ea5e9',
-    noFocus: false
-  },
-  yellow: {
-    activeColor: '#fef08a',
-    gap: 3,
-    speed: 20,
-    colors: '#fef08a,#fde047,#eab308',
-    noFocus: false
-  },
-  pink: {
-    activeColor: '#fecdd3',
-    gap: 6,
-    speed: 80,
-    colors: '#ff9ebd,#ff6b9e,#ff1461',
-    noFocus: true
-  },
-  orange: {
-    activeColor: '#ffedd5',
-    gap: 6,
-    speed: 60,
-    colors: '#ffedd5,#fdba74,#f97316',
-    noFocus: true
-  }
+  default: { activeColor: null, gap: 5, speed: 35, colors: '#f8fafc,#f1f5f9,#cbd5e1', noFocus: false },
+  blue: { activeColor: '#e0f2fe', gap: 10, speed: 25, colors: '#e0f2fe,#7dd3fc,#0ea5e9', noFocus: false },
+  yellow: { activeColor: '#fef08a', gap: 3, speed: 20, colors: '#fef08a,#fde047,#eab308', noFocus: false },
+  pink: { activeColor: '#fecdd3', gap: 6, speed: 80, colors: '#ff9ebd,#ff6b9e,#ff1461', noFocus: true },
+  orange: { activeColor: '#ffedd5', gap: 6, speed: 60, colors: '#ffedd5,#fdba74,#f97316', noFocus: true }
 };
 
 export default function PixelCard({ variant = 'default', gap, speed, colors, noFocus, className = '', children }) {
@@ -171,42 +141,32 @@ export default function PixelCard({ variant = 'default', gap, speed, colors, noF
         const x = xValues[i];
         const y = yValues[j];
 
-        // Biến tạm để dịch chuyển tọa độ vẽ mà không làm hỏng vòng lặp
         let drawX = x;
         let drawY = y;
         let isCorner = false;
 
-        // Bắt chính xác 4 góc thông qua index của vòng lặp
-        if (i === 0 && j === 0) {
-          // Top-Left: Đẩy vào trong 16px
-          drawX += 16; 
-          drawY += 16; 
+        // 1. Kiểm tra 4 góc tuyệt đối dựa trên index hệ thống để làm chấm cam đậm
+        if (
+          (i === 0 && j === 0) || 
+          (i === xValues.length - 1 && j === 0) || 
+          (i === 0 && j === yValues.length - 1) || 
+          (i === xValues.length - 1 && j === yValues.length - 1)
+        ) {
           isCorner = true;
-        } else if (i === xValues.length - 1 && j === 0) {
-          // Top-Right: Đẩy vào trong 16px
-          drawX -= 16; 
-          drawY += 16; 
-          isCorner = true;
-        } else if (i === 0 && j === yValues.length - 1) {
-          // Bottom-Left: Đẩy vào trong 16px và đẩy Y lên 24px để xa viền dưới
-          drawX += 16; 
-          drawY -= 24; 
-          isCorner = true;
-        } else if (i === xValues.length - 1 && j === yValues.length - 1) {
-          // Bottom-Right: Đẩy vào trong 16px và đẩy Y lên 24px để xa viền dưới
-          drawX -= 16; 
-          drawY -= 24; 
-          isCorner = true;
+        }
+
+        // 2. Ép hiệu ứng kéo lùi: Đẩy toàn bộ hàng pixel dưới cùng lên -4px
+        if (j === yValues.length - 1) {
+          drawY -= 6;
         }
 
         const color = isCorner ? '#ea580c' : colorsArray[Math.floor(Math.random() * colorsArray.length)];
 
         const dx = drawX - width / 2;
-        const dy = drawY - height / 2;
+        const dy = drawY - height / 2 - 6;
         const distance = Math.sqrt(dx * dx + dy * dy);
         const delay = reducedMotion ? 0 : distance;
 
-        // Sử dụng drawX, drawY thay vì x, y
         pxs.push(new Pixel(canvasRef.current, ctx, drawX, drawY, color, getEffectiveSpeed(finalSpeed, reducedMotion), delay, isCorner));
       }
     }
@@ -268,7 +228,6 @@ export default function PixelCard({ variant = 'default', gap, speed, colors, noF
       observer.disconnect();
       cancelAnimationFrame(animationRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [finalGap, finalSpeed, finalColors, finalNoFocus]);
 
   return (
