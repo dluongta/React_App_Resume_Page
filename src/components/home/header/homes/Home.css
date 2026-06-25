@@ -825,10 +825,10 @@
   /* background: linear-gradient(135deg, #8A2BE2, #FF4D9D); */
   /* background: linear-gradient(90deg, #7B2FF7, #F107A3, #FF7B54);  */
   background: linear-gradient(
-  94deg,
+  135deg,
   #7B2FF7 0%,
   #F107A3 40%,
-  #FF7B54 80%,
+  #FF7B54 70%,
   #FF7B54 100%
 );
   /* background-size: 300% 100%; */
