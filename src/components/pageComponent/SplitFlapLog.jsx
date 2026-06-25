@@ -52,7 +52,7 @@ const Flap = ({ char, isStatic = false }) => {
 // Component chính bao ngoài
 export default function SplitFlapLog({ className = "" }) {
     const words = ["USER", "SERVICE", "DEPLOYMENT", "REQUEST", "LOG"];
-    const [counters, setCounters] = useState([900, 850, 100, 9895, 0]);
+    const [counters, setCounters] = useState([999, 999, 999, 999, 999]);
 
     useEffect(() => {
         // Tăng số mỗi 0.5 giây
