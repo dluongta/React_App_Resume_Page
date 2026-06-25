@@ -129,24 +129,6 @@ export const HomePage = () => {
       </div> */}
       {/* <ScrollEffect/>  */}
       <section className="portfolio-hero">
-        {/* <DotField
-    dotRadius={2}
-    dotSpacing={18}
-    cursorRadius={300}
-    bulgeStrength={50}
-    bulgeOnly
-    gradientFrom="#A855F7"
-    gradientTo="#A855F7"
-  /> */}
-        {/* <DotField
-  dotRadius={2}
-  dotSpacing={18}
-  cursorRadius={300}
-  bulgeStrength={50}
-  bulgeOnly
-  gradientFrom="rgba(139,92,246,0.85)"
-  gradientTo="rgba(168,85,247,0.85)"
-/> */}
         <DotField
           dotRadius={2}
           dotSpacing={18}
