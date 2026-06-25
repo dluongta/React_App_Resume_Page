@@ -18,7 +18,7 @@ import { FireworkButton } from './FireworkButton';
 import { ScrollText } from './ScrollText';
 import SplitFlapLog from './SplitFlapLog';
 import { CounterSection } from './CounterSection';
-import DotField from './DotField';
+// import DotField from './DotField';
 
 export const HomePage = () => {
   useEffect(() => {
@@ -128,10 +128,10 @@ export const HomePage = () => {
         <Link to='/galaxy' id="galaxy"> Galaxy </Link>
       </div> */}
       {/* <ScrollEffect/>  */}
-      <section className="portfolio-hero">
+      {/* <section className="portfolio-hero">
         <DotField
           dotRadius={1}
-          dotSpacing={14}
+          dotSpacing={16}
           cursorRadius={300}
           bulgeStrength={50}
           bulgeOnly
@@ -164,7 +164,7 @@ export const HomePage = () => {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
       <Home className="reveal" />
       <Branding className="reveal" />
       <About className="reveal" />
