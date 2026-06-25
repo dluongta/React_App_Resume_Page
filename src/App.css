@@ -3362,10 +3362,10 @@ body.sub-root,
 }
 
 .btn-primary:hover {
-  transform: translateY(-4px);
+  /* transform: translateY(-4px); */
 
-  box-shadow:
-    0 20px 40px rgba(168, 85, 247, 0.35);
+  /* box-shadow:
+    0 20px 40px rgba(168, 85, 247, 0.35); */
 }
 
 /* Secondary Button */
@@ -3392,9 +3392,9 @@ body.sub-root,
 }
 
 .btn-secondary:hover {
-  background: rgba(168, 85, 247, 0.14);
+  /* background: rgba(168, 85, 247, 0.14); */
 
-  transform: translateY(-4px);
+  /* transform: translateY(-4px); */
 }
 
 /* Responsive */
