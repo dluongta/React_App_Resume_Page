@@ -26,9 +26,17 @@ const DotField = memo(
       const resize = () => {
         const parent = canvas.parentElement;
 
-        canvas.width = parent.offsetWidth;
-        canvas.height = parent.offsetHeight;
+        // canvas.width = parent.offsetWidth;
+        // canvas.height = parent.offsetHeight;
+        const dpr = window.devicePixelRatio || 1;
 
+        canvas.width = parent.offsetWidth * dpr;
+        canvas.height = parent.offsetHeight * dpr;
+
+        canvas.style.width = `${parent.offsetWidth}px`;
+        canvas.style.height = `${parent.offsetHeight}px`;
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         buildDots();
       };
 
@@ -118,7 +126,7 @@ const DotField = memo(
             const force =
               (1 -
                 dist /
-                  cursorRadius) *
+                cursorRadius) *
               bulgeStrength;
 
             const angle =
@@ -127,12 +135,12 @@ const DotField = memo(
             x =
               dot.ax -
               Math.cos(angle) *
-                force;
+              force;
 
             y =
               dot.ay -
               Math.sin(angle) *
-                force;
+              force;
           }
 
           ctx.beginPath();

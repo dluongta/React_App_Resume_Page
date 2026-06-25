@@ -130,8 +130,8 @@ export const HomePage = () => {
       {/* <ScrollEffect/>  */}
       <section className="portfolio-hero">
         <DotField
-          dotRadius={2}
-          dotSpacing={18}
+          dotRadius={1}
+          dotSpacing={14}
           cursorRadius={300}
           bulgeStrength={50}
           bulgeOnly
