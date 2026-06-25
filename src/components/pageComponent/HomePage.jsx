@@ -18,6 +18,8 @@ import { FireworkButton } from './FireworkButton';
 import { ScrollText } from './ScrollText';
 import SplitFlapLog from './SplitFlapLog';
 import { CounterSection } from './CounterSection';
+import DotField from './DotField';
+
 export const HomePage = () => {
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal');
@@ -32,7 +34,7 @@ export const HomePage = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); 
+    handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -126,12 +128,67 @@ export const HomePage = () => {
         <Link to='/galaxy' id="galaxy"> Galaxy </Link>
       </div> */}
       {/* <ScrollEffect/>  */}
+      <section className="portfolio-hero">
+        {/* <DotField
+    dotRadius={2}
+    dotSpacing={18}
+    cursorRadius={300}
+    bulgeStrength={50}
+    bulgeOnly
+    gradientFrom="#A855F7"
+    gradientTo="#A855F7"
+  /> */}
+        {/* <DotField
+  dotRadius={2}
+  dotSpacing={18}
+  cursorRadius={300}
+  bulgeStrength={50}
+  bulgeOnly
+  gradientFrom="rgba(139,92,246,0.85)"
+  gradientTo="rgba(168,85,247,0.85)"
+/> */}
+        <DotField
+          dotRadius={2}
+          dotSpacing={18}
+          cursorRadius={300}
+          bulgeStrength={50}
+          bulgeOnly
+          gradientFrom="rgba(139,92,246,0.9)"
+          gradientTo="rgba(168,85,247,0.9)"
+        />
+        <div className="portfolio-content">
+          <span className="portfolio-badge">
+            ✦ Available for job
+          </span>
+
+          <h1>
+            Building Modern
+            <br />
+            Web Experiences
+          </h1>
+
+          <p>
+            React Developer crafting beautiful,
+            performant and interactive digital products.
+          </p>
+
+          <div className="portfolio-actions">
+            <button className="btn-primary">
+              View Projects
+            </button>
+
+            <button className="btn-secondary">
+              Contact Me
+            </button>
+          </div>
+        </div>
+      </section>
       <Home className="reveal" />
       <Branding className="reveal" />
       <About className="reveal" />
       <Wrapper className="reveal" />
       <ScrollRevealText />
-      <ScrollText/>
+      <ScrollText />
       {/* <ScrollHero/> */}
       <Skill className="reveal" />
       <Service className="reveal" />
