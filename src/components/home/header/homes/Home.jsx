@@ -431,7 +431,7 @@ export const Home = ({ className }) => {
         <div className="home-right">
           <div className="content-inner">
 
-            <div style={{ width: '100%', textAlign: 'center', marginBottom: '5px' }}>
+            {/* <div style={{ width: '100%', textAlign: 'center', marginBottom: '5px' }}>
               <h1
                 className="animated-gradient-text"
                 style={{
@@ -447,7 +447,7 @@ export const Home = ({ className }) => {
               >
                 I AM A
               </h1>
-            </div>
+            </div> */}
 
             {/* Khối chữ chạy giữ nguyên */}
             <div
