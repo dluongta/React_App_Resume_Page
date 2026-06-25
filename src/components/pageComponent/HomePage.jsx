@@ -150,7 +150,7 @@ export const HomePage = () => {
           </h1>
 
           <p>
-            React Developer creating beautiful,
+            React Developer creating high-quality,
             performant and interactive digital products.
           </p>
 
