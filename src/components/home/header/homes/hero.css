@@ -23,8 +23,8 @@
   align-items: center;
   flex-direction: column;
 
-  overflow-x: hidden;   /* chỉ ẩn ngang */
-  overflow-y: visible;  /* CHO PHÉP HIỆN DỌC */
+  overflow-x: hidden;  
+  overflow-y: visible; 
 }
 
 .hero-content2 {
@@ -921,7 +921,7 @@
 
 .hero-header78 {
   overflow: hidden; 
-  margin-top: 150px!important;
+  margin-top: 160px!important;
   margin-bottom: -30px!important;
 }
 .hero-row-container1,

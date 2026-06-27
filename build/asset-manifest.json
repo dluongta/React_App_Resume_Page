@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/static/css/main.addcb545.css",
-    "main.js": "/static/js/main.b2ec02b8.js",
+    "main.css": "/static/css/main.64d49016.css",
+    "main.js": "/static/js/main.c7c88ed3.js",
+    "static/media/Entertainment_Pop_Song.mp3": "/static/media/Entertainment_Pop_Song.64ea42508c3d06cc02be.mp3",
     "static/media/intro_video.mp4": "/static/media/intro_video.49f1aa4806285bfecff2.mp4",
     "static/media/hexagon-main.png": "/static/media/hexagon-main.0d1fa5074a6783c7d9aa.png",
     "static/media/hexagon.png": "/static/media/hexagon.53b9d267e8dae4ae20fd.png",
     "static/media/main.png": "/static/media/main.46e4bda31bde3f5173f9.png",
-    "static/media/main-background.png": "/static/media/main-background.5da6c504ab37ffb54fd6.png",
     "static/media/luen-1.jpg": "/static/media/luen-1.93167e549004b937e253.jpg",
     "static/media/luen.jpg": "/static/media/luen.93167e549004b937e253.jpg",
     "static/media/lumind_logo.mp4": "/static/media/lumind_logo.28c6f6bd3efdefcf8aae.mp4",
@@ -21,11 +21,11 @@
     "static/media/caption_logo.vtt": "/static/media/caption_logo.75175c236c60850b1874.vtt",
     "static/media/caption.vtt": "/static/media/caption.f60d51dda084efcb1f52.vtt",
     "static/media/lumind_animation.vtt": "/static/media/lumind_animation.f72fdf181ee4d8ed3611.vtt",
-    "main.addcb545.css.map": "/static/css/main.addcb545.css.map",
-    "main.b2ec02b8.js.map": "/static/js/main.b2ec02b8.js.map"
+    "main.64d49016.css.map": "/static/css/main.64d49016.css.map",
+    "main.c7c88ed3.js.map": "/static/js/main.c7c88ed3.js.map"
   },
   "entrypoints": [
-    "static/css/main.addcb545.css",
-    "static/js/main.b2ec02b8.js"
+    "static/css/main.64d49016.css",
+    "static/js/main.c7c88ed3.js"
   ]
 }

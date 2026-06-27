@@ -11,7 +11,6 @@ import hexagon from '../../assets/hexagon.png';
 import { ScrollRevealText } from './ScrollRevealText';
 // import Particles from 'react-tsparticles';
 // import { loadSlim } from 'tsparticles-slim'; 
-import ScrollEffect from './ScrollEffect';
 import ScrollHero from './ScrollHero';
 import { FireworksEffect } from './FireworksEffect';
 import { FireworkButton } from './FireworkButton';
@@ -127,7 +126,6 @@ export const HomePage = () => {
         <Link to='/contact' id="contact"> Contact </Link>
         <Link to='/galaxy' id="galaxy"> Galaxy </Link>
       </div> */}
-      {/* <ScrollEffect/>  */}
       {/* <section className="portfolio-hero">
         <DotField
           dotRadius={1}

@@ -1,0 +1,250 @@
+:root {
+  --primary-color: #4285f4;
+  --text-color: #fff;
+  --bg-color: #121212;
+  --slider-bg: rgba(255, 255, 255, 0.3);
+}
+
+.music-player-bar {
+  box-sizing: border-box;
+  width: calc(100% - 32px);
+  max-width: 800px;
+  
+  /* Giữ nguyên khoảng cách: CÁCH TRÊN MỘT KHOẢNG LỚN (80px), CÁCH DƯỚI NHỎ (16px) */
+  margin: 80px auto 16px auto; 
+  padding: 20px 20px 16px 20px;
+  
+  /* Đổi flex thành cột dọc */
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* --- CỤM TRÊN --- */
+.player-top {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 16px; /* Khoảng cách giữa hàng trên và dưới */
+}
+
+.track-info {
+  font-size: 15px;
+  margin-bottom: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  text-align: center; /* Đưa tên bài hát ra giữa cho cân đối */
+}
+
+.track-title {
+  font-weight: 600;
+}
+
+.track-artist {
+  margin-left: 6px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.time-text {
+  font-size: 12px;
+  color: #bbb;
+  min-width: 40px;
+  text-align: center;
+}
+
+.progress-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* --- CỤM DƯỚI --- */
+.player-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.controls-left {
+  display: flex;
+  align-items: center;
+}
+
+.controls-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* --- CÁC NÚT BẤM VÀ THANH KÉO --- */
+.play-pause-btn {
+  background: var(--primary-color);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.play-pause-btn:hover {
+  transform: scale(1.05);
+  background: #3367d6;
+}
+
+.control-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+.control-btn.active {
+  color: var(--primary-color);
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress-slider,
+.volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--slider-bg);
+  outline: none;
+  cursor: pointer;
+  margin: 0;
+}
+
+.volume-slider {
+  width: 80px;
+}
+
+.progress-slider::-webkit-slider-thumb,
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.progress-slider::-moz-range-thumb,
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* --- SETTINGS MENU --- */
+.settings-menu {
+  position: relative;
+}
+
+.settings-content {
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+  background: #222;
+  border-radius: 6px;
+  min-width: 120px;
+  padding: 8px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  z-index: 100;
+}
+
+.settings-header {
+  padding: 4px 15px 8px;
+  font-size: 12px;
+  color: #888;
+  border-bottom: 1px solid #444;
+  margin-bottom: 4px;
+}
+
+.settings-item {
+  padding: 8px 15px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.settings-item:hover {
+  background: #333;
+}
+
+.settings-item.active {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* --- LOADING SPINNER --- */
+.loading-spinner-small {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 
+  to { transform: rotate(360deg); } 
+}
+
+/* =========================================
+   RESPONSIVE MOBILE
+========================================= */
+@media screen and (max-width: 600px) {
+  .music-player-bar {
+    /* Đẩy player xuống xa hơn một chút nếu muốn trên mobile */
+    margin-top: 80px;
+    padding: 16px; 
+    margin-bottom: 0px;
+  }
+
+  /* Cố định kích thước trên điện thoại nhỏ để tránh lỗi */
+  .volume-slider {
+    width: 60px;
+    display: block; 
+  }
+
+  .controls-right {
+    gap: 8px; /* Thu hẹp lại một chút khoảng trống */
+  }
+}
