@@ -50,9 +50,9 @@ let lineProgress =
     <section ref={sectionRef} className={styles.scrollTextSection}>
       <div className={styles.stickyWrapper}>
         <div ref={containerRef} className={styles.textContainer}>
-          <div className={styles.revealLine}>SKILLED PROGRAMMER</div>
-          <div className={styles.revealLine}>SOFTWARE DEVELOPER</div>
-          <div className={styles.revealLine}>HARDWARE ENGINEER</div>
+          <div className={styles.revealLine}>WEB DEVELOPER</div>
+          <div className={styles.revealLine}>ANDROID DEVELOPER</div>
+          <div className={styles.revealLine}>APP DEVELOPER</div>
         </div>
       </div>
     </section>

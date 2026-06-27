@@ -380,9 +380,9 @@ import './Home.css';
 
 export const Home = ({ className }) => {
   const originalToRotate = [
-    "Skilled Programmer",
-    "Software Developer",
-    "Hardware Engineer"
+    "Web Developer",
+    "Android Developer",
+    "App Develpoper",
   ];
 
   const [toRotate, setToRotate] = useState([...originalToRotate, originalToRotate[0]]);
@@ -517,7 +517,7 @@ export const Home = ({ className }) => {
 
             <div className="description-text">
               <p>
-                I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android and Application Development. I am also learning about Artificial Intelligence and Hardware.
+                I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android and Application Development.
                 I am extremely fascinated by science, engineering and technology. All of my products are from the TSCEND brand, made by DLUONGTA. As technology continues to evolve at an unprecedented speed, I want to develop innovative solutions that create a significant, beneficial and huge impact on the world.
               </p>
 

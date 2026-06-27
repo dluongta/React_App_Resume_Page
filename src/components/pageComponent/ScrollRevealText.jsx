@@ -34,9 +34,9 @@ export const ScrollRevealText = () => {
     <section ref={sectionRef} className={styles.scrollTextSection}>
       <div className={styles.stickyWrapper}>
         <div ref={textRef} className={styles.revealText}>
-          SKILLED PROGRAMMER <br />
-          SOFTWARE DEVELOPER <br />
-          HARDWARE ENGINEER
+          WEB DEVELOPER <br />
+          ANDROID DEVELOPER <br />
+          APP DEVELOPER
         </div>
       </div>
     </section>

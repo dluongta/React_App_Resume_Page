@@ -147,10 +147,10 @@ export const Branding = ({ className }) => {
         <CircularText text="TEAM ✦ MANAGEMENT ✦ SKILLS ✦ " color="#FFA500" onHover="slowDown" />
         <CircularText text="CREATIVE ✦ MIND ✦ DEVELOPER ✦ " color="#FFA500" onHover="pause" />
         <CircularText text="DLUONGTA ✦ TSCEND ✦ STUDIO ✦ " color="#FFA500" onHover="goBonkers" /> */}
-        <CircularText text="DLUONGTA ✦ FUTURE ✦ CREATIVE ✦ " color="#FFA500" onHover="speedUp" />
-        <CircularText text="FANTASTIC ✦ SOFTWARE ✦ DEVELOPER ✦ " color="#FFA500" onHover="speedUp" />
-        <CircularText text="SKILLED ✦ HARDWARE ✦ ENGINEER ✦ " color="#FFA500" onHover="speedUp" />
-        <CircularText text="DIGITAL ✦ TSCEND ✦ SYSTEMS ✦ " color="#FFA500" onHover="speedUp" />
+        <CircularText text="SKILLED ✦ DLUONGTA ✦ DEVELOPER ✦ " color="#FFA500" onHover="speedUp" />
+        <CircularText text="SKILLED ✦ WEB ✦ DEVELOPER ✦ " color="#FFA500" onHover="speedUp" />
+        <CircularText text="SKILLED ✦ ANDROID ✦ DEVELOPER ✦ " color="#FFA500" onHover="speedUp" />
+        <CircularText text="SKILLED ✦ APP ✦ DEVELOPER ✦ " color="#FFA500" onHover="speedUp" />
       </div>
       {/* {!isMobile && (
         <div style={{
