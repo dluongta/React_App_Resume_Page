@@ -29,23 +29,22 @@
   border-radius: 50%;
   background: #111;
   /* Tạo các rãnh đĩa lặp lại */
-  background-image: repeating-radial-gradient(
-    #111,
-    #111 2px,
-    #1a1a1a 3px,
-    #111 4px
-  );
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5), inset 0 0 10px rgba(0,0,0,0.8);
+  background-image: repeating-radial-gradient(#111,
+      #111 2px,
+      #1a1a1a 3px,
+      #111 4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   /* Hiệu ứng phản chiếu ánh sáng chéo */
   overflow: hidden;
-  
+
   /* Cấu hình animation xoay */
   animation: spinRecord 6s linear infinite;
-  animation-play-state: paused; /* Dừng mặc định */
+  animation-play-state: paused;
+  /* Dừng mặc định */
 }
 
 /* Khi đang play thì tiếp tục xoay */
@@ -57,15 +56,16 @@
 .vinyl-record::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   border-radius: 50%;
-  background: linear-gradient(
-    135deg, 
-    rgba(255,255,255,0.15) 0%, 
-    rgba(255,255,255,0) 40%, 
-    rgba(255,255,255,0) 60%, 
-    rgba(255,255,255,0.15) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0.15) 100%);
   pointer-events: none;
   z-index: 2;
 }
@@ -78,7 +78,7 @@
   background-color: var(--bg-color);
   border-radius: 50%;
   z-index: 4;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 /* Nhãn hình ảnh */
@@ -88,7 +88,8 @@
   border-radius: 50%;
   object-fit: cover;
   z-index: 3;
-  border: 2px solid #fff; /* Viền của nhãn */
+  border: 2px solid #fff;
+  /* Viền của nhãn */
 }
 
 /* Nhãn text (nếu không dùng ảnh) */
@@ -114,8 +115,13 @@
 }
 
 @keyframes spinRecord {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* =========================================
@@ -166,7 +172,8 @@
   align-items: center;
 }
 
-.progress-slider, .volume-slider {
+.progress-slider,
+.volume-slider {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
@@ -178,11 +185,12 @@
   transition: height 0.2s;
 }
 
-.progress-slider:hover, .volume-slider:hover {
+.progress-slider:hover,
+.volume-slider:hover {
   height: 8px;
 }
 
-.progress-slider::-webkit-slider-thumb, 
+.progress-slider::-webkit-slider-thumb,
 .volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 12px;
@@ -199,7 +207,8 @@
   align-items: center;
 }
 
-.controls-left, .controls-right {
+.controls-left,
+.controls-right {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -269,7 +278,7 @@
   border-radius: 8px;
   min-width: 120px;
   padding: 8px 0;
-  box-shadow: 0 -4px 12px rgba(0,0,0,0.8);
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.8);
   z-index: 1000;
 }
 
@@ -282,7 +291,7 @@
 }
 
 .settings-item:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   color: #fff;
 }
 
@@ -294,7 +303,7 @@
 .loading-spinner-small {
   width: 18px;
   height: 18px;
-  border: 2px solid rgba(255,255,255,0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-top-color: #fff;
   border-radius: 50%;
   animation: spinRecord 1s linear infinite;
@@ -306,12 +315,18 @@
     text-align: center;
     padding: 24px 16px;
   }
-  
+
   .track-info {
     margin-bottom: 16px;
   }
-  
+
   .volume-slider {
     width: 60px;
+  }
+
+  .music-player-container {
+    border-radius: 0px;
+    width: 100%;
+    max-width: 352px;
   }
 }
