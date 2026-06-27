@@ -15,7 +15,7 @@ import hexagonImg from '../../../../assets/hexagon-main.png';
 import CurvedLoop from './CurvedLoop';
 import CircularText from './CircularText';
 import CustomMusicPlayer from './CustomMusicPlayer';
-import bgMusic from '../../../../assets/Entertainment_Pop_Song.mp3';
+import bgMusic from '../../../../assets/Lofi-Study-Vibes.mp3';
 // import caption_ulmind_intro from '../../../../assets/caption_intro.vtt';
 // import ulmind_intro from '../../../../assets/ultramind_intro.mp4';
 // import Globe from './GlobeVisualization';
@@ -186,7 +186,7 @@ export const Branding = ({ className }) => {
       {/* <CustomVideoPlayer src={bgVideo} captionSrc={caption} /> */}
       <CustomMusicPlayer 
         src={bgMusic}
-        title="Entertainment Pop Song"
+        title="Lofi Study Vibes"
         artist="DLUONGTA"
       />
       <Hero />

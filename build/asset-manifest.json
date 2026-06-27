@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.64d49016.css",
-    "main.js": "/static/js/main.c7c88ed3.js",
-    "static/media/Entertainment_Pop_Song.mp3": "/static/media/Entertainment_Pop_Song.64ea42508c3d06cc02be.mp3",
+    "main.js": "/static/js/main.d00e9d1e.js",
+    "static/media/Lofi-Study-Vibes.mp3": "/static/media/Lofi-Study-Vibes.64ea42508c3d06cc02be.mp3",
     "static/media/intro_video.mp4": "/static/media/intro_video.49f1aa4806285bfecff2.mp4",
     "static/media/hexagon-main.png": "/static/media/hexagon-main.0d1fa5074a6783c7d9aa.png",
     "static/media/hexagon.png": "/static/media/hexagon.53b9d267e8dae4ae20fd.png",
@@ -22,10 +22,10 @@
     "static/media/caption.vtt": "/static/media/caption.f60d51dda084efcb1f52.vtt",
     "static/media/lumind_animation.vtt": "/static/media/lumind_animation.f72fdf181ee4d8ed3611.vtt",
     "main.64d49016.css.map": "/static/css/main.64d49016.css.map",
-    "main.c7c88ed3.js.map": "/static/js/main.c7c88ed3.js.map"
+    "main.d00e9d1e.js.map": "/static/js/main.d00e9d1e.js.map"
   },
   "entrypoints": [
     "static/css/main.64d49016.css",
-    "static/js/main.c7c88ed3.js"
+    "static/js/main.d00e9d1e.js"
   ]
 }
