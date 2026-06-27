@@ -268,7 +268,7 @@
   border-radius: 8px;
   min-width: 120px;
   padding: 8px 0;
-  box-shadow: 0 -4px 12px rgba(0,0,0,0.5);
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.8);
   z-index: 1000;
 }
 
