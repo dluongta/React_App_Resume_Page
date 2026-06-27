@@ -153,7 +153,7 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
         <div className="player-top">
           <div className="track-info">
             <span className="track-title">{title || 'Unknown Title'}</span>
-            {artist && <span className="track-artist"><span style={{ fontSize: '14px', opacity: 0.7 }}> - </span>{artist}</span>}
+            {artist && <span className="track-artist"><span style={{ fontSize: '16px', fontWeight: 600 }}> - </span>{artist}</span>}
           </div>
           
           <div className="progress-container">
