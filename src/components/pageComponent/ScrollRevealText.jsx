@@ -36,7 +36,7 @@ export const ScrollRevealText = () => {
         <div ref={textRef} className={styles.revealText}>
           WEB DEVELOPER <br />
           ANDROID DEVELOPER <br />
-          APP DEVELOPER
+          APPLICATION DEVELOPER
         </div>
       </div>
     </section>

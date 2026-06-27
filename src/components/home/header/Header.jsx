@@ -60,7 +60,7 @@ export const Header = () => {
                         <ul className="nav-links">
                             <li className={isActive('/') ? 'active-link' : ''}><Link to="/">Home</Link></li>
                             <li className={isActive('/web') ? 'active-link' : ''}><Link to="/web">Web</Link></li>
-                            <li className={isActive('/mobile') ? 'active-link' : ''}><Link to="/mobile">Mobile</Link></li>
+                            <li className={isActive('/android') ? 'active-link' : ''}><Link to="/android">Android</Link></li>
                             <li className={isActive('/app') ? 'active-link' : ''}><Link to="/app">App</Link></li>
                             <li className={isActive('/resume') ? 'active-link' : ''}><Link to="/resume">Resume</Link></li>
                             {/* <li className={isActive('/galaxy') ? 'active-link' : ''}><Link to="/galaxy">Galaxy</Link></li> */}
@@ -91,7 +91,7 @@ export const Header = () => {
                     <ul className="nav-links-sidebar" onClick={() => setSidebar(false)}>
                         <li className={isActive('/') ? 'active-link' : ''}><Link to="/">Home</Link></li>
                         <li className={isActive('/web') ? 'active-link' : ''}><Link to="/web">Web</Link></li>
-                        <li className={isActive('/mobile') ? 'active-link' : ''}><Link to="/mobile">Mobile</Link></li>
+                        <li className={isActive('/android') ? 'active-link' : ''}><Link to="/android">Android</Link></li>
                         <li className={isActive('/app') ? 'active-link' : ''}><Link to="/app">App</Link></li>
                         <li className={isActive('/resume') ? 'active-link' : ''}><Link to="/resume">Resume</Link></li>
                         {/* <li className={isActive('/galaxy') ? 'active-link' : ''}><Link to="/galaxy">Galaxy</Link></li> */}

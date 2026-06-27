@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PixelCard from './PixelCard'; // Import PixelCard
 
-export const Mobile = () => {
+export const Android = () => {
   const data = [
     {
       id: "01",

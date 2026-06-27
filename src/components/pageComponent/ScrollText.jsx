@@ -52,7 +52,7 @@ let lineProgress =
         <div ref={containerRef} className={styles.textContainer}>
           <div className={styles.revealLine}>WEB DEVELOPER</div>
           <div className={styles.revealLine}>ANDROID DEVELOPER</div>
-          <div className={styles.revealLine}>APP DEVELOPER</div>
+          <div className={styles.revealLine}>APPLICATION DEVELOPER</div>
         </div>
       </div>
     </section>

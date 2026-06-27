@@ -382,7 +382,7 @@ export const Home = ({ className }) => {
   const originalToRotate = [
     "Web Developer",
     "Android Developer",
-    "App Develpoper",
+    "App Developer",
   ];
 
   const [toRotate, setToRotate] = useState([...originalToRotate, originalToRotate[0]]);
