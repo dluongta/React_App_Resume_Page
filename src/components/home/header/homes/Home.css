@@ -827,8 +827,9 @@
   background: linear-gradient(
   135deg,
   #7B2FF7 0%,
-  #7B2FF7 10%,
-  #F107A3 40%,
+  /* #7B2FF7 10%, */
+  /* #F107A3 40%, */
+  #F107A3 30%,
   #F107A3 60%,
   #FF7B54 90%,
   #FF7B54 100%
