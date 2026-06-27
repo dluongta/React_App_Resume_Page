@@ -139,8 +139,8 @@ export const Skill = ({ className }) => {
               },
               {
                 year: "2024",
-                title: "Advanced & AI",
-                desc: "Explored Artificial Intelligence and hardware integration.",
+                title: "Advanced Software Development",
+                desc: "Worked on intelligent and advanced software solutions.",
               },
             ].map((item, i) => (
               <div className="timeline-item" key={i}>
