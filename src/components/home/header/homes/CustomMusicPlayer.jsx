@@ -247,7 +247,6 @@ const formatTime = (seconds) => {
   return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 };
 
-// Đã thêm useImage và cover vào Props
 const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
   const audioRef = useRef(null);
   const settingsRef = useRef(null);
@@ -366,7 +365,6 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
     <div className="music-player-bar">
       <audio ref={audioRef} src={src} preload="metadata" />
 
-      {/* --- CỤM BÊN TRÁI: ĐĨA NHẠC CHỮ HOẶC ẢNH --- */}
       {useImage ? (
         <div className="record-image-wrapper">
           <img 
@@ -383,7 +381,6 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
         </div>
       )}
 
-      {/* --- CỤM BÊN PHẢI: THÔNG TIN & ĐIỀU KHIỂN --- */}
       <div className="player-content">
         
         <div className="player-top">
