@@ -189,6 +189,13 @@ export const Branding = ({ className }) => {
         title="Lofi Study Vibes"
         artist="DLUONGTA"
       />
+      <CustomMusicPlayer 
+  src={bgMusic}
+  title="Lofi Study Vibes" 
+  artist="DLUONGTA" 
+  useImage={true} 
+  cover={hexagonImg}
+/>
       <Hero />
     </>
   );
