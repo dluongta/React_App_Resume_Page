@@ -14,19 +14,31 @@ import hexagonImg from '../../../../assets/hexagon-main.png';
 //   const secs = Math.floor(seconds % 60);
 //   return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 // };
+// const formatTime = (seconds) => {
+//   if (isNaN(seconds)) return '00:00';
+
+//   const hours = Math.floor(seconds / 3600);
+//   const minutes = Math.floor((seconds % 3600) / 60);
+//   const secs = Math.floor(seconds % 60);
+
+//   if (hours > 0) {
+//     return `${hours.toString().padStart(2, '0')}:${minutes
+//       .toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+//   }
+
+//   return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+// };
+
 const formatTime = (seconds) => {
-  if (isNaN(seconds)) return '00:00';
+  if (isNaN(seconds)) return '00:00:00';
 
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const secs = Math.floor(seconds % 60);
 
-  if (hours > 0) {
-    return `${hours.toString().padStart(2, '0')}:${minutes
-      .toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  }
-
-  return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  return `${hours.toString().padStart(2, '0')}:${minutes
+    .toString()
+    .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 };
 
 const END_OFFSET = 0.05;
