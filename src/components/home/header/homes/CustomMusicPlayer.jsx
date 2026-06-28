@@ -17,7 +17,8 @@ const formatTime = (seconds) => {
 const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
   const audioRef = useRef(null);
   const settingsRef = useRef(null);
-  
+  const lastVolumeRef = useRef(1);
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(1);
@@ -27,7 +28,7 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
   const [playbackRate, setPlaybackRate] = useState(1);
   const [showSettings, setShowSettings] = useState(false);
 
-  const defaultCover = hexagonImg; 
+  const defaultCover = hexagonImg;
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -83,28 +84,84 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
     }
   };
 
+  // const handleVolumeChange = (e) => {
+  //   const vol = parseFloat(e.target.value);
+  //   const audio = audioRef.current;
+  //   if (audio) {
+  //     audio.volume = vol;
+  //     setVolume(vol);
+  //     setIsMuted(vol === 0);
+  //     audio.muted = vol === 0;
+  //   }
+  // };
   const handleVolumeChange = (e) => {
     const vol = parseFloat(e.target.value);
     const audio = audioRef.current;
-    if (audio) {
-      audio.volume = vol;
-      setVolume(vol);
-      setIsMuted(vol === 0);
-      audio.muted = vol === 0;
+    if (!audio) return;
+
+    audio.volume = vol;
+    audio.muted = vol === 0;
+
+    setVolume(vol);
+    setIsMuted(vol === 0);
+
+    // lưu lại âm lượng cuối cùng (khác 0)
+    if (vol > 0) {
+      lastVolumeRef.current = vol;
     }
   };
+  // const toggleMute = () => {
+  //   const audio = audioRef.current;
+  //   if (!audio) return;
+
+  //   audio.muted = !audio.muted;
+  //   setIsMuted(audio.muted);
+  //   if (audio.muted) {
+  //     setVolume(0);
+  //   } else {
+  //     setVolume(0.5);
+  //     audio.volume = 0.5;
+  //   }
+  // };
+
+  //   const toggleMute = () => {
+  //   const audio = audioRef.current;
+  //   if (!audio) return;
+
+  //   if (audio.muted || volume === 0) {
+  //     // Bật lại
+  //     audio.muted = false;
+  //     audio.volume = 1;
+  //     setVolume(1);
+  //     setIsMuted(false);
+  //   } else {
+  //     // Tắt
+  //     audio.muted = true;
+  //     setIsMuted(true);
+  //     setVolume(0);
+  //   }
+  // };
 
   const toggleMute = () => {
     const audio = audioRef.current;
     if (!audio) return;
-    
-    audio.muted = !audio.muted;
-    setIsMuted(audio.muted);
-    if (audio.muted) {
+
+    if (!audio.muted) {
+      // đang có tiếng -> lưu âm lượng rồi tắt
+      lastVolumeRef.current = volume;
+
+      audio.muted = true;
+      setIsMuted(true);
       setVolume(0);
     } else {
-      setVolume(0.5);
-      audio.volume = 0.5;
+      // đang tắt -> khôi phục âm lượng cũ
+      const restoreVolume = lastVolumeRef.current || 1;
+
+      audio.muted = false;
+      audio.volume = restoreVolume;
+
+      setVolume(restoreVolume);
+      setIsMuted(false);
     }
   };
 
@@ -135,10 +192,10 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
       {/* Đĩa than (Vinyl Record) */}
       <div className={`vinyl-record ${isPlaying ? 'playing' : ''}`}>
         {useImage ? (
-          <img 
-            src={cover || defaultCover} 
-            alt="vinyl label" 
-            className="vinyl-label-img" 
+          <img
+            src={cover || defaultCover}
+            alt="vinyl label"
+            className="vinyl-label-img"
           />
         ) : (
           <div className="vinyl-label-text">
@@ -155,7 +212,7 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
             <span className="track-title">{title || 'Unknown Title'}</span>
             {artist && <span className="track-artist"><span style={{ fontSize: '16px', fontWeight: 600 }}> - </span>{artist}</span>}
           </div>
-          
+
           <div className="progress-container">
             <span className="time-text">{formatTime(currentTime)}</span>
             <div className="progress-wrapper">
@@ -209,18 +266,18 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
             </div>
 
             <div className="settings-menu" ref={settingsRef}>
-              <button 
-                className={`control-btn ${playbackRate !== 1 ? 'active' : ''}`} 
+              <button
+                className={`control-btn ${playbackRate !== 1 ? 'active' : ''}`}
                 onClick={() => setShowSettings(!showSettings)}
               >
                 <SettingsIcon fontSize="small" />
               </button>
               {showSettings && (
                 <div className="settings-content">
-                  {[0.125, 0.25, 0.5, 1, 1.25, 1.5, 2, 4].map((speed) => (
-                    <div 
-                      key={speed} 
-                      className={`settings-item ${playbackRate === speed ? 'active' : ''}`} 
+                  {[0.125, 0.25, 0.5, 1, 1.5, 2, 4].map((speed) => (
+                    <div
+                      key={speed}
+                      className={`settings-item ${playbackRate === speed ? 'active' : ''}`}
                       onClick={() => changePlaybackRate(speed)}
                     >
                       {speed === 1 ? 'Normal' : `${speed}x`}

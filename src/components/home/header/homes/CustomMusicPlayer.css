@@ -278,15 +278,16 @@
   border-radius: 8px;
   min-width: 120px;
   padding: 8px 0;
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.8);
   z-index: 1000;
+  max-height: 150px;
+  overflow-y: auto;
 }
 
 .settings-item {
   padding: 8px 16px;
   font-size: 13px;
   cursor: pointer;
-  color: #ddd;
+  color: #fff;
   transition: background 0.2s, color 0.2s;
 }
 
@@ -312,7 +313,7 @@
 @media (max-width: 600px) {
   .music-player-container {
     flex-direction: column;
-    text-align: center;
+    /* text-align: center; */
     padding: 24px 16px;
   }
 

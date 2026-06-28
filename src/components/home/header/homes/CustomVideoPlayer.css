@@ -621,29 +621,37 @@
 
 .settings-menu {
   position: relative;
+  z-index: 100;
 }
 
 .settings-content {
   position: absolute;
-  bottom: 40px;
-  right: 0;
-  background: #1c1c1c;
-  border-radius: 6px;
-  min-width: 110px;
-  padding: 5px 0;
+  background: #2a2a2a;
   max-height: 150px;
   overflow-y: auto;
+  bottom: 100%;
+  right: 0;
+  border-radius: 8px;
+  min-width: 120px;
+  padding: 8px 0;
+  z-index: 1000;
 }
 
 .settings-item {
-  padding: 8px 15px;
+  padding: 8px 16px;
   color: white;
   font-size: 13px;
   cursor: pointer;
 }
 
+.settings-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
 .settings-item.active {
   color: var(--primary-color);
+  font-weight: 600;
 }
 
 @media (max-width: 600px) {
