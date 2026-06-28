@@ -5,6 +5,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import SettingsIcon from '@mui/icons-material/Settings';
+import RepeatIcon from '@mui/icons-material/Repeat'; // Thêm icon Loop
 import hexagonImg from '../../../../assets/hexagon-main.png';
 
 const formatTime = (seconds) => {
@@ -27,6 +28,7 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
   const [loading, setLoading] = useState(false);
   const [playbackRate, setPlaybackRate] = useState(1);
   const [showSettings, setShowSettings] = useState(false);
+  const [isLooping, setIsLooping] = useState(false); // Thêm state Loop
 
   const defaultCover = hexagonImg;
 
@@ -50,8 +52,12 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
     const onLoadedMetadata = () => setDuration(audio.duration);
     const onTimeUpdate = () => setCurrentTime(audio.currentTime);
     const onEnded = () => {
-      setIsPlaying(false);
-      setCurrentTime(0);
+      // Nếu loop được bật qua thẻ audio, sự kiện ended có thể không kích hoạt ở một số trình duyệt
+      // Tuy nhiên nếu có kích hoạt hoặc không bật loop, ta xử lý ở đây
+      if (!isLooping) {
+        setIsPlaying(false);
+        setCurrentTime(0);
+      }
     };
     const onWaiting = () => setLoading(true);
     const onPlaying = () => setLoading(false);
@@ -69,7 +75,7 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
       audio.removeEventListener('waiting', onWaiting);
       audio.removeEventListener('playing', onPlaying);
     };
-  }, [src, volume, isMuted]);
+  }, [src, volume, isMuted, isLooping]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -84,16 +90,6 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
     }
   };
 
-  // const handleVolumeChange = (e) => {
-  //   const vol = parseFloat(e.target.value);
-  //   const audio = audioRef.current;
-  //   if (audio) {
-  //     audio.volume = vol;
-  //     setVolume(vol);
-  //     setIsMuted(vol === 0);
-  //     audio.muted = vol === 0;
-  //   }
-  // };
   const handleVolumeChange = (e) => {
     const vol = parseFloat(e.target.value);
     const audio = audioRef.current;
@@ -110,37 +106,6 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
       lastVolumeRef.current = vol;
     }
   };
-  // const toggleMute = () => {
-  //   const audio = audioRef.current;
-  //   if (!audio) return;
-
-  //   audio.muted = !audio.muted;
-  //   setIsMuted(audio.muted);
-  //   if (audio.muted) {
-  //     setVolume(0);
-  //   } else {
-  //     setVolume(0.5);
-  //     audio.volume = 0.5;
-  //   }
-  // };
-
-  //   const toggleMute = () => {
-  //   const audio = audioRef.current;
-  //   if (!audio) return;
-
-  //   if (audio.muted || volume === 0) {
-  //     // Bật lại
-  //     audio.muted = false;
-  //     audio.volume = 1;
-  //     setVolume(1);
-  //     setIsMuted(false);
-  //   } else {
-  //     // Tắt
-  //     audio.muted = true;
-  //     setIsMuted(true);
-  //     setVolume(0);
-  //   }
-  // };
 
   const toggleMute = () => {
     const audio = audioRef.current;
@@ -165,6 +130,10 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
     }
   };
 
+  const toggleLoop = () => {
+    setIsLooping(!isLooping);
+  };
+
   const handleSeek = (e) => {
     const time = parseFloat(e.target.value);
     const audio = audioRef.current;
@@ -187,7 +156,8 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
 
   return (
     <div className="music-player-container">
-      <audio ref={audioRef} src={src} preload="metadata" />
+      {/* Thêm thuộc tính loop */}
+      <audio ref={audioRef} src={src} preload="metadata" loop={isLooping} />
 
       {/* Đĩa than (Vinyl Record) */}
       <div className={`vinyl-record ${isPlaying ? 'playing' : ''}`}>
@@ -202,7 +172,6 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
             <span>DLUONGTA</span>
           </div>
         )}
-        {/* <div className="vinyl-hole"></div> */}
       </div>
 
       {/* Nội dung Player */}
@@ -243,6 +212,15 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
               ) : (
                 <PlayArrowIcon />
               )}
+            </button>
+
+            {/* Nút lặp lại chuyển sang bên phải nút Play */}
+            <button
+              className={`control-btn ${isLooping ? 'active' : ''}`}
+              onClick={toggleLoop}
+              title={isLooping ? "Tắt lặp lại" : "Bật lặp lại"}
+            >
+              <RepeatIcon fontSize="small" />
             </button>
           </div>
 
@@ -293,4 +271,4 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
   );
 };
 
-export default CustomMusicPlayer;
+export default CustomMusicPlayer; 
