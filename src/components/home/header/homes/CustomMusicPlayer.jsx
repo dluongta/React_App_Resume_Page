@@ -5,7 +5,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import SettingsIcon from '@mui/icons-material/Settings';
-import RepeatIcon from '@mui/icons-material/Repeat'; // Thêm icon Loop
+import RepeatIcon from '@mui/icons-material/Repeat';
 import hexagonImg from '../../../../assets/hexagon-main.png';
 
 const formatTime = (seconds) => {
@@ -14,6 +14,8 @@ const formatTime = (seconds) => {
   const secs = Math.floor(seconds % 60);
   return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 };
+
+const END_OFFSET = 0.05;
 
 const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
   const audioRef = useRef(null);
@@ -28,7 +30,7 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
   const [loading, setLoading] = useState(false);
   const [playbackRate, setPlaybackRate] = useState(1);
   const [showSettings, setShowSettings] = useState(false);
-  const [isLooping, setIsLooping] = useState(false); // Thêm state Loop
+  const [isLooping, setIsLooping] = useState(false);
 
   const defaultCover = hexagonImg;
 
@@ -49,41 +51,82 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
     audio.volume = volume;
     audio.muted = isMuted;
 
-    const onLoadedMetadata = () => setDuration(audio.duration);
-    const onTimeUpdate = () => setCurrentTime(audio.currentTime);
+    const onLoadedMetadata = () => {
+      setDuration(audio.duration || 0);
+      setCurrentTime(0);
+    };
+
+    const onTimeUpdate = () => {
+      if (!audio.duration) return;
+
+      const current = Math.min(audio.currentTime, audio.duration);
+
+      setCurrentTime(current);
+
+      if (!audio.paused) {
+        setIsPlaying(true);
+      }
+    };
+
     const onEnded = () => {
-      // Nếu loop được bật qua thẻ audio, sự kiện ended có thể không kích hoạt ở một số trình duyệt
-      // Tuy nhiên nếu có kích hoạt hoặc không bật loop, ta xử lý ở đây
+      setIsPlaying(false);
+
       if (!isLooping) {
-        setIsPlaying(false);
+        audio.pause();
+        audio.currentTime = 0;
         setCurrentTime(0);
       }
     };
+
+    const onSeeked = () => {
+      if (!audio.duration) return;
+
+      if (audio.currentTime >= audio.duration - END_OFFSET) {
+        audio.pause();
+        setIsPlaying(false);
+      }
+    };
+
     const onWaiting = () => setLoading(true);
+
     const onPlaying = () => setLoading(false);
 
-    audio.addEventListener('loadedmetadata', onLoadedMetadata);
-    audio.addEventListener('timeupdate', onTimeUpdate);
-    audio.addEventListener('ended', onEnded);
-    audio.addEventListener('waiting', onWaiting);
-    audio.addEventListener('playing', onPlaying);
+    audio.addEventListener("loadedmetadata", onLoadedMetadata);
+    audio.addEventListener("timeupdate", onTimeUpdate);
+    audio.addEventListener("ended", onEnded);
+    audio.addEventListener("seeked", onSeeked);
+    audio.addEventListener("waiting", onWaiting);
+    audio.addEventListener("playing", onPlaying);
 
     return () => {
-      audio.removeEventListener('loadedmetadata', onLoadedMetadata);
-      audio.removeEventListener('timeupdate', onTimeUpdate);
-      audio.removeEventListener('ended', onEnded);
-      audio.removeEventListener('waiting', onWaiting);
-      audio.removeEventListener('playing', onPlaying);
+      audio.removeEventListener("loadedmetadata", onLoadedMetadata);
+      audio.removeEventListener("timeupdate", onTimeUpdate);
+      audio.removeEventListener("ended", onEnded);
+      audio.removeEventListener("seeked", onSeeked);
+      audio.removeEventListener("waiting", onWaiting);
+      audio.removeEventListener("playing", onPlaying);
     };
   }, [src, volume, isMuted, isLooping]);
 
-  const togglePlay = () => {
+  const togglePlay = async () => {
     const audio = audioRef.current;
     if (!audio) return;
 
     if (audio.paused) {
-      audio.play().catch(console.error);
-      setIsPlaying(true);
+      if (
+        audio.duration &&
+        audio.currentTime >= audio.duration - END_OFFSET
+      ) {
+        audio.currentTime = 0;
+        setCurrentTime(0);
+      }
+
+      try {
+        await audio.play();
+        setIsPlaying(true);
+      } catch (err) {
+        console.error(err);
+      }
     } else {
       audio.pause();
       setIsPlaying(false);
@@ -101,7 +144,6 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
     setVolume(vol);
     setIsMuted(vol === 0);
 
-    // lưu lại âm lượng cuối cùng (khác 0)
     if (vol > 0) {
       lastVolumeRef.current = vol;
     }
@@ -112,19 +154,14 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
     if (!audio) return;
 
     if (!audio.muted) {
-      // đang có tiếng -> lưu âm lượng rồi tắt
       lastVolumeRef.current = volume;
-
       audio.muted = true;
       setIsMuted(true);
       setVolume(0);
     } else {
-      // đang tắt -> khôi phục âm lượng cũ
       const restoreVolume = lastVolumeRef.current || 1;
-
       audio.muted = false;
       audio.volume = restoreVolume;
-
       setVolume(restoreVolume);
       setIsMuted(false);
     }
@@ -135,12 +172,17 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
   };
 
   const handleSeek = (e) => {
-    const time = parseFloat(e.target.value);
     const audio = audioRef.current;
-    if (audio) {
-      audio.currentTime = time;
-      setCurrentTime(time);
+    if (!audio) return;
+
+    let value = parseFloat(e.target.value);
+
+    if (audio.duration) {
+      value = Math.min(value, Math.max(audio.duration - END_OFFSET, 0));
     }
+
+    audio.currentTime = value;
+    setCurrentTime(value);
   };
 
   const changePlaybackRate = (rate) => {
@@ -151,15 +193,17 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
     setShowSettings(false);
   };
 
-  const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
+  const progressPercent =
+    duration > 0
+      ? Math.min((currentTime / duration) * 100, 100)
+      : 0;
+      
   const volumePercent = isMuted ? 0 : volume * 100;
 
   return (
     <div className="music-player-container">
-      {/* Thêm thuộc tính loop */}
       <audio ref={audioRef} src={src} preload="metadata" loop={isLooping} />
 
-      {/* Đĩa than (Vinyl Record) */}
       <div className={`vinyl-record ${isPlaying ? 'playing' : ''}`}>
         {useImage ? (
           <img
@@ -174,7 +218,6 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
         )}
       </div>
 
-      {/* Nội dung Player */}
       <div className="player-content">
         <div className="player-top">
           <div className="track-info">
@@ -189,7 +232,7 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
                 type="range"
                 className="progress-slider"
                 min="0"
-                max={duration || 0}
+                max={duration ? Math.max(duration - END_OFFSET, 0) : 0}
                 step="0.1"
                 value={currentTime}
                 onChange={handleSeek}
@@ -214,7 +257,6 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
               )}
             </button>
 
-            {/* Nút lặp lại chuyển sang bên phải nút Play */}
             <button
               className={`control-btn ${isLooping ? 'active' : ''}`}
               onClick={toggleLoop}
