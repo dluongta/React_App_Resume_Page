@@ -24,7 +24,7 @@ export const Service = ({ className = "" }) => {
     {
       id: 4,
       title: "Website Responsive",
-      desc: "Creating websites that look great on every device.",
+      desc: "Creating responsive websites with an intuitive user interface for every device.",
       cover: bannerImage,
     },
     {
