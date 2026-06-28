@@ -171,13 +171,8 @@ export const AppComponent = () => {
     },
     {
       id: "34",
-      link: "https://dluongta.github.io/vn-input.html",
-      linkName: "VN Input",
-    },
-    {
-      id: "35",
-      link: "https://dluongta.github.io/flip_number.html",
-      linkName: "Flip Number",
+      link: "https://dluongta.github.io/vn-telex-input.html",
+      linkName: "VN Telex Input",
     }
   ];
   return (
