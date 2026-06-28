@@ -271,4 +271,4 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
   );
 };
 
-export default CustomMusicPlayer; 
+export default CustomMusicPlayer;
