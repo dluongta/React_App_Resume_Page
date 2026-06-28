@@ -162,7 +162,7 @@
 
 .time-text {
   font-size: 12px;
-  color: #aaa;
+  color: #fff;
   min-width: 35px;
 }
 
@@ -310,7 +310,28 @@
   animation: spinRecord 1s linear infinite;
 }
 
-@media (max-width: 600px) {
+
+.time-current {
+  margin-right: 14px;
+  /* cách thanh progress */
+}
+
+.time-duration {
+  margin-left: 12px;
+  /* cách thanh progress */
+}
+@media (min-width: 768px) {
+
+.progress-container .time-text:first-child {
+  margin-right: 18px;
+}
+
+.progress-container .time-text:last-child {
+  margin-left: 12px;
+}
+
+}
+@media (max-width: 768px) {
   .music-player-container {
     flex-direction: column;
     /* text-align: center; */
@@ -330,4 +351,44 @@
     width: 100%;
     max-width: 352px;
   }
+}
+
+@media (max-width: 768px) {
+  .time-text {
+    min-width: 44px;
+    font-size: 10px;
+  }
+
+  .progress-container {
+    gap: 2px;
+  }
+}
+
+@media (max-width: 768px) {
+  .time-current {
+    transform: translateX(-6px);
+  }
+
+  .progress-container {
+    gap: 6px;
+  }
+
+  .time-current {
+    margin-right: 14px;
+    /* cách thanh progress */
+  }
+
+  .time-duration {
+    margin-left: 20px;
+    transform: translateX(6px);
+    /* cách thanh progress */
+  }
+
+  .progress-container .time-text:first-child {
+  margin-right: 16px;
+}
+
+.progress-container .time-text:last-child {
+  margin-left: 14px;
+}
 }

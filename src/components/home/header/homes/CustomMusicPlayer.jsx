@@ -8,10 +8,24 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import hexagonImg from '../../../../assets/hexagon-main.png';
 
+// const formatTime = (seconds) => {
+//   if (isNaN(seconds)) return '00:00';
+//   const minutes = Math.floor(seconds / 60);
+//   const secs = Math.floor(seconds % 60);
+//   return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+// };
 const formatTime = (seconds) => {
   if (isNaN(seconds)) return '00:00';
-  const minutes = Math.floor(seconds / 60);
+  
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
   const secs = Math.floor(seconds % 60);
+
+  if (hours > 0) {
+    return `${hours.toString().padStart(2, '0')}:${minutes
+      .toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  }
+  
   return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 };
 
@@ -241,7 +255,7 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
                 }}
               />
             </div>
-            <span className="time-text">{formatTime(duration)}</span>
+            <span className="time-text time-duration">{formatTime(duration)}</span>
           </div>
         </div>
 

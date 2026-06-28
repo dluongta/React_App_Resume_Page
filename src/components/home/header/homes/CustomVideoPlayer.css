@@ -289,7 +289,7 @@
   background: rgba(255,255,255,0.3);
   border-radius: 4px;
 } */
- /* :root {
+/* :root {
   --primary-color: #4285f4;
   --text-color: #fff;
 }
@@ -532,7 +532,8 @@
   align-items: center;
 }
 
-.left-controls, .right-controls {
+.left-controls,
+.right-controls {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -555,6 +556,7 @@
 .time-display {
   color: white;
   font-size: 12px;
+  min-width: 35px;
 }
 
 .progress-wrapper {
@@ -662,10 +664,12 @@
 
 .loading-spinner {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  width: 40px; height: 40px;
-  border: 4px solid rgba(255,255,255,0.2);
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
   border-top-color: var(--primary-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -673,12 +677,16 @@
   pointer-events: none;
 }
 
-@keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
 
 .video-player-container {
   width: 100%;
   max-width: 800px;
-  margin: 32px auto; 
+  margin: 32px auto;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -689,5 +697,59 @@
 @media screen and (max-width: 768px) {
   .video-player-container {
     border-radius: 0px;
+  }
+}
+
+
+.time-display {
+  color: white;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.time-current {
+  transform: translateX(-8px);
+}
+
+
+@media (max-width: 600px) {
+
+  .left-controls,
+  .right-controls {
+    gap: 6px;
+  }
+
+  .control-btn {
+    padding: 2px;
+  }
+
+  .time-display {
+    font-size: 10px;
+  }
+
+
+  /* .volume-slider {
+    display: none; 
+  } */
+}
+
+@media (max-width: 768px) {
+  .time-display {
+    min-width: 44px;
+    font-size: 10px;
+  }
+
+  .progress-container {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .time-current {
+    transform: translateX(-8px);
+  }
+
+  .progress-container {
+    gap: 6px;
   }
 }
