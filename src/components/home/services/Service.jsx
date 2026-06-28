@@ -5,38 +5,38 @@ export const Service = ({ className = "" }) => {
   const servicesData = [
     {
       id: 1,
-      title: "Responsive Websites",
-      desc: "Creating websites that look great on every device.",
+      title: "Frontend Development",
+      desc: "Building responsive and interactive user interfaces with modern web technologies.",
       cover: bannerImage,
     },
     {
       id: 2,
-      title: "Frontend Development",
-      desc: "Building responsive interfaces with modern web technologies.",
-      cover: bannerImage,
-    },
-    {
-      id: 3,
       title: "Backend Development",
       desc: "Developing flexible and scalable server-side infrastructure.",
       cover: bannerImage,
     },
     {
+      id: 3,
+      title: "Full-Stack Development",
+      desc: "Building complete web applications from client-side to server and database.",
+      cover: bannerImage,
+    },
+    {
       id: 4,
+      title: "Website Responsive",
+      desc: "Creating websites that look great on every device.",
+      cover: bannerImage,
+    },
+    {
+      id: 5,
       title: "Website Optimization",
       desc: "Enhancing speed, efficiency, and overall user experience.",
       cover: bannerImage,
     },
     {
-      id: 5,
-      title: "Project Development",
-      desc: "Building and deploying projects with a focus on quality and performance.",
-      cover: bannerImage,
-    },
-    {
       id: 6,
-      title: "Technology Solutions",
-      desc: "Developing high-performance and advanced technology solutions.",
+      title: "Website Development",
+      desc: "Building and deploying websites with a focus on quality and performance.",
       cover: bannerImage,
     },
   ];
