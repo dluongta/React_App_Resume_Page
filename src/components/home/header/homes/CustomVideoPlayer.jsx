@@ -8,7 +8,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import SettingsIcon from '@mui/icons-material/Settings';
 // import LoopIcon from '@mui/icons-material/Loop';
-import RepeatIcon from '@mui/icons-material/Repeat'; 
+import RepeatIcon from '@mui/icons-material/Repeat';
 
 
 // const formatTime = (seconds) => {
@@ -23,7 +23,7 @@ import RepeatIcon from '@mui/icons-material/Repeat';
 
 const formatTime = (seconds) => {
   if (isNaN(seconds)) return '00:00';
-  
+
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const secs = Math.floor(seconds % 60);
@@ -32,7 +32,7 @@ const formatTime = (seconds) => {
     return `${hours.toString().padStart(2, '0')}:${minutes
       .toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   }
-  
+
   return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 };
 
@@ -99,7 +99,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     video.addEventListener('seeking', onSeeking);
     video.addEventListener('seeked', onSeeked);
     video.addEventListener('playing', onPlaying);
-    
+
     return () => {
       video.removeEventListener('waiting', onWaiting);
       video.removeEventListener('canplay', onCanPlay);
@@ -121,7 +121,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     };
 
     const onTimeUpdate = () => setCurrentTime(video.currentTime);
-    
+
     // const onEnded = () => {
     //   if (!isLooping) {
     //     setCurrentTime(video.duration);
@@ -131,8 +131,8 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     // };
     const onEnded = () => {
       if (!isLooping) {
-        video.currentTime = 0; 
-        setCurrentTime(0); 
+        video.currentTime = 0;
+        setCurrentTime(0);
         setIsPlaying(false);
         setShowControls(true);
       }
@@ -186,7 +186,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     setVolume(video.muted ? 0 : video.volume || 1);
     handleInteraction();
   };
-  
+
   const toggleLoop = (e) => {
     e.stopPropagation();
     setIsLooping(!isLooping);
@@ -271,10 +271,10 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
               <button className="control-btn" onClick={handleVideoClick}>
                 {isPlaying ? <PauseIcon fontSize="small" /> : <PlayArrowIcon fontSize="small" />}
               </button>
-              
+
               {/* Nút Loop thêm vào bên phải nút Play/Pause */}
-              <button 
-                className={`control-btn ${isLooping ? 'active' : ''}`} 
+              <button
+                className={`control-btn ${isLooping ? 'active' : ''}`}
                 onClick={toggleLoop}
                 style={{ color: isLooping ? 'var(--primary-color)' : 'inherit' }}
               >

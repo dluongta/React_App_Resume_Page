@@ -320,17 +320,19 @@
   margin-left: 12px;
   /* cách thanh progress */
 }
+
 @media (min-width: 768px) {
 
-.progress-container .time-text:first-child {
-  margin-right: 18px;
+  .progress-container .time-text:first-child {
+    margin-right: 18px;
+  }
+
+  .progress-container .time-text:last-child {
+    margin-left: 12px;
+  }
+
 }
 
-.progress-container .time-text:last-child {
-  margin-left: 12px;
-}
-
-}
 @media (max-width: 768px) {
   .music-player-container {
     flex-direction: column;
@@ -385,10 +387,10 @@
   }
 
   .progress-container .time-text:first-child {
-  margin-right: 16px;
-}
+    margin-right: 16px;
+  }
 
-.progress-container .time-text:last-child {
-  margin-left: 14px;
-}
+  .progress-container .time-text:last-child {
+    margin-left: 14px;
+  }
 }

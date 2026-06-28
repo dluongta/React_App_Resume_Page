@@ -16,7 +16,7 @@ import hexagonImg from '../../../../assets/hexagon-main.png';
 // };
 const formatTime = (seconds) => {
   if (isNaN(seconds)) return '00:00';
-  
+
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const secs = Math.floor(seconds % 60);
@@ -25,7 +25,7 @@ const formatTime = (seconds) => {
     return `${hours.toString().padStart(2, '0')}:${minutes
       .toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   }
-  
+
   return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 };
 
@@ -211,7 +211,7 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
     duration > 0
       ? Math.min((currentTime / duration) * 100, 100)
       : 0;
-      
+
   const volumePercent = isMuted ? 0 : volume * 100;
 
   return (
