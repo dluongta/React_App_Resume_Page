@@ -173,6 +173,11 @@ export const AppComponent = () => {
       id: "34",
       link: "https://dluongta.github.io/vn-telex-input.html",
       linkName: "VN Telex Input",
+    },
+    {
+      id: "35",
+      link: "https://github.com/luen2003/SDLGAME/archive/refs/tags/v1.0.0.zip",
+      linkName: "SDL Game",
     }
   ];
   return (
