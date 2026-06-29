@@ -243,6 +243,7 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
           </div>
         )}
       </div>
+      {/* <div className={`vinyl-record ${isPlaying ? 'playing' : ''}`}></div> */}
 
       <div className="player-content">
         <div className="player-top">

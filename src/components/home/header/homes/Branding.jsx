@@ -184,18 +184,18 @@ export const Branding = ({ className }) => {
       <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />
       {/* <CustomVideoPlayer src={lumindAnimationVideo} captionSrc={lumind_animation_text} /> */}
       {/* <CustomVideoPlayer src={bgVideo} captionSrc={caption} /> */}
-      <CustomMusicPlayer 
+      {/* <CustomMusicPlayer
         src={bgMusic}
         title="Lofi Study Vibes"
         artist="DLUONGTA"
+      /> */}
+      <CustomMusicPlayer
+        src={bgMusic}
+        title="Lofi Study Vibes"
+        artist="DLUONGTA"
+        useImage={true}
+        cover={hexagonImg}
       />
-      <CustomMusicPlayer 
-  src={bgMusic}
-  title="Lofi Study Vibes" 
-  artist="DLUONGTA" 
-  useImage={true} 
-  cover={hexagonImg}
-/>
       <Hero />
     </>
   );

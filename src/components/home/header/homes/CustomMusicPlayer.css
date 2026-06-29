@@ -10,12 +10,13 @@
   gap: 24px;
   width: 100%;
   max-width: 600px;
-  margin: 32px auto;
+  margin: 82px auto;
   padding: 20px;
   border-radius: 12px;
   background-color: var(--bg-color);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   color: var(--text-color);
+  margin-bottom: -30px;
 }
 
 /* =========================================
@@ -29,10 +30,15 @@
   border-radius: 50%;
   background: #111;
   /* Tạo các rãnh đĩa lặp lại */
-  background-image: repeating-radial-gradient(#111,
+  /* background-image: repeating-radial-gradient(#111,
       #111 2px,
       #1a1a1a 3px,
-      #111 4px);
+      #111 4px); */
+  background: repeating-radial-gradient(circle,
+      #0a0a0a 0px,
+      #0a0a0a 2px,
+      #171717 2.5px,
+      #0a0a0a 4px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
@@ -83,8 +89,8 @@
 
 /* Nhãn hình ảnh */
 .vinyl-label-img {
-  width: 55%;
-  height: 55%;
+  width: 42%;
+  height: 42%;
   border-radius: 50%;
   object-fit: cover;
   z-index: 3;
