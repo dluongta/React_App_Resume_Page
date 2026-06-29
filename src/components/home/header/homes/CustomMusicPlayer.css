@@ -89,8 +89,8 @@
 
 /* Nhãn hình ảnh */
 .vinyl-label-img {
-  width: 48%;
-  height: 48%;
+  width: 47%;
+  height: 47%;
   border-radius: 50%;
   object-fit: cover;
   z-index: 3;
