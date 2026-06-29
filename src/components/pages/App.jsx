@@ -176,7 +176,7 @@ export const AppComponent = () => {
     },
     {
       id: "35",
-      link: "https://github.com/luen2003/SDLGAME/archive/refs/tags/v1.0.0.zip",
+      link: "https://github.com/luen2003/SDL_GAME/archive/refs/tags/v1.0.0.zip",
       linkName: "SDL Game",
     }
   ];
