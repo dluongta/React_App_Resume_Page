@@ -173,7 +173,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     controlsTimeoutRef.current = setTimeout(() => {
       setShowControls(false);
       setShowSettings(false);
-    }, 5000);
+    }, 6000);
   };
 
   const handleVideoClick = (e) => {
