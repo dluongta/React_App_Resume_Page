@@ -9,6 +9,43 @@ import PauseIcon from '@mui/icons-material/Pause';
 import SettingsIcon from '@mui/icons-material/Settings';
 import RepeatIcon from '@mui/icons-material/Repeat';
 
+// const formatTime = (seconds) => {
+//   if (isNaN(seconds)) return '00:00:00';
+
+//   const hours = Math.floor(seconds / 3600);
+//   const minutes = Math.floor((seconds % 3600) / 60);
+//   const secs = Math.floor(seconds % 60);
+
+//   return `${hours.toString().padStart(2, '0')}:${minutes
+//     .toString()
+//     .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+// };
+
+// const formatTime = (seconds) => {
+//   if (isNaN(seconds)) return '00:00:00';
+//   const hours = Math.floor(seconds / 3600);
+//   const minutes = Math.floor((seconds % 3600) / 60);
+//   const secs = Math.floor(seconds % 60);
+//   return `${hours.toString().padStart(2, '0')}:${minutes
+//     .toString()
+//     .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+// };
+
+// const formatTime = (seconds) => {
+//   if (isNaN(seconds)) return '00:00';
+
+//   const hours = Math.floor(seconds / 3600);
+//   const minutes = Math.floor((seconds % 3600) / 60);
+//   const secs = Math.floor(seconds % 60);
+
+//   if (hours > 0) {
+//     return `${hours.toString().padStart(2, '0')}:${minutes
+//       .toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+//   }
+
+//   return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+// };
+
 const formatTime = (seconds) => {
   if (isNaN(seconds)) return '00:00:00';
 
@@ -21,16 +58,16 @@ const formatTime = (seconds) => {
     .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 };
 
+
 const CustomVideoPlayer = ({ src, captionSrc }) => {
   const videoRef = useRef(null);
   const settingsRef = useRef(null);
   const controlsTimeoutRef = useRef(null);
 
-  // CẬP NHẬT: Thay đổi giá trị mặc định của state
-  const [isPlaying, setIsPlaying] = useState(true); // Mặc định là true để đồng bộ với autoplay
-  const [isMuted, setIsMuted] = useState(true); // Mặc định tắt âm thanh
-  const [volume, setVolume] = useState(0); // Mặc định âm lượng về 0
-  const [isLooping, setIsLooping] = useState(true); // Mặc định bật loop
+  const [isPlaying, setIsPlaying] = useState(true); 
+  const [isMuted, setIsMuted] = useState(true);
+  const [volume, setVolume] = useState(0); 
+  const [isLooping, setIsLooping] = useState(true); 
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -98,10 +135,9 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    
-    // CẬP NHẬT: Gán giá trị mặc định cho DOM video node
-    video.volume = 0; 
-    video.muted = true; 
+
+    video.volume = 0;
+    video.muted = true;
 
     const onLoadedMetadata = () => {
       setDuration(video.duration);
@@ -109,7 +145,13 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     };
 
     const onTimeUpdate = () => setCurrentTime(video.currentTime);
-
+    // const onEnded = () => {
+    //   if (!isLooping) {
+    //     setCurrentTime(video.duration);
+    //     setIsPlaying(false);
+    //     setShowControls(true);
+    //   }
+    // };
     const onEnded = () => {
       if (!isLooping) {
         video.currentTime = 0;
@@ -164,12 +206,12 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     const video = videoRef.current;
     video.muted = !video.muted;
     setIsMuted(video.muted);
-    
+
     // Cập nhật âm lượng khi bật lại âm thanh (nếu volume đang là 0 thì set lên 1)
     const newVolume = video.muted ? 0 : (volume === 0 ? 1 : volume);
     setVolume(newVolume);
     video.volume = newVolume;
-    
+
     handleInteraction();
   };
 
@@ -220,7 +262,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
           autoPlay // CẬP NHẬT: Thêm thuộc tính autoPlay
           muted={isMuted}
           src={src}
-          loop={isLooping} 
+          loop={isLooping}
           preload="auto"
         >
           {captionSrc && (
