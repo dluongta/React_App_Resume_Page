@@ -7,34 +7,7 @@ import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import SettingsIcon from '@mui/icons-material/Settings';
-// import LoopIcon from '@mui/icons-material/Loop';
 import RepeatIcon from '@mui/icons-material/Repeat';
-
-
-// const formatTime = (seconds) => {
-//   if (isNaN(seconds)) return '00:00:00';
-//   const hours = Math.floor(seconds / 3600);
-//   const minutes = Math.floor((seconds % 3600) / 60);
-//   const secs = Math.floor(seconds % 60);
-//   return `${hours.toString().padStart(2, '0')}:${minutes
-//     .toString()
-//     .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-// };
-
-// const formatTime = (seconds) => {
-//   if (isNaN(seconds)) return '00:00';
-
-//   const hours = Math.floor(seconds / 3600);
-//   const minutes = Math.floor((seconds % 3600) / 60);
-//   const secs = Math.floor(seconds % 60);
-
-//   if (hours > 0) {
-//     return `${hours.toString().padStart(2, '0')}:${minutes
-//       .toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-//   }
-
-//   return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-// };
 
 const formatTime = (seconds) => {
   if (isNaN(seconds)) return '00:00:00';
@@ -53,10 +26,11 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   const settingsRef = useRef(null);
   const controlsTimeoutRef = useRef(null);
 
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false); // Mặc định bật âm thanh
-  const [volume, setVolume] = useState(1); // Mặc định âm lượng lớn nhất
-  const [isLooping, setIsLooping] = useState(false); // Mặc định tắt loop
+  // CẬP NHẬT: Thay đổi giá trị mặc định của state
+  const [isPlaying, setIsPlaying] = useState(true); // Mặc định là true để đồng bộ với autoplay
+  const [isMuted, setIsMuted] = useState(true); // Mặc định tắt âm thanh
+  const [volume, setVolume] = useState(0); // Mặc định âm lượng về 0
+  const [isLooping, setIsLooping] = useState(true); // Mặc định bật loop
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -124,8 +98,10 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    video.volume = 1;
-    video.muted = false; // Khởi tạo bật âm thanh
+    
+    // CẬP NHẬT: Gán giá trị mặc định cho DOM video node
+    video.volume = 0; 
+    video.muted = true; 
 
     const onLoadedMetadata = () => {
       setDuration(video.duration);
@@ -134,13 +110,6 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
 
     const onTimeUpdate = () => setCurrentTime(video.currentTime);
 
-    // const onEnded = () => {
-    //   if (!isLooping) {
-    //     setCurrentTime(video.duration);
-    //     setIsPlaying(false);
-    //     setShowControls(true);
-    //   }
-    // };
     const onEnded = () => {
       if (!isLooping) {
         video.currentTime = 0;
@@ -195,7 +164,12 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     const video = videoRef.current;
     video.muted = !video.muted;
     setIsMuted(video.muted);
-    setVolume(video.muted ? 0 : video.volume || 1);
+    
+    // Cập nhật âm lượng khi bật lại âm thanh (nếu volume đang là 0 thì set lên 1)
+    const newVolume = video.muted ? 0 : (volume === 0 ? 1 : volume);
+    setVolume(newVolume);
+    video.volume = newVolume;
+    
     handleInteraction();
   };
 
@@ -243,9 +217,10 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
           ref={videoRef}
           className="video"
           playsInline
+          autoPlay // CẬP NHẬT: Thêm thuộc tính autoPlay
           muted={isMuted}
           src={src}
-          loop={isLooping} // Thuộc tính loop điều khiển bằng state
+          loop={isLooping} 
           preload="auto"
         >
           {captionSrc && (
@@ -284,7 +259,6 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
                 {isPlaying ? <PauseIcon fontSize="small" /> : <PlayArrowIcon fontSize="small" />}
               </button>
 
-              {/* Nút Loop thêm vào bên phải nút Play/Pause */}
               <button
                 className={`control-btn ${isLooping ? 'active' : ''}`}
                 onClick={toggleLoop}
