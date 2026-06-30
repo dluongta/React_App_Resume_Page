@@ -219,6 +219,10 @@
   gap: 12px;
 }
 
+/* .controls-left .control-btn {
+  margin-left: 12px;
+} */
+
 .play-pause-btn {
   background: var(--primary-color);
   border: none;
@@ -397,5 +401,15 @@
 
   .progress-container .time-text:last-child {
     margin-left: 14px;
+  }
+}
+
+.repeat-btn {
+  margin-left: 14px!important;
+}
+
+@media (max-width: 768px) {
+  .repeat-btn {
+    margin-left: 16px!important; 
   }
 }
