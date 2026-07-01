@@ -771,17 +771,17 @@
     transition: opacity 0.3s, visibility 0.3s;
   }
 .repeat-btn-1 {
-  margin-left: 2.5px!important;
+  margin-left: 3px!important;
 }
 .settings-menu {
-  margin-left: 3px!important;
+  margin-left: 4px!important;
 }
 }
 
 .repeat-btn-1 {
-  margin-left: -3.5px!important;
+  margin-left: -3px!important;
 }
 
 .settings-menu {
-  margin-left: 1.5px!important;
+  margin-left: 2px!important;
 } 
