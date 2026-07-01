@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.80de6ecd.css",
+    "main.css": "/static/css/main.df21bbd5.css",
     "main.js": "/static/js/main.e20d74cd.js",
     "static/media/Lofi-Study-Vibes.mp3": "/static/media/Lofi-Study-Vibes.64ea42508c3d06cc02be.mp3",
     "static/media/intro_video.mp4": "/static/media/intro_video.49f1aa4806285bfecff2.mp4",
@@ -21,11 +21,11 @@
     "static/media/caption_logo.vtt": "/static/media/caption_logo.75175c236c60850b1874.vtt",
     "static/media/caption.vtt": "/static/media/caption.f60d51dda084efcb1f52.vtt",
     "static/media/lumind_animation.vtt": "/static/media/lumind_animation.f72fdf181ee4d8ed3611.vtt",
-    "main.80de6ecd.css.map": "/static/css/main.80de6ecd.css.map",
+    "main.df21bbd5.css.map": "/static/css/main.df21bbd5.css.map",
     "main.e20d74cd.js.map": "/static/js/main.e20d74cd.js.map"
   },
   "entrypoints": [
-    "static/css/main.80de6ecd.css",
+    "static/css/main.df21bbd5.css",
     "static/js/main.e20d74cd.js"
   ]
 }
