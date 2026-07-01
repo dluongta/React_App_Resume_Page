@@ -287,7 +287,6 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
             <button
               className={`control-btn repeat-btn ${isLooping ? 'active' : ''}`}
               onClick={toggleLoop}
-              // title={isLooping ? "Tắt lặp lại" : "Bật lặp lại"}
             >
               <RepeatIcon fontSize="small" />
             </button>
