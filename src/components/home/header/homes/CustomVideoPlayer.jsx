@@ -302,7 +302,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
               </button>
 
               <button
-                className={`control-btn repeat-btn-1 ${isLooping ? 'active' : ''}`}
+                className={`control-btn repeat-btn-video ${isLooping ? 'active' : ''}`}
                 onClick={toggleLoop}
                 style={{ color: isLooping ? 'var(--primary-color)' : 'inherit' }}
               >

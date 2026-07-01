@@ -770,7 +770,7 @@
     visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
   }
-.repeat-btn-1 {
+.repeat-btn-video {
   margin-left: 3px!important;
 }
 .settings-menu {
@@ -778,7 +778,7 @@
 }
 }
 
-.repeat-btn-1 {
+.repeat-btn-video {
   margin-left: -3px!important;
 }
 
