@@ -1,0 +1,212 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import PixelCard from './PixelCard'; 
+
+export const AppComponent = () => {
+  const data = [
+    {
+      id: "01",
+      link: "https://dluongta.github.io/",
+      linkName: "General Intoduce Page",
+    },
+    {
+      id: "02",
+      link: "https://github.com/luen2003/NoteApp/releases/download/v1.0.0/app-release.apk",
+      linkName: "Note App",
+    },
+    {
+      id: "03",
+      link: "https://note-task.onrender.com",
+      linkName: "Note Task Website",
+    },
+    {
+      id: "04",
+      link: "https://the-digital-shop.onrender.com",
+      linkName: "The Shop Website",
+    },
+    {
+      id: "05",
+      link: "https://github.com/luen2003/NewsApp/releases/download/v1.0.0/app-release.apk",
+      linkName: "News App",
+    },
+    {
+      id: "06",
+      link: "https://github.com/luen2003/python-code",
+      linkName: "Python Code",
+    },
+    {
+      id: "07",
+      link: "https://vietnam-map-platform.vercel.app/",
+      linkName: "Vietnam Map Platform",
+    },
+    {
+      id: "08",
+      link: "https://dluongta.github.io/qr-scanner.html",
+      linkName: "QRCode Scanner",
+    },
+    {
+      id: "09",
+      link: "https://react-app-videocall.onrender.com/",
+      linkName: "Voice Or Video Call Using WebRTC",
+    },
+    {
+      id: "10",
+      link: "https://dluongta.github.io/qr-generator.html",
+      linkName: "QRCode Generator",
+    },
+    {
+      id: "11",
+      link: "https://react-app-google-login-page.vercel.app/",
+      linkName: "React App Google Login Page",
+    },
+    {
+      id: "12",
+      link: "https://dluongta.github.io/pdf-excel-generator.html",
+      linkName: "PDF And Excel Generator",
+    },
+    {
+      id: "13",
+      link: "https://react-livestream-app.onrender.com/",
+      linkName: "Livestream App",
+    },
+    {
+      id: "14",
+      link: "https://dluongta.github.io/text_speech.html",
+      linkName: "Text Speech",
+    },
+    {
+      id: "15",
+      link: "https://dluongta.github.io/quiz-app.html",
+      linkName: "Quizzes App",
+    },
+    {
+      id: "16",
+      link: "https://dluongta.github.io/digital-calendar.html",
+      linkName: "Digital Calendar",
+    },
+    {
+      id: "17",
+      link: "https://dluongta.github.io/caculator.html",
+      linkName: "Caculator",
+    },
+    {
+      id: "18",
+      link: "https://github.com/luen2003/ASPNET_API",
+      linkName: "ASPNET API",
+    },
+    {
+      id: "19",
+      link: "https://shootingtankio.onrender.com/",
+      linkName: "Shooting Tank IO",
+    },
+    {
+      id: "20",
+      link: "https://dluongta.github.io/image_editor/index.html",
+      linkName: "Image Editor",
+    },
+    {
+      id: "21",
+      link: "https://dluongta.github.io/upload_avatar.html",
+      linkName: "Upload Avatar",
+    },
+    {
+      id: "22",
+      link: "https://react-app-bank-code.vercel.app/",
+      linkName: "Confirm Payment",
+    },
+    {
+      id: "23",
+      link: "https://github.com/luen2003/mysql-api",
+      linkName: "MySQL API",
+    },
+    {
+      id: "24",
+      link: "https://github.com/luen2003/php-mysql-api",
+      linkName: "PHP MySQL API",
+    },
+    {
+      id: "25",
+      link: "https://dluongta.github.io/flipbook3d.html",
+      linkName: "3D Flip Book",
+    },
+    {
+      id: "26",
+      link: "https://dluongta.github.io/text_image.html",
+      linkName: "Text Image",
+    },
+    {
+      id: "27",
+      link: "https://dluongta.github.io/math_editor.html",
+      linkName: "Math Editor",
+    },
+    {
+      id: "28",
+      link: "https://github.com/luen2003/enhance_image_quality",
+      linkName: "Enhance Image Quality",
+    },
+    {
+      id: "29",
+      link: "https://dluongta.github.io/voice_recording.html",
+      linkName: "Voice Recording",
+    },
+    {
+      id: "30",
+      link: "https://dluongta.github.io/video_recording.html",
+      linkName: "Video Recording",
+    },
+    {
+      id: "31",
+      link: "https://dluongta.github.io/spin_wheel.html",
+      linkName: "Spin Wheel",
+    },
+    {
+      id: "32",
+      link: "https://github.com/luen2003/WeatherApp/releases/download/v1.0.0/app-release.apk",
+      linkName: "Weather App",
+    },
+    {
+      id: "33",
+      link: "https://dluongta.github.io/vn-telex-input.html",
+      linkName: "VN Telex Input",
+    },
+    {
+      id: "34",
+      link: "https://github.com/luen2003/SDL_GAME/archive/refs/tags/v1.0.0.zip",
+      linkName: "SDL Game",
+    }
+  ];
+  return (
+    <>
+      <section className="portfolio">
+        <div className="cards-wrapper">
+
+          {/* <PixelCard variant="orange" className="card ">
+            <div className="card-content" style={{ position: 'absolute', zIndex: 10, width: '100%', top: 0, left: 0 }}>
+              <h1>Qualification: Bachelor's Degree - Information Technology - VNU University Of Engineering And Technology - GPA: 2.61/4.0</h1>
+              <h1>Duration: 2021 – 2025</h1>
+            </div>
+          </PixelCard> */}
+
+          {data.map((value) => {
+            return (
+              <PixelCard key={value.id} variant="orange" className="card ">
+                <div className="card-content" style={{ position: 'absolute', zIndex: 10, width: '100%', top: 0, left: 0 }}>
+                  <h1>{value.linkName}</h1>
+                </div>
+                <Link
+                  className="link"
+                  to={{ pathname: value.link }}
+                  target="_blank"
+                  style={{ position: 'absolute', zIndex: 10 }}
+                >
+                  &rarr; {value.link}
+                </Link>
+              </PixelCard>
+            );
+          })}
+          
+        </div>
+      </section>
+    </>
+  );
+};

@@ -1,0 +1,134 @@
+:root {
+    --flap-w: 40px;
+    --flap-h: 60px;
+    --font-s: 36px;
+    --gap-x: 4px;
+}
+
+.split-flap-wrapper {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: hidden; 
+    width: 100%;
+}
+
+#board {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: fit-content;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.word-group, .number-group {
+    display: flex;
+    gap: var(--gap-x);
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --flap-w: 26px;
+        --flap-h: 40px;
+        --font-s: 24px;
+        --gap-x: 2px;
+    }
+    
+    #board {
+        gap: 25px;
+    }
+
+    .row {
+        flex-direction: column; 
+        gap: 8px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #21262d; 
+    }
+
+    .row:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+}
+
+.split-flap {
+    position: relative;
+    width: var(--flap-w);
+    height: var(--flap-h);
+    font-size: var(--font-s);
+    font-weight: bold;
+    perspective: 1000px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+    background-color: #161b22;
+}
+
+.half {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background-color: #21262d;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    color: #58a6ff;
+}
+
+.half span {
+    position: absolute;
+    height: var(--flap-h);
+    line-height: var(--flap-h);
+}
+
+.top {
+    top: 0;
+    border-bottom: 1px solid #000;
+}
+
+.top span { top: 0; }
+
+.bottom {
+    bottom: 0;
+    border-top: 1px solid #0d1117;
+}
+
+.bottom span { bottom: 0; }
+
+.flap-top, .flap-bottom {
+    z-index: 10;
+}
+
+.flap-top {
+    transform-origin: bottom;
+    animation: flipDown 0.25s linear forwards;
+}
+
+.flap-bottom {
+    transform-origin: top;
+    transform: rotateX(90deg);
+    animation: flipUp 0.25s linear 0.25s forwards;
+}
+
+@keyframes flipDown {
+    0% { transform: rotateX(0deg); }
+    100% { transform: rotateX(-90deg); }
+}
+
+@keyframes flipUp {
+    0% { transform: rotateX(90deg); }
+    100% { transform: rotateX(0deg); }
+}
+
+.static-text .half { color: #8b949e; }

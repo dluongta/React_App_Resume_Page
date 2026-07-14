@@ -1,0 +1,51 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+import PixelCard from './PixelCard';
+
+export const Android = () => {
+  const data = [
+    {
+      id: "01",
+      link: "https://github.com/luen2003/NoteApp/releases/download/v1.0.0/app-release.apk",
+      linkName: "Note App",
+    },
+    {
+      id: "02",
+      link: "https://github.com/luen2003/NewsApp/releases/download/v1.0.0/app-release.apk",
+      linkName: "News App",
+    },
+    {
+      id: "03",
+      link: "https://github.com/luen2003/WeatherApp/releases/download/v1.0.0/app-release.apk",
+      linkName: "Weather App",
+    }
+  ]
+  return (
+
+    <>
+      <section className='blog'>
+        <div className="cards-wrapper">
+
+          {data.map((value) => {
+            return (
+              <PixelCard key={value.id} variant="orange" className='card '>
+                <div className="card-content" style={{ position: 'absolute', zIndex: 10, width: '100%', top: 0, left: 0 }}>
+                  <h1>{value.linkName}</h1>
+                </div>
+                <Link 
+                  className='link' 
+                  to={{ pathname: value.link }} 
+                  target="_blank"
+                  style={{ position: 'absolute', zIndex: 10 }}
+                >
+                  &rarr; {value.link}
+                </Link>
+              </PixelCard>
+            )
+          })}
+          
+        </div>
+      </section>
+    </>
+  )
+}

@@ -1,0 +1,75 @@
+.scrollTextSection {
+  position: relative;
+  height: 350vh;
+  background: #111;
+  overflow-x: clip;
+}
+
+.stickyWrapper {
+  position: sticky;
+  min-height: 100vh;
+  height: 100vh;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 60px;
+  padding-top: 50px;
+
+  pointer-events: none;
+}
+
+/* .textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 100px;
+} */
+
+.revealLine {
+  max-width: 100%;
+  padding: 0 20px;
+
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1.3;
+  text-align: center;
+  text-transform: uppercase;
+  transform: translate3d(0, 20px, 0);
+  padding: 0 20px;
+
+  background: linear-gradient(to right,
+      #ff8c00 var(--line-progress, 0%),
+      #333 var(--line-progress, 0%));
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  will-change: background-image;
+
+  /* filter: drop-shadow(0 0 calc(var(--line-opacity, 0) * 15px) rgba(255, 140, 0, 0.6)); */
+}
+
+@media screen and (max-width: 768px) {
+  .textContainer {
+    margin-top: 0px;
+  }
+
+  .textContainer {
+    gap: 0.5rem;
+  }
+
+  .textContainer {
+    font-size: 2.8rem;
+    line-height: 1.3;
+  }
+  .stickyWrapper {
+    padding-top: 0px!important;
+  }
+}
+
+

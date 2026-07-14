@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c90577d1.css",
+    "main.js": "/static/js/main.eea5e33e.js",
+    "static/media/Study-Pop-Playlist.mp3": "/static/media/Study-Pop-Playlist.64ea42508c3d06cc02be.mp3",
+    "static/media/hexagon-main.png": "/static/media/hexagon-main.0d1fa5074a6783c7d9aa.png",
+    "static/media/hexagon.png": "/static/media/hexagon.53b9d267e8dae4ae20fd.png",
+    "static/media/main.png": "/static/media/main.46e4bda31bde3f5173f9.png",
+    "static/media/luen-1.jpg": "/static/media/luen-1.93167e549004b937e253.jpg",
+    "static/media/luen.jpg": "/static/media/luen.93167e549004b937e253.jpg",
+    "static/media/lumind_logo.mp4": "/static/media/lumind_logo.28c6f6bd3efdefcf8aae.mp4",
+    "static/media/luen_logo.png": "/static/media/luen_logo.a79037dac5068823c9cf.png",
+    "static/media/fa-solid-900.woff2": "/static/media/fa-solid-900.ce9a3fa740bd60b4ac3b.woff2",
+    "static/media/fa-brands-400.woff2": "/static/media/fa-brands-400.f276979f97f1cf375d23.woff2",
+    "static/media/banner-bg.png": "/static/media/banner-bg.f67087d1c9931d7ccc75.png",
+    "static/media/fa-regular-400.woff2": "/static/media/fa-regular-400.cfbad32c79d9dda6af4a.woff2",
+    "static/media/fa-v4compatibility.woff2": "/static/media/fa-v4compatibility.296da06936a3373940c8.woff2",
+    "index.html": "/index.html",
+    "static/media/caption_logo.vtt": "/static/media/caption_logo.75175c236c60850b1874.vtt",
+    "main.c90577d1.css.map": "/static/css/main.c90577d1.css.map",
+    "main.eea5e33e.js.map": "/static/js/main.eea5e33e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c90577d1.css",
+    "static/js/main.eea5e33e.js"
+  ]
+}

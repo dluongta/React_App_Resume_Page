@@ -1,0 +1,68 @@
+.wrapperOne {
+    background-color: #1a346e; 
+    padding: 60px 20px;
+    color: white;
+    font-family: sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 35px 0px;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex: 1;
+    min-width: 250px;
+}
+
+.animatedNumber {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.label {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    
+    width: min-content;
+    text-align: left;  
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        gap: 40px;
+    }
+
+    .box {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+        min-width: 100%;
+    }
+
+    .animatedNumber {
+        font-size: 3rem;
+    }
+
+    .label {
+        width: auto;
+        text-align: center; 
+    }
+}
