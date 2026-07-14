@@ -76,7 +76,7 @@ export const Footer = () => {
           </ul>
         </div>
         <div className="box">
-          <h2 style={{marginBottom: '33px'}}>Get in Touch</h2>
+          <h2 style={{marginBottom: '33px'}}>Get In Touch</h2>
           <p>"DLUONGTA TSCEND"</p>
           <div className="icon"><i className="fa fa-map-marker-alt"></i><span>Location: Hanoi, Vietnam</span></div>
           <div className="icon"><i className="fa fa-phone"></i><a href="tel:+84383402036">Phone: +84 383402036</a></div>
