@@ -1946,8 +1946,8 @@ footer .box ul li.text span {
     vertical-align: middle !important;
   }
   
-  .box:nth-child(2) ul {
-    padding-left: 0.5px!important; 
+  .box:nth-child(3) ul {
+    padding-left: 3px!important; 
   }
 }
 
@@ -2509,6 +2509,14 @@ body:has(.galaxy-page) .container {
     max-width: 60% !important;
     height: 72vh !important;
     margin-top: 8rem !important;
+  }
+  
+  .margin-1 {
+    margin-bottom: 37px;
+  }
+
+  .margin-2 {
+    margin-bottom: 33px;
   }
 }
 
@@ -3240,6 +3248,16 @@ body.sub-root,
   .btn-primary,
   .btn-secondary {
     width: 100%;
+  }
+  .margin-1 {
+    margin-bottom: 32px;
+  }
+  .margin-2 {
+    padding-bottom: 0px !important;
+    margin-bottom: 25px !important;
+  }
+  .quick-link {
+    margin-bottom: 26px !important;
   }
 }
 

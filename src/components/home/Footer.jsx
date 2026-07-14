@@ -52,7 +52,7 @@ export const Footer = () => {
           </div>
         </div>
         <div className="box">
-          <h2>Quick Links</h2>
+          <h2 className='quick-link'>Quick Links</h2>
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/web">Web</Link></li>
@@ -64,7 +64,7 @@ export const Footer = () => {
           </ul>
         </div>
         <div className="box">
-          <h2 style={{marginBottom: '37px'}}>Recent Post</h2>
+          <h2 className='margin-1'>Recent Post</h2>
           <ul>
             {[1, 2, 3].map((i) => (
               <li key={i} className="text" style={{ listStyle: 'none' }}>
@@ -76,7 +76,7 @@ export const Footer = () => {
           </ul>
         </div>
         <div className="box">
-          <h2 style={{marginBottom: '33px'}}>Get In Touch</h2>
+          <h2 className='margin-2'>Get In Touch</h2>
           <p>"DLUONGTA TSCEND"</p>
           <div className="icon"><i className="fa fa-map-marker-alt"></i><span>Location: Hanoi, Vietnam</span></div>
           <div className="icon"><i className="fa fa-phone"></i><a href="tel:+84383402036">Phone: +84 383402036</a></div>
