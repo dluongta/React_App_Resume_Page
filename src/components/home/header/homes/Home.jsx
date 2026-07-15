@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import RotatingText from './RotatingText';
 import mainImage from '../../../../assets/main.png';
-import './RotatingText.css';
 import './Home.css';
 
 export const Home = ({ className }) => {
