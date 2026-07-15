@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './Card.css';
 
 export const Android = () => {
@@ -31,14 +30,14 @@ export const Android = () => {
                 <div className="card-content">
                   <h1>{value.linkName}</h1>
                 </div>
-                <Link
+                <a
                   className="link"
-                  to={value.link}
+                  href={value.link}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   &rarr; {value.link}
-                </Link>
+                </a>
               </div>
             );
           })}
