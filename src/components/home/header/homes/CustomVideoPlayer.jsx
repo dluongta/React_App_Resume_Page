@@ -64,10 +64,10 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   const settingsRef = useRef(null);
   const controlsTimeoutRef = useRef(null);
 
-  const [isPlaying, setIsPlaying] = useState(true); 
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
-  const [volume, setVolume] = useState(0); 
-  const [isLooping, setIsLooping] = useState(true); 
+  const [volume, setVolume] = useState(0);
+  const [isLooping, setIsLooping] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -258,7 +258,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
           ref={videoRef}
           className="video"
           playsInline
-          autoPlay 
+          autoPlay
           muted={isMuted}
           src={src}
           loop={isLooping}
@@ -273,6 +273,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
             />
           )}
         </video>
+        {/*{loading && <div className="loading-spinner"></div>}*/}
         {loading && <div className="loading-spinner"></div>}
         <div className={`controls ${showControls ? 'visible' : ''}`} onClick={(e) => e.stopPropagation()}>
           <div className="progress-wrapper">
