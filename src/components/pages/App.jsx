@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import PixelCard from './PixelCard'; 
+import './Card.css';
 
 export const AppComponent = () => {
   const data = [
@@ -179,32 +179,23 @@ export const AppComponent = () => {
     <>
       <section className="portfolio">
         <div className="cards-wrapper">
-
-          {/* <PixelCard variant="orange" className="card ">
-            <div className="card-content" style={{ position: 'absolute', zIndex: 10, width: '100%', top: 0, left: 0 }}>
-              <h1>Qualification: Bachelor's Degree - Information Technology - VNU University Of Engineering And Technology - GPA: 2.61/4.0</h1>
-              <h1>Duration: 2021 – 2025</h1>
-            </div>
-          </PixelCard> */}
-
           {data.map((value) => {
             return (
-              <PixelCard key={value.id} variant="orange" className="card ">
-                <div className="card-content" style={{ position: 'absolute', zIndex: 10, width: '100%', top: 0, left: 0 }}>
+              <div key={value.id} className="basic-card card">
+                <div className="card-content">
                   <h1>{value.linkName}</h1>
                 </div>
                 <Link
                   className="link"
-                  to={{ pathname: value.link }}
+                  to={value.link}
                   target="_blank"
-                  style={{ position: 'absolute', zIndex: 10 }}
+                  rel="noopener noreferrer"
                 >
                   &rarr; {value.link}
                 </Link>
-              </PixelCard>
+              </div>
             );
           })}
-          
         </div>
       </section>
     </>

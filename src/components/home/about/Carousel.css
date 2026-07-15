@@ -52,7 +52,7 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  height: 40px; 
+  height: 40px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -96,9 +96,10 @@
   background: #bbb;
   cursor: pointer;
 }
+
 .carousel-dots {
   position: absolute;
-  bottom: -10px; 
+  bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
   height: 60px;
@@ -107,6 +108,7 @@
   gap: 12px;
   padding: 10px 20px;
 }
+
 .carousel-dots {
   z-index: 10;
 }

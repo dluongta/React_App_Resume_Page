@@ -16,7 +16,7 @@ export const ScrollRevealText = () => {
       const end = rect.bottom - vh + 180;
 
       let progress = (0 - start) / (end - start);
-      progress = Math.min(Math.max(progress, 0), 1)*3.5;
+      progress = Math.min(Math.max(progress, 0), 1) * 3.5;
 
       textRef.current.style.setProperty(
         '--scroll-pos',

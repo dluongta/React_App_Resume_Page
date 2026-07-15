@@ -58,7 +58,7 @@ const AnimatedNumber = ({ number }) => {
 
     const cleanNumber = number.replace(/[+%]/g, "");
     const digitsArr = cleanNumber.split("").map(d => parseInt(d));
-return (
+    return (
         <h1 className={styles.animatedNumber}>
             {digitsArr.map((d, i) => (
                 <DigitColumn

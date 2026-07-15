@@ -386,16 +386,14 @@
   /* background: #0988ed; */
   /* background: linear-gradient(135deg, #8A2BE2, #FF4D9D); */
   /* background: linear-gradient(90deg, #7B2FF7, #F107A3, #FF7B54);  */
-  background: linear-gradient(
-  135deg,
-  #7B2FF7 0%,
-  /* #7B2FF7 10%, */
-  /* #F107A3 40%, */
-  #FF0099 30%,
-  #FF0099 60%,
-  #FF7B54 90%,
-  #FF7B54 100%
-);
+  background: linear-gradient(135deg,
+      #7B2FF7 0%,
+      /* #7B2FF7 10%, */
+      /* #F107A3 40%, */
+      #FF0099 30%,
+      #FF0099 60%,
+      #FF7B54 90%,
+      #FF7B54 100%);
   /* background-size: 300% 100%; */
 
   -webkit-background-clip: text;

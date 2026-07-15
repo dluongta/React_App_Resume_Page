@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import PixelCard from './PixelCard';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Card.css';
 
 export const Android = () => {
   const data = [
@@ -25,25 +25,24 @@ export const Android = () => {
     <>
       <section className='blog'>
         <div className="cards-wrapper">
-
           {data.map((value) => {
             return (
-              <PixelCard key={value.id} variant="orange" className='card '>
-                <div className="card-content" style={{ position: 'absolute', zIndex: 10, width: '100%', top: 0, left: 0 }}>
+              <div key={value.id} className="basic-card card">
+                <div className="card-content">
                   <h1>{value.linkName}</h1>
                 </div>
-                <Link 
-                  className='link' 
-                  to={{ pathname: value.link }} 
+                <Link
+                  className="link"
+                  to={value.link}
                   target="_blank"
-                  style={{ position: 'absolute', zIndex: 10 }}
+                  rel="noopener noreferrer"
                 >
                   &rarr; {value.link}
                 </Link>
-              </PixelCard>
-            )
+              </div>
+            );
           })}
-          
+
         </div>
       </section>
     </>

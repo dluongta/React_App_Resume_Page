@@ -1,5 +1,5 @@
 .wrapperOne {
-    background-color: #1a346e; 
+    background-color: #1a346e;
     padding: 60px 20px;
     color: white;
     font-family: sans-serif;
@@ -40,9 +40,9 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     line-height: 1.4;
-    
+
     width: min-content;
-    text-align: left;  
+    text-align: left;
 }
 
 @media screen and (max-width: 768px) {
@@ -63,6 +63,6 @@
 
     .label {
         width: auto;
-        text-align: center; 
+        text-align: center;
     }
 }

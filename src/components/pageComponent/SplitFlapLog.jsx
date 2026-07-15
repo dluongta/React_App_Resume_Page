@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './SplitFlapLog.css'; 
+import './SplitFlapLog.css';
 
 const Flap = ({ char, isStatic = false }) => {
     const [prevChar, setPrevChar] = useState(char);
@@ -8,7 +8,7 @@ const Flap = ({ char, isStatic = false }) => {
     useEffect(() => {
         if (char !== prevChar && !isStatic) {
             setIsFlipping(true);
-            
+
             const timer = setTimeout(() => {
                 setPrevChar(char);
                 setIsFlipping(false);
@@ -20,7 +20,7 @@ const Flap = ({ char, isStatic = false }) => {
 
     return (
         <div className={`split-flap ${isStatic ? 'static-text' : ''}`}>
-            
+
             <div className="half top">
                 <span>{isFlipping ? char : prevChar}</span>
             </div>
@@ -28,14 +28,14 @@ const Flap = ({ char, isStatic = false }) => {
             <div className="half bottom">
                 <span>{prevChar}</span>
             </div>
-            
+
             {isFlipping && (
                 <>
                     <div className="half top flap-top">
-                        <span>{prevChar}</span> 
+                        <span>{prevChar}</span>
                     </div>
                     <div className="half bottom flap-bottom">
-                        <span>{char}</span>   
+                        <span>{char}</span>
                     </div>
                 </>
             )}
@@ -60,10 +60,10 @@ export default function SplitFlapLog({ className = "" }) {
             <div id="board">
                 {words.map((word, rowIndex) => {
                     const numStr = counters[rowIndex].toString().padStart(6, '0');
-                    
+
                     return (
                         <div className="row" key={`row-${rowIndex}`}>
-                            
+
                             <div className="word-group">
                                 {word.split('').map((char, i) => (
                                     <Flap key={`word-${rowIndex}-${i}`} char={char} isStatic={true} />

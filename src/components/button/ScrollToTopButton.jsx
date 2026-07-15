@@ -65,8 +65,8 @@ const ScrollToTopButton = () => {
   };
 
   return (
-    <button 
-      className="scroll-to-top" 
+    <button
+      className="scroll-to-top"
       onClick={scrollToTop}
       style={{ display: visible ? 'flex' : 'none' }}
     >

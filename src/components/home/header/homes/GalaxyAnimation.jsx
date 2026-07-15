@@ -25,7 +25,7 @@
 //     const ctx = canvas.getContext("2d", { alpha: false });
 //     ctx.imageSmoothingEnabled = true;
 //     ctx.imageSmoothingQuality = "high";
-    
+
 //     let requestId;
 
 //     // Cấu hình thông số
@@ -66,7 +66,7 @@
 //         glow.addColorStop(1, "rgba(255,80,0,0)");
 //         ctxCache.fillStyle = glow;
 //         ctxCache.beginPath(); ctxCache.arc(center, center, pr * 3, 0, Math.PI * 2); ctxCache.fill();
-        
+
 //         const sun = ctxCache.createRadialGradient(center - pr*0.3, center - pr*0.3, pr*0.1, center, center, pr);
 //         sun.addColorStop(0, "#fff7cc"); sun.addColorStop(0.3, "#ffcc33");
 //         sun.addColorStop(0.7, "#ff8800"); sun.addColorStop(1, "#ff5500");
@@ -115,7 +115,7 @@
 //       isAppStarted = true;
 
 //       initCaches();
-      
+
 //       bgStars = Array.from({ length: STAR_COUNT }, () => ({
 //         x: rand(-1200, 1200), y: rand(-1200, 1200), z: rand(-1200, 1200),
 //         size: rand(4, 7), color: "#ffffff"
@@ -130,7 +130,7 @@
 
 //       resize();
 //       requestAnimationFrame(animate);
-      
+
 //       setFadeLoading(true);
 //       setTimeout(() => setIsLoading(false), 500);
 //     };
@@ -170,7 +170,7 @@
 //     const resize = () => {
 //       if (!containerRef.current) return;
 //       const dpr = window.devicePixelRatio || 1;
-      
+
 //       w = containerRef.current.clientWidth;
 //       h = containerRef.current.clientHeight;
 
@@ -214,18 +214,18 @@
 //     };
 
 //     const onTouchEnd = () => { dragging = false; initialPinchDist = null; };
-    
+
 //     const onMouseDown = (e) => { dragging = true; lastX = e.clientX; lastY = e.clientY; };
-    
+
 //     const onMouseMove = (e) => {
 //       if (!dragging) return;
 //       state.current.rotY -= (e.clientX - lastX) * 0.005; 
 //       state.current.rotX -= (e.clientY - lastY) * 0.005;
 //       lastX = e.clientX; lastY = e.clientY;
 //     };
-    
+
 //     const onMouseUp = () => dragging = false;
-    
+
 //     const onWheel = (e) => { 
 //       e.preventDefault();
 //       state.current.zoom -= e.deltaY * 0.001;
@@ -245,7 +245,7 @@
 //     const renderPool = Array.from({ length: MAX_RENDER }, () => ({
 //       type: 0, x: 0, y: 0, z: 0, size: 0, charKey: '', imgIdx: 0, cache: null
 //     }));
-    
+
 //     const PTX = Math.PI / 2.3, PTZ = Math.PI / 6;
 //     const cPTX = Math.cos(PTX), sPTX = Math.sin(PTX), cPTZ = Math.cos(PTZ), sPTZ = Math.sin(PTZ);
 
@@ -254,7 +254,7 @@
 //       ctx.fillStyle = "#000"; ctx.fillRect(0, 0, w, h); 
 
 //       const st = state.current;
-      
+
 //       let cosRX = Math.cos(st.rotX), sinRX = Math.sin(st.rotX);
 //       let cosRY = Math.cos(st.rotY), sinRY = Math.sin(st.rotY);
 //       let rCount = 0;
@@ -282,7 +282,7 @@
 //           let tx = (ring.tilt === "vertical") ? 0 : Math.cos(cA) * ring.radius;
 //           let tz = Math.sin(cA) * ring.radius;
 //           let ty = (ring.tilt === "vertical") ? Math.cos(cA) * ring.radius : tx * ring.tilt;
-          
+
 //           let y1 = ty * cosRX - tz * sinRX, z1 = ty * sinRX + tz * cosRX;
 //           let r = renderPool[rCount++];
 //           r.type = 4; r.x = tx * cosRY + z1 * sinRY; r.y = y1; r.z = -tx * sinRY + z1 * cosRY;
@@ -294,11 +294,11 @@
 //         let p = particles[i];
 //         let curA = p.angle - (time * 0.1) - (time * p.speed * 20);
 //         let px = p.radius * Math.cos(curA), pz = p.radius * Math.sin(curA), py = p.yOffset;
-        
+
 //         let py1 = py * cPTX - pz * sPTX, pz1 = py * sPTX + pz * cPTX;
 //         let tx = px * cPTZ - py1 * sPTZ, ty = px * sPTZ + py1 * cPTZ;
 //         let y1 = ty * cosRX - pz1 * sinRX, z1 = ty * sinRX + pz1 * cosRX;
-        
+
 //         let r = renderPool[rCount++];
 //         r.type = 2; r.x = tx * cosRY + z1 * sinRY; r.y = y1; r.z = -tx * sinRY + z1 * cosRY;
 //         r.size = p.size; r.imgIdx = p.imgIndex;
@@ -375,9 +375,9 @@
 //           }
 //         }
 //       }
-      
+
 //       ctx.globalAlpha = 1; 
-      
+
 //       // VẼ SAO BĂNG Ở CUỐI CÙNG ĐỂ KHÔNG BỊ ÁM MÀU
 //       const ss = st.shootingStar;
 //       if (!ss.active && Math.random() < 0.01) {
@@ -386,23 +386,23 @@
 //       } else if (ss.active) {
 //         ss.x += ss.speed; ss.opacity -= 0.003;
 //         if (ss.x > w + 400 || ss.opacity <= 0) ss.active = false;
-        
+
 //         ctx.save(); 
 //         ctx.globalCompositeOperation = "source-over"; 
-        
+
 //         const grad = ctx.createLinearGradient(ss.x, ss.y, ss.x - ss.len, ss.y);
 //         grad.addColorStop(0, `rgba(255, 255, 255, ${ss.opacity})`);
 //         grad.addColorStop(0.1, `rgba(255, 255, 255, ${ss.opacity * 0.9})`);
 //         grad.addColorStop(1, "rgba(255, 255, 255, 0)");
-        
+
 //         ctx.strokeStyle = grad; 
 //         ctx.lineWidth = 3; 
 //         ctx.lineCap = "round"; 
-        
+
 //         ctx.beginPath();
 //         ctx.moveTo(ss.x, ss.y); ctx.lineTo(ss.x - ss.len, ss.y);
 //         ctx.stroke(); 
-        
+
 //         ctx.fillStyle = `rgba(255, 255, 255, ${ss.opacity})`;
 //         ctx.beginPath();
 //         ctx.arc(ss.x, ss.y, 2, 0, Math.PI * 2);
@@ -410,7 +410,7 @@
 
 //         ctx.restore();
 //       }
-      
+
 //       requestId = requestAnimationFrame(animate);
 //     };
 
@@ -478,7 +478,7 @@
 //             padding: 0;
 //             overflow: hidden; /* Cần thiết để tương tác cuộn/kéo không bị lỗi thanh cuộn */
 //           }
-          
+
 //           @media (max-width: 768px) {
 //             .galaxy-container {
 //               height: 60vh; 
@@ -496,8 +496,8 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
-const GalaxyAnimation = ({ 
-  imageUrls = ["luen_logo.png", "hexagon-main.png", "luen-1.jpg"] 
+const GalaxyAnimation = ({
+  imageUrls = ["luen_logo.png", "hexagon-main.png", "luen-1.jpg"]
 }) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
@@ -521,7 +521,7 @@ const GalaxyAnimation = ({
     const ctx = canvas.getContext("2d", { alpha: false });
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = "high";
-    
+
     let requestId;
 
     // Cấu hình thông số
@@ -562,8 +562,8 @@ const GalaxyAnimation = ({
         glow.addColorStop(1, "rgba(255,80,0,0)");
         ctxCache.fillStyle = glow;
         ctxCache.beginPath(); ctxCache.arc(center, center, pr * 3, 0, Math.PI * 2); ctxCache.fill();
-        
-        const sun = ctxCache.createRadialGradient(center - pr*0.3, center - pr*0.3, pr*0.1, center, center, pr);
+
+        const sun = ctxCache.createRadialGradient(center - pr * 0.3, center - pr * 0.3, pr * 0.1, center, center, pr);
         sun.addColorStop(0, "#fff7cc"); sun.addColorStop(0.3, "#ffcc33");
         sun.addColorStop(0.7, "#ff8800"); sun.addColorStop(1, "#ff5500");
         ctxCache.fillStyle = sun;
@@ -578,11 +578,11 @@ const GalaxyAnimation = ({
         g.addColorStop(0.8, `rgba(${colorRGB}, 0.15)`);
         g.addColorStop(1, `rgba(${colorRGB}, 0)`);
         ctxCache.fillStyle = g;
-        ctxCache.beginPath(); ctxCache.arc(center, center, center, 0, Math.PI*2); ctxCache.fill();
+        ctxCache.beginPath(); ctxCache.arc(center, center, center, 0, Math.PI * 2); ctxCache.fill();
       });
 
       caches.auraOrange = buildAura("255, 140, 0");
-      caches.auraPurple = buildAura("255, 100, 255"); 
+      caches.auraPurple = buildAura("255, 100, 255");
 
       RINGS.forEach(ring => {
         const uniqueChars = [...new Set(ring.text)];
@@ -607,11 +607,11 @@ const GalaxyAnimation = ({
     let isAppStarted = false;
 
     const startUniverse = () => {
-      if (isAppStarted) return; 
+      if (isAppStarted) return;
       isAppStarted = true;
 
       initCaches();
-      
+
       bgStars = Array.from({ length: STAR_COUNT }, () => ({
         x: rand(-1200, 1200), y: rand(-1200, 1200), z: rand(-1200, 1200),
         size: rand(4, 7), color: "#ffffff"
@@ -626,7 +626,7 @@ const GalaxyAnimation = ({
 
       resize();
       requestAnimationFrame(animate);
-      
+
       setFadeLoading(true);
       setTimeout(() => setIsLoading(false), 500);
     };
@@ -644,13 +644,13 @@ const GalaxyAnimation = ({
               const offCtx = offCanvas.getContext('2d');
               offCtx.filter = "contrast(1.15) saturate(1.1)";
               offCtx.drawImage(img, 0, 0);
-              resolve(offCanvas); 
+              resolve(offCanvas);
             } catch (e) {
-              resolve(img); 
+              resolve(img);
             }
           };
           img.onerror = () => resolve(null);
-          img.src = src; 
+          img.src = src;
         });
       });
 
@@ -666,7 +666,7 @@ const GalaxyAnimation = ({
     const resize = () => {
       if (!containerRef.current) return;
       const dpr = window.devicePixelRatio || 1;
-      
+
       w = containerRef.current.clientWidth;
       h = containerRef.current.clientHeight;
 
@@ -686,16 +686,16 @@ const GalaxyAnimation = ({
     const renderPool = Array.from({ length: MAX_RENDER }, () => ({
       type: 0, x: 0, y: 0, z: 0, size: 0, charKey: '', imgIdx: 0, cache: null
     }));
-    
+
     const PTX = Math.PI / 2.3, PTZ = Math.PI / 6;
     const cPTX = Math.cos(PTX), sPTX = Math.sin(PTX), cPTZ = Math.cos(PTZ), sPTZ = Math.sin(PTZ);
 
     const animate = () => {
       let time = performance.now() * 0.0004;
-      ctx.fillStyle = "#000"; ctx.fillRect(0, 0, w, h); 
+      ctx.fillStyle = "#000"; ctx.fillRect(0, 0, w, h);
 
       const st = state.current;
-      
+
       // st.rotY += 0.001; 
 
 
@@ -705,10 +705,10 @@ const GalaxyAnimation = ({
       let rCount = 0;
 
       const auraData = [
-        { cache: caches.auraOrange, tx: -1200 + Math.sin(time*0.5)*150, ty: 300 + Math.cos(time*0.3)*150, tz: -300 + Math.sin(time*0.5)*100, radius: 3200 },
-        { cache: caches.auraPurple, tx: 1200 + Math.sin(time*0.5)*150, ty: 300 + Math.cos(time*0.2)*150, tz: -300 + Math.sin(time*0.5)*100, radius: 3200 }
+        { cache: caches.auraOrange, tx: -1200 + Math.sin(time * 0.5) * 150, ty: 300 + Math.cos(time * 0.3) * 150, tz: -300 + Math.sin(time * 0.5) * 100, radius: 3200 },
+        { cache: caches.auraPurple, tx: 1200 + Math.sin(time * 0.5) * 150, ty: 300 + Math.cos(time * 0.2) * 150, tz: -300 + Math.sin(time * 0.5) * 100, radius: 3200 }
       ];
-      for(let a of auraData) {
+      for (let a of auraData) {
         let y1 = a.ty * cosRX - a.tz * sinRX, z1 = a.ty * sinRX + a.tz * cosRX;
         let r = renderPool[rCount++];
         r.type = 5; r.x = a.tx * cosRY + z1 * sinRY; r.y = y1; r.z = -a.tx * sinRY + z1 * cosRY;
@@ -723,11 +723,11 @@ const GalaxyAnimation = ({
         let repeatCount = Math.floor(ring.radius / 15);
         let fullText = ring.text.repeat(repeatCount);
         for (let j = 0; j < fullText.length; j++) {
-          let cA = (time * ring.speed) + (j * (Math.PI * 2 / fullText.length));                    
+          let cA = (time * ring.speed) + (j * (Math.PI * 2 / fullText.length));
           let tx = (ring.tilt === "vertical") ? 0 : Math.cos(cA) * ring.radius;
           let tz = Math.sin(cA) * ring.radius;
           let ty = (ring.tilt === "vertical") ? Math.cos(cA) * ring.radius : tx * ring.tilt;
-          
+
           let y1 = ty * cosRX - tz * sinRX, z1 = ty * sinRX + tz * cosRX;
           let r = renderPool[rCount++];
           r.type = 4; r.x = tx * cosRY + z1 * sinRY; r.y = y1; r.z = -tx * sinRY + z1 * cosRY;
@@ -739,11 +739,11 @@ const GalaxyAnimation = ({
         let p = particles[i];
         let curA = p.angle - (time * 0.1) - (time * p.speed * 20);
         let px = p.radius * Math.cos(curA), pz = p.radius * Math.sin(curA), py = p.yOffset;
-        
+
         let py1 = py * cPTX - pz * sPTX, pz1 = py * sPTX + pz * cPTX;
         let tx = px * cPTZ - py1 * sPTZ, ty = px * sPTZ + py1 * cPTZ;
         let y1 = ty * cosRX - pz1 * sinRX, z1 = ty * sinRX + pz1 * cosRX;
-        
+
         let r = renderPool[rCount++];
         r.type = 2; r.x = tx * cosRY + z1 * sinRY; r.y = y1; r.z = -tx * sinRY + z1 * cosRY;
         r.size = p.size; r.imgIdx = p.imgIndex;
@@ -769,49 +769,49 @@ const GalaxyAnimation = ({
         let py = cy + item.y * scale;
 
         if (item.type === 1) {
-          if(currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
+          if (currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
           let sSize = item.size * scale;
           ctx.fillStyle = "#ffffff";
           ctx.globalAlpha = Math.min(1, Math.max(0.1, (item.z + 3000) / 5000));
-          ctx.fillRect(px - sSize/2, py - sSize/2, sSize, sSize);
-        } 
+          ctx.fillRect(px - sSize / 2, py - sSize / 2, sSize, sSize);
+        }
         else if (item.type === 2) {
-          if(currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
+          if (currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
           if (scale > IMAGE_SHOW_SCALE) {
             let img = images[item.imgIdx];
             if (img && img.width > 0) {
               let isize = item.size * scale * 5;
               isize = Math.min(isize, 1200);
               ctx.globalAlpha = 1;
-              ctx.drawImage(img, px - isize/2, py - isize/2, isize, isize);
+              ctx.drawImage(img, px - isize / 2, py - isize / 2, isize, isize);
             }
           } else {
             let sq = item.size * scale;
-            ctx.fillStyle = "#FF3366"; 
+            ctx.fillStyle = "#FF3366";
             ctx.globalAlpha = Math.min(1, (item.z + 2000) / 3000);
-            ctx.fillRect(px - sq/2, py - sq/2, sq, sq);
+            ctx.fillRect(px - sq / 2, py - sq / 2, sq, sq);
           }
-        } 
+        }
         else if (item.type === 3 && caches.planet) {
-          if(currentBlend !== "lighter") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
+          if (currentBlend !== "lighter") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
           ctx.globalAlpha = 1;
-          let pr = PLANET_RADIUS * scale * 6; 
+          let pr = PLANET_RADIUS * scale * 6;
           ctx.drawImage(caches.planet, px - pr, py - pr, pr * 2, pr * 2);
         }
         else if (item.type === 4) {
-          if(currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
+          if (currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
           ctx.globalAlpha = 1;
           let txtImg = caches.text[item.charKey];
           if (txtImg) {
-            let ts = 30 * scale; 
+            let ts = 30 * scale;
             ctx.drawImage(txtImg, px - ts, py - ts, ts * 2, ts * 2);
           }
         }
         else if (item.type === 5 && item.cache) {
-          if(currentBlend !== "lighter") { 
+          if (currentBlend !== "lighter") {
             ctx.globalCompositeOperation = "source-over";
-            ctx.globalAlpha = 0.3; 
-            currentBlend = "lighter"; 
+            ctx.globalAlpha = 0.3;
+            currentBlend = "lighter";
           }
           ctx.globalAlpha = 1;
           let gradRadius = item.size * scale;
@@ -820,9 +820,9 @@ const GalaxyAnimation = ({
           }
         }
       }
-      
-      ctx.globalAlpha = 1; 
-      
+
+      ctx.globalAlpha = 1;
+
       const ss = st.shootingStar;
       if (!ss.active && Math.random() < 0.01) {
         ss.active = true; ss.x = -400; ss.y = rand(50, h * 0.7);
@@ -830,25 +830,25 @@ const GalaxyAnimation = ({
       } else if (ss.active) {
         ss.x += ss.speed; ss.opacity -= 0.003;
         if (ss.x > w + 400 || ss.opacity <= 0) ss.active = false;
-        
-        ctx.save(); 
+
+        ctx.save();
         // Đổi thành source-over để màu trắng không bị pha với màu nền
-        ctx.globalCompositeOperation = "source-over"; 
-        
+        ctx.globalCompositeOperation = "source-over";
+
         const grad = ctx.createLinearGradient(ss.x, ss.y, ss.x - ss.len, ss.y);
         // Thêm chốt 0.1 để đầu sao băng giữ màu trắng đặc lâu hơn một chút
         grad.addColorStop(0, `rgba(255, 255, 255, ${ss.opacity})`);
         grad.addColorStop(0.1, `rgba(255, 255, 255, ${ss.opacity * 0.9})`);
         grad.addColorStop(1, "rgba(255, 255, 255, 0)");
-        
-        ctx.strokeStyle = grad; 
+
+        ctx.strokeStyle = grad;
         ctx.lineWidth = 3; // Tăng lên 3 để nét đậm và rõ hơn
         ctx.lineCap = "round"; // Bo tròn phần đầu sao băng
-        
+
         ctx.beginPath();
         ctx.moveTo(ss.x, ss.y); ctx.lineTo(ss.x - ss.len, ss.y);
-        ctx.stroke(); 
-        
+        ctx.stroke();
+
         // Vẽ thêm một đốm sáng trắng ở đầu sao băng để tạo điểm nhấn
         ctx.fillStyle = `rgba(255, 255, 255, ${ss.opacity})`;
         ctx.beginPath();
@@ -857,8 +857,8 @@ const GalaxyAnimation = ({
 
         ctx.restore();
       }
-      
-      ctx.globalAlpha = 1; 
+
+      ctx.globalAlpha = 1;
       requestId = requestAnimationFrame(animate);
     };
 
@@ -893,13 +893,13 @@ const GalaxyAnimation = ({
       )}
 
       {/* Canvas */}
-      <canvas 
-        ref={canvasRef} 
-        style={{ 
-          display: 'block', 
-          width: '100%', 
+      <canvas
+        ref={canvasRef}
+        style={{
+          display: 'block',
+          width: '100%',
           height: '100%'
-        }} 
+        }}
       />
 
       <style>

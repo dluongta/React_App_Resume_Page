@@ -79,8 +79,8 @@ export const Skill = ({ className }) => {
       <div className="container">
         <div className="heading">
           <div className="animated-text bottomMargin-1">
-          <h3 className="animated-text" style={{marginBottom:"8px", fontSize:"22px"}}>Why Choose Me</h3>
-          <h3 className="animated-text" style={{marginBottom:"8px", fontSize:"22px"}}>Some of my skills</h3>
+            <h3 className="animated-text" style={{ marginBottom: "8px", fontSize: "22px" }}>Why Choose Me</h3>
+            <h3 className="animated-text" style={{ marginBottom: "8px", fontSize: "22px" }}>Some of my skills</h3>
           </div>
         </div>
 
@@ -100,19 +100,19 @@ export const Skill = ({ className }) => {
                 <p>{val.para1}</p>
 
 
-                  <button className="primary-btn btn-led">
-                    Contact Me
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <button className="primary-btn btn-led">
+                  Contact Me
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
 
-                    <span className="line2"></span>
-                    <span className="line2"></span>
-                    <span className="line2"></span>
-                    <span className="line2"></span>
-                  </button>
-                </div>
+                  <span className="line2"></span>
+                  <span className="line2"></span>
+                  <span className="line2"></span>
+                  <span className="line2"></span>
+                </button>
+              </div>
 
             ))}
           </div>

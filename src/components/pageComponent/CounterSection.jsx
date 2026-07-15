@@ -18,9 +18,9 @@ const CountUpNumber = ({ target, duration = 2000, suffix = "" }) => {
         const animate = (timestamp) => {
             if (!startTime) startTime = timestamp;
             const progress = timestamp - startTime;
-            
+
             const percentage = Math.min(progress / duration, 1);
-            
+
             const currentVal = Math.floor(target * percentage);
 
             setCount(currentVal);

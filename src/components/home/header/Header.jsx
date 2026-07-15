@@ -55,7 +55,6 @@ export const Header = () => {
                         </Link>
                     </div>
 
-                    {/* Desktop menu */}
                     <div className="nav desktop-nav">
                         <ul className="nav-links">
                             <li className={isActive('/') ? 'active-link' : ''}><Link to="/">Home</Link></li>
@@ -63,16 +62,9 @@ export const Header = () => {
                             <li className={isActive('/android') ? 'active-link' : ''}><Link to="/android">Android</Link></li>
                             <li className={isActive('/app') ? 'active-link' : ''}><Link to="/app">App</Link></li>
                             <li className={isActive('/resume') ? 'active-link' : ''}><Link to="/resume">Resume</Link></li>
-                            {/* <li className={isActive('/galaxy') ? 'active-link' : ''}><Link to="/galaxy">Galaxy</Link></li> */}
-                            {/* <li className="icon">
-                                <SearchIcon className="HeaderIcon" />
-                                <DevicesIcon className="HeaderIcon" />
-                                <GridViewIcon className="HeaderIcon" />
-                            </li> */}
                         </ul>
                     </div>
 
-                    {/* Mobile button */}
                     <button className="nav-items-icon" onClick={() => setSidebar(!sideBar)}>
                         {sideBar ? <CloseIcon /> : <MenuIcon />}
                     </button>
@@ -94,7 +86,6 @@ export const Header = () => {
                         <li className={isActive('/android') ? 'active-link' : ''}><Link to="/android">Android</Link></li>
                         <li className={isActive('/app') ? 'active-link' : ''}><Link to="/app">App</Link></li>
                         <li className={isActive('/resume') ? 'active-link' : ''}><Link to="/resume">Resume</Link></li>
-                        {/* <li className={isActive('/galaxy') ? 'active-link' : ''}><Link to="/galaxy">Galaxy</Link></li> */}
                     </ul>
                 </div>
             </div>

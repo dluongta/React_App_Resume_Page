@@ -5,14 +5,14 @@ export const ScrollText = () => {
   const sectionRef = useRef(null);
   const containerRef = useRef(null);
 
-useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current || !containerRef.current) return;
 
       const rect = sectionRef.current.getBoundingClientRect();
 
       const start = window.innerHeight * 0.2;
-      
+
 
       const end = sectionRef.current.offsetHeight - (window.innerHeight * 1.5);
 
@@ -21,7 +21,7 @@ useEffect(() => {
 
       const lines = containerRef.current.querySelectorAll(`.${styles.revealLine}`);
       const numLines = lines.length;
-      
+
       lines.forEach((line, index) => {
         const vhPerLine = 1 / numLines;
 
