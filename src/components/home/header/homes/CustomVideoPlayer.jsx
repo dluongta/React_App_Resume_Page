@@ -145,13 +145,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     };
 
     const onTimeUpdate = () => setCurrentTime(video.currentTime);
-    // const onEnded = () => {
-    //   if (!isLooping) {
-    //     setCurrentTime(video.duration);
-    //     setIsPlaying(false);
-    //     setShowControls(true);
-    //   }
-    // };
+
     const onEnded = () => {
       if (!isLooping) {
         video.currentTime = 0;
@@ -273,7 +267,6 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
             />
           )}
         </video>
-        {/*{loading && <div className="loading-spinner"></div>}*/}
         {loading && <div className="loading-spinner"></div>}
         <div className={`controls ${showControls ? 'visible' : ''}`} onClick={(e) => e.stopPropagation()}>
           <div className="progress-wrapper">
