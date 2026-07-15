@@ -4,20 +4,13 @@ import GalaxyAnimation from './GalaxyAnimation';
 import lumindLogo from '../../../../assets/luen-1.jpg';
 import Hero from './Hero';
 import CustomVideoPlayer from './CustomVideoPlayer';
-// import caption from '../../../../assets/caption.vtt';
-// import bgVideo from '../../../../assets/dluongta_animation.mp4';
 import caption_logo from '../../../../assets/caption_logo.vtt';
 import bgLogoVideo from '../../../../assets/lumind_logo.mp4';
-// import lumind_animation_text from '../../../../assets/lumind_animation.vtt';
-// import lumindAnimationVideo from '../../../../assets/intro_video.mp4';
 import ParticleTextCanvas from "./ParticleTextCanvas";
 import hexagonImg from '../../../../assets/hexagon-main.png';
 // import CircularText from './CircularText';
 import CustomMusicPlayer from './CustomMusicPlayer';
 import bgMusic from '../../../../assets/Study-Pop-Playlist.mp3';
-// import caption_ulmind_intro from '../../../../assets/caption_intro.vtt';
-// import ulmind_intro from '../../../../assets/ultramind_intro.mp4';
-// import Globe from './GlobeVisualization';
 
 export const Branding = ({ className }) => {
   const data = [
@@ -146,36 +139,13 @@ export const Branding = ({ className }) => {
         <CircularText text="SKILLED ✦ ANDROID ✦ DEVELOPER ✦ " color="#FFA500" onHover="speedUp" />
         <CircularText text="SKILLED ✦ APP ✦ DEVELOPER ✦ " color="#FFA500" onHover="speedUp" />
       </div> */}
-      {/* {!isMobile && (
-        <div style={{
-          position: 'relative',
-          width: '86%',
-          height: '100vh',
-          overflow: 'hidden',
-          background: '#000',
-          margin: '0 auto',
-          marginTop: '30px',
-          borderRadius: '20px',
-        }} className='galaxy'>
-
-          <GalaxyAnimation
-            text="DINH LUONG TA"
-            imageUrls={galaxyImages}
-          />
-
-        </div>
-
-      )} */}
+      
       <GalaxyAnimation
         text="DINH LUONG TA"
         imageUrls={galaxyImages}
       />
-      {/* <img width={'100%'} src={logo} alt="Logo" /> */}
       <ParticleTextCanvas />
-      {/* <CustomVideoPlayer src={ulmind_intro} captionSrc={caption_ulmind_intro} /> */}
       <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />
-      {/* <CustomVideoPlayer src={lumindAnimationVideo} captionSrc={lumind_animation_text} /> */}
-      {/* <CustomVideoPlayer src={bgVideo} captionSrc={caption} /> */}
       {/* <CustomMusicPlayer
         src={bgMusic}
         title="Study Pop Playlist"
