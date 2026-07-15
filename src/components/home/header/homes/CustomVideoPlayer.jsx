@@ -207,7 +207,6 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     video.muted = !video.muted;
     setIsMuted(video.muted);
 
-    // Cập nhật âm lượng khi bật lại âm thanh (nếu volume đang là 0 thì set lên 1)
     const newVolume = video.muted ? 0 : (volume === 0 ? 1 : volume);
     setVolume(newVolume);
     video.volume = newVolume;
@@ -259,7 +258,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
           ref={videoRef}
           className="video"
           playsInline
-          autoPlay // CẬP NHẬT: Thêm thuộc tính autoPlay
+          autoPlay 
           muted={isMuted}
           src={src}
           loop={isLooping}
