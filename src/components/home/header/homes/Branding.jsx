@@ -8,9 +8,9 @@ import caption_logo from '../../../../assets/caption_logo.vtt';
 import bgLogoVideo from '../../../../assets/lumind_logo.mp4';
 import ParticleTextCanvas from "./ParticleTextCanvas";
 import hexagonImg from '../../../../assets/hexagon-main.png';
-// import CircularText from './CircularText';
 import CustomMusicPlayer from './CustomMusicPlayer';
 import bgMusic from '../../../../assets/Study-Pop-Playlist.mp3';
+// import CircularText from './CircularText';
 
 export const Branding = ({ className }) => {
   const data = [
