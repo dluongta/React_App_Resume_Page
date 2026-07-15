@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Hero.css';
+import './HeroCSS.css';
 import heroImage1 from '../../../../assets/luen.jpg';
 import heroImage2 from '../../../../assets/luen_logo.png';
 import heroImage3 from '../../../../assets/hexagon-main.png';
