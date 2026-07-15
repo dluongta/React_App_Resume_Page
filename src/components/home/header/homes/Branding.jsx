@@ -10,7 +10,6 @@ import ParticleTextCanvas from "./ParticleTextCanvas";
 import hexagonImg from '../../../../assets/hexagon-main.png';
 import CustomMusicPlayer from './CustomMusicPlayer';
 import bgMusic from '../../../../assets/Study-Pop-Playlist.mp3';
-// import CircularText from './CircularText';
 
 export const Branding = ({ className }) => {
   const data = [
@@ -120,26 +119,6 @@ export const Branding = ({ className }) => {
         </div>
       </section>
 
-      {/* <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: '40px',
-        margin: '18px auto',
-        width: '100%',
-        maxWidth: '1200px',
-      }}>
-        <CircularText text="DIGITAL ✦ BRANDING ✦ PRODUCTS ✦ " color="#FFA500" onHover="speedUp" />
-        <CircularText text="TEAM ✦ MANAGEMENT ✦ SKILLS ✦ " color="#FFA500" onHover="slowDown" />
-        <CircularText text="CREATIVE ✦ MIND ✦ DEVELOPER ✦ " color="#FFA500" onHover="pause" />
-        <CircularText text="DLUONGTA ✦ TSCEND ✦ STUDIO ✦ " color="#FFA500" onHover="goBonkers" />
-        <CircularText text="CREATIVE ✦ DLUONGTA ✦ TSCEND ✦ " color="#FFA500" onHover="speedUp" />
-        <CircularText text="SKILLED ✦ WEB ✦ DEVELOPER ✦ " color="#FFA500" onHover="speedUp" />
-        <CircularText text="SKILLED ✦ ANDROID ✦ DEVELOPER ✦ " color="#FFA500" onHover="speedUp" />
-        <CircularText text="SKILLED ✦ APP ✦ DEVELOPER ✦ " color="#FFA500" onHover="speedUp" />
-      </div> */}
-      
       <GalaxyAnimation
         text="DINH LUONG TA"
         imageUrls={galaxyImages}
