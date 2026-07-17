@@ -8,27 +8,6 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import hexagonImg from '../../../../assets/hexagon-main.png';
 
-// const formatTime = (seconds) => {
-//   if (isNaN(seconds)) return '00:00';
-//   const minutes = Math.floor(seconds / 60);
-//   const secs = Math.floor(seconds % 60);
-//   return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-// };
-// const formatTime = (seconds) => {
-//   if (isNaN(seconds)) return '00:00';
-
-//   const hours = Math.floor(seconds / 3600);
-//   const minutes = Math.floor((seconds % 3600) / 60);
-//   const secs = Math.floor(seconds % 60);
-
-//   if (hours > 0) {
-//     return `${hours.toString().padStart(2, '0')}:${minutes
-//       .toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-//   }
-
-//   return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-// };
-
 const formatTime = (seconds) => {
   if (isNaN(seconds)) return '00:00:00';
 
@@ -243,13 +222,12 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
           </div>
         )}
       </div>
-      {/* <div className={`vinyl-record ${isPlaying ? 'playing' : ''}`}></div> */}
 
       <div className="player-content">
         <div className="player-top">
           <div className="track-info">
             <span className="track-title">{title || 'Unknown Title'}</span>
-            {artist && <span className="track-artist"><span style={{ fontSize: '16px', fontWeight: 600 }}> - </span>{artist}</span>}
+            {artist && <span className="track-artist"><span style={{ fontSize: '13px', fontWeight: 500 }}> - </span>{artist}</span>}
           </div>
 
           <div className="progress-container">

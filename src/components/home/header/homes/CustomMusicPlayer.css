@@ -29,11 +29,6 @@
       #111 2px,
       #1a1a1a 3px,
       #111 4px);
-  /* background: repeating-radial-gradient(circle,
-      #0a0a0a 0px,
-      #0a0a0a 2px,
-      #171717 2.5px,
-      #0a0a0a 4px); */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
@@ -58,10 +53,10 @@
   bottom: 0;
   border-radius: 50%;
   background: linear-gradient(135deg,
-      rgba(255, 255, 255, 0.15) 0%,
-      rgba(255, 255, 255, 0) 40%,
-      rgba(255, 255, 255, 0) 60%,
-      rgba(255, 255, 255, 0.15) 100%);
+      rgba(255, 255, 255, 0.4) 5%,
+      rgba(255, 255, 255, 0) 35%,
+      rgba(255, 255, 255, 0) 65%,
+      rgba(255, 255, 255, 0.4) 95%);
   pointer-events: none;
   z-index: 2;
 }
@@ -121,7 +116,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* overflow: hidden; */
 }
 
 .track-info {
@@ -137,7 +131,7 @@
 }
 
 .track-artist {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: #fff;
 }
@@ -202,7 +196,6 @@
   align-items: center;
   gap: 12px;
 }
-
 
 .play-pause-btn {
   background: var(--primary-color);
@@ -300,34 +293,30 @@
   animation: spinRecord 1s linear infinite;
 }
 
-
 .time-current {
   margin-right: 14px;
-  /* cách thanh progress */
 }
 
 .time-duration {
   margin-left: 12px;
-  /* cách thanh progress */
 }
 
 @media (min-width: 768px) {
-
   .progress-container .time-text:first-child {
     margin-right: 18px;
   }
-
   .progress-container .time-text:last-child {
     margin-left: 12px;
   }
-
 }
 
 @media (max-width: 768px) {
   .music-player-container {
     flex-direction: column;
-    /* text-align: center; */
     padding: 24px 16px;
+    border-radius: 0px;
+    width: 100%;
+    max-width: 352px;
   }
 
   .track-info {
@@ -338,27 +327,9 @@
     width: 60px;
   }
 
-  .music-player-container {
-    border-radius: 0px;
-    width: 100%;
-    max-width: 352px;
-  }
-}
-
-@media (max-width: 768px) {
   .time-text {
     min-width: 44px;
     font-size: 10px;
-  }
-
-  .progress-container {
-    gap: 2px;
-  }
-}
-
-@media (max-width: 768px) {
-  .time-current {
-    transform: translateX(-6px);
   }
 
   .progress-container {
@@ -366,14 +337,13 @@
   }
 
   .time-current {
+    transform: translateX(-6px);
     margin-right: 14px;
-    /* cách thanh progress */
   }
 
   .time-duration {
     margin-left: 20px;
     transform: translateX(6px);
-    /* cách thanh progress */
   }
 
   .progress-container .time-text:first-child {
@@ -383,17 +353,21 @@
   .progress-container .time-text:last-child {
     margin-left: 14px;
   }
+
+  .repeat-btn {
+    margin-left: 14px !important;
+    margin-right: 4px !important;
+  }
 }
 
 .repeat-btn {
   margin-left: 9px !important;
 }
 
-@media (max-width: 768px) {
-  .repeat-btn {
-    margin-left: 14px !important;
-    margin-right: 4px !important;
-  }
+.video-player-container {
+  border-radius: 0;
+  margin-top: 36px;
+  margin-bottom: 36px;
 }
 
 @media screen and (max-width: 768px) {
@@ -402,10 +376,4 @@
     margin-top: 38px;
     margin-bottom: 38px;
   }
-}
-
-.video-player-container {
-  border-radius: 0;
-  margin-top: 36px;
-  margin-bottom: 36px;
 }
