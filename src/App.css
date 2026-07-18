@@ -3340,9 +3340,9 @@ body.sub-root,
 
 @media (min-width: 768px) {
   .branding::after {
-    width: 300px; 
+    width: 350px; 
     
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 0, 255, 1) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 0, 255, 0.8) 50%, transparent 100%);
     
     box-shadow: none;
     filter: blur(20px); 
