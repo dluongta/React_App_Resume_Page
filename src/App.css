@@ -3307,3 +3307,53 @@ body.sub-root,
 .nav-items-icon {
   -webkit-tap-highlight-color: transparent;
 }
+
+.branding {
+  position: relative;
+  overflow: hidden; 
+}
+
+.branding-container {
+  position: relative;
+  z-index: 2;
+}
+
+.branding::after {
+  content: '';
+  position: absolute;
+  
+  top: -50px;
+  bottom: -50px; 
+  
+  left: -200px; 
+  width: 350px; 
+  
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 0, 255, 0.4) 50%, transparent 100%);
+  filter: blur(15px);
+  
+  box-shadow: none; 
+  
+  z-index: -1;
+  pointer-events: none; 
+  animation: scanWideLight 4s linear infinite;
+}
+
+@media (min-width: 768px) {
+  .branding::after {
+    width: 300px; 
+    
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 0, 255, 1) 50%, transparent 100%);
+    
+    box-shadow: none;
+    filter: blur(20px); 
+  }
+}
+
+@keyframes scanWideLight {
+  0% {
+    left: -350px; 
+  }
+  100% {
+    left: 100%; 
+  }
+}
