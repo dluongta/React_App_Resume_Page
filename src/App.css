@@ -3329,7 +3329,7 @@ body.sub-root,
   box-shadow: none; 
   z-index: -1;
   pointer-events: none; 
-  animation: scanWideLight 6s linear infinite; 
+  animation: scanWideLight 2.5s linear infinite; 
 }
 
 @media (min-width: 768px) {
@@ -3349,11 +3349,20 @@ body.sub-root,
   }
 }
 
-@keyframes scanWideLight {
+/* @keyframes scanWideLight {
   0% {
     left: -100%; 
   }
   100% {
     left: 100%; 
+  }
+} */
+ 
+ @keyframes scanWideLight {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(320%);
   }
 }
