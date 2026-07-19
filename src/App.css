@@ -2170,10 +2170,6 @@ footer a:hover {
   }
 }
 
-.home .container {
-  margin-top: -60px;
-}
-
 .centerBox p {
   max-width: 220px;
   margin: auto;
@@ -2550,11 +2546,12 @@ body:has(.galaxy-page) .container {
 
 .nav-items-icon {
   margin-left: auto;
-  margin-right: 0px;
+  margin-right: 0px;  
 }
 
 .container {
   padding-right: -20px;
+
 }
 
 
@@ -3365,4 +3362,14 @@ body.sub-root,
   to {
     transform: translateX(320%);
   }
+}
+
+/* .home-right {
+    margin-top: 40px;
+    padding-top: 40px;
+} */
+
+.container.flex {
+    display: flex;
+    align-items: flex-start;
 }
