@@ -3307,7 +3307,6 @@ body.sub-root,
 .nav-items-icon {
   -webkit-tap-highlight-color: transparent;
 }
-
 .branding {
   position: relative;
   overflow: hidden; 
@@ -3321,37 +3320,38 @@ body.sub-root,
 .branding::after {
   content: '';
   position: absolute;
-  
   top: -50px;
   bottom: -50px; 
-  
   left: -200px; 
   width: 350px; 
-  
   background: linear-gradient(90deg, transparent 0%, rgba(255, 0, 255, 0.4) 50%, transparent 100%);
   filter: blur(15px);
-  
   box-shadow: none; 
-  
   z-index: -1;
   pointer-events: none; 
-  animation: scanWideLight 4s linear infinite;
+  animation: scanWideLight 6s linear infinite; 
 }
 
 @media (min-width: 768px) {
   .branding::after {
-    width: 350px; 
-    
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 0, 255, 0.8) 50%, transparent 100%);
-    
-    box-shadow: none;
-    filter: blur(20px); 
+    width: 50%;
+    filter: blur(60px); 
+    mix-blend-mode: normal; 
+
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 0, 255, 0.3) 20%,
+      rgba(255, 0, 255, 0.6) 50%,  
+      rgba(255, 0, 255, 0.3) 80%,
+      transparent 100%
+    );
   }
 }
 
 @keyframes scanWideLight {
   0% {
-    left: -350px; 
+    left: -100%; 
   }
   100% {
     left: 100%; 
