@@ -1,6 +1,6 @@
 .scrollTextSection {
   position: relative;
-  height: 500vh;
+  height: 200vh;
   background: #111;
   overflow-x: clip;
 }
