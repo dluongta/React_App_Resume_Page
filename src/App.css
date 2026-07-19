@@ -3150,7 +3150,6 @@ body.sub-root,
   padding: 24px;
 }
 
-/* Badge */
 
 .portfolio-badge {
   padding: 12px 24px;
@@ -3197,7 +3196,6 @@ body.sub-root,
     0 4px 20px rgba(168, 85, 247, 0.15);
 }
 
-/* Description */
 
 .portfolio-content p {
   color: #8b5cf6;
@@ -3213,7 +3211,6 @@ body.sub-root,
   font-weight: 500;
 }
 
-/* Buttons */
 
 .portfolio-actions {
   display: flex;
@@ -3222,7 +3219,6 @@ body.sub-root,
   flex-wrap: wrap;
 }
 
-/* Primary Button */
 
 .btn-primary {
   background: linear-gradient(135deg,
