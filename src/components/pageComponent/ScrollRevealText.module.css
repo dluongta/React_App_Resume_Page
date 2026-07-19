@@ -1,6 +1,6 @@
 .scrollTextSection {
   position: relative;
-  height: 350vh;
+  height: 500vh;
   background: #111;
   overflow-x: clip;
 }
@@ -32,9 +32,8 @@
   transform: translate3d(0, 20px, 0);
   background-image: linear-gradient(to bottom,
       #00e5ff 0%,
-      #00e5ff calc(var(--scroll-pos, 0%) - 1.5%),
-      #ffffff var(--scroll-pos, 0%),
-      #333333 calc(var(--scroll-pos, 0%) + 0.5%),
+      #00e5ff var(--scroll-pos, 0%),
+      #333333 var(--scroll-pos, 0%),
       #333333 100%);
 
   background-clip: text;

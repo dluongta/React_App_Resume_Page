@@ -1,6 +1,6 @@
 .scrollTextSection {
   position: relative;
-  height: 350vh;
+  height: 500vh;
   background: #111;
   overflow-x: clip;
 }
@@ -18,15 +18,6 @@
 
   pointer-events: none;
 }
-
-/* .textContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-  width: 100%;
-  max-width: 1200px;
-  margin-top: 100px;
-} */
 
 .revealLine {
   max-width: 100%;
@@ -51,7 +42,6 @@
 
   will-change: background-image;
 
-  /* filter: drop-shadow(0 0 calc(var(--line-opacity, 0) * 15px) rgba(255, 140, 0, 0.6)); */
 }
 
 @media screen and (max-width: 768px) {
