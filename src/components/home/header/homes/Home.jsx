@@ -49,7 +49,7 @@ export const Home = ({ className }) => {
       <div className="container flex">
         <div className="left">
           <div className="img">
-            <img src={mainImage} alt="Dinh Luong Ta Main" />
+            <img src={mainImage} alt="Dinh Luong Ta" />
           </div>
         </div>
 
