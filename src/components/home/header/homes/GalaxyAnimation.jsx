@@ -555,17 +555,39 @@ const GalaxyAnimation = ({
       caches.planet = createCacheCanvas(1000, (ctxCache, center) => {
         const pr = 60;
         ctxCache.globalCompositeOperation = "lighter";
-        const glow = ctxCache.createRadialGradient(center, center, pr * 0.2, center, center, pr * 1.1);
-        glow.addColorStop(0, "rgba(255,255,220,0.9)");
-        glow.addColorStop(0.2, "rgba(255,180,0,0.8)");
-        glow.addColorStop(0.5, "rgba(255,120,0,0.35)");
+        const glow = ctxCache.createRadialGradient(
+          center,
+          center,
+          pr * 0.4,
+          center,
+          center,
+          pr * 3
+        );
+
+        glow.addColorStop(0, "rgba(255,160,0,0.55)");
+        glow.addColorStop(0.3, "rgba(255,120,0,0.35)");
+        glow.addColorStop(0.7, "rgba(255,80,0,0.15)");
         glow.addColorStop(1, "rgba(255,80,0,0)");
+
         ctxCache.fillStyle = glow;
         ctxCache.beginPath(); ctxCache.arc(center, center, pr * 3, 0, Math.PI * 2); ctxCache.fill();
 
-        const sun = ctxCache.createRadialGradient(center - pr * 0.3, center - pr * 0.3, pr * 0.1, center, center, pr);
-        sun.addColorStop(0, "#fff7cc"); sun.addColorStop(0.3, "#ffcc33");
-        sun.addColorStop(0.7, "#ff8800"); sun.addColorStop(1, "#ff5500");
+        // Highlight chỉ nằm ở góc trái trên
+        const sun = ctxCache.createRadialGradient(
+          center - pr * 0.45,   // tâm highlight
+          center - pr * 0.45,
+          0,
+          center,
+          center,
+          pr
+        );
+
+        sun.addColorStop(0.00, "#ffffff");
+        sun.addColorStop(0.10, "#fff7dd");
+        sun.addColorStop(0.30, "#ffd45a");
+        sun.addColorStop(0.65, "#ff8c00");
+        sun.addColorStop(1.00, "#ff4a00");
+
         ctxCache.fillStyle = sun;
         ctxCache.beginPath(); ctxCache.arc(center, center, pr, 0, Math.PI * 2); ctxCache.fill();
       });
