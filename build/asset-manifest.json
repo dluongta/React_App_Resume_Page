@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/static/css/main.58049cfb.css",
-    "main.js": "/static/js/main.43b8803c.js",
+    "main.js": "/static/js/main.28873654.js",
     "static/media/Study-Pop-Playlist.mp3": "/static/media/Study-Pop-Playlist.33434f6dcb9030ae6313.mp3",
     "static/media/hexagon-main.png": "/static/media/hexagon-main.b33144f2b313d17bae7c.png",
     "static/media/hexagon.png": "/static/media/hexagon.7674a499c13fb226d1ed.png",
-    "static/media/main.png": "/static/media/main.cd8c52a7679a21caefd5.png",
+    "static/media/main.png": "/static/media/main.a2049e81f83045753cb8.png",
     "static/media/luen-1.jpg": "/static/media/luen-1.93167e549004b937e253.jpg",
     "static/media/luen.jpg": "/static/media/luen.93167e549004b937e253.jpg",
     "static/media/lumind_logo.mp4": "/static/media/lumind_logo.28c6f6bd3efdefcf8aae.mp4",
@@ -18,10 +18,10 @@
     "index.html": "/index.html",
     "static/media/caption_logo.vtt": "/static/media/caption_logo.75175c236c60850b1874.vtt",
     "main.58049cfb.css.map": "/static/css/main.58049cfb.css.map",
-    "main.43b8803c.js.map": "/static/js/main.43b8803c.js.map"
+    "main.28873654.js.map": "/static/js/main.28873654.js.map"
   },
   "entrypoints": [
     "static/css/main.58049cfb.css",
-    "static/js/main.43b8803c.js"
+    "static/js/main.28873654.js"
   ]
 }
