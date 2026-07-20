@@ -2500,7 +2500,7 @@ body:has(.galaxy-page) .container {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .galaxy-container-wrapper {
     width: 60% !important;
     max-width: 60% !important;
@@ -2847,7 +2847,7 @@ h3.animated-text {
 
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
 
   .cards-wrapper {
     margin-top: 40px !important;
@@ -3325,7 +3325,7 @@ body.sub-root,
   animation: scanWideLight 2.5s linear infinite; 
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .branding::after {
     width: 50%;
     filter: blur(60px); 
