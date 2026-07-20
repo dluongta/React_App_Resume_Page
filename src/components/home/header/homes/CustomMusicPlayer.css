@@ -305,6 +305,7 @@
   .progress-container .time-text:first-child {
     margin-right: 18px;
   }
+
   .progress-container .time-text:last-child {
     margin-left: 12px;
   }
@@ -375,6 +376,11 @@
     border-radius: 0;
     margin-top: 38px;
     margin-bottom: 38px;
+  }
+
+  .vinyl-record {
+    width: 100px;
+    height: 100px;
   }
 }
 
