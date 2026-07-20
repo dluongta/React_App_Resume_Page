@@ -9,55 +9,15 @@ import PauseIcon from '@mui/icons-material/Pause';
 import SettingsIcon from '@mui/icons-material/Settings';
 import RepeatIcon from '@mui/icons-material/Repeat';
 
-// const formatTime = (seconds) => {
-//   if (isNaN(seconds)) return '00:00:00';
-
-//   const hours = Math.floor(seconds / 3600);
-//   const minutes = Math.floor((seconds % 3600) / 60);
-//   const secs = Math.floor(seconds % 60);
-
-//   return `${hours.toString().padStart(2, '0')}:${minutes
-//     .toString()
-//     .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-// };
-
-// const formatTime = (seconds) => {
-//   if (isNaN(seconds)) return '00:00:00';
-//   const hours = Math.floor(seconds / 3600);
-//   const minutes = Math.floor((seconds % 3600) / 60);
-//   const secs = Math.floor(seconds % 60);
-//   return `${hours.toString().padStart(2, '0')}:${minutes
-//     .toString()
-//     .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-// };
-
-// const formatTime = (seconds) => {
-//   if (isNaN(seconds)) return '00:00';
-
-//   const hours = Math.floor(seconds / 3600);
-//   const minutes = Math.floor((seconds % 3600) / 60);
-//   const secs = Math.floor(seconds % 60);
-
-//   if (hours > 0) {
-//     return `${hours.toString().padStart(2, '0')}:${minutes
-//       .toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-//   }
-
-//   return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-// };
-
 const formatTime = (seconds) => {
   if (isNaN(seconds)) return '00:00:00';
-
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const secs = Math.floor(seconds % 60);
-
   return `${hours.toString().padStart(2, '0')}:${minutes
     .toString()
     .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 };
-
 
 const CustomVideoPlayer = ({ src, captionSrc }) => {
   const videoRef = useRef(null);
@@ -170,6 +130,19 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
       if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
     };
   }, [src, isLooping]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (settingsRef.current && !settingsRef.current.contains(event.target)) {
+        setShowSettings(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleInteraction = () => {
     setShowControls(true);
