@@ -3294,6 +3294,10 @@ body.sub-root,
   .quick-link {
     margin-bottom: 26px !important;
   }
+  .brand-title-1 {
+    padding-top: 19px;
+    padding-bottom: 6px;
+  }
 }
 
 .nav-links-sidebar a,
@@ -3341,15 +3345,6 @@ body.sub-root,
     );
   }
 }
-
-/* @keyframes scanWideLight {
-  0% {
-    left: -100%; 
-  }
-  100% {
-    left: 100%; 
-  }
-} */
  
  @keyframes scanWideLight {
   from {
@@ -3359,11 +3354,6 @@ body.sub-root,
     transform: translateX(320%);
   }
 }
-
-/* .home-right {
-    margin-top: 40px;
-    padding-top: 40px;
-} */
 
 .container.flex {
     display: flex;

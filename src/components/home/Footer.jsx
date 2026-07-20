@@ -40,7 +40,7 @@ export const Footer = () => {
       <div className="container grid1">
         <div className="box">
           <img width="95" height="60" src={logo_brand} alt='' />
-          <p>DLUONGTA - TSCEND</p>
+          <p className="brand-title-1">DLUONGTA - TSCEND</p>
           <div className="socialIcon">
             <Link className='white' to={{ pathname: 'https://www.facebook.com/dluongta' }} target="_blank"><i className='fab fa-facebook-f'></i></Link>
             <Link className='white' to={{ pathname: 'https://www.instagram.com/dluongta/' }} target="_blank"> <i className='fab fa-instagram '></i></Link>
@@ -77,7 +77,7 @@ export const Footer = () => {
         </div>
         <div className="box">
           <h2 className='margin-2'>Get In Touch</h2>
-          <p>"DLUONGTA TSCEND"</p>
+          <p className="brand-title-2">"DLUONGTA TSCEND"</p>
           <div className="icon"><i className="fa fa-map-marker-alt"></i><span>Location: Hanoi, Vietnam</span></div>
           <div className="icon"><i className="fa fa-phone"></i><a href="tel:+84383402036">Phone: +84 383402036</a></div>
           <div className="icon"><i className="fa fa-envelope"></i><a href="mailto:dluongta@gmail.com">Email: dluongta@gmail.com</a></div>
