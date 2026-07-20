@@ -63,4 +63,8 @@
   .revealText {
     gap: 0.5rem;
   }
+
+  .scrollTextSection {
+    height: 150vh;
+  }
 }

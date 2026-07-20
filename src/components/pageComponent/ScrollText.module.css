@@ -61,4 +61,8 @@
   .stickyWrapper {
     padding-top: 0px !important;
   }
+
+  .scrollTextSection {
+    height: 200vh;
+  }
 }
