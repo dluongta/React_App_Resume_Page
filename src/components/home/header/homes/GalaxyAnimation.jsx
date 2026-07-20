@@ -1,7 +1,7 @@
 // import React, { useEffect, useRef, useState } from 'react';
 
-// const GalaxyAnimation = ({ 
-//   imageUrls = ["luen_logo.png", "hexagon-main.png", "luen-1.jpg"] 
+// const GalaxyAnimation = ({
+//   imageUrls = ["luen_logo.png", "hexagon-main.png", "luen-1.jpg"]
 // }) => {
 //   const canvasRef = useRef(null);
 //   const containerRef = useRef(null);
@@ -59,19 +59,34 @@
 //       caches.planet = createCacheCanvas(1000, (ctxCache, center) => {
 //         const pr = 60;
 //         ctxCache.globalCompositeOperation = "lighter";
-//         const glow = ctxCache.createRadialGradient(center, center, pr * 0.2, center, center, pr * 1.1);
-//         glow.addColorStop(0, "rgba(255,255,220,0.9)");
-//         glow.addColorStop(0.2, "rgba(255,180,0,0.8)");
-//         glow.addColorStop(0.5, "rgba(255,120,0,0.35)");
+        
+//         const glow = ctxCache.createRadialGradient(
+//           center, center, pr * 0.4, center, center, pr * 3
+//         );
+//         glow.addColorStop(0, "rgba(255,160,0,0.55)");
+//         glow.addColorStop(0.3, "rgba(255,120,0,0.35)");
+//         glow.addColorStop(0.7, "rgba(255,80,0,0.15)");
 //         glow.addColorStop(1, "rgba(255,80,0,0)");
+        
 //         ctxCache.fillStyle = glow;
-//         ctxCache.beginPath(); ctxCache.arc(center, center, pr * 3, 0, Math.PI * 2); ctxCache.fill();
+//         ctxCache.beginPath(); 
+//         ctxCache.arc(center, center, pr * 3, 0, Math.PI * 2); 
+//         ctxCache.fill();
 
-//         const sun = ctxCache.createRadialGradient(center - pr*0.3, center - pr*0.3, pr*0.1, center, center, pr);
-//         sun.addColorStop(0, "#fff7cc"); sun.addColorStop(0.3, "#ffcc33");
-//         sun.addColorStop(0.7, "#ff8800"); sun.addColorStop(1, "#ff5500");
+//         // Highlight chỉ nằm ở góc trái trên
+//         const sun = ctxCache.createRadialGradient(
+//           center - pr * 0.45, center - pr * 0.45, 0, center, center, pr
+//         );
+//         sun.addColorStop(0.00, "#ffffff");
+//         sun.addColorStop(0.10, "#fff7dd");
+//         sun.addColorStop(0.30, "#ffd45a");
+//         sun.addColorStop(0.65, "#ff8c00");
+//         sun.addColorStop(1.00, "#ff4a00");
+
 //         ctxCache.fillStyle = sun;
-//         ctxCache.beginPath(); ctxCache.arc(center, center, pr, 0, Math.PI * 2); ctxCache.fill();
+//         ctxCache.beginPath(); 
+//         ctxCache.arc(center, center, pr, 0, Math.PI * 2); 
+//         ctxCache.fill();
 //       });
 
 //       const buildAura = (colorRGB) => createCacheCanvas(400, (ctxCache, center) => {
@@ -82,11 +97,11 @@
 //         g.addColorStop(0.8, `rgba(${colorRGB}, 0.15)`);
 //         g.addColorStop(1, `rgba(${colorRGB}, 0)`);
 //         ctxCache.fillStyle = g;
-//         ctxCache.beginPath(); ctxCache.arc(center, center, center, 0, Math.PI*2); ctxCache.fill();
+//         ctxCache.beginPath(); ctxCache.arc(center, center, center, 0, Math.PI * 2); ctxCache.fill();
 //       });
 
 //       caches.auraOrange = buildAura("255, 140, 0");
-//       caches.auraPurple = buildAura("255, 100, 255"); 
+//       caches.auraPurple = buildAura("255, 100, 255");
 
 //       RINGS.forEach(ring => {
 //         const uniqueChars = [...new Set(ring.text)];
@@ -111,7 +126,7 @@
 //     let isAppStarted = false;
 
 //     const startUniverse = () => {
-//       if (isAppStarted) return; 
+//       if (isAppStarted) return;
 //       isAppStarted = true;
 
 //       initCaches();
@@ -148,13 +163,13 @@
 //               const offCtx = offCanvas.getContext('2d');
 //               offCtx.filter = "contrast(1.15) saturate(1.1)";
 //               offCtx.drawImage(img, 0, 0);
-//               resolve(offCanvas); 
+//               resolve(offCanvas);
 //             } catch (e) {
-//               resolve(img); 
+//               resolve(img);
 //             }
 //           };
 //           img.onerror = () => resolve(null);
-//           img.src = src; 
+//           img.src = src;
 //         });
 //       });
 
@@ -163,7 +178,6 @@
 //         startUniverse();
 //       });
 
-//       // Fallback nếu ảnh load quá lâu
 //       setTimeout(() => startUniverse(), 3000);
 //     };
 
@@ -186,15 +200,22 @@
 
 //     window.addEventListener("resize", resize);
 
-//     // ===== BỔ SUNG SỰ KIỆN TƯƠNG TÁC (TOUCH & MOUSE) =====
+//     // ==========================================
+//     // BỔ SUNG SỰ KIỆN TƯƠNG TÁC (CHỈNH GÓC, ZOOM)
+//     // ==========================================
 //     let dragging = false, lastX = 0, lastY = 0, initialPinchDist = null, initialZoom = state.current.zoom;
 
 //     const onTouchStart = (e) => {
 //       if (e.touches.length === 1) { 
-//         dragging = true; lastX = e.touches[0].clientX; lastY = e.touches[0].clientY; 
+//         dragging = true; 
+//         lastX = e.touches[0].clientX; 
+//         lastY = e.touches[0].clientY; 
 //       } else if (e.touches.length === 2) { 
 //         dragging = false; 
-//         initialPinchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); 
+//         initialPinchDist = Math.hypot(
+//           e.touches[0].clientX - e.touches[1].clientX, 
+//           e.touches[0].clientY - e.touches[1].clientY
+//         ); 
 //         initialZoom = state.current.zoom; 
 //       }
 //     };
@@ -204,27 +225,43 @@
 //         e.preventDefault();
 //         state.current.rotY -= (e.touches[0].clientX - lastX) * 0.005; 
 //         state.current.rotX -= (e.touches[0].clientY - lastY) * 0.005;
-//         lastX = e.touches[0].clientX; lastY = e.touches[0].clientY;
+//         lastX = e.touches[0].clientX; 
+//         lastY = e.touches[0].clientY;
 //       } else if (e.touches.length === 2 && initialPinchDist) {
 //         e.preventDefault();
-//         const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+//         const dist = Math.hypot(
+//           e.touches[0].clientX - e.touches[1].clientX, 
+//           e.touches[0].clientY - e.touches[1].clientY
+//         );
 //         const scale = dist / initialPinchDist;
 //         state.current.zoom = Math.max(0.1, Math.min(3.0, initialZoom * scale));
 //       }
 //     };
 
-//     const onTouchEnd = () => { dragging = false; initialPinchDist = null; };
+//     const onTouchEnd = () => { 
+//       dragging = false; 
+//       initialPinchDist = null; 
+//     };
 
-//     const onMouseDown = (e) => { dragging = true; lastX = e.clientX; lastY = e.clientY; };
+//     const onMouseDown = (e) => { 
+//       dragging = true; 
+//       lastX = e.clientX; 
+//       lastY = e.clientY; 
+//       canvas.style.cursor = 'grabbing';
+//     };
 
 //     const onMouseMove = (e) => {
 //       if (!dragging) return;
 //       state.current.rotY -= (e.clientX - lastX) * 0.005; 
 //       state.current.rotX -= (e.clientY - lastY) * 0.005;
-//       lastX = e.clientX; lastY = e.clientY;
+//       lastX = e.clientX; 
+//       lastY = e.clientY;
 //     };
 
-//     const onMouseUp = () => dragging = false;
+//     const onMouseUp = () => {
+//       dragging = false;
+//       canvas.style.cursor = 'grab';
+//     };
 
 //     const onWheel = (e) => { 
 //       e.preventDefault();
@@ -232,14 +269,16 @@
 //       state.current.zoom = Math.max(0.1, Math.min(3.0, state.current.zoom)); 
 //     };
 
+//     // Đăng ký event
 //     canvas.addEventListener("touchstart", onTouchStart, { passive: false });
 //     canvas.addEventListener("touchmove", onTouchMove, { passive: false });
 //     canvas.addEventListener("touchend", onTouchEnd);
 //     canvas.addEventListener("mousedown", onMouseDown);
-//     window.addEventListener("mousemove", onMouseMove);
+//     window.addEventListener("mousemove", onMouseMove); // Gắn vào window để kéo mượt hơn
 //     window.addEventListener("mouseup", onMouseUp);
 //     canvas.addEventListener("wheel", onWheel, { passive: false });
-//     // =====================================================
+
+//     // ==========================================
 
 //     const MAX_RENDER = STAR_COUNT + PARTICLE_COUNT + 300;
 //     const renderPool = Array.from({ length: MAX_RENDER }, () => ({
@@ -251,19 +290,22 @@
 
 //     const animate = () => {
 //       let time = performance.now() * 0.0004;
-//       ctx.fillStyle = "#000"; ctx.fillRect(0, 0, w, h); 
+//       ctx.fillStyle = "#000"; ctx.fillRect(0, 0, w, h);
 
 //       const st = state.current;
+      
+//       // Auto-rotation nhẹ nhàng nếu người dùng không tương tác (tuỳ chọn - có thể bỏ comment nếu muốn)
+//       // if (!dragging) st.rotY += 0.0005; 
 
 //       let cosRX = Math.cos(st.rotX), sinRX = Math.sin(st.rotX);
 //       let cosRY = Math.cos(st.rotY), sinRY = Math.sin(st.rotY);
 //       let rCount = 0;
 
 //       const auraData = [
-//         { cache: caches.auraOrange, tx: -1200 + Math.sin(time*0.5)*150, ty: 300 + Math.cos(time*0.3)*150, tz: -300 + Math.sin(time*0.5)*100, radius: 3200 },
-//         { cache: caches.auraPurple, tx: 1200 + Math.sin(time*0.5)*150, ty: 300 + Math.cos(time*0.2)*150, tz: -300 + Math.sin(time*0.5)*100, radius: 3200 }
+//         { cache: caches.auraOrange, tx: -1200 + Math.sin(time * 0.5) * 150, ty: 300 + Math.cos(time * 0.3) * 150, tz: -300 + Math.sin(time * 0.5) * 100, radius: 3200 },
+//         { cache: caches.auraPurple, tx: 1200 + Math.sin(time * 0.5) * 150, ty: 300 + Math.cos(time * 0.2) * 150, tz: -300 + Math.sin(time * 0.5) * 100, radius: 3200 }
 //       ];
-//       for(let a of auraData) {
+//       for (let a of auraData) {
 //         let y1 = a.ty * cosRX - a.tz * sinRX, z1 = a.ty * sinRX + a.tz * cosRX;
 //         let r = renderPool[rCount++];
 //         r.type = 5; r.x = a.tx * cosRY + z1 * sinRY; r.y = y1; r.z = -a.tx * sinRY + z1 * cosRY;
@@ -278,7 +320,7 @@
 //         let repeatCount = Math.floor(ring.radius / 15);
 //         let fullText = ring.text.repeat(repeatCount);
 //         for (let j = 0; j < fullText.length; j++) {
-//           let cA = (time * ring.speed) + (j * (Math.PI * 2 / fullText.length));                    
+//           let cA = (time * ring.speed) + (j * (Math.PI * 2 / fullText.length));
 //           let tx = (ring.tilt === "vertical") ? 0 : Math.cos(cA) * ring.radius;
 //           let tz = Math.sin(cA) * ring.radius;
 //           let ty = (ring.tilt === "vertical") ? Math.cos(cA) * ring.radius : tx * ring.tilt;
@@ -324,49 +366,49 @@
 //         let py = cy + item.y * scale;
 
 //         if (item.type === 1) {
-//           if(currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
+//           if (currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
 //           let sSize = item.size * scale;
 //           ctx.fillStyle = "#ffffff";
 //           ctx.globalAlpha = Math.min(1, Math.max(0.1, (item.z + 3000) / 5000));
-//           ctx.fillRect(px - sSize/2, py - sSize/2, sSize, sSize);
-//         } 
+//           ctx.fillRect(px - sSize / 2, py - sSize / 2, sSize, sSize);
+//         }
 //         else if (item.type === 2) {
-//           if(currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
+//           if (currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
 //           if (scale > IMAGE_SHOW_SCALE) {
 //             let img = images[item.imgIdx];
 //             if (img && img.width > 0) {
 //               let isize = item.size * scale * 5;
 //               isize = Math.min(isize, 1200);
 //               ctx.globalAlpha = 1;
-//               ctx.drawImage(img, px - isize/2, py - isize/2, isize, isize);
+//               ctx.drawImage(img, px - isize / 2, py - isize / 2, isize, isize);
 //             }
 //           } else {
 //             let sq = item.size * scale;
-//             ctx.fillStyle = "#FF3366"; 
+//             ctx.fillStyle = "#FF3366";
 //             ctx.globalAlpha = Math.min(1, (item.z + 2000) / 3000);
-//             ctx.fillRect(px - sq/2, py - sq/2, sq, sq);
+//             ctx.fillRect(px - sq / 2, py - sq / 2, sq, sq);
 //           }
-//         } 
+//         }
 //         else if (item.type === 3 && caches.planet) {
-//           if(currentBlend !== "lighter") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
+//           if (currentBlend !== "lighter") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
 //           ctx.globalAlpha = 1;
-//           let pr = PLANET_RADIUS * scale * 6; 
+//           let pr = PLANET_RADIUS * scale * 6;
 //           ctx.drawImage(caches.planet, px - pr, py - pr, pr * 2, pr * 2);
 //         }
 //         else if (item.type === 4) {
-//           if(currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
+//           if (currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
 //           ctx.globalAlpha = 1;
 //           let txtImg = caches.text[item.charKey];
 //           if (txtImg) {
-//             let ts = 30 * scale; 
+//             let ts = 30 * scale;
 //             ctx.drawImage(txtImg, px - ts, py - ts, ts * 2, ts * 2);
 //           }
 //         }
 //         else if (item.type === 5 && item.cache) {
-//           if(currentBlend !== "lighter") { 
+//           if (currentBlend !== "lighter") {
 //             ctx.globalCompositeOperation = "source-over";
-//             ctx.globalAlpha = 0.3; 
-//             currentBlend = "lighter"; 
+//             ctx.globalAlpha = 0.3;
+//             currentBlend = "lighter";
 //           }
 //           ctx.globalAlpha = 1;
 //           let gradRadius = item.size * scale;
@@ -376,32 +418,31 @@
 //         }
 //       }
 
-//       ctx.globalAlpha = 1; 
+//       ctx.globalAlpha = 1;
 
-//       // VẼ SAO BĂNG Ở CUỐI CÙNG ĐỂ KHÔNG BỊ ÁM MÀU
 //       const ss = st.shootingStar;
 //       if (!ss.active && Math.random() < 0.01) {
 //         ss.active = true; ss.x = -400; ss.y = rand(50, h * 0.7);
-//         ss.len = rand(150, 300); ss.speed = rand(10, 20); ss.opacity = 1;
+//         ss.len = rand(250, 400); ss.speed = rand(25, 40); ss.opacity = 1;
 //       } else if (ss.active) {
 //         ss.x += ss.speed; ss.opacity -= 0.003;
 //         if (ss.x > w + 400 || ss.opacity <= 0) ss.active = false;
 
-//         ctx.save(); 
-//         ctx.globalCompositeOperation = "source-over"; 
+//         ctx.save();
+//         ctx.globalCompositeOperation = "source-over";
 
 //         const grad = ctx.createLinearGradient(ss.x, ss.y, ss.x - ss.len, ss.y);
 //         grad.addColorStop(0, `rgba(255, 255, 255, ${ss.opacity})`);
 //         grad.addColorStop(0.1, `rgba(255, 255, 255, ${ss.opacity * 0.9})`);
 //         grad.addColorStop(1, "rgba(255, 255, 255, 0)");
 
-//         ctx.strokeStyle = grad; 
+//         ctx.strokeStyle = grad;
 //         ctx.lineWidth = 3; 
 //         ctx.lineCap = "round"; 
 
 //         ctx.beginPath();
 //         ctx.moveTo(ss.x, ss.y); ctx.lineTo(ss.x - ss.len, ss.y);
-//         ctx.stroke(); 
+//         ctx.stroke();
 
 //         ctx.fillStyle = `rgba(255, 255, 255, ${ss.opacity})`;
 //         ctx.beginPath();
@@ -411,12 +452,13 @@
 //         ctx.restore();
 //       }
 
+//       ctx.globalAlpha = 1;
 //       requestId = requestAnimationFrame(animate);
 //     };
 
 //     preloadImages();
 
-//     // Dọn dẹp event listener khi component unmount
+//     // Dọn dẹp listener khi unmount component
 //     return () => {
 //       cancelAnimationFrame(requestId);
 //       window.removeEventListener("resize", resize);
@@ -453,18 +495,15 @@
 //       )}
 
 //       {/* Canvas */}
-//       <canvas 
-//         ref={canvasRef} 
-//         style={{ 
-//           display: 'block', 
-//           width: '100%', 
+//       <canvas
+//         ref={canvasRef}
+//         style={{
+//           display: 'block',
+//           width: '100%',
 //           height: '100%',
 //           cursor: 'grab',
-//           touchAction: 'none' // Cần thiết để tương tác cảm ứng trên di động
-//         }} 
-//         onMouseDown={(e) => e.target.style.cursor = 'grabbing'}
-//         onMouseUp={(e) => e.target.style.cursor = 'grab'}
-//         onMouseLeave={(e) => e.target.style.cursor = 'grab'}
+//           touchAction: 'none' // Vô hiệu hóa hành vi cuộn trang khi vuốt trên điện thoại
+//         }}
 //       />
 
 //       <style>
@@ -476,12 +515,15 @@
 //             background-color: #000;
 //             margin: 0;
 //             padding: 0;
-//             overflow: hidden; /* Cần thiết để tương tác cuộn/kéo không bị lỗi thanh cuộn */
+//             margin-bottom: 20px;
+//             margin-top: 12px;
+//             padding-bottom: 20px;
+//             overflow: hidden; /* Tránh tràn/scroll khi thao tác */
 //           }
-
+          
 //           @media (max-width: 768px) {
 //             .galaxy-container {
-//               height: 60vh; 
+//               height: 60vh;
 //             }
 //           }
 
