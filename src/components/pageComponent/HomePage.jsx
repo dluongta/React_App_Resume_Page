@@ -8,10 +8,7 @@ import { Service } from '../home/services/Service';
 import { Wrapper } from '../home/Wrapper';
 import { Link } from 'react-router-dom';
 import hexagon from '../../assets/hexagon.png';
-import { ScrollRevealText } from './ScrollRevealText';
-import ScrollHero from './ScrollHero';
-import { ScrollText } from './ScrollText';
-import SplitFlapLog from './SplitFlapLog';
+import { SplitFlapLog } from './SplitFlapLog';
 import { CounterSection } from './CounterSection';
 
 export const HomePage = () => {
@@ -41,9 +38,6 @@ export const HomePage = () => {
       <Branding className="reveal" />
       <About className="reveal" />
       <Wrapper className="reveal" />
-      {/* <ScrollRevealText /> */}
-      {/* <ScrollText /> */}
-      {/* <ScrollHero/> */}
       <Skill className="reveal" />
       <Service className="reveal" />
       <CounterSection className="reveal" />
