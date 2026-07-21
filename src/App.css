@@ -1068,7 +1068,7 @@ iframe {
 
 .carousel_carousel_container {
   overflow: hidden;
-  height: 128px;
+  height: 100px;
   position: relative;
   color: #205aef;
 }
@@ -1460,7 +1460,7 @@ iframe {
 }
 
 .carousel_carousel_container {
-  height: 120px;
+  height: 100px;
   overflow: hidden;
   position: relative;
 }

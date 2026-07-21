@@ -8,7 +8,7 @@ import { Service } from '../home/services/Service';
 import { Wrapper } from '../home/Wrapper';
 import { Link } from 'react-router-dom';
 import hexagon from '../../assets/hexagon.png';
-import { SplitFlapLog } from './SplitFlapLog';
+import SplitFlapLog from './SplitFlapLog';
 import { CounterSection } from './CounterSection';
 
 export const HomePage = () => {
