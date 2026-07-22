@@ -59,28 +59,29 @@
 //         const pr = 60;
 //         ctxCache.globalCompositeOperation = "lighter";
         
+//         // Halo chỉ màu cam, KHÔNG có màu trắng ở giữa (từ code ánh sáng)
 //         const glow = ctxCache.createRadialGradient(
-//           center, center, pr * 0.4, center, center, pr * 3
+//           center, center, pr * 0.45, center, center, pr * 3
 //         );
-//         glow.addColorStop(0, "rgba(255,160,0,0.55)");
-//         glow.addColorStop(0.3, "rgba(255,120,0,0.35)");
-//         glow.addColorStop(0.7, "rgba(255,80,0,0.15)");
-//         glow.addColorStop(1, "rgba(255,80,0,0)");
+//         glow.addColorStop(0.0, "rgba(255,170,0,0.55)");
+//         glow.addColorStop(0.35, "rgba(255,120,0,0.30)");
+//         glow.addColorStop(0.75, "rgba(255,80,0,0.12)");
+//         glow.addColorStop(1.0, "rgba(255,80,0,0)");
         
 //         ctxCache.fillStyle = glow;
 //         ctxCache.beginPath(); 
 //         ctxCache.arc(center, center, pr * 3, 0, Math.PI * 2); 
 //         ctxCache.fill();
 
-//         // Highlight chỉ nằm ở góc trái trên
+//         // Highlight lệch sang trái trên
 //         const sun = ctxCache.createRadialGradient(
 //           center - pr * 0.45, center - pr * 0.45, 0, center, center, pr
 //         );
 //         sun.addColorStop(0.00, "#ffffff");
 //         sun.addColorStop(0.10, "#fff7dd");
-//         sun.addColorStop(0.30, "#ffd45a");
-//         sun.addColorStop(0.65, "#ff8c00");
-//         sun.addColorStop(1.00, "#ff4a00");
+//         sun.addColorStop(0.25, "#ffd65a");
+//         sun.addColorStop(0.60, "#ff9800");
+//         sun.addColorStop(1.00, "#ff5500");
 
 //         ctxCache.fillStyle = sun;
 //         ctxCache.beginPath(); 
@@ -184,6 +185,7 @@
 //       if (!containerRef.current) return;
 //       const dpr = window.devicePixelRatio || 1;
 
+//       // Render vừa với DOM container của bạn
 //       w = containerRef.current.clientWidth;
 //       h = containerRef.current.clientHeight;
 
@@ -290,15 +292,37 @@
 
 //       const st = state.current;
       
-//       // if (!dragging) st.rotY += 0.0005; 
+//       const ss = st.shootingStar;
+//       // Vẽ Shooting Star (Logic ánh sáng từ code 2)
+//       if (!ss.active && Math.random() < 0.01) {
+//         ss.active = true; ss.x = -400; ss.y = rand(50, h * 0.7);
+//         ss.len = rand(250, 400); ss.speed = rand(25, 40); ss.opacity = 1;
+//       } else if (ss.active) {
+//         ss.x += ss.speed; ss.opacity -= 0.003;
+//         if (ss.x > w + 400 || ss.opacity <= 0) ss.active = false;
+
+//         ctx.save();
+//         ctx.globalCompositeOperation = "lighter";
+//         const grad = ctx.createLinearGradient(ss.x, ss.y, ss.x - ss.len, ss.y);
+//         grad.addColorStop(0, `rgba(255, 255, 255, ${ss.opacity})`);
+//         grad.addColorStop(1, "rgba(255, 255, 255, 0)");
+        
+//         ctx.strokeStyle = grad;
+//         ctx.lineWidth = 2; 
+//         ctx.beginPath();
+//         ctx.moveTo(ss.x, ss.y); ctx.lineTo(ss.x - ss.len, ss.y);
+//         ctx.stroke();
+//         ctx.restore();
+//       }
 
 //       let cosRX = Math.cos(st.rotX), sinRX = Math.sin(st.rotX);
 //       let cosRY = Math.cos(st.rotY), sinRY = Math.sin(st.rotY);
 //       let rCount = 0;
 
+//       // Aura lighting rực rỡ (từ code ánh sáng: radius 2500)
 //       const auraData = [
-//         { cache: caches.auraOrange, tx: -1200 + Math.sin(time * 0.5) * 150, ty: 300 + Math.cos(time * 0.3) * 150, tz: -300 + Math.sin(time * 0.5) * 100, radius: 3200 },
-//         { cache: caches.auraPurple, tx: 1200 + Math.sin(time * 0.5) * 150, ty: 300 + Math.cos(time * 0.2) * 150, tz: -300 + Math.sin(time * 0.5) * 100, radius: 3200 }
+//         { cache: caches.auraOrange, tx: -1200 + Math.sin(time * 0.5) * 150, ty: 300 + Math.cos(time * 0.3) * 150, tz: -300 + Math.sin(time * 0.5) * 100, radius: 2500 },
+//         { cache: caches.auraPurple, tx: 1200 + Math.sin(time * 0.5) * 150, ty: 300 + Math.cos(time * 0.3) * 150, tz: -300 + Math.sin(time * 0.5) * 100, radius: 2500 }
 //       ];
 //       for (let a of auraData) {
 //         let y1 = a.ty * cosRX - a.tz * sinRX, z1 = a.ty * sinRX + a.tz * cosRX;
@@ -360,6 +384,7 @@
 //         let px = cx + item.x * scale;
 //         let py = cy + item.y * scale;
 
+//         // COPY 100% BLEND LOGIC TỪ FILE HTML GỐC:
 //         if (item.type === 1) {
 //           if (currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
 //           let sSize = item.size * scale;
@@ -368,7 +393,7 @@
 //           ctx.fillRect(px - sSize / 2, py - sSize / 2, sSize, sSize);
 //         }
 //         else if (item.type === 2) {
-//           if (currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
+//           if (currentBlend !== "source-over") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
 //           if (scale > IMAGE_SHOW_SCALE) {
 //             let img = images[item.imgIdx];
 //             if (img && img.width > 0) {
@@ -391,7 +416,7 @@
 //           ctx.drawImage(caches.planet, px - pr, py - pr, pr * 2, pr * 2);
 //         }
 //         else if (item.type === 4) {
-//           if (currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
+//           if (currentBlend !== "source-over") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
 //           ctx.globalAlpha = 1;
 //           let txtImg = caches.text[item.charKey];
 //           if (txtImg) {
@@ -400,51 +425,13 @@
 //           }
 //         }
 //         else if (item.type === 5 && item.cache) {
-//           if (currentBlend !== "lighter") {
-//             ctx.globalCompositeOperation = "source-over";
-//             ctx.globalAlpha = 0.3;
-//             currentBlend = "lighter";
-//           }
+//           if (currentBlend !== "lighter") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
 //           ctx.globalAlpha = 1;
 //           let gradRadius = item.size * scale;
 //           if (gradRadius > 10) {
 //             ctx.drawImage(item.cache, px - gradRadius, py - gradRadius, gradRadius * 2, gradRadius * 2);
 //           }
 //         }
-//       }
-
-//       ctx.globalAlpha = 1;
-
-//       const ss = st.shootingStar;
-//       if (!ss.active && Math.random() < 0.01) {
-//         ss.active = true; ss.x = -400; ss.y = rand(50, h * 0.7);
-//         ss.len = rand(250, 400); ss.speed = rand(25, 40); ss.opacity = 1;
-//       } else if (ss.active) {
-//         ss.x += ss.speed; ss.opacity -= 0.003;
-//         if (ss.x > w + 400 || ss.opacity <= 0) ss.active = false;
-
-//         ctx.save();
-//         ctx.globalCompositeOperation = "source-over";
-
-//         const grad = ctx.createLinearGradient(ss.x, ss.y, ss.x - ss.len, ss.y);
-//         grad.addColorStop(0, `rgba(255, 255, 255, ${ss.opacity})`);
-//         grad.addColorStop(0.1, `rgba(255, 255, 255, ${ss.opacity * 0.9})`);
-//         grad.addColorStop(1, "rgba(255, 255, 255, 0)");
-
-//         ctx.strokeStyle = grad;
-//         ctx.lineWidth = 3; 
-//         ctx.lineCap = "round"; 
-
-//         ctx.beginPath();
-//         ctx.moveTo(ss.x, ss.y); ctx.lineTo(ss.x - ss.len, ss.y);
-//         ctx.stroke();
-
-//         ctx.fillStyle = `rgba(255, 255, 255, ${ss.opacity})`;
-//         ctx.beginPath();
-//         ctx.arc(ss.x, ss.y, 2, 0, Math.PI * 2);
-//         ctx.fill();
-
-//         ctx.restore();
 //       }
 
 //       ctx.globalAlpha = 1;
@@ -487,7 +474,6 @@
 //         </div>
 //       )}
 
-//       {/* Canvas */}
 //       <canvas
 //         ref={canvasRef}
 //         style={{
@@ -540,7 +526,6 @@ const GalaxyAnimation = ({
   const [isLoading, setIsLoading] = useState(true);
   const [fadeLoading, setFadeLoading] = useState(false);
 
-  // Lưu trữ các trạng thái không cần re-render
   const state = useRef({
     zoom: typeof window !== 'undefined' && window.innerWidth < 768 ? 0.30 : 0.35,
     rotX: 1.8,
@@ -590,41 +575,33 @@ const GalaxyAnimation = ({
       caches.planet = createCacheCanvas(1000, (ctxCache, center) => {
         const pr = 60;
         ctxCache.globalCompositeOperation = "lighter";
+        
         const glow = ctxCache.createRadialGradient(
-          center,
-          center,
-          pr * 0.4,
-          center,
-          center,
-          pr * 3
+          center, center, pr * 0.45, center, center, pr * 3
         );
-
-        glow.addColorStop(0, "rgba(255,160,0,0.55)");
-        glow.addColorStop(0.3, "rgba(255,120,0,0.35)");
-        glow.addColorStop(0.7, "rgba(255,80,0,0.15)");
-        glow.addColorStop(1, "rgba(255,80,0,0)");
-
+        glow.addColorStop(0.0, "rgba(255,170,0,0.55)");
+        glow.addColorStop(0.35, "rgba(255,120,0,0.30)");
+        glow.addColorStop(0.75, "rgba(255,80,0,0.12)");
+        glow.addColorStop(1.0, "rgba(255,80,0,0)");
+        
         ctxCache.fillStyle = glow;
-        ctxCache.beginPath(); ctxCache.arc(center, center, pr * 3, 0, Math.PI * 2); ctxCache.fill();
+        ctxCache.beginPath(); 
+        ctxCache.arc(center, center, pr * 3, 0, Math.PI * 2); 
+        ctxCache.fill();
 
-        // Highlight chỉ nằm ở góc trái trên
         const sun = ctxCache.createRadialGradient(
-          center - pr * 0.45,   // tâm highlight
-          center - pr * 0.45,
-          0,
-          center,
-          center,
-          pr
+          center - pr * 0.45, center - pr * 0.45, 0, center, center, pr
         );
-
         sun.addColorStop(0.00, "#ffffff");
         sun.addColorStop(0.10, "#fff7dd");
-        sun.addColorStop(0.30, "#ffd45a");
-        sun.addColorStop(0.65, "#ff8c00");
-        sun.addColorStop(1.00, "#ff4a00");
+        sun.addColorStop(0.25, "#ffd65a");
+        sun.addColorStop(0.60, "#ff9800");
+        sun.addColorStop(1.00, "#ff5500");
 
         ctxCache.fillStyle = sun;
-        ctxCache.beginPath(); ctxCache.arc(center, center, pr, 0, Math.PI * 2); ctxCache.fill();
+        ctxCache.beginPath(); 
+        ctxCache.arc(center, center, pr, 0, Math.PI * 2); 
+        ctxCache.fill();
       });
 
       const buildAura = (colorRGB) => createCacheCanvas(400, (ctxCache, center) => {
@@ -716,7 +693,6 @@ const GalaxyAnimation = ({
         startUniverse();
       });
 
-      // Fallback nếu ảnh load quá lâu
       setTimeout(() => startUniverse(), 3000);
     };
 
@@ -752,18 +728,38 @@ const GalaxyAnimation = ({
       ctx.fillStyle = "#000"; ctx.fillRect(0, 0, w, h);
 
       const st = state.current;
+      
+      // st.rotY += 0.0008; 
 
-      // st.rotY += 0.001; 
+      const ss = st.shootingStar;
+      if (!ss.active && Math.random() < 0.01) {
+        ss.active = true; ss.x = -400; ss.y = rand(50, h * 0.7);
+        ss.len = rand(250, 400); ss.speed = rand(25, 40); ss.opacity = 1;
+      } else if (ss.active) {
+        ss.x += ss.speed; ss.opacity -= 0.003;
+        if (ss.x > w + 400 || ss.opacity <= 0) ss.active = false;
 
-
+        ctx.save();
+        ctx.globalCompositeOperation = "lighter";
+        const grad = ctx.createLinearGradient(ss.x, ss.y, ss.x - ss.len, ss.y);
+        grad.addColorStop(0, `rgba(255, 255, 255, ${ss.opacity})`);
+        grad.addColorStop(1, "rgba(255, 255, 255, 0)");
+        
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 2; 
+        ctx.beginPath();
+        ctx.moveTo(ss.x, ss.y); ctx.lineTo(ss.x - ss.len, ss.y);
+        ctx.stroke();
+        ctx.restore();
+      }
 
       let cosRX = Math.cos(st.rotX), sinRX = Math.sin(st.rotX);
       let cosRY = Math.cos(st.rotY), sinRY = Math.sin(st.rotY);
       let rCount = 0;
 
       const auraData = [
-        { cache: caches.auraOrange, tx: -1200 + Math.sin(time * 0.5) * 150, ty: 300 + Math.cos(time * 0.3) * 150, tz: -300 + Math.sin(time * 0.5) * 100, radius: 3200 },
-        { cache: caches.auraPurple, tx: 1200 + Math.sin(time * 0.5) * 150, ty: 300 + Math.cos(time * 0.2) * 150, tz: -300 + Math.sin(time * 0.5) * 100, radius: 3200 }
+        { cache: caches.auraOrange, tx: -1200 + Math.sin(time * 0.5) * 150, ty: 300 + Math.cos(time * 0.3) * 150, tz: -300 + Math.sin(time * 0.5) * 100, radius: 2500 },
+        { cache: caches.auraPurple, tx: 1200 + Math.sin(time * 0.5) * 150, ty: 300 + Math.cos(time * 0.3) * 150, tz: -300 + Math.sin(time * 0.5) * 100, radius: 2500 }
       ];
       for (let a of auraData) {
         let y1 = a.ty * cosRX - a.tz * sinRX, z1 = a.ty * sinRX + a.tz * cosRX;
@@ -865,54 +861,13 @@ const GalaxyAnimation = ({
           }
         }
         else if (item.type === 5 && item.cache) {
-          if (currentBlend !== "lighter") {
-            ctx.globalCompositeOperation = "source-over";
-            ctx.globalAlpha = 0.3;
-            currentBlend = "lighter";
-          }
+          if (currentBlend !== "lighter") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
           ctx.globalAlpha = 1;
           let gradRadius = item.size * scale;
           if (gradRadius > 10) {
             ctx.drawImage(item.cache, px - gradRadius, py - gradRadius, gradRadius * 2, gradRadius * 2);
           }
         }
-      }
-
-      ctx.globalAlpha = 1;
-
-      const ss = st.shootingStar;
-      if (!ss.active && Math.random() < 0.01) {
-        ss.active = true; ss.x = -400; ss.y = rand(50, h * 0.7);
-        ss.len = rand(250, 400); ss.speed = rand(25, 40); ss.opacity = 1;
-      } else if (ss.active) {
-        ss.x += ss.speed; ss.opacity -= 0.003;
-        if (ss.x > w + 400 || ss.opacity <= 0) ss.active = false;
-
-        ctx.save();
-        // Đổi thành source-over để màu trắng không bị pha với màu nền
-        ctx.globalCompositeOperation = "source-over";
-
-        const grad = ctx.createLinearGradient(ss.x, ss.y, ss.x - ss.len, ss.y);
-        // Thêm chốt 0.1 để đầu sao băng giữ màu trắng đặc lâu hơn một chút
-        grad.addColorStop(0, `rgba(255, 255, 255, ${ss.opacity})`);
-        grad.addColorStop(0.1, `rgba(255, 255, 255, ${ss.opacity * 0.9})`);
-        grad.addColorStop(1, "rgba(255, 255, 255, 0)");
-
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = 3; // Tăng lên 3 để nét đậm và rõ hơn
-        ctx.lineCap = "round"; // Bo tròn phần đầu sao băng
-
-        ctx.beginPath();
-        ctx.moveTo(ss.x, ss.y); ctx.lineTo(ss.x - ss.len, ss.y);
-        ctx.stroke();
-
-        // Vẽ thêm một đốm sáng trắng ở đầu sao băng để tạo điểm nhấn
-        ctx.fillStyle = `rgba(255, 255, 255, ${ss.opacity})`;
-        ctx.beginPath();
-        ctx.arc(ss.x, ss.y, 2, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.restore();
       }
 
       ctx.globalAlpha = 1;
@@ -929,7 +884,6 @@ const GalaxyAnimation = ({
 
   return (
     <div className="galaxy-container" ref={containerRef}>
-      {/* Loading Screen */}
       {isLoading && (
         <div style={{
           position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
@@ -956,6 +910,7 @@ const GalaxyAnimation = ({
           display: 'block',
           width: '100%',
           height: '100%'
+          // Đã gỡ bỏ touchAction: 'none' và cursor để lướt trang bình thường
         }}
       />
 
@@ -971,6 +926,7 @@ const GalaxyAnimation = ({
             margin-bottom: 20px;
             margin-top: 12px;
             padding-bottom: 20px;
+            overflow: hidden;
           }
           
           @media (max-width: 768px) {
