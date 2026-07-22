@@ -7,7 +7,6 @@ export const About = ({ className = "" }) => {
       id: 1,
       title: "Who I Am And What I Do",
       desc: "I am extremely fascinated by science, engineering and technology.",
-      // cover: contactImage,
     },
   ];
 
@@ -33,32 +32,17 @@ export const About = ({ className = "" }) => {
                 <button className="primary-btn btn-led">
                   Contact Me
 
-                  {/* LED animation spans */}
                   <span></span>
                   <span></span>
                   <span></span>
                   <span></span>
 
-                  {/* fixed class -> className */}
                   <span className="line2"></span>
                   <span className="line2"></span>
                   <span className="line2"></span>
                   <span className="line2"></span>
                 </button>
               </div>
-
-
-              {/* <div className="right">
-                <div className="img">
-                  <img
-                    src={value.cover}
-                    alt="about"
-                    width="500"
-                    height="400"
-                  />
-                </div>
-              </div> */}
-
             </React.Fragment>
           ))}
         </div>
