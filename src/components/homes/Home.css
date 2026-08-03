@@ -341,7 +341,7 @@
 
 @keyframes changeColorEverySecond  {
   0%, 24.99% { color: #F15602; }
-  25%, 49.99% { color: #F30B49; }
+  25%, 49.99% { color: #FC3068; }
   50%, 74.99% { color: #A033FF; }
   75%, 100% { color: #0088FF; }
 }
