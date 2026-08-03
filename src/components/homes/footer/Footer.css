@@ -1,0 +1,70 @@
+footer {
+  position: relative;
+  width: 100%;
+  color: #fff;
+  overflow: hidden;
+  background: none;
+  padding: 0;
+}
+
+footer h2 {
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+footer p,
+footer a,
+footer span {
+  color: #eee;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+footer a {
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.centerBox {
+  text-align: center;
+}
+
+.socialIcon a {
+  margin: 0 6px;
+  color: white;
+  font-size: 18px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+
+footer {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background: #f1f3f4;
+  overflow: hidden;
+}
+
+
+footer .container {
+  margin: 0 auto;
+  padding: 0;
+}
+
+footer .grid1 {
+  margin: 0;
+  padding: 40px 0;
+}
+
+footer .legal {
+  margin-top: 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+footer .legal p,
+footer .legal span {
+  margin: 0;
+  padding: 0;
+}
