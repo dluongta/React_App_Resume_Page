@@ -340,7 +340,7 @@
 }
 
 @keyframes changeColorEverySecond  {
-  0%, 33.33% { color: #FF8000; }
+  0%, 33.33% { color: #FF5F00; }
   33.34%, 66.66% { color: #A033FF; }
   66.67%, 100% { color: #0088FF; }
 }
