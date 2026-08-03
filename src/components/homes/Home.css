@@ -338,13 +338,14 @@
 }
 
 @keyframes changeColorEverySecond  {
-  0%, 33.33% { color: #FF5F00; }
-  33.34%, 66.66% { color: #A033FF; }
-  66.67%, 100% { color: #0088FF; }
+  0%, 24.99% { color: #FF5F00; }
+  25%, 49.99% { color: #FF1C58; }
+  50%, 74.99% { color: #A033FF; }
+  75%, 100% { color: #0088FF; }
 }
 
 .animated-gradient-text {
-  animation: changeColorEverySecond 3s infinite;
+  animation: changeColorEverySecond 4s infinite;
 }
 
 @media (min-width: 769px) {
