@@ -247,7 +247,6 @@
     flex-direction: row !important;
     align-items: center !important;
     justify-content: center !important;
-
     gap: 10px !important;
     width: fit-content !important;
     margin: 20px auto !important;
@@ -267,7 +266,6 @@
   }
 
 }
-
 
 .left .img {
   width: 100vw;
