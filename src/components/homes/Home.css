@@ -345,7 +345,7 @@
 }
 
 .animated-gradient-text {
-  animation: changeColorEverySecond 4s infinite;
+  color: #FF5F00;
 }
 
 @media (min-width: 769px) {
