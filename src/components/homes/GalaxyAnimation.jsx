@@ -1,7 +1,7 @@
 // import React, { useEffect, useRef, useState } from 'react';
 
 // const GalaxyAnimation = ({
-//   imageUrls = ["luen_logo.png", "hexagon-main.png", "luen-1.jpg"]
+//   imageUrls = ["logo-3.png", "hexagon-main.png", "logo.jpg"]
 // }) => {
 //   const canvasRef = useRef(null);
 //   const containerRef = useRef(null);
@@ -507,7 +507,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const GalaxyAnimation = ({
-  imageUrls = ["luen_logo.png", "hexagon-main.png", "luen-1.jpg"]
+  imageUrls = ["logo-3.png", "hexagon-main.png", "logo.jpg"]
 }) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);

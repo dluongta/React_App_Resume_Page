@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './Hero.css';
-import heroImage1 from '../../assets/luen.jpg';
-import heroImage2 from '../../assets/luen_logo.png';
+import heroImage1 from '../../assets/logo-2.jpg';
+import heroImage2 from '../../assets/logo-3.png';
 import heroImage3 from '../../assets/hexagon-main.png';
 
 const Hero = ({

@@ -5,7 +5,7 @@ import DevicesIcon from '@mui/icons-material/Devices';
 import GridViewIcon from '@mui/icons-material/GridView';
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from '../../../assets/luen-1.jpg';
+import logo from '../../../assets/logo.jpg';
 
 export const Header = () => {
     const [sideBar, setSidebar] = useState(false);

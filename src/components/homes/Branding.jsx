@@ -1,11 +1,11 @@
 import { React, useEffect, useState } from 'react';
-import logo from '../../assets/luen_logo.png';
+import logo from '../../assets/logo-3.png';
 import GalaxyAnimation from './GalaxyAnimation';
-import lumindLogo from '../../assets/luen-1.jpg';
+import lumindLogo from '../../assets/logo.jpg';
 import Hero from './Hero';
 import CustomVideoPlayer from './CustomVideoPlayer';
 import caption_logo from '../../assets/caption_logo.vtt';
-import bgLogoVideo from '../../assets/lumind_logo.mp4';
+import bgLogoVideo from '../../assets/logo.mp4';
 import ParticleTextCanvas from "./ParticleTextCanvas";
 import hexagonImg from '../../assets/hexagon-main.png';
 import CustomMusicPlayer from './CustomMusicPlayer';
