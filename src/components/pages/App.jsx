@@ -185,7 +185,6 @@ export const AppComponent = () => {
                 <div className="card-content">
                   <h1>{value.linkName}</h1>
                 </div>
-                {/* <a className="link" href={value.link} target="_blank" rel="noopener noreferrer">&rarr; {value.link} </a> */}
                 <Link
                   className="link"
                   onClick={(e) => {
