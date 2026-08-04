@@ -935,6 +935,10 @@ iframe {
 
   .headline h1 {
     margin: 0 auto;
+    margin-top: -12px!important;
+  }
+  .home-right .socialIcon {
+    margin-top: 8px!important;
   }
 }
 

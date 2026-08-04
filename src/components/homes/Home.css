@@ -124,7 +124,8 @@
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 38px;
+  padding-top: 10px;
   flex-wrap: wrap;
 }
 
