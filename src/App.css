@@ -939,8 +939,8 @@ iframe {
   }
   
   .home-right .socialIcon {
-    margin-top: 12px!important;
-    margin-bottom: 3px!important;
+    margin-top: 14px!important;
+    margin-bottom: 6px!important;
   }
 }
 
@@ -3130,7 +3130,7 @@ body.sub-root,
   }
 
   .content-inner {
-    padding-bottom: 60px!important;
+    padding-bottom: 52px!important;
   }
 }
 
