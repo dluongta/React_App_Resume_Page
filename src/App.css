@@ -3128,6 +3128,10 @@ body.sub-root,
   .link {
     font-size: 14px !important;
   }
+
+  .content-inner {
+    padding-bottom: 60px!important;
+  }
 }
 
 @keyframes scanWideLight {
