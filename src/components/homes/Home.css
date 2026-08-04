@@ -190,14 +190,6 @@
   }
 }
 
-.side-image {
-  width: 100%;
-  max-width: 550px;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
 .home-left {
   flex: 1;
   display: flex;
@@ -210,12 +202,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.side-image {
-  width: 100%;
-  max-width: 500px;
-  height: auto;
 }
 
 .left img {
