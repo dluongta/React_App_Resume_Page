@@ -3156,12 +3156,12 @@ body.sub-root,
 @media (max-width: 768px) {
 
   footer .box:first-child {
-    padding-bottom: 12px !important;
+    padding-bottom: 11px !important;
     margin-bottom: 11px !important;
   }
 
   footer .box:last-child {
-    padding-bottom: 15px !important;
+    padding-bottom: 16px !important;
     margin-bottom: 15px !important;
   }
 
@@ -3171,7 +3171,7 @@ body.sub-root,
   }
 
   footer .box:nth-child(2) {
-    padding-bottom: 14px;
+    padding-bottom: 13px;
     margin-bottom: 1px;
   }
 
