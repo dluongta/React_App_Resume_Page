@@ -3162,7 +3162,7 @@ body.sub-root,
 
   footer .box:last-child {
     padding-bottom: 15px !important;
-    margin-bottom: 14px !important;
+    margin-bottom: 15px !important;
   }
 
   footer .box:nth-child(1) {
@@ -3171,7 +3171,7 @@ body.sub-root,
   }
 
   footer .box:nth-child(2) {
-    padding-bottom: 15px;
+    padding-bottom: 14px;
     margin-bottom: 1px;
   }
 
