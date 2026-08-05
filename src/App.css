@@ -3161,8 +3161,8 @@ body.sub-root,
   }
 
   footer .box:last-child {
-    padding-bottom: 14px !important;
-    margin-bottom: 14px !important;
+    padding-bottom: 15px !important;
+    margin-bottom: 15px !important;
   }
 
   footer .box:nth-child(1) {
@@ -3176,7 +3176,7 @@ body.sub-root,
   }
 
   footer .box:nth-child(3) {
-    padding-bottom: 14px;
+    padding-bottom: 15px;
     margin-bottom: -10px;
   }
 
