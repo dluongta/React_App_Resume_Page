@@ -935,12 +935,12 @@ iframe {
 
   .headline h1 {
     margin: 0 auto;
-    margin-top: -13px!important;
+    margin-top: -13px !important;
   }
-  
+
   .home-right .socialIcon {
-    margin-top: 14px!important;
-    margin-bottom: 11px!important;
+    margin-top: 14px !important;
+    margin-bottom: 11px !important;
   }
 }
 
@@ -3130,7 +3130,7 @@ body.sub-root,
   }
 
   .content-inner {
-    padding-bottom: 69px!important;
+    padding-bottom: 69px !important;
   }
 }
 
@@ -3156,13 +3156,13 @@ body.sub-root,
 @media (max-width: 768px) {
 
   footer .box:first-child {
-    padding-bottom: 10px !important;
-    margin-bottom: 1px !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 0px !important;
   }
 
   footer .box:last-child {
     padding-bottom: 15px !important;
-    margin-bottom: 13px !important;
+    margin-bottom: 12px !important;
   }
 
   footer .box:nth-child(1) {
@@ -3171,17 +3171,17 @@ body.sub-root,
   }
 
   footer .box:nth-child(2) {
-    padding-bottom: 8px;
-    margin-bottom: -1px;
+    padding-bottom: 5px;
+    margin-bottom: -2px;
   }
 
   footer .box:nth-child(3) {
     padding-bottom: 10px;
-    margin-bottom: -11px;
+    margin-bottom: -13px;
   }
 
   .content-inner {
-    padding-bottom: 9px!important;
-    margin-top: -3px!important;
+    padding-bottom: 9px !important;
+    margin-top: -3px !important;
   }
 }
