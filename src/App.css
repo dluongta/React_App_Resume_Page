@@ -3157,7 +3157,7 @@ body.sub-root,
 
   footer .box:first-child {
     padding-bottom: 8px !important;
-    margin-bottom: 0px !important;
+    margin-bottom: -1px !important;
   }
 
   footer .box:last-child {
@@ -3171,13 +3171,13 @@ body.sub-root,
   }
 
   footer .box:nth-child(2) {
-    padding-bottom: 3px;
-    margin-bottom: 0px;
+    padding-bottom: 2px;
+    margin-bottom: -1px;
   }
 
   footer .box:nth-child(3) {
     padding-bottom: 10px;
-    margin-bottom: -14px;
+    margin-bottom: -15px;
   }
 
   .content-inner {
