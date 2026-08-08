@@ -3157,7 +3157,7 @@ body.sub-root,
 
   footer .box:first-child {
     padding-bottom: 8px !important;
-    margin-bottom: -1px !important;
+    margin-bottom: 0px !important;
   }
 
   footer .box:last-child {
