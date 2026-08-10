@@ -341,14 +341,11 @@
   }
 
   .home-right .primary-btn {
-    margin-top: -10px;
+    margin-top: 10px;
   }
 
   .home-right .socialIcon {
-    margin-top: -9px;
-    margin-bottom: 46px;
-  }
-  .home-right {
-    transform: translateY(-6px);
+    margin-top: 6px;
+    margin-bottom: 60px;
   }
 }
