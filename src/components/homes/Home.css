@@ -324,13 +324,6 @@
   }
 }
 
-@keyframes changeColorEverySecond  {
-  0%, 24.99% { color: #FF5F00; }
-  25%, 49.99% { color: #FF1C58; }
-  50%, 74.99% { color: #A033FF; }
-  75%, 100% { color: #0088FF; }
-}
-
 .animated-gradient-text {
   color: #FF5F00;
 }
