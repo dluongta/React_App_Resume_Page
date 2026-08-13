@@ -3145,6 +3145,10 @@ body.sub-root,
   font-size: 14px !important;
 }
 
+.orangeColor {
+  color: #ff6600;
+}
+
 @media (max-width: 768px) {
 
   footer .box:first-child {
@@ -3176,8 +3180,4 @@ body.sub-root,
     padding-bottom: 9px !important;
     margin-top: -3px !important;
   }
-}
-
-.orangeColor {
-  color: #ff6600;
 }
