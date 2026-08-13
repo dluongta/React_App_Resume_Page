@@ -2012,10 +2012,6 @@ footer a:hover {
   z-index: 10;
 }
 
-.close-sidebar-btn:hover {
-  transform: rotate(90deg);
-  color: #7f00ff;
-}
 
 .close-sidebar-btn {
   position: absolute;
@@ -2038,11 +2034,6 @@ footer a:hover {
   justify-content: center;
   cursor: pointer;
   z-index: 100;
-}
-
-.close-sidebar-btn:hover {
-  background: #f0f0f0;
-  transform: scale(1.1);
 }
 
 .nav-links-sidebar {
@@ -3185,4 +3176,8 @@ body.sub-root,
     padding-bottom: 9px !important;
     margin-top: -3px !important;
   }
+}
+
+.orangeColor {
+  color: orangered;
 }

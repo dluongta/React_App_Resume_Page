@@ -77,7 +77,7 @@ export const Footer = () => {
       </div>
       <div className="legal container">
         <p>Copyright <span className='blue'>&copy;<span id="currentYear"></span></span>. All rights reserved.</p>
-        <span className='copyRight'>Made with <span className="heartbeat"><FavoriteIcon color="warning" sx={{ fontSize: 15 }} /></span> by <span className='blue'>Dinh Luong Ta</span></span>
+        <span className='copyRight'>Made with <span className="heartbeat"><FavoriteIcon className='orangeColor' sx={{ fontSize: 15 }} /></span> by <span className='blue'>Dinh Luong Ta</span></span>
       </div>
     </footer>
   );
