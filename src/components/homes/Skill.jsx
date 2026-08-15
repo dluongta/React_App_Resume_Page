@@ -70,7 +70,7 @@ export const Skill = ({ className }) => {
     {
       title: "Every Day is a New Challenge",
       para: "I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android and Application Development.",
-      para1: "As technology continues to evolve at an unprecedented speed, I want to develop innovative solutions that create a significant, beneficial and huge impact on the world.",
+      para1: "With technology continuing to evolve at an unprecedented speed, I would like to develop innovative solutions that have beneficial and significant impacts on the world.",
     }
   ];
 
