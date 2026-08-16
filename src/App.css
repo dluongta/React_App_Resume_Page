@@ -4161,9 +4161,6 @@ select {
 #custom-cursor .cursor-text-caret .caret-top { top: 0; }
 #custom-cursor .cursor-text-caret .caret-bottom { bottom: 0; }
 
-/* =========================================================
-   I-BEAM GLOW ANIMATION (CẬP NHẬT)
-   ========================================================= */
 @keyframes textCaretGlow {
   0%, 100% {
     filter: brightness(1) drop-shadow(0 0 3px #00aaff);
@@ -4172,3 +4169,35 @@ select {
     filter: brightness(1) drop-shadow(0 0 3px #00aaff); 
   }
 }
+
+#custom-cursor .cursor-text-caret {
+  position: absolute;
+  left: 0px;  
+   top: -22px; 
+  width: 10px;
+  height: 42px; 
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.85);
+  transition:
+    opacity 0.12s ease,
+    transform 0.12s ease,
+    visibility 0.12s ease;
+}
+
+#custom-cursor .cursor-text-caret .caret-line {
+  position: absolute;
+  left: 4px;  
+  top: 0;
+  width: 2px;
+  
+  height: 42px; 
+  
+  background: #00efff;  
+  border-radius: 2px;
+  box-shadow:
+    0 0 5px #00aaff,
+    0 0 12px #00aaff,
+    0 0 20px rgba(0, 238, 255, 0.9),
+    0 0 35px rgba(0, 170, 255, 0.8);
+} 

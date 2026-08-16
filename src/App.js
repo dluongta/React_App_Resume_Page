@@ -118,9 +118,9 @@ const CustomCursor = () => {
 
       const color =
         TRAIL_COLORS[
-          Math.floor(
-            Math.random() * TRAIL_COLORS.length
-          )
+        Math.floor(
+          Math.random() * TRAIL_COLORS.length
+        )
         ];
 
       trail.className = 'cursor-trail';
@@ -173,83 +173,32 @@ const CustomCursor = () => {
       effect.dataset.timer = String(timer);
     };
 
-    // const handleMouseMove = (event) => {
-    //   if (isTouchDevice) {
-    //     return;
-    //   }
+    const handleMouseMove = (event) => {
+      if (isTouchDevice) {
+        return;
+      }
 
-    //   const { clientX, clientY } = event;
+      const { clientX, clientY } = event;
 
-    //   cursor.style.transform =
-    //     `translate3d(${clientX}px, ${clientY}px, 0)`;
-
-    //   if (
-    //     cursor.classList.contains(
-    //       'cursor-text'
-    //     )
-    //   ) {
-    //     return;
-    //   }
-
-    //   const now = performance.now();
-
-    //   if (
-    //     now - lastTrailTime >= 28
-    //   ) {
-    //     createTrail(
-    //       clientX,
-    //       clientY
-    //     );
-
-    //     lastTrailTime = now;
-    //   }
-    // };
-
-    // const handleMouseMove = (event) => { 
-    //   if (isTouchDevice) { 
-    //     return; 
-    //   } 
- 
-    //   const { clientX, clientY } = event; 
- 
-    //   cursor.style.transform = 
-    //     `translate3d(${clientX}px, ${clientY}px, 0)`; 
- 
-    //   const now = performance.now(); 
- 
-    //   if (now - lastTrailTime >= 28) { 
-    //     createTrail(clientX, clientY); 
-    //     lastTrailTime = now; 
-    //   } 
-    // };
-    
-const handleMouseMove = (event) => { 
-      if (isTouchDevice) { 
-        return; 
-      } 
- 
-      const { clientX, clientY } = event; 
- 
       // Vẫn di chuyển I-beam theo đúng tâm của chuột
-      cursor.style.transform = 
-        `translate3d(${clientX}px, ${clientY}px, 0)`; 
- 
-      const now = performance.now(); 
- 
-      if (now - lastTrailTime >= 28) { 
+      cursor.style.transform =
+        `translate3d(${clientX}px, ${clientY}px, 0)`;
+
+      const now = performance.now();
+
+      if (now - lastTrailTime >= 28) {
         let trailX = clientX;
         let trailY = clientY;
 
         if (cursor.classList.contains('cursor-text')) {
-          // trailX = clientX + 4; 
-          trailX = clientX;  
-          trailY = clientY - 12;
+          trailX = clientX;
+          trailY = clientY - 20;
         }
-        
+
         // Tạo hạt ở tọa độ đã được tính toán lại
-        createTrail(trailX, trailY); 
-        lastTrailTime = now; 
-      } 
+        createTrail(trailX, trailY);
+        lastTrailTime = now;
+      }
     };
 
     const handleMouseEnter = () => {
