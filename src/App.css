@@ -3181,3 +3181,23 @@ body.sub-root,
     margin-top: -3px !important;
   }
 }
+
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111828;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  min-height: 100px;
+  background: linear-gradient(180deg, #ff6a00, #ff007f, #9d00ff, #0077ff);
+  border-radius: 0;
+  border: 2px solid #111828;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff6a00, #ff007f, #9d00ff, #0077ff);
+}
