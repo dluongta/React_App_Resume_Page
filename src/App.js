@@ -25,6 +25,35 @@ const TRAIL_COLORS = [
   '#58dfff',
 ];
 
+const TEXT_SELECTOR = [
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6',
+  'p',
+  'span',
+  'li',
+  'label',
+  'strong',
+  'b',
+  'em',
+  'i',
+  'small',
+  'code',
+  'pre',
+  'blockquote',
+  'dt',
+  'dd',
+  'figcaption',
+  'article',
+  'section',
+  'td',
+  'th',
+  'caption',
+].join(',');
+
 const CustomCursor = () => {
   const cursorRef = useRef(null);
 
@@ -42,10 +71,9 @@ const CustomCursor = () => {
     const effects = new Set();
 
     const checkTouchDevice = () => {
-      isTouchDevice =
-        window.matchMedia(
-          '(hover: none), (pointer: coarse)'
-        ).matches;
+      isTouchDevice = window.matchMedia(
+        '(hover: none), (pointer: coarse)'
+      ).matches;
 
       cursor.classList.toggle(
         'cursor-disabled',
@@ -53,12 +81,34 @@ const CustomCursor = () => {
       );
     };
 
-    const createTrail = (x, y) => {
-      const trail =
-        document.createElement('span');
+    const clearTrails = () => {
+      particles.forEach((particle) => {
+        window.clearTimeout(
+          Number(particle.dataset.timer)
+        );
 
-      const size =
-        3 + Math.random() * 6;
+        particle.remove();
+      });
+
+      particles.clear();
+    };
+
+    const clearEffects = () => {
+      effects.forEach((effect) => {
+        window.clearTimeout(
+          Number(effect.dataset.timer)
+        );
+
+        effect.remove();
+      });
+
+      effects.clear();
+    };
+
+    const createTrail = (x, y) => {
+      const trail = document.createElement('span');
+
+      const size = 3 + Math.random() * 6;
 
       const offsetX =
         (Math.random() - 0.5) * 12;
@@ -69,13 +119,11 @@ const CustomCursor = () => {
       const color =
         TRAIL_COLORS[
           Math.floor(
-            Math.random() *
-              TRAIL_COLORS.length
+            Math.random() * TRAIL_COLORS.length
           )
         ];
 
-      trail.className =
-        'cursor-trail';
+      trail.className = 'cursor-trail';
 
       trail.style.left =
         `${x + offsetX}px`;
@@ -95,72 +143,113 @@ const CustomCursor = () => {
       );
 
       document.body.appendChild(trail);
-
       particles.add(trail);
 
-      const timer =
-        window.setTimeout(() => {
-          trail.remove();
-          particles.delete(trail);
-        }, 650);
+      const timer = window.setTimeout(() => {
+        trail.remove();
+        particles.delete(trail);
+      }, 650);
 
-      trail.dataset.timer =
-        String(timer);
+      trail.dataset.timer = String(timer);
     };
 
     const createClickEffect = (x, y) => {
-      const effect =
-        document.createElement('span');
+      const effect = document.createElement('span');
 
       effect.className =
         'cursor-click-effect';
 
-      effect.style.left =
-        `${x}px`;
-
-      effect.style.top =
-        `${y}px`;
+      effect.style.left = `${x}px`;
+      effect.style.top = `${y}px`;
 
       document.body.appendChild(effect);
-
       effects.add(effect);
 
-      const timer =
-        window.setTimeout(() => {
-          effect.remove();
-          effects.delete(effect);
-        }, 750);
+      const timer = window.setTimeout(() => {
+        effect.remove();
+        effects.delete(effect);
+      }, 750);
 
-      effect.dataset.timer =
-        String(timer);
+      effect.dataset.timer = String(timer);
     };
 
-    const handleMouseMove = (event) => {
-      if (isTouchDevice) {
-        return;
-      }
+    // const handleMouseMove = (event) => {
+    //   if (isTouchDevice) {
+    //     return;
+    //   }
 
-      const {
-        clientX,
-        clientY,
-      } = event;
+    //   const { clientX, clientY } = event;
 
-      cursor.style.transform =
-        `translate3d(${clientX}px, ${clientY}px, 0)`;
+    //   cursor.style.transform =
+    //     `translate3d(${clientX}px, ${clientY}px, 0)`;
 
-      const now =
-        performance.now();
+    //   if (
+    //     cursor.classList.contains(
+    //       'cursor-text'
+    //     )
+    //   ) {
+    //     return;
+    //   }
 
-      if (
-        now - lastTrailTime >= 28
-      ) {
-        createTrail(
-          clientX,
-          clientY
-        );
+    //   const now = performance.now();
 
-        lastTrailTime = now;
-      }
+    //   if (
+    //     now - lastTrailTime >= 28
+    //   ) {
+    //     createTrail(
+    //       clientX,
+    //       clientY
+    //     );
+
+    //     lastTrailTime = now;
+    //   }
+    // };
+
+    // const handleMouseMove = (event) => { 
+    //   if (isTouchDevice) { 
+    //     return; 
+    //   } 
+ 
+    //   const { clientX, clientY } = event; 
+ 
+    //   cursor.style.transform = 
+    //     `translate3d(${clientX}px, ${clientY}px, 0)`; 
+ 
+    //   const now = performance.now(); 
+ 
+    //   if (now - lastTrailTime >= 28) { 
+    //     createTrail(clientX, clientY); 
+    //     lastTrailTime = now; 
+    //   } 
+    // };
+    
+const handleMouseMove = (event) => { 
+      if (isTouchDevice) { 
+        return; 
+      } 
+ 
+      const { clientX, clientY } = event; 
+ 
+      // Vẫn di chuyển I-beam theo đúng tâm của chuột
+      cursor.style.transform = 
+        `translate3d(${clientX}px, ${clientY}px, 0)`; 
+ 
+      const now = performance.now(); 
+ 
+      if (now - lastTrailTime >= 28) { 
+        let trailX = clientX;
+        let trailY = clientY;
+
+        if (cursor.classList.contains('cursor-text')) {
+          // trailX = clientX + 4; 
+          trailX = clientX;  
+          trailY = clientY - 12;
+        }
+        
+        // Tạo hạt ở tọa độ đã được tính toán lại
+        createTrail(trailX, trailY); 
+        lastTrailTime = now; 
+      } 
     };
 
     const handleMouseEnter = () => {
@@ -175,10 +264,22 @@ const CustomCursor = () => {
       cursor.classList.add(
         'cursor-hidden'
       );
+
+      clearTrails();
+      clearEffects();
     };
 
     const handleMouseDown = (event) => {
       if (isTouchDevice) {
+        return;
+      }
+
+      if (
+        cursor.classList.contains(
+          'cursor-text'
+        )
+      ) {
+        clearEffects();
         return;
       }
 
@@ -214,6 +315,21 @@ const CustomCursor = () => {
 
       if (
         target.closest?.(
+          'input[type="text"], input[type="email"], input[type="search"], input[type="password"], textarea, [contenteditable="true"]'
+        )
+      ) {
+        clearTrails();
+        clearEffects();
+
+        cursor.classList.add(
+          'cursor-text'
+        );
+
+        return;
+      }
+
+      if (
+        target.closest?.(
           'a, button, [role="button"]'
         )
       ) {
@@ -224,16 +340,28 @@ const CustomCursor = () => {
         return;
       }
 
-      if (
-        target.matches?.(
-          'input[type="text"], input[type="email"], input[type="search"], input[type="password"], textarea'
-        )
-      ) {
-        cursor.classList.add(
-          'cursor-text'
+      const textElement =
+        target.closest?.(
+          TEXT_SELECTOR
         );
 
-        return;
+      if (textElement) {
+        const text =
+          textElement.textContent?.trim();
+
+        if (
+          text &&
+          text.length > 0
+        ) {
+          clearTrails();
+          clearEffects();
+
+          cursor.classList.add(
+            'cursor-text'
+          );
+
+          return;
+        }
       }
 
       if (
@@ -357,32 +485,8 @@ const CustomCursor = () => {
         checkTouchDevice
       );
 
-      particles.forEach(
-        (particle) => {
-          window.clearTimeout(
-            Number(
-              particle.dataset.timer
-            )
-          );
-
-          particle.remove();
-        }
-      );
-
-      effects.forEach(
-        (effect) => {
-          window.clearTimeout(
-            Number(
-              effect.dataset.timer
-            )
-          );
-
-          effect.remove();
-        }
-      );
-
-      particles.clear();
-      effects.clear();
+      clearTrails();
+      clearEffects();
     };
   }, []);
 
@@ -392,24 +496,13 @@ const CustomCursor = () => {
       id="custom-cursor"
       aria-hidden="true"
     >
-      <span className="cursor-orbit" />
-
       <svg
         className="cursor-arrow"
         viewBox="0 0 40 48"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="
-            M4 2
-            L4 38
-            L14 28
-            L21 44
-            L27 41
-            L20 25
-            L35 25
-            Z
-          "
+          d="M4 2 L4 38 L14 28 L21 44 L27 41 L20 25 L35 25 Z"
           fill="#00aaff"
           stroke="#ffffff"
           strokeWidth="2"
@@ -418,6 +511,12 @@ const CustomCursor = () => {
       </svg>
 
       <span className="cursor-core" />
+
+      <span className="cursor-text-caret">
+        <span className="caret-top" />
+        <span className="caret-line" />
+        <span className="caret-bottom" />
+      </span>
     </div>
   );
 };
@@ -462,9 +561,7 @@ const AppContent = () => {
   return (
     <>
       <CustomScrollbar />
-
       <CustomCursor />
-
       <Header />
 
       <Switch>
@@ -500,7 +597,6 @@ const AppContent = () => {
       </Switch>
 
       <Footer />
-
       <ScrollToTopButton />
     </>
   );

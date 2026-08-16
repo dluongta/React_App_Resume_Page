@@ -50,7 +50,7 @@ export const Header = () => {
                             <li className={isActive('/web') ? 'active-link' : ''}><Link to="/web">Web</Link></li>
                             <li className={isActive('/android') ? 'active-link' : ''}><Link to="/android">Android</Link></li>
                             <li className={isActive('/app') ? 'active-link' : ''}><Link to="/app">App</Link></li>
-                            <li className={isActive('/resume') ? 'active-link' : ''}><Link to="/resume">Resume</Link></li>
+                            {/* <li className={isActive('/resume') ? 'active-link' : ''}><Link to="/resume">Resume</Link></li> */}
                         </ul>
                     </div>
 
@@ -74,7 +74,7 @@ export const Header = () => {
                         <li className={isActive('/web') ? 'active-link' : ''}><Link to="/web">Web</Link></li>
                         <li className={isActive('/android') ? 'active-link' : ''}><Link to="/android">Android</Link></li>
                         <li className={isActive('/app') ? 'active-link' : ''}><Link to="/app">App</Link></li>
-                        <li className={isActive('/resume') ? 'active-link' : ''}><Link to="/resume">Resume</Link></li>
+                        {/* <li className={isActive('/resume') ? 'active-link' : ''}><Link to="/resume">Resume</Link></li> */}
                     </ul>
                 </div>
             </div>

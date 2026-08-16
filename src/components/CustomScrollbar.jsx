@@ -3,7 +3,6 @@ import React, { useEffect, useRef } from 'react';
 const CustomScrollbar = () => {
   const trackRef = useRef(null);
   const thumbRef = useRef(null);
-
   const dragging = useRef(false);
   const dragOffset = useRef(0);
 
@@ -16,11 +15,15 @@ const CustomScrollbar = () => {
     }
 
     const updateScrollbar = () => {
-      const viewportHeight = window.innerHeight;
+      const viewportHeight =
+        window.innerHeight;
+
       const documentHeight =
         document.documentElement.scrollHeight;
 
-      if (documentHeight <= viewportHeight) {
+      if (
+        documentHeight <= viewportHeight
+      ) {
         track.style.display = 'none';
         return;
       }

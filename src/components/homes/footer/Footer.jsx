@@ -52,7 +52,7 @@ export const Footer = () => {
             <li><Link to="/web">Web</Link></li>
             <li><Link to="/android">Android</Link></li>
             <li><Link to="/app">App</Link></li>
-            <li><Link to="/resume">Resume</Link></li>
+            {/* <li><Link to="/resume">Resume</Link></li> */}
           </ul>
         </div>
         <div className="box">
