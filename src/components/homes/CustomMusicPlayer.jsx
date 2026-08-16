@@ -242,7 +242,12 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
                 value={currentTime}
                 onChange={handleSeek}
                 style={{
-                  background: `linear-gradient(to right, var(--primary-color) ${progressPercent}%, rgba(255, 255, 255, 0.1) ${progressPercent}%)`
+                  background: `linear-gradient(to right, 
+      #ff6a00 0%, 
+      #ff007f ${progressPercent * 0.33}%, 
+      #9d00ff ${progressPercent * 0.66}%, 
+      #0077ff ${progressPercent}%, 
+      rgba(255, 255, 255, 0.1) ${progressPercent}%)`
                 }}
               />
             </div>
@@ -284,7 +289,12 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
                 value={isMuted ? 0 : volume}
                 onChange={handleVolumeChange}
                 style={{
-                  background: `linear-gradient(to right, var(--primary-color) ${volumePercent}%, rgba(255, 255, 255, 0.2) ${volumePercent}%)`
+                  background: `linear-gradient(to right, 
+      #ff6a00 0%, 
+      #ff007f ${volumePercent * 0.33}%, 
+      #9d00ff ${volumePercent * 0.66}%, 
+      #0077ff ${volumePercent}%, 
+      rgba(255, 255, 255, 0.2) ${volumePercent}%)`
                 }}
               />
             </div>

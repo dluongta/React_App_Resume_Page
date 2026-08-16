@@ -337,3 +337,211 @@
   object-fit: cover;
   transform: translateY(-1px);
 }
+
+/* Hình tròn tời của thanh tiến trình (Chrome, Safari, Edge) */
+.progress-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(135deg, #ff6a00, #ff007f);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Hình tròn tời của thanh tiến trình (Firefox) */
+.progress-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(135deg, #ff6a00, #ff007f);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Hình tròn tời của thanh âm lượng (Chrome, Safari, Edge) */
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #ff6a00, #ff007f);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+/* Hình tròn tời của thanh âm lượng (Firefox) */
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #ff6a00, #ff007f);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+/* Hình tròn tời của thanh tiến trình (Chrome, Safari, Edge) */
+.progress-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(135deg, #ff6a00, #ff007f) !important;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Hình tròn tời của thanh tiến trình (Firefox) */
+.progress-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(135deg, #ff6a00, #ff007f) !important;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Hình tròn tời của thanh âm lượng (Chrome, Safari, Edge) */
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #ff6a00, #ff007f) !important;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+/* Hình tròn tời của thanh âm lượng (Firefox) */
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #ff6a00, #ff007f) !important;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+/* Hình tròn tời (thumb) cho trình duyệt Chrome, Safari, Edge */
+.progress-slider::-webkit-slider-thumb,
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  /* Lớp 1: Hình tròn trắng ở giữa chiếm 45% bán kính, lớp 2: Nền gradient ở dưới */
+  background: radial-gradient(circle, #ffffff 45%, transparent 50%),
+    linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff, #0077ff) !important;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Hình tròn tời (thumb) cho trình duyệt Firefox */
+.progress-slider::-moz-range-thumb,
+.volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, #ffffff 45%, transparent 50%),
+    linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff, #0077ff) !important;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Vòng tròn Loading xoay (Mặc định) */
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: conic-gradient(transparent 15%, #ff6a00, #ff007f, #9d00ff, #0077ff);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+
+  animation: spin-gradient 1s linear infinite;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+  z-index: 20;
+}
+
+@media screen and (max-width: 768px) {
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: conic-gradient(transparent 15%, #ff6a00, #ff007f, #9d00ff, #0077ff);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+    animation: spin-gradient 0.8s linear infinite;
+  }
+}
+
+@keyframes spin-gradient {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Vòng tròn Loading xoay (Mặc định) */
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: conic-gradient(transparent 15%, #ff6a00, #ff007f, #9d00ff, #0077ff), 
+              rgba(0, 0, 0, 0.5);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+
+  animation: spin-gradient 1s linear infinite;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+  z-index: 20;
+}
+
+@media screen and (max-width: 768px) {
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: conic-gradient(transparent 15%, #ff6a00, #ff007f, #9d00ff, #0077ff), 
+                rgba(169, 169, 169, 0.1);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+    animation: spin-gradient 0.8s linear infinite;
+  }
+}
+
+@keyframes spin-gradient {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

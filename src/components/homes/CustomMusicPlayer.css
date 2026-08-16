@@ -395,3 +395,78 @@
     flex: 0;
   }
 }
+
+/* Hình tròn tời (thumb) cho trình duyệt Chrome, Safari, Edge */
+.progress-slider::-webkit-slider-thumb,
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #ff6a00, #ff007f) !important;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Hình tròn tời (thumb) cho trình duyệt Firefox */
+.progress-slider::-moz-range-thumb,
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #ff6a00, #ff007f) !important;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Hình tròn tời (thumb) cho trình duyệt Chrome, Safari, Edge */
+.progress-slider::-webkit-slider-thumb,
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  /* Lớp 1: Hình tròn trắng ở giữa chiếm 45% bán kính, lớp 2: Nền gradient ở dưới */
+  background: radial-gradient(circle, #ffffff 45%, transparent 50%),
+    linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff, #0077ff) !important;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Hình tròn tời (thumb) cho trình duyệt Firefox */
+.progress-slider::-moz-range-thumb,
+.volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, #ffffff 45%, transparent 50%),
+    linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff, #0077ff) !important;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.play-pause-btn {
+  background: linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff, #0077ff);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.play-pause-btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.15);
+  background: linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff, #0077ff);
+}

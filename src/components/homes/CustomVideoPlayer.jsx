@@ -256,7 +256,12 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
                 setCurrentTime(time);
               }}
               style={{
-                background: `linear-gradient(to right, var(--primary-color) ${progressPercent}%, rgba(255, 255, 255, 0.3) ${progressPercent}%)`
+                background: `linear-gradient(to right, 
+      #ff6a00 0%, 
+      #ff007f ${progressPercent * 0.33}%, 
+      #9d00ff ${progressPercent * 0.66}%, 
+      #0077ff ${progressPercent}%, 
+      rgba(255, 255, 255, 0.3) ${progressPercent}%)`
               }}
             />
           </div>
@@ -294,7 +299,12 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
                     videoRef.current.muted = vol === 0;
                   }}
                   style={{
-                    background: `linear-gradient(to right, var(--primary-color) ${(isMuted ? 0 : volume) * 100}%, rgba(255, 255, 255, 0.3) ${(isMuted ? 0 : volume) * 100}%)`
+                    background: `linear-gradient(to right, 
+      #ff6a00 0%, 
+      #ff007f ${(isMuted ? 0 : volume) * 33}%, 
+      #9d00ff ${(isMuted ? 0 : volume) * 66}%, 
+      #0077ff ${(isMuted ? 0 : volume) * 100}%, 
+      rgba(255, 255, 255, 0.3) ${(isMuted ? 0 : volume) * 100}%)`
                   }}
                 />
               </div>
