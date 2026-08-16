@@ -467,6 +467,6 @@
 
 .play-pause-btn:hover {
   transform: scale(1.05);
-  filter: brightness(1.15);
+  /* filter: brightness(1.15); */
   background: linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff, #0077ff);
 }
