@@ -31,7 +31,7 @@
 //     const PARTICLE_COUNT = 1200;
 //     const IMAGE_SHOW_SCALE = 0.8;
 //     const PERSPECTIVE = 2000;
-//     const PLANET_RADIUS = 180;
+//     const PLANET_RADIUS = 300;
 
 //     let w, h, cx, cy;
 //     let images = [], bgStars = [], particles = [];
@@ -66,8 +66,8 @@
 //         glow.addColorStop(1.0, "rgba(255,80,0,0)");
 
 //         ctxCache.fillStyle = glow;
-//         ctxCache.beginPath(); 
-//         ctxCache.arc(center, center, pr * 3, 0, Math.PI * 2); 
+//         ctxCache.beginPath();
+//         ctxCache.arc(center, center, pr * 3, 0, Math.PI * 2);
 //         ctxCache.fill();
 
 //         const sun = ctxCache.createRadialGradient(
@@ -80,8 +80,8 @@
 //         sun.addColorStop(1.00, "#ff5500");
 
 //         ctxCache.fillStyle = sun;
-//         ctxCache.beginPath(); 
-//         ctxCache.arc(center, center, pr, 0, Math.PI * 2); 
+//         ctxCache.beginPath();
+//         ctxCache.arc(center, center, pr, 0, Math.PI * 2);
 //         ctxCache.fill();
 //       });
 
@@ -199,31 +199,31 @@
 //     let dragging = false, lastX = 0, lastY = 0, initialPinchDist = null, initialZoom = state.current.zoom;
 
 //     const onTouchStart = (e) => {
-//       if (e.touches.length === 1) { 
-//         dragging = true; 
-//         lastX = e.touches[0].clientX; 
-//         lastY = e.touches[0].clientY; 
-//       } else if (e.touches.length === 2) { 
-//         dragging = false; 
+//       if (e.touches.length === 1) {
+//         dragging = true;
+//         lastX = e.touches[0].clientX;
+//         lastY = e.touches[0].clientY;
+//       } else if (e.touches.length === 2) {
+//         dragging = false;
 //         initialPinchDist = Math.hypot(
-//           e.touches[0].clientX - e.touches[1].clientX, 
+//           e.touches[0].clientX - e.touches[1].clientX,
 //           e.touches[0].clientY - e.touches[1].clientY
-//         ); 
-//         initialZoom = state.current.zoom; 
+//         );
+//         initialZoom = state.current.zoom;
 //       }
 //     };
 
 //     const onTouchMove = (e) => {
 //       if (e.touches.length === 1 && dragging) {
 //         e.preventDefault();
-//         state.current.rotY -= (e.touches[0].clientX - lastX) * 0.005; 
+//         state.current.rotY -= (e.touches[0].clientX - lastX) * 0.005;
 //         state.current.rotX -= (e.touches[0].clientY - lastY) * 0.005;
-//         lastX = e.touches[0].clientX; 
+//         lastX = e.touches[0].clientX;
 //         lastY = e.touches[0].clientY;
 //       } else if (e.touches.length === 2 && initialPinchDist) {
 //         e.preventDefault();
 //         const dist = Math.hypot(
-//           e.touches[0].clientX - e.touches[1].clientX, 
+//           e.touches[0].clientX - e.touches[1].clientX,
 //           e.touches[0].clientY - e.touches[1].clientY
 //         );
 //         const scale = dist / initialPinchDist;
@@ -231,23 +231,23 @@
 //       }
 //     };
 
-//     const onTouchEnd = () => { 
-//       dragging = false; 
-//       initialPinchDist = null; 
+//     const onTouchEnd = () => {
+//       dragging = false;
+//       initialPinchDist = null;
 //     };
 
-//     const onMouseDown = (e) => { 
-//       dragging = true; 
-//       lastX = e.clientX; 
-//       lastY = e.clientY; 
+//     const onMouseDown = (e) => {
+//       dragging = true;
+//       lastX = e.clientX;
+//       lastY = e.clientY;
 //       canvas.style.cursor = 'grabbing';
 //     };
 
 //     const onMouseMove = (e) => {
 //       if (!dragging) return;
-//       state.current.rotY -= (e.clientX - lastX) * 0.005; 
+//       state.current.rotY -= (e.clientX - lastX) * 0.005;
 //       state.current.rotX -= (e.clientY - lastY) * 0.005;
-//       lastX = e.clientX; 
+//       lastX = e.clientX;
 //       lastY = e.clientY;
 //     };
 
@@ -256,10 +256,10 @@
 //       canvas.style.cursor = 'grab';
 //     };
 
-//     const onWheel = (e) => { 
+//     const onWheel = (e) => {
 //       e.preventDefault();
 //       state.current.zoom -= e.deltaY * 0.001;
-//       state.current.zoom = Math.max(0.1, Math.min(3.0, state.current.zoom)); 
+//       state.current.zoom = Math.max(0.1, Math.min(3.0, state.current.zoom));
 //     };
 
 //     canvas.addEventListener("touchstart", onTouchStart, { passive: false });
@@ -299,7 +299,7 @@
 //         grad.addColorStop(1, "rgba(255, 255, 255, 0)");
 
 //         ctx.strokeStyle = grad;
-//         ctx.lineWidth = 2; 
+//         ctx.lineWidth = 2;
 //         ctx.beginPath();
 //         ctx.moveTo(ss.x, ss.y); ctx.lineTo(ss.x - ss.len, ss.y);
 //         ctx.stroke();
@@ -537,7 +537,7 @@ const GalaxyAnimation = ({
     const PARTICLE_COUNT = 1200;
     const IMAGE_SHOW_SCALE = 0.8;
     const PERSPECTIVE = 2000;
-    const PLANET_RADIUS = 180;
+    const PLANET_RADIUS = 300;
 
     let w, h, cx, cy;
     let images = [], bgStars = [], particles = [];
@@ -563,27 +563,31 @@ const GalaxyAnimation = ({
         const pr = 60;
         ctxCache.globalCompositeOperation = "lighter";
 
+        // 1. Vầng hào quang (Glow) tỏa rộng màu cam chói lóa
         const glow = ctxCache.createRadialGradient(
-          center, center, pr * 0.45, center, center, pr * 3
+          center, center, 0,
+          center, center, pr * 4.5
         );
-        glow.addColorStop(0.0, "rgba(255,170,0,0.55)");
-        glow.addColorStop(0.35, "rgba(255,120,0,0.30)");
-        glow.addColorStop(0.75, "rgba(255,80,0,0.12)");
-        glow.addColorStop(1.0, "rgba(255,80,0,0)");
+        glow.addColorStop(0.0, "rgba(255, 255, 255, 0.9)");
+        glow.addColorStop(0.15, "rgba(255, 100, 0, 0.7)");
+        glow.addColorStop(0.4, "rgba(255, 50, 0, 0.3)");
+        glow.addColorStop(1.0, "rgba(255, 20, 0, 0)");
 
         ctxCache.fillStyle = glow;
         ctxCache.beginPath();
-        ctxCache.arc(center, center, pr * 3, 0, Math.PI * 2);
+        ctxCache.arc(center, center, pr * 4.5, 0, Math.PI * 2);
         ctxCache.fill();
 
+        // 2. Lõi mặt trời (Core) đặt chính giữa tâm
         const sun = ctxCache.createRadialGradient(
-          center - pr * 0.45, center - pr * 0.45, 0, center, center, pr
+          center, center, 0,
+          center, center, pr
         );
         sun.addColorStop(0.00, "#ffffff");
-        sun.addColorStop(0.10, "#fff7dd");
-        sun.addColorStop(0.25, "#ffd65a");
-        sun.addColorStop(0.60, "#ff9800");
-        sun.addColorStop(1.00, "#ff5500");
+        sun.addColorStop(0.20, "#ffb366");
+        sun.addColorStop(0.50, "#ff6600");
+        sun.addColorStop(0.80, "#ff3300");
+        sun.addColorStop(1.00, "#b30000");
 
         ctxCache.fillStyle = sun;
         ctxCache.beginPath();
