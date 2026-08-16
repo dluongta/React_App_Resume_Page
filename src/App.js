@@ -16,11 +16,14 @@ import { AppComponent } from './components/pages/App';
 import { Android } from './components/pages/Android';
 import { Resume } from './components/pages/Resume';
 import ScrollToTopButton from './components/homes/ScrollToTopButton';
+import CustomScrollbar from './components/CustomScrollbar';
 
-
-// ============================================================
-// CUSTOM CURSOR
-// ============================================================
+const TRAIL_COLORS = [
+  '#00aaff',
+  '#00c6ff',
+  '#00e5ff',
+  '#58dfff',
+];
 
 const CustomCursor = () => {
   const cursorRef = useRef(null);
@@ -38,186 +41,41 @@ const CustomCursor = () => {
     const particles = new Set();
     const effects = new Set();
 
-    // --------------------------------------------------------
-    // Check touch device
-    // --------------------------------------------------------
-
     const checkTouchDevice = () => {
       isTouchDevice =
-        window.matchMedia('(hover: none), (pointer: coarse)').matches;
+        window.matchMedia(
+          '(hover: none), (pointer: coarse)'
+        ).matches;
 
-      if (isTouchDevice) {
-        cursor.classList.add('cursor-disabled');
-      } else {
-        cursor.classList.remove('cursor-disabled');
-      }
-    };
-
-    checkTouchDevice();
-
-    window.addEventListener('resize', checkTouchDevice);
-
-
-    // --------------------------------------------------------
-    // Move cursor
-    // --------------------------------------------------------
-
-    const handleMouseMove = (event) => {
-      if (isTouchDevice) {
-        return;
-      }
-
-      const { clientX, clientY } = event;
-
-      cursor.style.transform =
-        `translate3d(${clientX}px, ${clientY}px, 0)`;
-
-
-      // ------------------------------------------------------
-      // Create particle trail
-      // ------------------------------------------------------
-
-      const now = performance.now();
-
-      if (now - lastTrailTime >= 28) {
-        createTrail(clientX, clientY);
-        lastTrailTime = now;
-      }
-    };
-
-
-    // --------------------------------------------------------
-    // Mouse enter
-    // --------------------------------------------------------
-
-    const handleMouseEnter = () => {
-      cursor.classList.remove('cursor-hidden');
-    };
-
-
-    // --------------------------------------------------------
-    // Mouse leave
-    // --------------------------------------------------------
-
-    const handleMouseLeave = () => {
-      cursor.classList.add('cursor-hidden');
-    };
-
-
-    // --------------------------------------------------------
-    // Mouse down
-    // --------------------------------------------------------
-
-    const handleMouseDown = (event) => {
-      if (isTouchDevice) {
-        return;
-      }
-
-      cursor.classList.add('cursor-clicking');
-
-      createClickEffect(
-        event.clientX,
-        event.clientY
+      cursor.classList.toggle(
+        'cursor-disabled',
+        isTouchDevice
       );
     };
-
-
-    // --------------------------------------------------------
-    // Mouse up
-    // --------------------------------------------------------
-
-    const handleMouseUp = () => {
-      cursor.classList.remove('cursor-clicking');
-    };
-
-
-    // --------------------------------------------------------
-    // Detect element under cursor
-    // --------------------------------------------------------
-
-    const handleMouseOver = (event) => {
-      if (isTouchDevice) {
-        return;
-      }
-
-      const target = event.target;
-
-      cursor.classList.remove(
-        'cursor-link',
-        'cursor-text',
-        'cursor-grab',
-        'cursor-grabbing'
-      );
-
-
-      // Link / button
-      if (
-        target.closest('a') ||
-        target.closest('button') ||
-        target.closest('[role="button"]')
-      ) {
-        cursor.classList.add('cursor-link');
-        return;
-      }
-
-
-      // Text input
-      if (
-        target.matches?.(
-          'input[type="text"], input[type="email"], input[type="search"], input[type="password"], textarea'
-        )
-      ) {
-        cursor.classList.add('cursor-text');
-        return;
-      }
-
-
-      // Draggable
-      if (
-        target.closest?.(
-          '[draggable="true"]'
-        )
-      ) {
-        cursor.classList.add('cursor-grab');
-      }
-    };
-
-
-    // --------------------------------------------------------
-    // Drag start
-    // --------------------------------------------------------
-
-    const handleDragStart = () => {
-      cursor.classList.remove('cursor-grab');
-      cursor.classList.add('cursor-grabbing');
-    };
-
-
-    // --------------------------------------------------------
-    // Drag end
-    // --------------------------------------------------------
-
-    const handleDragEnd = () => {
-      cursor.classList.remove('cursor-grabbing');
-    };
-
-
-    // ========================================================
-    // CREATE TRAIL
-    // ========================================================
 
     const createTrail = (x, y) => {
-      const trail = document.createElement('span');
+      const trail =
+        document.createElement('span');
 
-      trail.className = 'cursor-trail';
-
-      const size = 3 + Math.random() * 6;
+      const size =
+        3 + Math.random() * 6;
 
       const offsetX =
         (Math.random() - 0.5) * 12;
 
       const offsetY =
         (Math.random() - 0.5) * 12;
+
+      const color =
+        TRAIL_COLORS[
+          Math.floor(
+            Math.random() *
+              TRAIL_COLORS.length
+          )
+        ];
+
+      trail.className =
+        'cursor-trail';
 
       trail.style.left =
         `${x + offsetX}px`;
@@ -231,39 +89,24 @@ const CustomCursor = () => {
       trail.style.height =
         `${size}px`;
 
-      // Một chút biến thiên màu
-      const colors = [
-        '#00aaff',
-        '#00c6ff',
-        '#00e5ff',
-        '#58dfff',
-      ];
-
       trail.style.setProperty(
         '--particle-color',
-        colors[
-          Math.floor(
-            Math.random() * colors.length
-          )
-        ]
+        color
       );
 
       document.body.appendChild(trail);
 
       particles.add(trail);
 
-      const timer = window.setTimeout(() => {
-        trail.remove();
-        particles.delete(trail);
-      }, 650);
+      const timer =
+        window.setTimeout(() => {
+          trail.remove();
+          particles.delete(trail);
+        }, 650);
 
-      trail.dataset.timer = timer;
+      trail.dataset.timer =
+        String(timer);
     };
-
-
-    // ========================================================
-    // CREATE CLICK EFFECT
-    // ========================================================
 
     const createClickEffect = (x, y) => {
       const effect =
@@ -282,18 +125,145 @@ const CustomCursor = () => {
 
       effects.add(effect);
 
-      const timer = window.setTimeout(() => {
-        effect.remove();
-        effects.delete(effect);
-      }, 750);
+      const timer =
+        window.setTimeout(() => {
+          effect.remove();
+          effects.delete(effect);
+        }, 750);
 
-      effect.dataset.timer = timer;
+      effect.dataset.timer =
+        String(timer);
     };
 
+    const handleMouseMove = (event) => {
+      if (isTouchDevice) {
+        return;
+      }
 
-    // ========================================================
-    // EVENTS
-    // ========================================================
+      const {
+        clientX,
+        clientY,
+      } = event;
+
+      cursor.style.transform =
+        `translate3d(${clientX}px, ${clientY}px, 0)`;
+
+      const now =
+        performance.now();
+
+      if (
+        now - lastTrailTime >= 28
+      ) {
+        createTrail(
+          clientX,
+          clientY
+        );
+
+        lastTrailTime = now;
+      }
+    };
+
+    const handleMouseEnter = () => {
+      if (!isTouchDevice) {
+        cursor.classList.remove(
+          'cursor-hidden'
+        );
+      }
+    };
+
+    const handleMouseLeave = () => {
+      cursor.classList.add(
+        'cursor-hidden'
+      );
+    };
+
+    const handleMouseDown = (event) => {
+      if (isTouchDevice) {
+        return;
+      }
+
+      cursor.classList.add(
+        'cursor-clicking'
+      );
+
+      createClickEffect(
+        event.clientX,
+        event.clientY
+      );
+    };
+
+    const handleMouseUp = () => {
+      cursor.classList.remove(
+        'cursor-clicking'
+      );
+    };
+
+    const handleMouseOver = (event) => {
+      if (isTouchDevice) {
+        return;
+      }
+
+      const target = event.target;
+
+      cursor.classList.remove(
+        'cursor-link',
+        'cursor-text',
+        'cursor-grab',
+        'cursor-grabbing'
+      );
+
+      if (
+        target.closest?.(
+          'a, button, [role="button"]'
+        )
+      ) {
+        cursor.classList.add(
+          'cursor-link'
+        );
+
+        return;
+      }
+
+      if (
+        target.matches?.(
+          'input[type="text"], input[type="email"], input[type="search"], input[type="password"], textarea'
+        )
+      ) {
+        cursor.classList.add(
+          'cursor-text'
+        );
+
+        return;
+      }
+
+      if (
+        target.closest?.(
+          '[draggable="true"]'
+        )
+      ) {
+        cursor.classList.add(
+          'cursor-grab'
+        );
+      }
+    };
+
+    const handleDragStart = () => {
+      cursor.classList.remove(
+        'cursor-grab'
+      );
+
+      cursor.classList.add(
+        'cursor-grabbing'
+      );
+    };
+
+    const handleDragEnd = () => {
+      cursor.classList.remove(
+        'cursor-grabbing'
+      );
+    };
+
+    checkTouchDevice();
 
     document.addEventListener(
       'mousemove',
@@ -336,10 +306,10 @@ const CustomCursor = () => {
       handleDragEnd
     );
 
-
-    // ========================================================
-    // CLEANUP
-    // ========================================================
+    window.addEventListener(
+      'resize',
+      checkTouchDevice
+    );
 
     return () => {
       document.removeEventListener(
@@ -387,36 +357,34 @@ const CustomCursor = () => {
         checkTouchDevice
       );
 
+      particles.forEach(
+        (particle) => {
+          window.clearTimeout(
+            Number(
+              particle.dataset.timer
+            )
+          );
 
-      // Clear particles
-      particles.forEach((particle) => {
-        window.clearTimeout(
-          Number(particle.dataset.timer)
-        );
+          particle.remove();
+        }
+      );
 
-        particle.remove();
-      });
+      effects.forEach(
+        (effect) => {
+          window.clearTimeout(
+            Number(
+              effect.dataset.timer
+            )
+          );
+
+          effect.remove();
+        }
+      );
 
       particles.clear();
-
-
-      // Clear click effects
-      effects.forEach((effect) => {
-        window.clearTimeout(
-          Number(effect.dataset.timer)
-        );
-
-        effect.remove();
-      });
-
       effects.clear();
     };
   }, []);
-
-
-  // ==========================================================
-  // CURSOR UI
-  // ==========================================================
 
   return (
     <div
@@ -424,13 +392,7 @@ const CustomCursor = () => {
       id="custom-cursor"
       aria-hidden="true"
     >
-
-      {/* Outer glow */}
-
       <span className="cursor-orbit" />
-
-
-      {/* Main cursor arrow */}
 
       <svg
         className="cursor-arrow"
@@ -455,27 +417,13 @@ const CustomCursor = () => {
         />
       </svg>
 
-
-      {/* Center light */}
-
       <span className="cursor-core" />
-
     </div>
   );
 };
 
-
-// ============================================================
-// APP CONTENT
-// ============================================================
-
 const AppContent = () => {
   const location = useLocation();
-
-
-  // ==========================================================
-  // SUB ROOT
-  // ==========================================================
 
   useEffect(() => {
     const root =
@@ -498,7 +446,6 @@ const AppContent = () => {
       isSubPage
     );
 
-
     return () => {
       if (root) {
         root.classList.remove(
@@ -512,19 +459,15 @@ const AppContent = () => {
     };
   }, [location.pathname]);
 
-
-  // ==========================================================
-  // RENDER
-  // ==========================================================
-
   return (
     <>
+      <CustomScrollbar />
+
       <CustomCursor />
 
       <Header />
 
       <Switch>
-
         <Route
           path="/"
           exact
@@ -554,7 +497,6 @@ const AppContent = () => {
           exact
           component={Resume}
         />
-
       </Switch>
 
       <Footer />
@@ -564,11 +506,6 @@ const AppContent = () => {
   );
 };
 
-
-// ============================================================
-// APP
-// ============================================================
-
 const App = () => {
   return (
     <Router>
@@ -576,6 +513,5 @@ const App = () => {
     </Router>
   );
 };
-
 
 export default App;
