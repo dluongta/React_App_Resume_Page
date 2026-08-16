@@ -496,13 +496,12 @@
   0% {
     transform: translate(-50%, -50%) rotate(0deg);
   }
-
   100% {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
-/* Vòng tròn Loading xoay (Mặc định) */
+/* Vòng tròn Loading xoay (Mặc định cho PC) */
 .loading-spinner {
   position: absolute;
   top: 50%;
@@ -513,7 +512,7 @@
   border-radius: 50%;
   border: none;
   background: conic-gradient(transparent 15%, #ff6a00, #ff007f, #9d00ff, #0077ff), 
-              rgba(0, 0, 0, 0.5);
+              rgba(0, 0, 0, 0.5); /* Màu đen trong suốt như PC */
   -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
   mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
 
@@ -523,14 +522,16 @@
   z-index: 20;
 }
 
+/* Vòng tròn Loading cho Mobile */
 @media screen and (max-width: 768px) {
   .loading-spinner {
     width: 40px;
     height: 40px;
     border: none;
     border-radius: 50%;
+    /* Sửa lại background ở mobile giống hệt PC */
     background: conic-gradient(transparent 15%, #ff6a00, #ff007f, #9d00ff, #0077ff), 
-                rgba(169, 169, 169, 0.1);
+                rgba(0, 0, 0, 0.5); /* Đổi từ 169,169,169,0.1 thành 0,0,0,0.5 */
     -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
     mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
     animation: spin-gradient 0.8s linear infinite;
