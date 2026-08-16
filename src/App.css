@@ -3187,7 +3187,7 @@ body.sub-root,
 }
 
 ::-webkit-scrollbar-track {
-  background: #111828;
+  background: #434242;
   border-radius: 0;
 }
 
@@ -3195,9 +3195,186 @@ body.sub-root,
   min-height: 100px;
   background: linear-gradient(180deg, #ff6a00, #ff007f, #9d00ff, #0077ff);
   border-radius: 0;
-  border: 2px solid #111828;
+  border: 2px solid #434242;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #ff6a00, #ff007f, #9d00ff, #0077ff);
 }
+
+
+html,
+body,
+body *,
+a,
+button,
+input,
+textarea,
+select {
+  cursor: none !important;
+}
+
+#custom-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 38px;
+  height: 48px;
+  pointer-events: none;
+  z-index: 2147483647;
+  transform:
+    translate(-4px, -3px);
+  will-change:
+    left,
+    top,
+    transform;
+  transition:
+    opacity 0.15s ease;
+}
+
+#custom-cursor .cursor-arrow {
+
+  width: 38px;
+  height: 48px;
+  display: block;
+  filter:
+    drop-shadow(0 0 4px rgba(0, 170, 255, 0.9)) drop-shadow(0 0 10px rgba(0, 157, 255, 0.45));
+  transition:
+    transform 0.12s ease;
+}
+
+#custom-cursor.cursor-clicking .cursor-arrow {
+  transform:
+    scale(0.82);
+}
+
+#custom-cursor.cursor-hidden {
+  opacity: 0;
+}
+
+.cursor-trail {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2147483646;
+  transform:
+    translate(-50%, -50%);
+  background:
+    #009dff;
+  box-shadow:
+    0 0 6px rgba(0, 157, 255, 1),
+    0 0 14px rgba(0, 157, 255, .9),
+    0 0 25px rgba(0, 157, 255, .5);
+  animation:
+    cursorTrailAnimation 0.6s ease-out forwards;
+}
+
+@keyframes cursorTrailAnimation {
+
+  0% {
+    width: 9px;
+    height: 9px;
+    opacity: 0.95;
+    transform:
+      translate(-50%, -50%) scale(1);
+  }
+
+
+  35% {
+    width: 7px;
+    height: 7px;
+    opacity: 0.65;
+  }
+
+
+  100% {
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    transform:
+      translate(-50%, -50%) scale(0);
+  }
+
+}
+
+.cursor-click-effect {
+
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2147483645;
+  transform:
+    translate(-50%, -50%);
+  border:
+    2px solid #00aaff;
+
+  box-shadow:
+    0 0 8px rgba(0, 170, 255, .9),
+    0 0 20px rgba(0, 157, 255, .6);
+  animation:
+    cursorClickAnimation 0.65s cubic-bezier(.2, .8, .2, 1) forwards;
+
+}
+
+@keyframes cursorClickAnimation {
+
+  0% {
+    width: 15px;
+    height: 15px;
+    opacity: 1;
+    border-width: 3px;
+    box-shadow:
+      0 0 5px #00aaff,
+      0 0 15px #009dff;
+  }
+
+  40% {
+    width: 65px;
+    height: 65px;
+    opacity: .75;
+    border-width: 2px;
+    box-shadow:
+      0 0 12px #00aaff,
+      0 0 30px rgba(0, 157, 255, .8);
+
+  }
+
+  100% {
+    width: 125px;
+    height: 125px;
+    opacity: 0;
+    border-width: 1px;
+    box-shadow:
+      0 0 5px rgba(0, 157, 255, .2);
+
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  #custom-cursor,
+  .cursor-trail,
+  .cursor-click-effect {
+    display: none !important;
+  }
+
+  html,
+  body,
+  body *,
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    cursor: auto !important;
+  }
+
+}
+
