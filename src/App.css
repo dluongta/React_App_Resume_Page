@@ -3419,7 +3419,7 @@ select {
 
   html::-webkit-scrollbar-track,
   body::-webkit-scrollbar-track {
-    background: #434242;
+    background: #2c2c2c;
     border-radius: 0;
   }
 
@@ -3433,7 +3433,7 @@ select {
       #9d00ff,
       #0077ff
     );
-    border: 2px solid #434242;
+    border: 2px solid #2c2c2c;
     border-radius: 0;
   }
 
@@ -3509,7 +3509,7 @@ select {
   margin: 0;
   padding: 0;
 
-  background: #434242;
+  background: #2c2c2c;
 
   z-index: 2147483640;
 
@@ -3544,7 +3544,7 @@ select {
     );
 
   border:
-    2px solid #434242;
+    2px solid #2c2c2c;
 
   border-radius: 0;
 
@@ -4060,7 +4060,7 @@ select {
 
   html::-webkit-scrollbar-track,
   body::-webkit-scrollbar-track {
-    background: #434242;
+    background: #2c2c2c;
 
     border-radius: 0;
   }
@@ -4080,7 +4080,7 @@ select {
       );
 
     border:
-      2px solid #434242;
+      2px solid #2c2c2c;
 
     border-radius: 0;
   }
