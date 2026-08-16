@@ -92,44 +92,62 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
     };
   }, [src, hasStarted]);
 
+  // Khởi tạo video khi src thay đổi
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
+    // Chỉ reset âm thanh khi load video mới
     video.volume = 0;
     video.muted = true;
+
+    setVolume(0);
+    setIsMuted(true);
 
     const onLoadedMetadata = () => {
       setDuration(video.duration);
       setIsPlaying(!video.paused);
     };
 
-    const onTimeUpdate = () => setCurrentTime(video.currentTime);
+    const onTimeUpdate = () => {
+      setCurrentTime(video.currentTime);
+    };
 
-    const onEnded = () => {
-      if (!isLooping) {
-        video.currentTime = 0;
-        setCurrentTime(0);
-        setIsPlaying(false);
-        setShowControls(true);
-      }
+    const onPlaying = () => {
+      setIsPlaying(true);
+    };
+
+    const onPause = () => {
+      setIsPlaying(false);
     };
 
     video.addEventListener('loadedmetadata', onLoadedMetadata);
     video.addEventListener('timeupdate', onTimeUpdate);
-    video.addEventListener('ended', onEnded);
-    video.addEventListener('playing', () => setIsPlaying(true));
-    video.addEventListener('pause', () => setIsPlaying(false));
+    video.addEventListener('playing', onPlaying);
+    video.addEventListener('pause', onPause);
 
     handleInteraction();
 
     return () => {
       video.removeEventListener('loadedmetadata', onLoadedMetadata);
       video.removeEventListener('timeupdate', onTimeUpdate);
-      video.removeEventListener('ended', onEnded);
-      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+      video.removeEventListener('playing', onPlaying);
+      video.removeEventListener('pause', onPause);
+
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
     };
-  }, [src, isLooping]);
+  }, [src]);
+
+
+  // Chỉ cập nhật trạng thái Loop
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.loop = isLooping;
+  }, [isLooping]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -183,7 +201,9 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
 
   const toggleLoop = (e) => {
     e.stopPropagation();
-    setIsLooping(!isLooping);
+
+    setIsLooping((prev) => !prev);
+
     handleInteraction();
   };
 
@@ -228,7 +248,6 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
           autoPlay
           muted={isMuted}
           src={src}
-          loop={isLooping}
           preload="auto"
         >
           {captionSrc && (

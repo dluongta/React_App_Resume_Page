@@ -22,10 +22,18 @@ const formatTime = (seconds) => {
 
 const END_OFFSET = 0.05;
 
+const clampTime = (time, duration) => {
+  if (!Number.isFinite(time) || !Number.isFinite(duration)) {
+    return 0;
+  }
+  return Math.min(Math.max(time, 0), duration);
+};
+
 const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
   const audioRef = useRef(null);
   const settingsRef = useRef(null);
   const lastVolumeRef = useRef(1);
+  const durationRef = useRef(0);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -57,16 +65,41 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
     audio.muted = isMuted;
 
     const onLoadedMetadata = () => {
-      setDuration(audio.duration || 0);
+      const realDuration = audio.duration;
+      if (Number.isFinite(realDuration) && realDuration > 0) {
+        durationRef.current = realDuration;
+        setDuration(realDuration);
+      }
+      audio.currentTime = 0;
       setCurrentTime(0);
     };
 
+    const onDurationChange = () => {
+      const realDuration = audio.duration;
+      if (Number.isFinite(realDuration) && realDuration > 0) {
+        durationRef.current = realDuration;
+        setDuration(realDuration);
+      }
+    };
+
     const onTimeUpdate = () => {
-      if (!audio.duration) return;
+      const limit = durationRef.current;
 
-      const current = Math.min(audio.currentTime, audio.duration);
+      if (!Number.isFinite(limit) || limit <= 0) return;
 
-      setCurrentTime(current);
+      const current = audio.currentTime;
+
+      // Hard stop ở cuối bài
+      if (!isLooping && current >= limit - END_OFFSET) {
+        audio.pause();
+        audio.currentTime = limit;
+        setCurrentTime(limit);
+        setIsPlaying(false);
+        return;
+      }
+
+      const safeCurrent = clampTime(current, limit);
+      setCurrentTime(safeCurrent);
 
       if (!audio.paused) {
         setIsPlaying(true);
@@ -84,32 +117,43 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
     };
 
     const onSeeked = () => {
-      if (!audio.duration) return;
+      const limit = durationRef.current;
 
-      if (audio.currentTime >= audio.duration - END_OFFSET) {
+      if (!Number.isFinite(limit) || limit <= 0) return;
+
+      // Nới lỏng kiểm tra khi tua sát viền cuối
+      if (!isLooping && audio.duration - audio.currentTime <= END_OFFSET + 0.1) {
         audio.pause();
+        audio.currentTime = limit;
+        setCurrentTime(limit);
         setIsPlaying(false);
       }
     };
 
-    const onWaiting = () => setLoading(true);
+    const onWaiting = () => {
+      setLoading(true);
+    };
 
-    const onPlaying = () => setLoading(false);
+    const onPlaying = () => {
+      setLoading(false);
+    };
 
-    audio.addEventListener("loadedmetadata", onLoadedMetadata);
-    audio.addEventListener("timeupdate", onTimeUpdate);
-    audio.addEventListener("ended", onEnded);
-    audio.addEventListener("seeked", onSeeked);
-    audio.addEventListener("waiting", onWaiting);
-    audio.addEventListener("playing", onPlaying);
+    audio.addEventListener('loadedmetadata', onLoadedMetadata);
+    audio.addEventListener('durationchange', onDurationChange);
+    audio.addEventListener('timeupdate', onTimeUpdate);
+    audio.addEventListener('ended', onEnded);
+    audio.addEventListener('seeked', onSeeked);
+    audio.addEventListener('waiting', onWaiting);
+    audio.addEventListener('playing', onPlaying);
 
     return () => {
-      audio.removeEventListener("loadedmetadata", onLoadedMetadata);
-      audio.removeEventListener("timeupdate", onTimeUpdate);
-      audio.removeEventListener("ended", onEnded);
-      audio.removeEventListener("seeked", onSeeked);
-      audio.removeEventListener("waiting", onWaiting);
-      audio.removeEventListener("playing", onPlaying);
+      audio.removeEventListener('loadedmetadata', onLoadedMetadata);
+      audio.removeEventListener('durationchange', onDurationChange);
+      audio.removeEventListener('timeupdate', onTimeUpdate);
+      audio.removeEventListener('ended', onEnded);
+      audio.removeEventListener('seeked', onSeeked);
+      audio.removeEventListener('waiting', onWaiting);
+      audio.removeEventListener('playing', onPlaying);
     };
   }, [src, volume, isMuted, isLooping]);
 
@@ -117,10 +161,13 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
     const audio = audioRef.current;
     if (!audio) return;
 
+    const limit = durationRef.current;
+
     if (audio.paused) {
       if (
-        audio.duration &&
-        audio.currentTime >= audio.duration - END_OFFSET
+        Number.isFinite(limit) &&
+        limit > 0 &&
+        audio.currentTime >= limit - END_OFFSET
       ) {
         audio.currentTime = 0;
         setCurrentTime(0);
@@ -180,14 +227,24 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
     const audio = audioRef.current;
     if (!audio) return;
 
+    const limit = durationRef.current;
+
+    if (!Number.isFinite(limit) || limit <= 0) return;
+
     let value = parseFloat(e.target.value);
 
-    if (audio.duration) {
-      value = Math.min(value, Math.max(audio.duration - END_OFFSET, 0));
-    }
+    value = clampTime(value, limit);
 
     audio.currentTime = value;
     setCurrentTime(value);
+
+    if (!isLooping && value >= limit - END_OFFSET) {
+      audio.pause();
+      audio.currentTime = limit;
+
+      setCurrentTime(limit);
+      setIsPlaying(false);
+    }
   };
 
   const changePlaybackRate = (rate) => {
@@ -200,7 +257,10 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
 
   const progressPercent =
     duration > 0
-      ? Math.min((currentTime / duration) * 100, 100)
+      ? Math.min(
+        (currentTime / Math.max(duration - END_OFFSET, 0)) * 100,
+        100
+      )
       : 0;
 
   const volumePercent = isMuted ? 0 : volume * 100;
@@ -231,7 +291,8 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
           </div>
 
           <div className="progress-container">
-            <span className="time-text">{formatTime(currentTime)}</span>
+            <span className="time-text">{formatTime(Math.min(currentTime, duration))}</span>
+            
             <div className="progress-wrapper">
               <input
                 type="range"
@@ -239,18 +300,19 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
                 min="0"
                 max={duration ? Math.max(duration - END_OFFSET, 0) : 0}
                 step="0.1"
-                value={currentTime}
+                value={Math.min(currentTime, duration)}
                 onChange={handleSeek}
                 style={{
-                  background: `linear-gradient(to right, 
-      #ff6a00 0%, 
-      #ff007f ${progressPercent * 0.33}%, 
-      #9d00ff ${progressPercent * 0.66}%, 
-      #0077ff ${progressPercent}%, 
+                  background: `linear-gradient(to right,  
+      #ff6a00 0%,  
+      #ff007f ${progressPercent * 0.33}%,  
+      #9d00ff ${progressPercent * 0.66}%,  
+      #0077ff ${progressPercent}%,  
       rgba(255, 255, 255, 0.1) ${progressPercent}%)`
                 }}
               />
             </div>
+            
             <span className="time-text time-duration">{formatTime(duration)}</span>
           </div>
         </div>
@@ -289,11 +351,11 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
                 value={isMuted ? 0 : volume}
                 onChange={handleVolumeChange}
                 style={{
-                  background: `linear-gradient(to right, 
-      #ff6a00 0%, 
-      #ff007f ${volumePercent * 0.33}%, 
-      #9d00ff ${volumePercent * 0.66}%, 
-      #0077ff ${volumePercent}%, 
+                  background: `linear-gradient(to right,  
+      #ff6a00 0%,  
+      #ff007f ${volumePercent * 0.33}%,  
+      #9d00ff ${volumePercent * 0.66}%,  
+      #0077ff ${volumePercent}%,  
       rgba(255, 255, 255, 0.2) ${volumePercent}%)`
                 }}
               />
