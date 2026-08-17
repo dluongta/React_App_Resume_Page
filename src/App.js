@@ -16,7 +16,7 @@ import { AppComponent } from './components/pages/App';
 import { Android } from './components/pages/Android';
 import { Resume } from './components/pages/Resume';
 import ScrollToTopButton from './components/homes/ScrollToTopButton';
-import CustomScrollbar from './components/CustomScrollbar';
+import CustomScrollbar from './components/homes/CustomScrollbar';
 
 const TRAIL_COLORS = [
   '#00aaff',
