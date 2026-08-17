@@ -165,7 +165,7 @@ const CustomCursor = () => {
         let trailY = clientY;
 
         if (cursor.classList.contains('cursor-text')) {
-          trailX = clientX + 4;
+          trailX = clientX;
           trailY = clientY - 20;
         }
 
