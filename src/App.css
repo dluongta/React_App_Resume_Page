@@ -4103,7 +4103,7 @@ select {
   left: 0px;  
    top: -22px; 
   width: 10px;
-  height: 40px; 
+  height: 42px; 
   opacity: 0;
   visibility: hidden;
   transform: scale(0.85);
@@ -4119,7 +4119,7 @@ select {
   top: 0;
   width: 2px;
   
-  height: 40px; 
+  height: 42px; 
   
   background: #00efff;  
   border-radius: 2px;
