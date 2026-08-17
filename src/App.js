@@ -174,16 +174,29 @@ const CustomCursor = () => {
 
       const now = performance.now();
 
+      // Giới hạn tần suất tạo hạt (cứ mỗi 28ms)
       if (now - lastTrailTime >= 28) {
-        let trailX = clientX;
-        let trailY = clientY;
 
         if (cursor.classList.contains('cursor-text')) {
-          trailX = clientX;
-          trailY = clientY - 20;
+          // --- TRẠNG THÁI I-BEAM (TEXT) ---
+
+          // 1. Đặt vị trí xuất phát ở trung tâm trên
+          // clientX là ở giữa chiều ngang.
+          // clientY - 20 đẩy hạt lên phía trên (bạn có thể thay đổi -20 thành -15 hoặc -25 tùy thuộc vào chiều cao của I-Beam trong file CSS)
+          let trailX = clientX;
+          let trailY = clientY - 20;
+
+          // 2. Tạo nhiều hình tròn hơn (gấp đôi) bằng cách gọi hàm 2 lần
+          createTrail(trailX, trailY);
+          createTrail(trailX, trailY);
+          // createTrail(trailX, trailY); // (Bỏ dấu // ở đầu dòng này nếu bạn muốn lượng hạt x3)
+
+        } else {
+          // --- TRẠNG THÁI MŨI TÊN BÌNH THƯỜNG ---
+          // Chỉ tạo 1 hạt ở vị trí mũi tên
+          createTrail(clientX, clientY);
         }
 
-        createTrail(trailX, trailY);
         lastTrailTime = now;
       }
     };
