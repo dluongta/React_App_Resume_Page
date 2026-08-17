@@ -3210,7 +3210,7 @@ body.sub-root,
 }
 
 #custom-cursor.cursor-clicking .cursor-arrow {
-  transform: scale(0.82);
+  transform: scale(0.84);
 }
 
 #custom-cursor.cursor-hidden {
@@ -3544,19 +3544,11 @@ select {
     visibility 0.12s ease;
 }
 
-
-/* Click arrow */
-
 #custom-cursor.cursor-clicking
 .cursor-arrow {
   transform:
-    scale(0.86);
+    scale(0.84);
 }
-
-
-/* =========================================================
-   NORMAL CORE
-   ========================================================= */
 
 #custom-cursor .cursor-core {
   position: absolute;
@@ -3594,7 +3586,7 @@ select {
   visibility: hidden;
 
   transform:
-    scale(0.86);
+    scale(0.84);
 
   transition:
     opacity 0.12s ease,
@@ -3703,7 +3695,7 @@ select {
   visibility: hidden;
 
   transform:
-    scale(0.86);
+    scale(0.84);
 }
 
 #custom-cursor.cursor-text
@@ -4046,7 +4038,7 @@ select {
   height: 32px;
   opacity: 0;
   visibility: hidden;
-  transform: scale(0.85);
+  transform: scale(0.84);
   transition:
     opacity 0.12s ease,
     transform 0.12s ease,
@@ -4106,7 +4098,7 @@ select {
   height: 42px; 
   opacity: 0;
   visibility: hidden;
-  transform: scale(0.85);
+  transform: scale(0.84);
   transition:
     opacity 0.12s ease,
     transform 0.12s ease,
@@ -4131,5 +4123,5 @@ select {
 } 
 
 #custom-cursor.cursor-text.cursor-clicking .cursor-text-caret {
-  transform: scale(0.8);
+  transform: scale(0.84);
 }
