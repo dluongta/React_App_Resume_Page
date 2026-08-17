@@ -136,7 +136,6 @@ const CustomCursor = () => {
 
       const now = audioCtx.currentTime;
 
-      // Mobile dùng tần số cao hơn một chút để click nghe rõ hơn
       oscillator.frequency.setValueAtTime(
         isMobile ? 1800 : 1500,
         now
@@ -147,8 +146,7 @@ const CustomCursor = () => {
         now + 0.05
       );
 
-      // Âm lượng
-      const volume = isMobile ? 0 : 2.0;
+      const volume = isMobile ? 2.8 : 2.0;
 
       gainNode.gain.setValueAtTime(volume, now);
 
@@ -178,22 +176,14 @@ const CustomCursor = () => {
       if (now - lastTrailTime >= 28) {
 
         if (cursor.classList.contains('cursor-text')) {
-          // --- TRẠNG THÁI I-BEAM (TEXT) ---
 
-          // 1. Đặt vị trí xuất phát ở trung tâm trên
-          // clientX là ở giữa chiều ngang.
-          // clientY - 20 đẩy hạt lên phía trên (bạn có thể thay đổi -20 thành -15 hoặc -25 tùy thuộc vào chiều cao của I-Beam trong file CSS)
           let trailX = clientX;
           let trailY = clientY - 20;
 
-          // 2. Tạo nhiều hình tròn hơn (gấp đôi) bằng cách gọi hàm 2 lần
           createTrail(trailX, trailY);
           createTrail(trailX, trailY);
-          // createTrail(trailX, trailY); // (Bỏ dấu // ở đầu dòng này nếu bạn muốn lượng hạt x3)
 
         } else {
-          // --- TRẠNG THÁI MŨI TÊN BÌNH THƯỜNG ---
-          // Chỉ tạo 1 hạt ở vị trí mũi tên
           createTrail(clientX, clientY);
         }
 
