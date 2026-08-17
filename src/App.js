@@ -148,7 +148,7 @@ const CustomCursor = () => {
       );
 
       // Tăng âm lượng trên mobile
-      const volume = isMobile ? 2.8 : 2.0;
+      const volume = isMobile ? 0 : 2.0;
 
       gainNode.gain.setValueAtTime(volume, now);
 
