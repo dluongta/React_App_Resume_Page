@@ -3550,7 +3550,7 @@ select {
 #custom-cursor.cursor-clicking
 .cursor-arrow {
   transform:
-    scale(0.82);
+    scale(0.86);
 }
 
 
@@ -3594,7 +3594,7 @@ select {
   visibility: hidden;
 
   transform:
-    scale(0.85);
+    scale(0.86);
 
   transition:
     opacity 0.12s ease,
@@ -3703,7 +3703,7 @@ select {
   visibility: hidden;
 
   transform:
-    scale(0.7);
+    scale(0.86);
 }
 
 #custom-cursor.cursor-text
@@ -4131,5 +4131,5 @@ select {
 } 
 
 #custom-cursor.cursor-text.cursor-clicking .cursor-text-caret {
-  transform: scale(0.78);
+  transform: scale(0.82);
 }
