@@ -4175,7 +4175,7 @@ select {
   left: 0px;  
    top: -22px; 
   width: 10px;
-  height: 42px; 
+  height: 46px; 
   opacity: 0;
   visibility: hidden;
   transform: scale(0.85);
@@ -4191,7 +4191,7 @@ select {
   top: 0;
   width: 2px;
   
-  height: 42px; 
+  height: 46px; 
   
   background: #00efff;  
   border-radius: 2px;
@@ -4203,5 +4203,5 @@ select {
 } 
 
 #custom-cursor.cursor-text.cursor-clicking .cursor-text-caret {
-  transform: scale(0.75);
+  transform: scale(0.8);
 }
