@@ -26,32 +26,9 @@ const TRAIL_COLORS = [
 ];
 
 const TEXT_SELECTOR = [
-  'h1',
-  'h2',
-  'h3',
-  'h4',
-  'h5',
-  'h6',
-  'p',
-  'span',
-  'li',
-  'label',
-  'strong',
-  'b',
-  'em',
-  'i',
-  'small',
-  'code',
-  'pre',
-  'blockquote',
-  'dt',
-  'dd',
-  'figcaption',
-  'article',
-  'section',
-  'td',
-  'th',
-  'caption',
+  'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'li', 'label',
+  'strong', 'b', 'em', 'i', 'small', 'code', 'pre', 'blockquote',
+  'dt', 'dd', 'figcaption', 'article', 'section', 'td', 'th', 'caption',
 ].join(',');
 
 const CustomCursor = () => {
@@ -66,6 +43,7 @@ const CustomCursor = () => {
 
     let lastTrailTime = 0;
     let isTouchDevice = false;
+    let audioCtx = null; // Biến lưu trữ AudioContext
 
     const particles = new Set();
     const effects = new Set();
@@ -83,64 +61,33 @@ const CustomCursor = () => {
 
     const clearTrails = () => {
       particles.forEach((particle) => {
-        window.clearTimeout(
-          Number(particle.dataset.timer)
-        );
-
+        window.clearTimeout(Number(particle.dataset.timer));
         particle.remove();
       });
-
       particles.clear();
     };
 
     const clearEffects = () => {
       effects.forEach((effect) => {
-        window.clearTimeout(
-          Number(effect.dataset.timer)
-        );
-
+        window.clearTimeout(Number(effect.dataset.timer));
         effect.remove();
       });
-
       effects.clear();
     };
 
     const createTrail = (x, y) => {
       const trail = document.createElement('span');
-
       const size = 3 + Math.random() * 6;
-
-      const offsetX =
-        (Math.random() - 0.5) * 12;
-
-      const offsetY =
-        (Math.random() - 0.5) * 12;
-
-      const color =
-        TRAIL_COLORS[
-        Math.floor(
-          Math.random() * TRAIL_COLORS.length
-        )
-        ];
+      const offsetX = (Math.random() - 0.5) * 12;
+      const offsetY = (Math.random() - 0.5) * 12;
+      const color = TRAIL_COLORS[Math.floor(Math.random() * TRAIL_COLORS.length)];
 
       trail.className = 'cursor-trail';
-
-      trail.style.left =
-        `${x + offsetX}px`;
-
-      trail.style.top =
-        `${y + offsetY}px`;
-
-      trail.style.width =
-        `${size}px`;
-
-      trail.style.height =
-        `${size}px`;
-
-      trail.style.setProperty(
-        '--particle-color',
-        color
-      );
+      trail.style.left = `${x + offsetX}px`;
+      trail.style.top = `${y + offsetY}px`;
+      trail.style.width = `${size}px`;
+      trail.style.height = `${size}px`;
+      trail.style.setProperty('--particle-color', color);
 
       document.body.appendChild(trail);
       particles.add(trail);
@@ -155,10 +102,7 @@ const CustomCursor = () => {
 
     const createClickEffect = (x, y) => {
       const effect = document.createElement('span');
-
-      effect.className =
-        'cursor-click-effect';
-
+      effect.className = 'cursor-click-effect';
       effect.style.left = `${x}px`;
       effect.style.top = `${y}px`;
 
@@ -173,31 +117,38 @@ const CustomCursor = () => {
       effect.dataset.timer = String(timer);
     };
 
-    // const handleMouseMove = (event) => {
-    //   if (isTouchDevice) {
-    //     return;
-    //   }
+    // --- HÀM TẠO ÂM THANH BẰNG WEB AUDIO API ---
+    const playClickSound = () => {
+      // Khởi tạo AudioContext một lần duy nhất để tối ưu hiệu suất
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      
+      // Trình duyệt thường chặn audio cho đến khi có tương tác, cần resume nếu bị suspended
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
 
-    //   const { clientX, clientY } = event;
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
 
-    //   cursor.style.transform =
-    //     `translate3d(${clientX}px, ${clientY}px, 0)`;
+      // Cấu hình âm thanh (Tùy chỉnh để có tiếng click êm tai)
+      oscillator.type = 'square'; // Loại sóng: sine, square, sawtooth, triangle
+      oscillator.frequency.setValueAtTime(800, audioCtx.currentTime); // Tần số ban đầu (Hz)
+      oscillator.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.1); // Giảm tần số nhanh
 
-    //   const now = performance.now();
+      // Cấu hình âm lượng
+      gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime); // Âm lượng ban đầu (0.2)
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1); // Giảm âm lượng về 0
 
-    //   if (now - lastTrailTime >= 28) {
-    //     let trailX = clientX;
-    //     let trailY = clientY;
+      // Kết nối các node
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
 
-    //     if (cursor.classList.contains('cursor-text')) {
-    //       trailX = clientX;
-    //       trailY = clientY - 20;
-    //     }
-
-    //     createTrail(trailX, trailY);
-    //     lastTrailTime = now;
-    //   }
-    // };
+      // Phát và dừng âm thanh trong 0.1 giây
+      oscillator.start(audioCtx.currentTime);
+      oscillator.stop(audioCtx.currentTime + 0.1);
+    };
 
     const handleMouseMove = (event) => {
       if (isTouchDevice) {
@@ -205,9 +156,7 @@ const CustomCursor = () => {
       }
 
       const { clientX, clientY } = event;
-
-      cursor.style.transform =
-        `translate3d(${clientX}px, ${clientY}px, 0)`;
+      cursor.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`;
 
       const now = performance.now();
 
@@ -227,53 +176,25 @@ const CustomCursor = () => {
 
     const handleMouseEnter = () => {
       if (!isTouchDevice) {
-        cursor.classList.remove(
-          'cursor-hidden'
-        );
+        cursor.classList.remove('cursor-hidden');
       }
     };
 
     const handleMouseLeave = () => {
-      cursor.classList.add(
-        'cursor-hidden'
-      );
-
+      cursor.classList.add('cursor-hidden');
       clearTrails();
       clearEffects();
     };
 
-    // const handleMouseDown = (event) => {
-    //   if (isTouchDevice) {
-    //     return;
-    //   }
-
-    //   if (
-    //     cursor.classList.contains(
-    //       'cursor-text'
-    //     )
-    //   ) {
-    //     clearEffects();
-    //     return;
-    //   }
-
-    //   cursor.classList.add(
-    //     'cursor-clicking'
-    //   );
-
-    //   createClickEffect(
-    //     event.clientX,
-    //     event.clientY
-    //   );
-    // };
-
     const handleMouseDown = (event) => {
+      // Phát âm thanh khi click
+      playClickSound();
+
       if (isTouchDevice) {
         return;
       }
 
-      cursor.classList.add(
-        'cursor-clicking'
-      );
+      cursor.classList.add('cursor-clicking');
 
       let clickX = event.clientX;
       let clickY = event.clientY;
@@ -286,199 +207,83 @@ const CustomCursor = () => {
     };
 
     const handleMouseUp = () => {
-      cursor.classList.remove(
-        'cursor-clicking'
-      );
+      cursor.classList.remove('cursor-clicking');
     };
 
     const handleMouseOver = (event) => {
-      if (isTouchDevice) {
-        return;
-      }
+      if (isTouchDevice) return;
 
       const target = event.target;
+      cursor.classList.remove('cursor-link', 'cursor-text', 'cursor-grab', 'cursor-grabbing');
 
-      cursor.classList.remove(
-        'cursor-link',
-        'cursor-text',
-        'cursor-grab',
-        'cursor-grabbing'
-      );
-
-      if (
-        target.closest?.(
-          'input[type="text"], input[type="email"], input[type="search"], input[type="password"], textarea, [contenteditable="true"]'
-        )
-      ) {
+      if (target.closest?.('input[type="text"], input[type="email"], input[type="search"], input[type="password"], textarea, [contenteditable="true"]')) {
         clearTrails();
         clearEffects();
-
-        cursor.classList.add(
-          'cursor-text'
-        );
-
+        cursor.classList.add('cursor-text');
         return;
       }
 
-      if (
-        target.closest?.(
-          'a, button, [role="button"]'
-        )
-      ) {
-        cursor.classList.add(
-          'cursor-link'
-        );
-
+      if (target.closest?.('a, button, [role="button"]')) {
+        cursor.classList.add('cursor-link');
         return;
       }
 
-      const textElement =
-        target.closest?.(
-          TEXT_SELECTOR
-        );
+      const textElement = target.closest?.(TEXT_SELECTOR);
 
       if (textElement) {
-        const text =
-          textElement.textContent?.trim();
-
-        if (
-          text &&
-          text.length > 0
-        ) {
+        const text = textElement.textContent?.trim();
+        if (text && text.length > 0) {
           clearTrails();
           clearEffects();
-
-          cursor.classList.add(
-            'cursor-text'
-          );
-
+          cursor.classList.add('cursor-text');
           return;
         }
       }
 
-      if (
-        target.closest?.(
-          '[draggable="true"]'
-        )
-      ) {
-        cursor.classList.add(
-          'cursor-grab'
-        );
+      if (target.closest?.('[draggable="true"]')) {
+        cursor.classList.add('cursor-grab');
       }
     };
 
     const handleDragStart = () => {
-      cursor.classList.remove(
-        'cursor-grab'
-      );
-
-      cursor.classList.add(
-        'cursor-grabbing'
-      );
+      cursor.classList.remove('cursor-grab');
+      cursor.classList.add('cursor-grabbing');
     };
 
     const handleDragEnd = () => {
-      cursor.classList.remove(
-        'cursor-grabbing'
-      );
+      cursor.classList.remove('cursor-grabbing');
     };
 
     checkTouchDevice();
 
-    document.addEventListener(
-      'mousemove',
-      handleMouseMove,
-      { passive: true }
-    );
-
-    document.addEventListener(
-      'mouseenter',
-      handleMouseEnter
-    );
-
-    document.addEventListener(
-      'mouseleave',
-      handleMouseLeave
-    );
-
-    document.addEventListener(
-      'mousedown',
-      handleMouseDown
-    );
-
-    document.addEventListener(
-      'mouseup',
-      handleMouseUp
-    );
-
-    document.addEventListener(
-      'mouseover',
-      handleMouseOver
-    );
-
-    document.addEventListener(
-      'dragstart',
-      handleDragStart
-    );
-
-    document.addEventListener(
-      'dragend',
-      handleDragEnd
-    );
-
-    window.addEventListener(
-      'resize',
-      checkTouchDevice
-    );
+    document.addEventListener('mousemove', handleMouseMove, { passive: true });
+    document.addEventListener('mouseenter', handleMouseEnter);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('mouseover', handleMouseOver);
+    document.addEventListener('dragstart', handleDragStart);
+    document.addEventListener('dragend', handleDragEnd);
+    window.addEventListener('resize', checkTouchDevice);
 
     return () => {
-      document.removeEventListener(
-        'mousemove',
-        handleMouseMove
-      );
-
-      document.removeEventListener(
-        'mouseenter',
-        handleMouseEnter
-      );
-
-      document.removeEventListener(
-        'mouseleave',
-        handleMouseLeave
-      );
-
-      document.removeEventListener(
-        'mousedown',
-        handleMouseDown
-      );
-
-      document.removeEventListener(
-        'mouseup',
-        handleMouseUp
-      );
-
-      document.removeEventListener(
-        'mouseover',
-        handleMouseOver
-      );
-
-      document.removeEventListener(
-        'dragstart',
-        handleDragStart
-      );
-
-      document.removeEventListener(
-        'dragend',
-        handleDragEnd
-      );
-
-      window.removeEventListener(
-        'resize',
-        checkTouchDevice
-      );
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseenter', handleMouseEnter);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('mouseover', handleMouseOver);
+      document.removeEventListener('dragstart', handleDragStart);
+      document.removeEventListener('dragend', handleDragEnd);
+      window.removeEventListener('resize', checkTouchDevice);
 
       clearTrails();
       clearEffects();
+      
+      // Đóng audio context khi component unmount
+      if (audioCtx) {
+        audioCtx.close();
+      }
     };
   }, []);
 
@@ -517,36 +322,22 @@ const AppContent = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const root =
-      document.getElementById('root');
-
+    const root = document.getElementById('root');
     const isSubPage =
       location.pathname.startsWith('/web') ||
       location.pathname.startsWith('/android') ||
       location.pathname.startsWith('/app');
 
     if (root) {
-      root.classList.toggle(
-        'sub-root',
-        isSubPage
-      );
+      root.classList.toggle('sub-root', isSubPage);
     }
-
-    document.body.classList.toggle(
-      'sub-root',
-      isSubPage
-    );
+    document.body.classList.toggle('sub-root', isSubPage);
 
     return () => {
       if (root) {
-        root.classList.remove(
-          'sub-root'
-        );
+        root.classList.remove('sub-root');
       }
-
-      document.body.classList.remove(
-        'sub-root'
-      );
+      document.body.classList.remove('sub-root');
     };
   }, [location.pathname]);
 
@@ -557,35 +348,11 @@ const AppContent = () => {
       <Header />
 
       <Switch>
-        <Route
-          path="/"
-          exact
-          component={HomePage}
-        />
-
-        <Route
-          path="/web"
-          exact
-          component={Web}
-        />
-
-        <Route
-          path="/app"
-          exact
-          component={AppComponent}
-        />
-
-        <Route
-          path="/android"
-          exact
-          component={Android}
-        />
-
-        <Route
-          path="/resume"
-          exact
-          component={Resume}
-        />
+        <Route path="/" exact component={HomePage} />
+        <Route path="/web" exact component={Web} />
+        <Route path="/app" exact component={AppComponent} />
+        <Route path="/android" exact component={Android} />
+        <Route path="/resume" exact component={Resume} />
       </Switch>
 
       <Footer />
