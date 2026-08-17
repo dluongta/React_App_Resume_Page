@@ -132,7 +132,7 @@ const CustomCursor = () => {
       // Phát hiện mobile
       const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-      oscillator.type = 'square'; // Loại sóng: sine, square, sawtooth, triangle
+      oscillator.type = 'triangle'; // Loại sóng: sine, square, sawtooth, triangle
 
       const now = audioCtx.currentTime;
 
