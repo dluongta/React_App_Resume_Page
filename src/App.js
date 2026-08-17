@@ -173,6 +173,32 @@ const CustomCursor = () => {
       effect.dataset.timer = String(timer);
     };
 
+    // const handleMouseMove = (event) => {
+    //   if (isTouchDevice) {
+    //     return;
+    //   }
+
+    //   const { clientX, clientY } = event;
+
+    //   cursor.style.transform =
+    //     `translate3d(${clientX}px, ${clientY}px, 0)`;
+
+    //   const now = performance.now();
+
+    //   if (now - lastTrailTime >= 28) {
+    //     let trailX = clientX;
+    //     let trailY = clientY;
+
+    //     if (cursor.classList.contains('cursor-text')) {
+    //       trailX = clientX;
+    //       trailY = clientY - 20;
+    //     }
+
+    //     createTrail(trailX, trailY);
+    //     lastTrailTime = now;
+    //   }
+    // };
+
     const handleMouseMove = (event) => {
       if (isTouchDevice) {
         return;
@@ -180,7 +206,6 @@ const CustomCursor = () => {
 
       const { clientX, clientY } = event;
 
-      // Vẫn di chuyển I-beam theo đúng tâm của chuột
       cursor.style.transform =
         `translate3d(${clientX}px, ${clientY}px, 0)`;
 
@@ -191,11 +216,10 @@ const CustomCursor = () => {
         let trailY = clientY;
 
         if (cursor.classList.contains('cursor-text')) {
-          trailX = clientX;
+          trailX = clientX + 4;
           trailY = clientY - 20;
         }
 
-        // Tạo hạt ở tọa độ đã được tính toán lại
         createTrail(trailX, trailY);
         lastTrailTime = now;
       }
@@ -218,17 +242,32 @@ const CustomCursor = () => {
       clearEffects();
     };
 
+    // const handleMouseDown = (event) => {
+    //   if (isTouchDevice) {
+    //     return;
+    //   }
+
+    //   if (
+    //     cursor.classList.contains(
+    //       'cursor-text'
+    //     )
+    //   ) {
+    //     clearEffects();
+    //     return;
+    //   }
+
+    //   cursor.classList.add(
+    //     'cursor-clicking'
+    //   );
+
+    //   createClickEffect(
+    //     event.clientX,
+    //     event.clientY
+    //   );
+    // };
+
     const handleMouseDown = (event) => {
       if (isTouchDevice) {
-        return;
-      }
-
-      if (
-        cursor.classList.contains(
-          'cursor-text'
-        )
-      ) {
-        clearEffects();
         return;
       }
 
@@ -236,10 +275,14 @@ const CustomCursor = () => {
         'cursor-clicking'
       );
 
-      createClickEffect(
-        event.clientX,
-        event.clientY
-      );
+      let clickX = event.clientX;
+      let clickY = event.clientY;
+
+      if (cursor.classList.contains('cursor-text')) {
+        clickY = event.clientY - 20;
+      }
+
+      createClickEffect(clickX, clickY);
     };
 
     const handleMouseUp = () => {
