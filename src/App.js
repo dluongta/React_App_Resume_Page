@@ -43,7 +43,7 @@ const CustomCursor = () => {
 
     let lastTrailTime = 0;
     let isTouchDevice = false;
-    let audioCtx = null; // Biến lưu trữ AudioContext
+    let audioCtx = null; 
 
     const particles = new Set();
     const effects = new Set();
@@ -172,7 +172,6 @@ const CustomCursor = () => {
 
       const now = performance.now();
 
-      // Giới hạn tần suất tạo hạt (cứ mỗi 28ms)
       if (now - lastTrailTime >= 28) {
 
         if (cursor.classList.contains('cursor-text')) {
@@ -204,7 +203,6 @@ const CustomCursor = () => {
     };
 
     const handleMouseDown = (event) => {
-      // Phát âm thanh khi click
       playClickSound();
 
       if (isTouchDevice) {
@@ -245,8 +243,6 @@ const CustomCursor = () => {
         return;
       }
 
-      // --- [ĐOẠN CODE THÊM VÀO ĐỂ FIX LỖI ẢNH] ---
-      // Nếu mục tiêu hover là ảnh, SVG, hoặc media -> Bỏ qua kiểm tra text để giữ nguyên con trỏ tam giác
       if (target.closest?.('img, picture, svg, video, canvas')) {
         return;
       }
@@ -255,7 +251,6 @@ const CustomCursor = () => {
       const textElement = target.closest?.(TEXT_SELECTOR);
 
       if (textElement) {
-        // Kiểm tra kĩ hơn: Đảm bảo phần tử con thực sự chứa text chứ không chỉ bọc ảnh
         const text = textElement.textContent?.trim();
         if (text && text.length > 0) {
           clearTrails();
@@ -305,7 +300,6 @@ const CustomCursor = () => {
       clearTrails();
       clearEffects();
 
-      // Đóng audio context khi component unmount
       if (audioCtx) {
         audioCtx.close();
       }
