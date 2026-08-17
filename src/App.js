@@ -123,7 +123,7 @@ const CustomCursor = () => {
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       }
-      
+
       // Trình duyệt thường chặn audio cho đến khi có tương tác, cần resume nếu bị suspended
       if (audioCtx.state === 'suspended') {
         audioCtx.resume();
@@ -228,9 +228,17 @@ const CustomCursor = () => {
         return;
       }
 
+      // --- [ĐOẠN CODE THÊM VÀO ĐỂ FIX LỖI ẢNH] ---
+      // Nếu mục tiêu hover là ảnh, SVG, hoặc media -> Bỏ qua kiểm tra text để giữ nguyên con trỏ tam giác
+      if (target.closest?.('img, picture, svg, video, canvas')) {
+        return;
+      }
+      // -------------------------------------------
+
       const textElement = target.closest?.(TEXT_SELECTOR);
 
       if (textElement) {
+        // Kiểm tra kĩ hơn: Đảm bảo phần tử con thực sự chứa text chứ không chỉ bọc ảnh
         const text = textElement.textContent?.trim();
         if (text && text.length > 0) {
           clearTrails();
@@ -279,7 +287,7 @@ const CustomCursor = () => {
 
       clearTrails();
       clearEffects();
-      
+
       // Đóng audio context khi component unmount
       if (audioCtx) {
         audioCtx.close();
