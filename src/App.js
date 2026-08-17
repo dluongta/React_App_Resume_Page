@@ -117,14 +117,11 @@ const CustomCursor = () => {
       effect.dataset.timer = String(timer);
     };
 
-    // --- HÀM TẠO ÂM THANH BẰNG WEB AUDIO API ---
     const playClickSound = () => {
-      // Khởi tạo AudioContext một lần duy nhất để tối ưu hiệu suất
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       }
 
-      // Trình duyệt thường chặn audio cho đến khi có tương tác, cần resume nếu bị suspended
       if (audioCtx.state === 'suspended') {
         audioCtx.resume();
       }
@@ -132,22 +129,39 @@ const CustomCursor = () => {
       const oscillator = audioCtx.createOscillator();
       const gainNode = audioCtx.createGain();
 
-      // Cấu hình âm thanh (Tùy chỉnh để có tiếng click êm tai)
+      // Phát hiện mobile
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
       oscillator.type = 'square'; // Loại sóng: sine, square, sawtooth, triangle
-      oscillator.frequency.setValueAtTime(800, audioCtx.currentTime); // Tần số ban đầu (Hz)
-      oscillator.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.1); // Giảm tần số nhanh
 
-      // Cấu hình âm lượng
-      gainNode.gain.setValueAtTime(0.8, audioCtx.currentTime); // Âm lượng ban đầu (0.8)
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1); // Giảm âm lượng về 0
+      const now = audioCtx.currentTime;
 
-      // Kết nối các node
+      // Mobile dùng tần số cao hơn một chút để click nghe rõ hơn
+      oscillator.frequency.setValueAtTime(
+        isMobile ? 1800 : 1500,
+        now
+      );
+
+      oscillator.frequency.exponentialRampToValueAtTime(
+        isMobile ? 500 : 400,
+        now + 0.05
+      );
+
+      // Tăng âm lượng trên mobile
+      const volume = isMobile ? 2.8 : 2.0;
+
+      gainNode.gain.setValueAtTime(volume, now);
+
+      gainNode.gain.exponentialRampToValueAtTime(
+        0.001,
+        now + 0.05
+      );
+
       oscillator.connect(gainNode);
       gainNode.connect(audioCtx.destination);
 
-      // Phát và dừng âm thanh trong 0.1 giây
-      oscillator.start(audioCtx.currentTime);
-      oscillator.stop(audioCtx.currentTime + 0.1);
+      oscillator.start(now);
+      oscillator.stop(now + 0.05);
     };
 
     const handleMouseMove = (event) => {
