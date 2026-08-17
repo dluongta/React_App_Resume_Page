@@ -138,7 +138,7 @@ const CustomCursor = () => {
       oscillator.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.1); // Giảm tần số nhanh
 
       // Cấu hình âm lượng
-      gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime); // Âm lượng ban đầu (0.2)
+      gainNode.gain.setValueAtTime(0.8, audioCtx.currentTime); // Âm lượng ban đầu (0.8)
       gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1); // Giảm âm lượng về 0
 
       // Kết nối các node
