@@ -147,7 +147,7 @@ const CustomCursor = () => {
         now + 0.05
       );
 
-      // Tăng âm lượng trên mobile
+      // Âm lượng
       const volume = isMobile ? 0 : 2.0;
 
       gainNode.gain.setValueAtTime(volume, now);
