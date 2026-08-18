@@ -137,7 +137,7 @@ const CustomCursor = () => {
       const now = audioCtx.currentTime;
 
       oscillator.frequency.setValueAtTime(
-        isMobile ? 1300 : 1300,
+        isMobile ? 1200 : 1200,
         now
       );
 
@@ -180,8 +180,10 @@ const CustomCursor = () => {
           let trailY = clientY - 20;
 
           createTrail(trailX + 5, trailY);
+          createTrail(trailX + 5, trailY);
 
         } else {
+          createTrail(clientX, clientY);
           createTrail(clientX, clientY);
         }
 
