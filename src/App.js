@@ -180,10 +180,8 @@ const CustomCursor = () => {
           let trailY = clientY - 20;
 
           createTrail(trailX, trailY);
-          createTrail(trailX, trailY);
 
         } else {
-          createTrail(clientX, clientY);
           createTrail(clientX, clientY);
         }
 
