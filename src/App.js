@@ -146,7 +146,7 @@ const CustomCursor = () => {
         now + 0.05
       );
 
-      const volume = isMobile ? 8.0 : 2.0;
+      const volume = isMobile ? 0.0 : 3.0;
 
       gainNode.gain.setValueAtTime(volume, now);
 
