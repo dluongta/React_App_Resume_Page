@@ -137,12 +137,12 @@ const CustomCursor = () => {
       const now = audioCtx.currentTime;
 
       oscillator.frequency.setValueAtTime(
-        isMobile ? 1300 : 1500,
+        isMobile ? 1500 : 1500,
         now
       );
 
       oscillator.frequency.exponentialRampToValueAtTime(
-        isMobile ? 1000 : 800,
+        isMobile ? 800 : 800,
         now + 0.05
       );
 
