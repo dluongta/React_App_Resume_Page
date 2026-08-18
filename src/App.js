@@ -137,16 +137,16 @@ const CustomCursor = () => {
       const now = audioCtx.currentTime;
 
       oscillator.frequency.setValueAtTime(
-        isMobile ? 1500 : 1500,
+        isMobile ? 1300 : 1500,
         now
       );
 
       oscillator.frequency.exponentialRampToValueAtTime(
-        isMobile ? 500 : 500,
+        isMobile ? 1000 : 800,
         now + 0.05
       );
 
-      const volume = isMobile ? 0.0 : 8.0;
+      const volume = isMobile ? 8.0 : 8.0;
 
       gainNode.gain.setValueAtTime(volume, now);
 
@@ -172,7 +172,7 @@ const CustomCursor = () => {
 
       const now = performance.now();
 
-      if (now - lastTrailTime >= 28) {
+      if (now - lastTrailTime >= 24) {
 
         if (cursor.classList.contains('cursor-text')) {
 
@@ -183,6 +183,7 @@ const CustomCursor = () => {
           createTrail(trailX, trailY);
 
         } else {
+          createTrail(clientX, clientY);
           createTrail(clientX, clientY);
         }
 
