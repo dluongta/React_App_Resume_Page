@@ -132,12 +132,12 @@ const CustomCursor = () => {
       // Phát hiện mobile
       const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-      oscillator.type = 'sine'; // Loại sóng: sine, square, sawtooth, triangle
+      oscillator.type = 'square'; // Loại sóng: sine, square, sawtooth, triangle
 
       const now = audioCtx.currentTime;
 
       oscillator.frequency.setValueAtTime(
-        isMobile ? 1200 : 1200,
+        isMobile ? 1000 : 1000,
         now
       );
 
@@ -146,7 +146,7 @@ const CustomCursor = () => {
         now + 0.05
       );
 
-      const volume = isMobile ? 0.0 : 8.0;
+      const volume = isMobile ? 0.0 : 1.0;
 
       gainNode.gain.setValueAtTime(volume, now);
 
