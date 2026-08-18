@@ -43,7 +43,7 @@ const CustomCursor = () => {
 
     let lastTrailTime = 0;
     let isTouchDevice = false;
-    let audioCtx = null; 
+    let audioCtx = null;
 
     const particles = new Set();
     const effects = new Set();
@@ -179,7 +179,7 @@ const CustomCursor = () => {
           let trailX = clientX;
           let trailY = clientY - 20;
 
-          createTrail(trailX, trailY);
+          createTrail(trailX + 5, trailY);
 
         } else {
           createTrail(clientX, clientY);
