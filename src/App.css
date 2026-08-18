@@ -4061,9 +4061,6 @@ select {
     0 0 35px rgba(0, 170, 255, 0.8);
 }
 
-/* =========================================================
-   I-BEAM - GẠCH NGANG TRÊN & DƯỚI (CẬP NHẬT)
-   ========================================================= */
 #custom-cursor .cursor-text-caret .caret-top,
 #custom-cursor .cursor-text-caret .caret-bottom {
   position: absolute;
