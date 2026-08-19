@@ -12,7 +12,7 @@ export const AppComponent = () => {
     {
       id: "02",
       link: "https://the-digital-shop.onrender.com",
-      linkName: "The Shop Website",
+      linkName: "The Shop",
     },
     {
       id: "03",
