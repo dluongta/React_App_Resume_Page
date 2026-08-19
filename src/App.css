@@ -3182,136 +3182,8 @@ body.sub-root,
   }
 }
 
-#custom-cursor {
-  position: fixed !important;
-  left: 0;
-  top: 0;
-  width: 38px;
-  height: 48px;
-  pointer-events: none !important;
-  z-index: 2147483647 !important;
-  transform: translate3d(-4px, -3px, 0);
-  will-change: transform;
-  transition: opacity 0.15s ease;
-}
 
-#custom-cursor .cursor-arrow {
-  display: block;
-  width: 38px;
-  height: 48px;
-  filter:
-    drop-shadow(0 0 4px rgba(0, 170, 255, 0.9)) drop-shadow(0 0 10px rgba(0, 157, 255, 0.45));
-  transition: transform 0.12s ease;
-}
-
-#custom-cursor.cursor-clicking .cursor-arrow {
-  transform: scale(0.84);
-}
-
-#custom-cursor.cursor-hidden {
-  opacity: 0;
-  visibility: hidden;
-}
-
-#custom-cursor.cursor-disabled {
-  display: none !important;
-}
-
-.cursor-trail {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 2147483646;
-  transform: translate3d(-50%, -50%, 0);
-  background: var(--particle-color,
-      #009dff);
-  box-shadow:
-    0 0 6px rgba(0, 157, 255, 1),
-    0 0 14px rgba(0, 157, 255, 0.9),
-    0 0 25px rgba(0, 157, 255, 0.5);
-  animation:
-    cursorTrailAnimation 0.6s ease-out forwards;
-}
-
-@keyframes cursorTrailAnimation {
-  0% {
-    width: 9px;
-    height: 9px;
-    opacity: 0.95;
-    transform:
-      translate3d(-50%, -50%, 0) scale(1);
-  }
-
-  35% {
-    width: 7px;
-    height: 7px;
-    opacity: 0.65;
-  }
-
-  100% {
-    width: 1px;
-    height: 1px;
-    opacity: 0;
-    transform:
-      translate3d(-50%, -50%, 0) scale(0);
-  }
-}
-
-.cursor-click-effect {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #00aaff;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 2147483645;
-  transform:
-    translate3d(-50%, -50%, 0);
-  box-shadow:
-    0 0 8px rgba(0, 170, 255, 0.9),
-    0 0 20px rgba(0, 157, 255, 0.6);
-  animation:
-    cursorClickAnimation 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-
-@keyframes cursorClickAnimation {
-  0% {
-    width: 15px;
-    height: 15px;
-    opacity: 1;
-    border-width: 3px;
-    box-shadow:
-      0 0 5px #00aaff,
-      0 0 15px #009dff;
-  }
-
-  40% {
-    width: 65px;
-    height: 65px;
-    opacity: 0.75;
-    border-width: 2px;
-    box-shadow:
-      0 0 12px #00aaff,
-      0 0 30px rgba(0, 157, 255, 0.8);
-  }
-
-  100% {
-    width: 125px;
-    height: 125px;
-    opacity: 0;
-    border-width: 1px;
-    box-shadow:
-      0 0 5px rgba(0, 157, 255, 0.2);
-  }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 768px) {
 
   html,
   body {
@@ -3348,27 +3220,7 @@ body.sub-root,
     display: none !important;
   }
 
-  #custom-cursor,
-  .cursor-trail,
-  .cursor-click-effect {
-    display: none !important;
-  }
-
-  html,
-  body,
-  body *,
-  a,
-  button,
-  input,
-  textarea,
-  select {
-    cursor: auto !important;
-  }
 }
-
-/* =========================================================
-   NATIVE SCROLLBAR
-   ========================================================= */
 
 html,
 body {
