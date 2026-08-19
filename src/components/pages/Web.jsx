@@ -102,7 +102,7 @@ export const Web = () => {
     {
       id: "20",
       link: "https://github.com/luen2003/mysql-api",
-      linkName: "MySQL API",
+      linkName: "Node MySQL API",
     },
     {
       id: "21",

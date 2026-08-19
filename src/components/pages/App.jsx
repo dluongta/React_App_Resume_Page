@@ -112,7 +112,7 @@ export const AppComponent = () => {
     {
       id: "22",
       link: "https://github.com/luen2003/mysql-api",
-      linkName: "MySQL API",
+      linkName: "Node MySQL API",
     },
     {
       id: "23",
