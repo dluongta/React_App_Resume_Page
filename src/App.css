@@ -319,7 +319,7 @@ p {
 
 .branding h1 {
   font-size: 40px;
-  color: linear-gradient(135deg, #8001ef, #406cfc);
+  color: linear-gradient(135deg, #406cfc, #8001ef);
   margin-right: 20px;
 }
 
@@ -1414,7 +1414,7 @@ footer .socialIcon {
 
 .nav-links li.active-link a,
 .nav-links-sidebar li.active-link a {
-  color: linear-gradient(135deg, #8001ef, #ff4e02);
+  color: linear-gradient(135deg, #ff4e02, #8001ef);
 }
 
 @media (max-width: 768px) {
@@ -1433,7 +1433,7 @@ footer .socialIcon {
   left: 10%;
   width: 80%;
   height: 2px;
-  background: linear-gradient(135deg, #8001ef, #ff4e02);
+  background: linear-gradient(135deg, #ff4e02, #8001ef);
   border-radius: 2px;
   transition: width 0.3s ease;
 }
@@ -1444,7 +1444,7 @@ footer .socialIcon {
   }
 
   .nav-links-sidebar li.active-link {
-    background-color: linear-gradient(135deg, #8001ef, #ff4e02);
+    background-color: linear-gradient(135deg, #ff4e02, #8001ef);
     border-radius: 6px;
   }
 
@@ -1477,13 +1477,13 @@ footer .socialIcon {
 }
 
 .nav-links-sidebar li.active-link a {
-  background-color: linear-gradient(135deg, #8001ef, #ff4e02);
+  background-color: linear-gradient(135deg, #ff4e02, #8001ef);
   color: #fff;
   border-radius: 0;
 }
 
 .nav-links-sidebar li.active-link a:hover {
-  background-color: linear-gradient(135deg, #8001ef, #406cfc);
+  background-color: linear-gradient(135deg, #406cfc, #8001ef);
   color: #fff;
   border-radius: 0;
 }
@@ -1564,7 +1564,7 @@ section.contact {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #8001ef, #ff4e02);
+  background: linear-gradient(135deg, #ff4e02, #8001ef);
   border-radius: 6px;
   z-index: 1;
 }
@@ -1579,7 +1579,7 @@ section.contact {
 
 .nav-links li.active-link,
 .nav-links-sidebar li.active-link {
-  background: linear-gradient(135deg, #8001ef, #ff4e02);
+  background: linear-gradient(135deg, #ff4e02, #8001ef);
   border-radius: 6px;
 }
 
@@ -1589,7 +1589,7 @@ section.contact {
 }
 
 .nav-links li:not(.icon):hover::before {
-  background: linear-gradient(135deg, #8001ef, #406cfc);
+  background: linear-gradient(135deg, #406cfc, #8001ef);
   left: 0;
 }
 
@@ -1598,7 +1598,7 @@ section.contact {
 }
 
 .nav-links-sidebar li:hover {
-  background-color: linear-gradient(135deg, #8001ef, #406cfc);
+  background-color: linear-gradient(135deg, #406cfc, #8001ef);
 }
 
 .nav-links-sidebar li:hover a {
@@ -1886,13 +1886,13 @@ footer a:hover {
 
 .nav-links li.active-link,
 .nav-links-sidebar li.active-link {
-  background: linear-gradient(135deg, #8001ef, #ff4e02);
+  background: linear-gradient(135deg, #ff4e02, #8001ef);
 }
 
 @media (max-width: 768px) {
 
   .nav-links-sidebar li:hover {
-    background: linear-gradient(135deg, #8001ef, #406cfc);
+    background: linear-gradient(135deg, #406cfc, #8001ef);
     border-radius: 6px;
   }
 
@@ -1971,7 +1971,7 @@ footer a:hover {
 
 .nav-links-sidebar li a:hover,
 .nav-links-sidebar li.active-link a {
-  background: linear-gradient(135deg, #8001ef, #406cfc);
+  background: linear-gradient(135deg, #406cfc, #8001ef);
   color: #fff;
 }
 
@@ -2043,12 +2043,12 @@ footer a:hover {
 
 @media (max-width: 768px) {
   .nav-links-sidebar li:hover a {
-    background: linear-gradient(135deg, #8001ef, #406cfc);
+    background: linear-gradient(135deg, #406cfc, #8001ef);
     color: #fff;
   }
 
   .nav-links-sidebar li.active-link a {
-    background: linear-gradient(135deg, #8001ef, #ff4e02);
+    background: linear-gradient(135deg, #ff4e02, #8001ef);
     color: #fff;
   }
 }
