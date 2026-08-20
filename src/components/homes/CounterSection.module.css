@@ -68,6 +68,6 @@
 }
 
 .wrapperOne {
-    background: linear-gradient(90deg,#ff9a44 0%,#ff8a65 18%,#ff7b8a 38%,#ff6ea8 58%,#f857c1 78%,#f433b4 100%);
+    background: linear-gradient(90deg, #ff9a44 0%, #f433b4 100%);
     color: #fff;
 }
