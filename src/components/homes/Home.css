@@ -325,8 +325,27 @@
 }
 
 .animated-gradient-text {
-  color: #FF5F00;
+  background: linear-gradient(to right, #F4511E, #FFCC80);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
+
+
+.animated-gradient-text {
+  background: linear-gradient(to right,
+      #FF1744,
+      #FF6D00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+
+
+
 
 @media (min-width: 769px) {
   .description-text {
