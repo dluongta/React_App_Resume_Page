@@ -66,7 +66,8 @@ export const Home = ({ className }) => {
                     : 'clamp(1.5rem, 5vw, 3.5rem)',
                   fontWeight: isMobile ? 900 : 800,
                   lineHeight: '0.8',
-                  display: 'inline-block'
+                  display: 'inline-block',
+                  marginBottom: isMobile ? '20px' : '8px'
                 }}
               >
                 I AM A

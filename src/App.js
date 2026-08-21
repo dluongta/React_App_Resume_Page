@@ -44,7 +44,6 @@ const AppContent = () => {
   return (
     <>
       <CustomScrollbar />
-      {/* <CustomCursor /> */}
       <Header />
 
       <Switch>

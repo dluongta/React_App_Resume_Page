@@ -6,8 +6,6 @@ import { Skill } from '../homes/Skill';
 import { WrapperOne } from '../homes/WrapperOne';
 import { Service } from '../homes/Service';
 import { Wrapper } from '../homes/Wrapper';
-import { Link } from 'react-router-dom';
-import hexagon from '../../assets/hexagon.png';
 import SplitFlapLog from './SplitFlapLog';
 import { CounterSection } from './CounterSection';
 
