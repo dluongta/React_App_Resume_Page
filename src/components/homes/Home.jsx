@@ -67,7 +67,7 @@ export const Home = ({ className }) => {
                   fontWeight: isMobile ? 900 : 800,
                   lineHeight: '0.8',
                   display: 'inline-block',
-                  marginBottom: isMobile ? '20px' : '8px'
+                  marginBottom: isMobile ? '14px' : '0px'
                 }}
               >
                 I AM A
