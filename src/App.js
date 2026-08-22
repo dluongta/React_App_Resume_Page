@@ -12,7 +12,7 @@ import { Header } from './components/homes/header/Header';
 import { HomePage } from './components/homes/HomePage';
 import { Footer } from './components/homes/footer/Footer';
 import { Web } from './components/pages/Web';
-import { AppComponent } from './components/pages/AppContent';
+import { AppComponent } from './components/pages/AppComponent';
 import { Android } from './components/pages/Android';
 import { Resume } from './components/pages/Resume';
 import ScrollToTopButton from './components/homes/ScrollToTopButton';
