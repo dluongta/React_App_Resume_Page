@@ -3122,7 +3122,7 @@ body.sub-root,
 
   .content-inner {
     margin-top: 10px !important;
-    padding-bottom: 96px !important;
+    padding-bottom: 108px !important;
   }
 }
 
@@ -3177,8 +3177,8 @@ body.sub-root,
   }
 
   .content-inner {
-    padding-bottom: 18px !important;
-    margin-top: -3px !important;
+    padding-bottom: 14px !important;
+    margin-top: -8px !important;
   }
 }
 
