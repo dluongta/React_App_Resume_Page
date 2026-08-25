@@ -325,7 +325,7 @@
 }
 
 .animated-gradient-text {
-  background: linear-gradient(to right, #F4511E, #FFCC80);
+  background: linear-gradient(to right, #F4511E, #F4511E);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -335,8 +335,8 @@
 
 .animated-gradient-text {
   background: linear-gradient(to right,
-      #FF1744,
-      #FF6D00);
+      #F4511E,
+      #F4511E);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
