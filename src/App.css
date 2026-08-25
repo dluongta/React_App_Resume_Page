@@ -2397,7 +2397,7 @@ footer ul {
   left: 0;
   width: 100%;
   z-index: 9999;
-  background-color: #007bff;
+  background: linear-gradient(90deg, #ff7a18, #ff3d81, #7b2cff);
   color: white;
   overflow: hidden;
   height: 40px;
