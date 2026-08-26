@@ -48,7 +48,7 @@ export const Home = ({ className }) => {
       <div className="container flex">
         <div className="left">
           <div className="img">
-            <img src={mainImage}/>
+            <img src={mainImage} />
           </div>
         </div>
 
@@ -92,6 +92,9 @@ export const Home = ({ className }) => {
                   whiteSpace: 'nowrap',
                   width: 'auto',
                   fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+                  fontSize: isMobile
+                    ? 'clamp(2.4rem, 6vw, 2.5rem)'
+                    : 'clamp(1.5rem, 5vw, 3.5rem)',
                 }}
                 className="gradientTextStyleFlexible"
               >
@@ -145,7 +148,7 @@ export const Home = ({ className }) => {
                 I am extremely fascinated by science, engineering and technology. All of my products are from the TSCEND brand, made by DLUONGTA. With technology continuing to evolve at an unprecedented speed, I would like to develop innovative solutions that have beneficial and significant impacts on the world.
               </p>
 
-              <p style={{marginTop: '-10px', marginBottom: '12px'}}>
+              <p style={{ marginTop: '-10px', marginBottom: '12px' }}>
                 My Resume:
                 <Link to="/dluongta_resume.pdf" target="_blank" className="blue-link">
                   Resume Viewer Page
