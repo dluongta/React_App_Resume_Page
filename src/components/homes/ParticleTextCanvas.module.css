@@ -67,7 +67,7 @@
 }
 
 .button {
-  background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+  background: linear-gradient(90deg, #ff6944, #f433b4);
   border: none;
   padding: 8px 12px;
   border-radius: 8px;
@@ -76,7 +76,7 @@
   font-weight: 700;
   margin-right: 8px;
   font-family: inherit;
-  color: #000;
+  color: #fff;
   transition: transform 0.1s;
 }
 
