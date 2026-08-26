@@ -43,7 +43,7 @@
   z-index: 10;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: #fff;
+  color: #e0dbdb;
   text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
   user-select: none;
   pointer-events: none;
@@ -76,7 +76,7 @@
   font-weight: 700;
   margin-right: 8px;
   font-family: inherit;
-  color: #fff;
+  color: #e0dbdb;
   transition: transform 0.1s;
 }
 
@@ -89,12 +89,12 @@
   left: 20px;
   bottom: 20px;
   z-index: 10;
-  color: #fff;
+  color: #e0dbdb;
   font-size: 14px;
   pointer-events: none;
 }
 
 .small {
-  color: #fff;
+  color: #e0dbdb;
   opacity: 1;
 }
