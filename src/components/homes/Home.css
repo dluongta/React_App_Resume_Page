@@ -325,7 +325,7 @@
 }
 
 .animated-gradient-text {
-  background: #FF5202;
+  background: #FF0000;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -334,7 +334,7 @@
 
 
 .animated-gradient-text {
-  background: #FF5202;
+  background: #FF0000;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
