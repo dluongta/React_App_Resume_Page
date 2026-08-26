@@ -3147,7 +3147,6 @@ body.sub-root,
 }
 
 @media (max-width: 768px) {
-
   footer .box:first-child {
     padding-bottom: 8px !important;
     margin-bottom: 6px !important;
@@ -3181,7 +3180,6 @@ body.sub-root,
 
 
 @media (max-width: 768px) {
-
   html,
   body {
     scrollbar-width: auto;
@@ -3271,20 +3269,13 @@ body::-webkit-scrollbar {
       #ff007f 35%,
       #9d00ff 68%,
       #0077ff 100%);
-
   border:
     2px solid #2c2c2c;
-
   border-radius: 10px;
-
   user-select: none;
   -webkit-user-select: none;
-
-  will-change:
-    transform,
-    height;
+  will-change:transform, height;
 }
-
 
 #custom-scrollbar:hover #custom-scrollbar-thumb {
   background:
