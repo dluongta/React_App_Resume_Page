@@ -164,14 +164,39 @@
 }
 
 .gradientTextStyle {
-  background-image: linear-gradient(90deg, #FF4800, #8800FF, #FF0044, #8800FF, #FF4800);
+  background-image: linear-gradient(
+    90deg,
+    #FF4800,
+    #8800FF,
+    #FF0044,
+    #FF0044,
+    #8800FF,
+    #FF4800
+  );
+
+  background-size: 300% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
+
   font-weight: 800;
   display: inline-block;
+
+  animation: gradientMove 1.8s linear infinite;
 }
+
+@keyframes gradientMove {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
 
 .blue-link {
   color: #0088ff;
