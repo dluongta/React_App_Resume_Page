@@ -165,16 +165,16 @@
 
 .gradientTextStyle {
   background-image: linear-gradient(
-    90deg,
-    #FF4800,
-    #8800FF,
-    #FF0044,
-    #FF0044,
-    #8800FF,
-    #FF4800
+    to right,
+    #FF4800 0%,
+    #8800FF 25%,
+    #FF0044 50%,
+    #8800FF 75%,
+    #FF4800 100%
   );
 
-  background-size: 300% 100%;
+  background-size: 200% auto;
+  
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -183,20 +183,23 @@
   font-weight: 800;
   display: inline-block;
 
-  animation: gradientMove 1.8s linear infinite;
+  will-change: background-position;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+
+  animation: gradientMove 1.8s linear infinite; 
 }
 
 @keyframes gradientMove {
   0% {
-    background-position: 100% 50%;
+    background-position: 0% center;
   }
-
   100% {
-    background-position: 0% 50%;
+    background-position: -200% center; 
   }
 }
-
-
 
 .blue-link {
   color: #0088ff;
