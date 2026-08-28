@@ -154,7 +154,7 @@
   }
 
   .headline h1 {
-    font-size: 1.8rem;
+    font-size: clamp(2.4rem, 6vw, 2.5rem);
   }
 
   .gradientTextStyle {
@@ -352,5 +352,8 @@
   .home-right .socialIcon {
     margin-top: 0px;
     margin-bottom: 53px;
+  }
+  .headline h1 {
+    font-size: clamp(1.5rem, 5vw, 3.5rem);
   }
 }
