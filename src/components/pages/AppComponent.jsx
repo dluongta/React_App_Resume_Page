@@ -72,7 +72,7 @@ export const AppComponent = () => {
     {
       id: "14",
       link: "https://dluongta.github.io/quiz-app.html",
-      linkName: "Quizzes App",
+      linkName: "Quiz App",
     },
     {
       id: "15",
