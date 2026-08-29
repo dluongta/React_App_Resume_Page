@@ -167,7 +167,7 @@
   background: linear-gradient(90deg, #8800ff, #ff0044, #ff0000, #ff0000, #ff0044, #8800ff);
 
   background-size: 200% auto;
-  
+
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -182,15 +182,16 @@
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 
-  animation: gradientMove 2s linear infinite; 
+  animation: gradientMove 2s linear infinite;
 }
 
 @keyframes gradientMove {
   0% {
     background-position: 0% center;
   }
+
   100% {
-    background-position: -200% center; 
+    background-position: -200% center;
   }
 }
 
@@ -228,7 +229,7 @@
 }
 
 .gradientStyle {
-  background: linear-gradient(90deg, #FF8800, #A033FF, #0088FF, #FF5C87, #FF8800);
+  background: linear-gradient(90deg, #ff0000, #ff0044, #8800ff, #ff0044, #ff0000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -263,14 +264,11 @@
     font-size: clamp(2rem, 5vw, 3.5rem) !important;
     font-weight: 800;
     line-height: 1 !important;
-
     margin: 0px !important;
     display: flex !important;
     align-items: center !important;
-
     white-space: nowrap;
   }
-
 }
 
 .left .img {
@@ -373,6 +371,7 @@
     margin-top: 0px;
     margin-bottom: 53px;
   }
+
   .headline h1 {
     font-size: clamp(1.5rem, 5vw, 3.5rem);
   }
