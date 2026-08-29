@@ -19,7 +19,7 @@
 }
 
 .scroll-to-top:hover {
-  background-color: #cf0000;
+  background-color: #ac0000;
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
   filter: brightness(1);
