@@ -164,14 +164,7 @@
 }
 
 .gradientTextStyle {
-  background-image: linear-gradient(
-    to right,
-    #FF4800 0%,
-    #8800FF 25%,
-    #FF0044 50%,
-    #8800FF 75%,
-    #FF4800 100%
-  );
+  background: linear-gradient(90deg, #FF8800, #A033FF, #0088FF, #FF5C87, #FF8800);
 
   background-size: 200% auto;
   
