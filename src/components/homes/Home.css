@@ -182,7 +182,7 @@
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 
-  animation: gradientMove 3s linear infinite;
+  animation: gradientMove 2.6s linear infinite;
 }
 
 @keyframes gradientMove {
