@@ -33,7 +33,7 @@ export const Header = () => {
         <>
             <div className="top-marquee">
                 <div className="marquee-content">
-                    <span>Welcome To React App Resume Page</span>
+                    <span>Welcome To React App Resume Page!</span>
                 </div>
             </div>
             <header className="header">
