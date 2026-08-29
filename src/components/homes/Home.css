@@ -164,7 +164,7 @@
 }
 
 .gradientTextStyle {
-  background: linear-gradient(90deg, #8800ff, #ff0044, #ff0000, #ff0000, #ff0044, #8800ff);
+  background: linear-gradient(90deg, #ff0044, #8800ff, #ff0000, #8800ff, #ff0044);
 
   background-size: 200% auto;
 
@@ -182,7 +182,7 @@
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 
-  animation: gradientMove 2s linear infinite;
+  animation: gradientMove 3s linear infinite;
 }
 
 @keyframes gradientMove {
