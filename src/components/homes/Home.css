@@ -163,35 +163,42 @@
   }
 }
 
-.gradientTextStyle {
-  background: linear-gradient(90deg, #ff0044, #8800ff, #ff0000, #8800ff, #ff0044);
+.gradientStyle {
+  background: linear-gradient(
+    90deg,
+    #ff4000,
+    #ff004c,
+    #ff00d4,
+    #7000ff,
+    #0066ff,
+    #00d9ff,
+    #7000ff,
+    #ff00d4,
+    #ff004c,
+    #ff4000
+  );
 
-  background-size: 200% auto;
+  background-size: 300% 100%;
 
-  background-clip: text;
   -webkit-background-clip: text;
-  color: transparent;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 
-  font-weight: 800;
-  display: inline-block;
+  font-weight: 900;
 
-  will-change: background-position;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+  animation: gradientTextMove 3s linear infinite;
 
-  animation: gradientMove 2.4s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(255, 0, 170, 0.35));
 }
 
-@keyframes gradientMove {
-  0% {
-    background-position: 0% center;
+@keyframes gradientTextMove {
+  from {
+    background-position: 0% 50%;
   }
 
-  100% {
-    background-position: -200% center;
+  to {
+    background-position: 300% 50%;
   }
 }
 
