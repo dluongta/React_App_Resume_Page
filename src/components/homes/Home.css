@@ -166,36 +166,45 @@
 .gradientStyle {
   background: linear-gradient(
     90deg,
-    #ff4000,
-    #ff004c,
-    #ff00d4,
-    #7000ff,
-    #0066ff,
-    #00d9ff,
-    #7000ff,
-    #ff00d4,
-    #ff004c,
-    #ff4000
+    #ff1a00,
+    #ff0055,
+    #ff00ff,
+    #6600ff,
+    #0040ff,
+    #00eaff,
+    #6600ff,
+    #ff00ff,
+    #ff0055,
+    #ff1a00
   );
+
   background-size: 300% 100%;
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+
   font-weight: 900;
+
   animation: gradientTextMove 3s linear infinite;
-  filter: drop-shadow(0 0 6px rgba(255, 0, 170, 0.35));
+
+  filter:
+    drop-shadow(0 0 4px #ff3300)
+    drop-shadow(0 0 10px #ff00cc)
+    drop-shadow(0 0 18px rgba(255, 0, 200, 0.45));
 }
 
 @keyframes gradientTextMove {
-  from {
+  0% {
     background-position: 0% 50%;
   }
 
-  to {
+  100% {
     background-position: 300% 50%;
   }
 }
+
 
 .blue-link {
   color: #0088ff;
@@ -344,7 +353,7 @@
 }
 
 .animated-gradient-text {
-  background: #FF0000;
+  background: #ff5100;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -353,7 +362,7 @@
 
 
 .animated-gradient-text {
-  background: #FF0000;
+  background: #ff5100;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
