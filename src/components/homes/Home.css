@@ -177,18 +177,13 @@
     #ff004c,
     #ff4000
   );
-
   background-size: 300% 100%;
-
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-
   font-weight: 900;
-
   animation: gradientTextMove 3s linear infinite;
-
   filter: drop-shadow(0 0 6px rgba(255, 0, 170, 0.35));
 }
 
