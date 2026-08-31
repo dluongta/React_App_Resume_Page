@@ -3353,10 +3353,8 @@ body::-webkit-scrollbar {
   position: fixed;
   top: 0;
   right: 0;
-  /* width: 10px;  */
   height: 100vh;
   z-index: 10000;
-  /* background: transparent;  */
 }
 
 #custom-scrollbar-thumb {
