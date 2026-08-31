@@ -88,7 +88,7 @@
 .carousel_carousel_item {
   display: inline-block;
 
-  background: linear-gradient(90deg, #ff0000, #ff0044, #8800ff, #ff0044, #ff0000);
+  background: linear-gradient(90deg, #ff0000, #ff0044, #8800ff, #0088ff, #8800ff, #ff0044, #ff0000);
 
   background-size: 300% 100%;
   background-repeat: repeat;
