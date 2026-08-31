@@ -33,7 +33,7 @@ export default function ParticleTextCanvas() {
 
     const rainFontSize = 18;
     const rainString = "DINHLUONGTA ";
-    const rainColors = ['#9370db', '#ff69b4', '#ffa500'];
+    const rainColors = ['#9370db', '#ff69b4', '#ffa500', '#ff5500', '#ff0044'];
     const rainUpdateInterval = 60;
 
     let DPR = window.devicePixelRatio || 1;
