@@ -276,11 +276,10 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
               }}
               style={{
                 background: `linear-gradient(to right, 
-      #ff6a00 0%, 
-      #ff007f ${progressPercent * 0.33}%, 
-      #9d00ff ${progressPercent * 0.66}%, 
-      #0077ff ${progressPercent}%, 
-      rgba(255, 255, 255, 0.3) ${progressPercent}%)`
+                  #ff6a00 0%, 
+                  #ff007f ${progressPercent * 0.5}%, 
+                  #9d00ff ${progressPercent}%, 
+                  rgba(255, 255, 255, 0.3) ${progressPercent}%)`
               }}
             />
           </div>
@@ -319,11 +318,10 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
                   }}
                   style={{
                     background: `linear-gradient(to right, 
-      #ff6a00 0%, 
-      #ff007f ${(isMuted ? 0 : volume) * 33}%, 
-      #9d00ff ${(isMuted ? 0 : volume) * 66}%, 
-      #0077ff ${(isMuted ? 0 : volume) * 100}%, 
-      rgba(255, 255, 255, 0.3) ${(isMuted ? 0 : volume) * 100}%)`
+                      #ff6a00 0%, 
+                      #ff007f ${(isMuted ? 0 : volume) * 50}%, 
+                      #9d00ff ${(isMuted ? 0 : volume) * 100}%, 
+                      rgba(255, 255, 255, 0.3) ${(isMuted ? 0 : volume) * 100}%)`
                   }}
                 />
               </div>

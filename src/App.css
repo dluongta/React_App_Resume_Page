@@ -3201,8 +3201,7 @@ body.sub-root,
     background: linear-gradient(180deg,
         #ff6a00,
         #ff007f,
-        #9d00ff,
-        #0077ff);
+        #9d00ff);
     border: 2px solid #2c2c2c;
     border-radius: 10px;
   }
@@ -3263,8 +3262,7 @@ body::-webkit-scrollbar {
     linear-gradient(180deg,
       #ff6a00 0%,
       #ff007f 35%,
-      #9d00ff 68%,
-      #0077ff 100%);
+      #9d00ff 68%);
   border:
     2px solid #2c2c2c;
   border-radius: 10px;
@@ -3278,6 +3276,55 @@ body::-webkit-scrollbar {
     linear-gradient(180deg,
       #ff6a00 0%,
       #ff007f 35%,
-      #9d00ff 68%,
-      #0077ff 100%);
+      #9d00ff 68%);
+}
+
+.progress-slider,
+.volume-slider {
+  height: 8px;
+}
+
+.progress-slider:hover,
+.volume-slider:hover {
+  height: 10px;
+}
+
+.progress-slider {
+  height: 6px;
+}
+
+.volume-slider {
+  height: 6px;
+}
+
+.progress-slider::-webkit-slider-thumb,
+.volume-slider::-webkit-slider-thumb {
+  background: radial-gradient(circle, #ffffff 45%, transparent 50%),
+    linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff) !important;
+}
+
+.progress-slider::-moz-range-thumb,
+.volume-slider::-moz-range-thumb {
+  background: radial-gradient(circle, #ffffff 45%, transparent 50%),
+    linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff) !important;
+}
+
+.play-pause-btn {
+  background: linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff);
+}
+
+.play-pause-btn:hover {
+  background: linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff);
+}
+
+.loading-spinner {
+  background: conic-gradient(transparent 15%, #ff6a00, #ff007f, #9d00ff),
+    rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 768px) {
+  .loading-spinner {
+    background: conic-gradient(transparent 15%, #ff6a00, #ff007f, #9d00ff),
+      rgba(0, 0, 0, 0.5);
+  }
 }
