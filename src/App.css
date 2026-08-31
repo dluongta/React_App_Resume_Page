@@ -126,6 +126,13 @@ header.active {
     border: 1px solid black;
     padding: 5px 10px;
   }
+
+.right.mtop {
+  margin-bottom: -110px !important;
+  padding-bottom: 0px !important;
+  margin-top: -30px !important;
+  padding-top: 0px !important;
+}
 }
 
 .left,
@@ -144,7 +151,7 @@ header.active {
 
 .bottomMargin-1 {
   margin-bottom: 34px !important;
-  padding-bottom: 40px !important;
+  padding-bottom: 13px !important;
   margin-top: -32px !important;
   padding-top: -32px !important;
 }

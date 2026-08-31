@@ -79,18 +79,18 @@ export const Skill = ({ className }) => {
       <div className="container">
         <div className="heading">
           <div className="animated-text bottomMargin-1">
-            <h3 className="animated-text" style={{ marginBottom: "8px", fontSize: "22px" }}>Why Choose Me</h3>
-            <h3 className="animated-text" style={{ marginBottom: "8px", fontSize: "22px" }}>Some of my skills</h3>
+            {/* <h3 className="animated-text" style={{ marginBottom: "8px", fontSize: "22px" }}>Why Choose Me</h3>
+            <h3 className="animated-text" style={{ marginBottom: "8px", fontSize: "22px" }}>Some of my skills</h3> */}
           </div>
         </div>
 
         <div className="content flex">
-          <div className="left topMargin">
+          {/* <div className="left topMargin">
             <Progress done={80} title="HTML" />
             <Progress done={90} title="CSS" />
             <Progress done={90} title="JAVASCRIPT" />
             <Progress done={80} title="REACT JS" />
-          </div>
+          </div> */}
 
           <div className="right mtop">
             {data.map((val, index) => (
