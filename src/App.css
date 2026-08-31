@@ -133,6 +133,11 @@ header.active {
   margin-top: -30px !important;
   padding-top: 0px !important;
 }
+
+.right.mtop {
+  padding-bottom: 80px!important;
+}
+
 }
 
 .left,
@@ -151,13 +156,17 @@ header.active {
 
 .bottomMargin-1 {
   margin-bottom: 34px !important;
-  padding-bottom: 13px !important;
-  margin-top: -32px !important;
-  padding-top: -32px !important;
+  padding-bottom: 0px !important;
+  margin-top: 0px !important;
+  padding-top: 0px !important;
 }
 
 .home {
   margin-top: 110px !important;
+}
+
+.timeline-section {
+  margin-top: 80px;
 }
 
 .content-wrapper p:last-of-type {
