@@ -186,31 +186,6 @@
   }
 }
 
-.loading-spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 46px;
-  height: 46px;
-  border: 4px solid #404040;
-  border-top-color: var(--primary-color);
-  border-radius: 50%;
-  animation: spin-blue 1s linear infinite;
-  transition: opacity 0.2s ease-in-out;
-  pointer-events: none;
-}
-
-@keyframes spin-blue {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
 .video-player-container {
   width: 100%;
   max-width: 800px;
@@ -229,22 +204,6 @@
     border-radius: 0px !important;
     margin-top: 48px !important;
     margin-bottom: 48px !important;
-  }
-
-  .loading-spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 4px solid #404040;
-    border-top-color: var(--primary-color);
-    animation: spin-blue 0.8s linear infinite;
-    transition: opacity 0.2s ease-in-out;
-    pointer-events: none;
-    z-index: 20;
   }
 }
 
@@ -459,22 +418,32 @@
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Vòng tròn Loading xoay (Mặc định) */
+/* Loading Spinner */
 .loading-spinner {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+
   width: 46px;
   height: 46px;
+
+  transform: translate(-50%, -50%);
   border-radius: 50%;
-  border: none;
-  background: conic-gradient(transparent 15%, #ff6a00, #ff007f, #9d00ff, #0077ff);
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
-  mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+
+  background: conic-gradient(#ff6a00 0deg,
+      #ff6a00 80deg,
+      rgba(80, 80, 80, 0.55) 80deg,
+      rgba(80, 80, 80, 0.55) 360deg);
+  -webkit-mask: radial-gradient(farthest-side,
+      transparent calc(100% - 5px),
+      #000 calc(100% - 4px));
+
+  mask: radial-gradient(farthest-side,
+      transparent calc(100% - 5px),
+      #000 calc(100% - 4px));
 
   animation: spin-gradient 1s linear infinite;
-  transition: opacity 0.2s ease-in-out;
+
   pointer-events: none;
   z-index: 20;
 }
@@ -483,66 +452,163 @@
   .loading-spinner {
     width: 40px;
     height: 40px;
-    border: none;
-    border-radius: 50%;
-    background: conic-gradient(transparent 15%, #ff6a00, #ff007f, #9d00ff, #0077ff);
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
-    mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+    background: conic-gradient(#ff6a00 0deg,
+        #ff6a00 80deg,
+        rgba(80, 80, 80, 0.55) 80deg,
+        rgba(80, 80, 80, 0.55) 360deg);
+    background: conic-gradient(#ff6a00 0deg,
+        #ff6a00 80deg,
+        rgba(80, 80, 80, 0.55) 80deg,
+        rgba(80, 80, 80, 0.55) 360deg);
+
+    -webkit-mask: radial-gradient(farthest-side,
+        transparent calc(100% - 5px),
+        #000 calc(100% - 4px));
+
+    mask: radial-gradient(farthest-side,
+        transparent calc(100% - 5px),
+        #000 calc(100% - 4px));
+
     animation: spin-gradient 0.8s linear infinite;
   }
 }
 
 @keyframes spin-gradient {
-  0% {
+  from {
     transform: translate(-50%, -50%) rotate(0deg);
   }
-  100% {
+
+  to {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
-/* Vòng tròn Loading xoay (Mặc định cho PC) */
 .loading-spinner {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+
   width: 46px;
   height: 46px;
+
+  transform: translate(-50%, -50%);
   border-radius: 50%;
-  border: none;
-  background: conic-gradient(transparent 15%, #ff6a00, #ff007f, #9d00ff, #0077ff), 
-              rgba(0, 0, 0, 0.5); /* Màu đen trong suốt như PC */
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
-  mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+
+  background: conic-gradient(#ff6a00 0deg,
+      #ff7a00 10deg,
+      #ff007f 40deg,
+      #d000ff 60deg,
+      #9d00ff 80deg,
+      rgba(80, 80, 80, 0.55) 80deg,
+      rgba(80, 80, 80, 0.55) 360deg);
+
+
+  -webkit-mask: radial-gradient(farthest-side,
+      transparent calc(100% - 5px),
+      #000 calc(100% - 4px));
+
+  mask: radial-gradient(farthest-side,
+      transparent calc(100% - 5px),
+      #000 calc(100% - 4px));
 
   animation: spin-gradient 1s linear infinite;
-  transition: opacity 0.2s ease-in-out;
+
   pointer-events: none;
   z-index: 20;
 }
 
-/* Vòng tròn Loading cho Mobile */
 @media screen and (max-width: 768px) {
   .loading-spinner {
     width: 40px;
     height: 40px;
-    border: none;
-    border-radius: 50%;
-    /* Sửa lại background ở mobile giống hệt PC */
-    background: conic-gradient(transparent 15%, #ff6a00, #ff007f, #9d00ff, #0077ff), 
-                rgba(0, 0, 0, 0.5); /* Đổi từ 169,169,169,0.1 thành 0,0,0,0.5 */
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
-    mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+
+    background: conic-gradient(#ff6a00 0deg,
+        #ff6a00 10deg,
+        #ff007f 40deg,
+        #9d00ff 80deg,
+        rgba(80, 80, 80, 0.55) 80deg,
+        rgba(80, 80, 80, 0.55) 360deg);
+
+    -webkit-mask: radial-gradient(farthest-side,
+        transparent calc(100% - 5px),
+        #000 calc(100% - 4px));
+
+    mask: radial-gradient(farthest-side,
+        transparent calc(100% - 5px),
+        #000 calc(100% - 4px));
+
     animation: spin-gradient 0.8s linear infinite;
   }
 }
 
 @keyframes spin-gradient {
-  0% {
+  from {
     transform: translate(-50%, -50%) rotate(0deg);
   }
-  100% {
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 46px;
+  height: 46px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+
+  background: conic-gradient(#ff6a00 0deg,
+      #ff7a00 15deg,
+      #ff007f 60deg,
+      #d000ff 90deg,
+      #9d00ff 120deg,
+      rgba(80, 80, 80, 0.55) 120deg,
+      rgba(80, 80, 80, 0.55) 360deg);
+
+  -webkit-mask: radial-gradient(farthest-side,
+      transparent calc(100% - 5px),
+      #000 calc(100% - 4px));
+  mask: radial-gradient(farthest-side,
+      transparent calc(100% - 5px),
+      #000 calc(100% - 4px));
+
+  animation: spin-gradient 1s linear infinite;
+  pointer-events: none;
+  z-index: 20;
+}
+
+@media screen and (max-width: 768px) {
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+
+    background: conic-gradient(#ff6a00 0deg,
+        #ff6a00 15deg,
+        #ff007f 60deg,
+        #9d00ff 120deg,
+        rgba(80, 80, 80, 0.55) 120deg,
+        rgba(80, 80, 80, 0.55) 360deg);
+
+    -webkit-mask: radial-gradient(farthest-side,
+        transparent calc(100% - 5px),
+        #000 calc(100% - 4px));
+    mask: radial-gradient(farthest-side,
+        transparent calc(100% - 5px),
+        #000 calc(100% - 4px));
+
+    animation: spin-gradient 0.8s linear infinite;
+  }
+}
+
+@keyframes spin-gradient {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
