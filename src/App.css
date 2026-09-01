@@ -1496,7 +1496,7 @@ footer .socialIcon {
 }
 
 .nav-links-sidebar li.active-link a:hover {
-  background-color: linear-gradient(135deg, #406cfc, #7c3aed);
+  background-color: linear-gradient(135deg, #f433b4, #7c3aed);
   color: #fff;
   border-radius: 0;
 }
@@ -1602,7 +1602,7 @@ section.contact {
 }
 
 .nav-links li:not(.icon):hover::before {
-  background: linear-gradient(135deg, #406cfc, #7c3aed);
+  background: linear-gradient(135deg, #f433b4, #7c3aed);
   left: 0;
 }
 
@@ -1611,7 +1611,7 @@ section.contact {
 }
 
 .nav-links-sidebar li:hover {
-  background-color: linear-gradient(135deg, #406cfc, #7c3aed);
+  background-color: linear-gradient(135deg, #f433b4, #7c3aed);
 }
 
 .nav-links-sidebar li:hover a {
@@ -1905,7 +1905,7 @@ footer a:hover {
 @media (max-width: 768px) {
 
   .nav-links-sidebar li:hover {
-    background: linear-gradient(135deg, #406cfc, #7c3aed);
+    background: linear-gradient(135deg, #f433b4, #7c3aed);
     border-radius: 6px;
   }
 
@@ -1984,7 +1984,7 @@ footer a:hover {
 
 .nav-links-sidebar li a:hover,
 .nav-links-sidebar li.active-link a {
-  background: linear-gradient(135deg, #406cfc, #7c3aed);
+  background: linear-gradient(135deg, #f433b4, #7c3aed);
   color: #fff;
 }
 
@@ -2056,7 +2056,7 @@ footer a:hover {
 
 @media (max-width: 768px) {
   .nav-links-sidebar li:hover a {
-    background: linear-gradient(135deg, #406cfc, #7c3aed);
+    background: linear-gradient(135deg, #f433b4, #7c3aed);
     color: #fff;
   }
 
