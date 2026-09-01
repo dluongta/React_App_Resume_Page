@@ -1427,7 +1427,7 @@ footer .socialIcon {
 
 .nav-links li.active-link a,
 .nav-links-sidebar li.active-link a {
-  color: linear-gradient(135deg, #ff4e02, #f433b4);
+  color: linear-gradient(135deg, #ff5a00, #ff1493 );
 }
 
 @media (max-width: 768px) {
@@ -1446,7 +1446,7 @@ footer .socialIcon {
   left: 10%;
   width: 80%;
   height: 2px;
-  background: linear-gradient(135deg, #ff4e02, #f433b4);
+  background: linear-gradient(135deg, #ff5a00, #ff1493 );
   border-radius: 2px;
   transition: width 0.3s ease;
 }
@@ -1457,7 +1457,7 @@ footer .socialIcon {
   }
 
   .nav-links-sidebar li.active-link {
-    background-color: linear-gradient(135deg, #ff4e02, #f433b4);
+    background-color: linear-gradient(135deg, #ff5a00, #ff1493);
     border-radius: 6px;
   }
 
@@ -1490,13 +1490,13 @@ footer .socialIcon {
 }
 
 .nav-links-sidebar li.active-link a {
-  background-color: linear-gradient(135deg, #ff4e02, #f433b4);
+  background-color: linear-gradient(135deg, #ff5a00, #ff1493);
   color: #fff;
   border-radius: 0;
 }
 
 .nav-links-sidebar li.active-link a:hover {
-  background-color: linear-gradient(135deg, #7c3aed, #f433b4);
+  background-color: linear-gradient(135deg, #7c3aed, #ff1493);
   color: #fff;
   border-radius: 0;
 }
@@ -1577,7 +1577,7 @@ section.contact {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #ff4e02, #f433b4);
+  background: linear-gradient(135deg, #ff5a00, #ff1493);
   border-radius: 6px;
   z-index: 1;
 }
@@ -1592,7 +1592,7 @@ section.contact {
 
 .nav-links li.active-link,
 .nav-links-sidebar li.active-link {
-  background: linear-gradient(135deg, #ff4e02, #f433b4);
+  background: linear-gradient(135deg, #ff5a00, #ff1493);
   border-radius: 6px;
 }
 
@@ -1899,7 +1899,7 @@ footer a:hover {
 
 .nav-links li.active-link,
 .nav-links-sidebar li.active-link {
-  background: linear-gradient(135deg, #ff4e02, #f433b4);
+  background: linear-gradient(135deg, #ff5a00, #ff1493);
 }
 
 @media (max-width: 768px) {
@@ -2061,7 +2061,7 @@ footer a:hover {
   }
 
   .nav-links-sidebar li.active-link a {
-    background: linear-gradient(135deg, #ff4e02, #f433b4);
+    background: linear-gradient(135deg, #ff5a00, #ff1493);
     color: #fff;
   }
 }
