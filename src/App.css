@@ -3187,6 +3187,10 @@ body.sub-root,
     padding-bottom: 17px !important;
     margin-top: -7px !important;
   }
+
+  .branding .container {
+    padding-bottom: 30px;
+  }
 }
 
 
@@ -3385,5 +3389,5 @@ body::-webkit-scrollbar {
 }
 
 .branding .container {
-  padding-bottom: 30px;
+  padding-bottom: 26px;
 }
