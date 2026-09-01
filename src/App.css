@@ -3383,3 +3383,7 @@ body::-webkit-scrollbar {
 .custom-scrollbar-dragging #custom-scrollbar-thumb {
   background: linear-gradient(to bottom, #ff8000, #ff1a6b, #8b5cf6) !important;
 }
+
+.branding .container {
+  padding-bottom: 30px;
+}
