@@ -1496,7 +1496,7 @@ footer .socialIcon {
 }
 
 .nav-links-sidebar li.active-link a:hover {
-    background: linear-gradient(135deg, #f433b4, #7c3aed);  color: #fff;
+  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
   border-radius: 0;
 }
 
@@ -1601,8 +1601,8 @@ section.contact {
 }
 
 .nav-links li:not(.icon):hover::before {
-    background: linear-gradient(135deg, #f433b4, #7c3aed);
-    left: 0;
+  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+  left: 0;
 }
 
 .nav-links li:not(.icon):hover a {
@@ -1610,7 +1610,8 @@ section.contact {
 }
 
 .nav-links-sidebar li:hover {
-    background: linear-gradient(135deg, #f433b4, #7c3aed);}
+  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+ }
 
 .nav-links-sidebar li:hover a {
   color: #fff;
@@ -1903,7 +1904,7 @@ footer a:hover {
 @media (max-width: 768px) {
 
   .nav-links-sidebar li:hover {
-    background: linear-gradient(135deg, #f433b4, #7c3aed);
+    background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
     border-radius: 6px;
   }
 
@@ -1982,7 +1983,8 @@ footer a:hover {
 
 .nav-links-sidebar li a:hover,
 .nav-links-sidebar li.active-link a {
-    background: linear-gradient(135deg, #f433b4, #7c3aed);}
+  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+}
 
 .desktop-nav {
   display: block;
@@ -2052,7 +2054,7 @@ footer a:hover {
 
 @media (max-width: 768px) {
   .nav-links-sidebar li:hover a {
-    background: linear-gradient(135deg, #f433b4, #7c3aed);
+    background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
     color: #fff;
   }
 
