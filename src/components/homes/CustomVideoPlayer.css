@@ -482,7 +482,7 @@
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
-
+/* 
 .loading-spinner {
   position: absolute;
   top: 50%;
@@ -611,4 +611,4 @@
   to {
     transform: translate(-50%, -50%) rotate(360deg);
   }
-}
+} */
