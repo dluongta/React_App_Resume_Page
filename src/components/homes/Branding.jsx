@@ -5,6 +5,7 @@ import lumindLogo from '../../assets/logo.jpg';
 import Hero from './Hero';
 import CustomVideoPlayer from './CustomVideoPlayer';
 import caption_logo from '../../assets/caption_logo.vtt';
+import caption_logo_1 from '../../assets/caption_logo_1.vtt';
 import bgLogoVideo from '../../assets/logo.mp4';
 import ParticleTextCanvas from "./ParticleTextCanvas";
 import hexagonImg from '../../assets/hexagon-main.png';
@@ -126,7 +127,7 @@ export const Branding = ({ className }) => {
       />
       <ParticleTextCanvas />
       <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />
-      <CustomVideoPlayer src={bgIntroVideo} captionSrc={caption_logo} />
+      <CustomVideoPlayer src={bgIntroVideo} captionSrc={caption_logo_1} />
       <CustomMusicPlayer src={bgMusic} title="Study Pop Playlist" artist="DLUONGTA" useImage={true} cover={hexagonImg} />
       <Hero />
     </>
