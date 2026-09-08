@@ -126,8 +126,8 @@ export const Branding = ({ className }) => {
         imageUrls={galaxyImages}
       />
       <ParticleTextCanvas />
-      <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />
       <CustomVideoPlayer src={bgIntroVideo} captionSrc={caption_logo_1} />
+      <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />
       <CustomMusicPlayer src={bgMusic} title="Study Pop Playlist" artist="DLUONGTA" useImage={true} cover={hexagonImg} />
       <Hero />
     </>
