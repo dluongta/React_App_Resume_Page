@@ -10,6 +10,7 @@ import ParticleTextCanvas from "./ParticleTextCanvas";
 import hexagonImg from '../../assets/hexagon-main.png';
 import CustomMusicPlayer from './CustomMusicPlayer';
 import bgMusic from '../../assets/Study-Pop-Playlist.mp3';
+import bgIntroVideo from '../../assets/introVideo.mp4';
 
 export const Branding = ({ className }) => {
   const data = [
@@ -125,6 +126,7 @@ export const Branding = ({ className }) => {
       />
       <ParticleTextCanvas />
       <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />
+      <CustomVideoPlayer src={bgIntroVideo} captionSrc={caption_logo} />
       <CustomMusicPlayer src={bgMusic} title="Study Pop Playlist" artist="DLUONGTA" useImage={true} cover={hexagonImg} />
       <Hero />
     </>
