@@ -419,7 +419,7 @@
 }
 
 /* Loading Spinner */
-.loading-spinner {
+/* .loading-spinner {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -481,7 +481,7 @@
   to {
     transform: translate(-50%, -50%) rotate(360deg);
   }
-}
+} */
 /* 
 .loading-spinner {
   position: absolute;
@@ -617,8 +617,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 48px;
-  height: 48px;
+  width: 49px;
+  height: 49px;
 
   transform: translate(-50%, -50%);
   border-radius: 50%;
