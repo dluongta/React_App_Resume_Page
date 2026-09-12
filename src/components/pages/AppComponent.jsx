@@ -131,41 +131,36 @@ export const AppComponent = () => {
     },
     {
       id: "26",
-      link: "https://github.com/luen2003/enhance_image_quality",
-      linkName: "Enhance Image Quality",
-    },
-    {
-      id: "27",
       link: "https://dluongta.github.io/voice_recording.html",
       linkName: "Voice Recording",
     },
     {
-      id: "28",
+      id: "27",
       link: "https://dluongta.github.io/video_recording.html",
       linkName: "Video Recording",
     },
     {
-      id: "29",
+      id: "28",
       link: "https://dluongta.github.io/spin_wheel.html",
       linkName: "Spin Wheel",
     },
     {
-      id: "30",
+      id: "29",
       link: "https://github.com/luen2003/WeatherApp/releases/download/v1.0.0/app-release.apk",
       linkName: "Weather App",
     },
     {
-      id: "31",
+      id: "30",
       link: "https://dluongta.github.io/vn-telex-input.html",
       linkName: "VN Telex Input",
     },
     {
-      id: "32",
+      id: "31",
       link: "https://github.com/luen2003/SDL_GAME/archive/refs/tags/v1.0.0.zip",
       linkName: "SDL Game",
     },
     {
-      id: "33",
+      id: "32",
       link: "https://github.com/luen2003/face-recognition-app/releases/download/v1.0.0/FaceRecognitionApp.exe",
       linkName: "Face Recognition App",
     }
