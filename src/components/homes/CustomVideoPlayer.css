@@ -398,7 +398,7 @@
   height: 14px;
   /* Lớp 1: Hình tròn trắng ở giữa chiếm 45% bán kính, lớp 2: Nền gradient ở dưới */
   background: radial-gradient(circle, #ffffff 45%, transparent 50%),
-    linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff) !important;
+    linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff, #0077ff) !important;
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -411,7 +411,7 @@
   width: 14px;
   height: 14px;
   background: radial-gradient(circle, #ffffff 45%, transparent 50%),
-    linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff) !important;
+    linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff, #0077ff) !important;
   border-radius: 50%;
   border: none;
   cursor: pointer;
