@@ -464,3 +464,8 @@
   cursor: pointer;
   transition: transform 0.2s, filter 0.2s;
 }
+
+.play-pause-btn:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #ff6a00, #ff007f);
+}
