@@ -201,9 +201,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
 
   const toggleLoop = (e) => {
     e.stopPropagation();
-
     setIsLooping((prev) => !prev);
-
     handleInteraction();
   };
 
@@ -259,7 +257,23 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
             />
           )}
         </video>
-        {loading && <div className="loading-spinner"></div>}
+        
+        {loading && (
+          <div className="loading-spinner">
+            <svg className="circular-loader" viewBox="25 25 50 50">
+              <circle
+                className="loader-path"
+                cx="50"
+                cy="50"
+                r="20"
+                fill="none"
+                strokeWidth="4"
+                strokeMiterlimit="10"
+              ></circle>
+            </svg>
+          </div>
+        )}
+        
         <div className={`controls ${showControls ? 'visible' : ''}`} onClick={(e) => e.stopPropagation()}>
           <div className="progress-wrapper">
             <input
