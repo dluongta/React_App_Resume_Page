@@ -554,3 +554,15 @@
     height: 50px;
   }
 }
+
+
+@media (max-width: 768px) {
+  .cc-btn {
+    margin-left: 12px; 
+  }
+
+  .settings-menu {
+    margin-left: 2px !important; 
+    margin-right: 0px !important;
+  }
+}

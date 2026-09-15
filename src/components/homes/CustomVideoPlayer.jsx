@@ -353,7 +353,7 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
             </div>
 
             <div className="right-controls">
-              <button className={`control-btn ${isCaptionsOn ? 'active' : ''}`} onClick={(e) => {
+              <button className={`control-btn cc-btn ${isCaptionsOn ? 'active' : ''}`} onClick={(e) => {
                 const tracks = videoRef.current.textTracks;
                 if (tracks && tracks.length > 0) {
                   const track = tracks[0];
@@ -364,7 +364,13 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
                 }
               }}>CC</button>
               <div className="settings-menu" ref={settingsRef}>
-                <button className="control-btn" onClick={(e) => { e.stopPropagation(); setShowSettings(!showSettings); }}>
+                <button
+                  className={`control-btn ${showSettings ? 'active' : ''}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowSettings(!showSettings);
+                  }}
+                >
                   <SettingsIcon fontSize="small" />
                 </button>
                 {showSettings && (
@@ -388,4 +394,4 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
   );
 };
 
-export default CustomVideoPlayer;
+export default CustomVideoPlayer; 
