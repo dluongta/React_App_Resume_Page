@@ -3408,7 +3408,7 @@ body::-webkit-scrollbar {
 }
 
 .settings-content::-webkit-scrollbar-track {
-  background: #333333;
+  background: #3a3a3a;
   border-radius: 8px;
 }
 

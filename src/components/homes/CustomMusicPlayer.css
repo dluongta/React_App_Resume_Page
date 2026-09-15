@@ -466,7 +466,7 @@
 }
 
 .play-pause-btn:hover {
-  transform: scale(1.08);
+  transform: scale(1.13);
   background: linear-gradient(135deg, #ff6a00, #ff007f);
 }
 
