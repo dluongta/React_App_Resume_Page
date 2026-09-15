@@ -292,7 +292,7 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
 
           <div className="progress-container">
             <span className="time-text">{formatTime(Math.min(currentTime, duration))}</span>
-            
+
             <div className="progress-wrapper">
               <input
                 type="range"
@@ -309,10 +309,10 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
                     #9d00ff ${progressPercent}%,  
                     rgba(255, 255, 255, 0.1) ${progressPercent}%)`
                 }}
-/>
-           
+              />
+
             </div>
-            
+
             <span className="time-text time-duration">{formatTime(duration)}</span>
           </div>
         </div>
@@ -362,7 +362,7 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
 
             <div className="settings-menu" ref={settingsRef}>
               <button
-                className={`control-btn ${playbackRate !== 1 ? 'active' : ''}`}
+                className={`control-btn ${showSettings ? 'active' : ''}`}
                 onClick={() => setShowSettings(!showSettings)}
               >
                 <SettingsIcon fontSize="small" />
