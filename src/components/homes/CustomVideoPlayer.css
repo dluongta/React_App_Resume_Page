@@ -607,7 +607,6 @@
   appearance: none;
   width: 14px;
   height: 14px;
-  /* Lớp 1: Hình tròn trắng ở giữa chiếm 45% bán kính, lớp 2: Nền gradient ở dưới */
   background: radial-gradient(circle, #ffffff 45%, transparent 50%),
     linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff, #0077ff) !important;
   border-radius: 50%;
@@ -651,14 +650,12 @@
 .settings-item {
   padding: 8px 16px;
   color: #333;
-  /* Chuyển màu chữ setting sang tối vì nền trắng */
   font-size: 13px;
   cursor: pointer;
 }
 
 .settings-item:hover {
   background: rgba(0, 0, 0, 0.05);
-  /* Chuyển hover vì nền trắng */
 }
 
 .settings-item.active {
@@ -717,28 +714,276 @@
   }
 }
 
+:root {
+  --primary-color: #4285f4;
+  --text-color: #fff;
+}
+
+.video-player-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 32px auto;
+  border-radius: 8px !important;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: transparent;
+  position: relative;
+  margin-top: 39px !important;
+  margin-bottom: 39px !important;
+}
+
+@media screen and (max-width: 768px) {
+  .video-player-container {
+    border-radius: 0px !important;
+    margin-top: 48px !important;
+    margin-bottom: 48px !important;
+  }
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  cursor: pointer;
+}
+
+.video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translateY(-1px);
+}
+
+.controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.controls.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-controls,
+.right-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.control-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.control-btn.active {
+  color: var(--primary-color);
+}
+
+.time-display {
+  color: white;
+  font-size: 12px;
+  min-width: 35px;
+  white-space: nowrap;
+}
+
+.time-current {
+  transform: translateX(-8px);
+}
+
+.progress-wrapper {
+  width: 100%;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+}
+
+.progress-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.volume-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 60px;
+  height: 4px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Hình tròn tời (thumb) cho trình duyệt Chrome, Safari, Edge */
+.progress-slider::-webkit-slider-thumb,
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, #ffffff 45%, transparent 50%),
+    linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff, #0077ff) !important;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Hình tròn tời (thumb) cho trình duyệt Firefox */
+.progress-slider::-moz-range-thumb,
+.volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, #ffffff 45%, transparent 50%),
+    linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff, #0077ff) !important;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.settings-menu {
+  position: relative;
+  z-index: 100;
+  margin-left: 2px !important;
+}
+
+.settings-content {
+  position: absolute;
+  background: #fff;
+  max-height: 150px;
+  overflow-y: auto;
+  bottom: 100%;
+  right: 0;
+  border-radius: 8px;
+  min-width: 120px;
+  padding: 8px 0;
+  z-index: 1000;
+}
+
+.settings-item {
+  padding: 8px 16px;
+  color: #333;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.settings-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.settings-item.active {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.repeat-btn-video {
+  margin-left: -3px !important;
+}
+
+@media (max-width: 600px) {
+  .volume-slider {
+    width: 45px;
+  }
+
+  .left-controls,
+  .right-controls {
+    gap: 6px;
+  }
+
+  .control-btn {
+    padding: 2px;
+  }
+
+  .time-display {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .time-display {
+    min-width: 44px;
+    font-size: 10px;
+  }
+
+  .progress-wrapper {
+    gap: 6px;
+  }
+
+  .time-current {
+    transform: translateX(-8px);
+  }
+
+  .controls {
+    padding: 10px 5px;
+  }
+
+  .repeat-btn-video {
+    margin-left: 3px !important;
+  }
+
+  .settings-menu {
+    margin-left: 12px !important;
+    margin-right: 0px !important;
+  }
+}
 
 .loading-spinner {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 50px;
-  height: 50px;
+  
+  width: 62px;
+  height: 62px;
+  
   transform: translate(-50%, -50%);
   z-index: 20;
   pointer-events: none;
-
   background: transparent !important;
-  -webkit-mask: none !important;
-  mask: none !important;
-  box-shadow: none !important;
 }
 
 .circular-loader {
   animation: rotate 2s linear infinite;
   height: 100%;
   width: 100%;
-  background: transparent !important;
+}
+
+.loader-track {
+  stroke: #707070; 
 }
 
 .loader-path {
@@ -746,7 +991,7 @@
   stroke-dashoffset: 0;
   animation: dash 1.5s ease-in-out infinite;
   stroke-linecap: round;
-  stroke: #ff6a00;
+  stroke: #ff6a00; 
   fill: transparent !important;
 }
 
@@ -761,12 +1006,10 @@
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
   }
-
   50% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -35px;
   }
-
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -124px;
@@ -775,52 +1018,7 @@
 
 @media screen and (max-width: 768px) {
   .loading-spinner {
-    width: 40px;
-    height: 40px;
-  }
-}
-
-.circular-loader {
-  animation: rotate 2s linear infinite;
-  height: 100%;
-  width: 100%;
-}
-
-.loader-path {
-  stroke-dasharray: 1, 200;
-  stroke-dashoffset: 0;
-  animation: dash 1.5s ease-in-out infinite;
-  stroke-linecap: round;
-  stroke: #ff6a00;
-  /* Màu cam chủ đạo */
-}
-
-@keyframes rotate {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes dash {
-  0% {
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0;
-  }
-
-  50% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -35px;
-  }
-
-  100% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -124px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .loading-spinner {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
   }
 }

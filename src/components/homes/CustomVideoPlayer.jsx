@@ -257,10 +257,21 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
             />
           )}
         </video>
-        
+
         {loading && (
           <div className="loading-spinner">
             <svg className="circular-loader" viewBox="25 25 50 50">
+              {/* 1. Vòng tròn xám tĩnh làm đường ray ở dưới */}
+              <circle
+                className="loader-track"
+                cx="50"
+                cy="50"
+                r="20"
+                fill="none"
+                strokeWidth="4"
+              ></circle>
+
+              {/* 2. Vòng tròn cam chạy animation ở trên */}
               <circle
                 className="loader-path"
                 cx="50"
@@ -273,7 +284,6 @@ const CustomVideoPlayer = ({ src, captionSrc }) => {
             </svg>
           </div>
         )}
-        
         <div className={`controls ${showControls ? 'visible' : ''}`} onClick={(e) => e.stopPropagation()}>
           <div className="progress-wrapper">
             <input
