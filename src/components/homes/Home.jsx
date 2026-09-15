@@ -144,7 +144,7 @@ export const Home = ({ className }) => {
 
             <div className="description-text">
               <p>
-                I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android and Application Development.
+                I am Dinh Luong Ta. I am a programmer who is skilled in Software Development, including Web, Android and Application Development.
                 I am extremely fascinated by science, engineering and technology. All of my products are from the TSCEND brand and made by DLUONGTA. With remarkable and accelerating technological development, I would like to develop innovative solutions that have a beneficial and significant impact on the world.
               </p>
 
