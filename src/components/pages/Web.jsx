@@ -138,6 +138,11 @@ export const Web = () => {
       id: "27",
       link: "https://dluongta.github.io/vn-telex-input.html",
       linkName: "VN Telex Input",
+    },
+    {
+      id: "28",
+      link: "https://github.com/luen2003/face-recognition-app-web/releases/download/v1.0.0/FaceRecognitionAppWeb.exe",
+      linkName: "Face Recognition App Web",
     }
   ];
 

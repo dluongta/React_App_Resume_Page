@@ -163,6 +163,11 @@ export const AppComponent = () => {
       id: "32",
       link: "https://github.com/luen2003/face-recognition-app/releases/download/v1.0.0/FaceRecognitionApp.exe",
       linkName: "Face Recognition App",
+    },
+    {
+      id: "33",
+      link: "https://github.com/luen2003/face-recognition-app-web/releases/download/v1.0.0/FaceRecognitionAppWeb.exe",
+      linkName: "Face Recognition App Web",
     }
   ];
   return (
