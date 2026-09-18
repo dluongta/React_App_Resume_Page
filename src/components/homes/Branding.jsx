@@ -125,6 +125,7 @@ export const Branding = ({ className }) => {
         <CurvedLoop
           marqueeText="CREATIVE MIND ✦ DLUONGTA TSCEND ✦ "
           speed={1.8}
+          mobileSpeed={3.8}
         />
       </div>
       <GalaxyAnimation

@@ -5,7 +5,6 @@ const CurvedLoop = ({
   marqueeText = 'CREATIVE MIND ✦ DLUONGTA TSCEND ✦ ',
   speed = 1.8,
   mobileSpeed = 3.8,
-  className
 }) => {
   const text = useMemo(() => {
     const hasTrailing = /\s|\u00A0$/.test(marqueeText);
@@ -31,7 +30,7 @@ const CurvedLoop = ({
 
   useEffect(() => {
     if (measureRef.current) setSpacing(measureRef.current.getComputedTextLength());
-  }, [text, className]);
+  }, [text]);
 
   useEffect(() => {
     if (!spacing) return;
@@ -100,7 +99,6 @@ const CurvedLoop = ({
           <text
             fontWeight="bold"
             xmlSpace="preserve"
-            className={className}
             fill="url(#moving-gradient)"
           >
             <textPath ref={textPathRef} href={`#${pathId}`} startOffset={offset + 'px'} xmlSpace="preserve">
