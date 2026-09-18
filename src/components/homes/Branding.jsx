@@ -124,7 +124,7 @@ export const Branding = ({ className }) => {
       <div style={{ backgroundColor: '#fff', color: 'white' }}> {/* Đổi nền tối để thấy hiệu ứng tím - xanh dương nổi hơn */}
         <CurvedLoop
           marqueeText="CREATIVE MIND ✦ DLUONGTA TSCEND ✦ "
-          speed={2}
+          speed={1.8}
         />
       </div>
       <GalaxyAnimation
