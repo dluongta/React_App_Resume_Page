@@ -14,8 +14,8 @@
   -moz-user-select: none;
 
   pointer-events: none;
-  padding-top: 190px;
-  padding-bottom: 158px;
+  padding-top: 180px;
+  padding-bottom: 180px;
 }
 
 
@@ -127,7 +127,7 @@
     overflow: hidden;
     
     padding-top: 100px;
-    padding-bottom: 68px;
+    padding-bottom: 80px;
   }
 
   .curved-loop-svg {
