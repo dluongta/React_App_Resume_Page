@@ -4,6 +4,7 @@ import './CurvedLoop.css';
 const CurvedLoop = ({
   marqueeText = 'CREATIVE MIND ✦ DLUONGTA TSCEND ✦ ',
   speed = 1.8,
+  mobileSpeed = 3.8,
   className
 }) => {
   const text = useMemo(() => {
@@ -47,25 +48,19 @@ const CurvedLoop = ({
     let lastTime = 0;
 
     const step = (time) => {
-      // Bắt đầu tính toán Delta Time để đồng bộ tốc độ khung hình (FPS)
       if (!lastTime) lastTime = time;
       const delta = time - lastTime;
       lastTime = time;
 
-      // Chuẩn hoá theo màn hình 60Hz (1 khung hình = ~16.66ms)
-      // Giới hạn delta tối đa 50ms để chữ không bị giật lag nếu user chuyển tab
       const speedMultiplier = Math.min(delta, 50) / 16.66;
 
       if (textPathRef.current) {
         const currentOffset = parseFloat(textPathRef.current.getAttribute('startOffset') || '0');
 
-        // Nhân speed với multiplier để PC (144Hz) và Mobile (60Hz) chạy y hệt nhau
-        // let newOffset = currentOffset + (speed * speedMultiplier);
-        const isMobile = window.matchMedia('(max-width: 768px)').matches;
-        const mobileSpeedMultiplier = isMobile ? 2 : 1;
+        const isMobile = window.innerWidth <= 768;
+        const currentSpeed = isMobile ? mobileSpeed : speed;
 
-        let newOffset =
-          currentOffset + (speed * mobileSpeedMultiplier * speedMultiplier);
+        let newOffset = currentOffset + (currentSpeed * speedMultiplier);
 
         const wrapPoint = spacing;
         if (newOffset > 0) newOffset -= wrapPoint;
@@ -78,7 +73,7 @@ const CurvedLoop = ({
 
     frame = requestAnimationFrame(step);
     return () => cancelAnimationFrame(frame);
-  }, [spacing, speed, ready]);
+  }, [spacing, speed, mobileSpeed, ready]);
 
   return (
     <div className="curved-loop-jacket" style={{ visibility: ready ? 'visible' : 'hidden' }}>
