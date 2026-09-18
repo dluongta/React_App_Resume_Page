@@ -1,0 +1,199 @@
+.curved-loop-jacket {
+  width: 100%;
+  height: 280px;
+  min-height: 280px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+
+  pointer-events: none;
+  padding-top: 30px;
+}
+
+
+/* =========================================
+   SVG
+========================================= */
+
+.curved-loop-svg {
+  width: 100%;
+  height: 280px;
+
+  display: block;
+
+  overflow: visible;
+
+  font-size: 6rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  line-height: 1;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   TEXT MEASURE
+========================================= */
+
+.curved-loop-measure {
+  visibility: hidden;
+  opacity: 0;
+
+  pointer-events: none;
+
+  font-size: 6rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================
+   MAIN TEXT
+========================================= */
+
+.curved-loop-text {
+  font-size: 6rem;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0;
+
+  user-select: none;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1024px) {
+
+  .curved-loop-jacket {
+    height: 230px;
+    min-height: 230px;
+  }
+
+  .curved-loop-svg {
+    height: 230px;
+    font-size: 5.5rem;
+  }
+
+  .curved-loop-text {
+    font-size: 5.5rem;
+  }
+
+  .curved-loop-measure {
+    font-size: 5.5rem;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .curved-loop-jacket {
+    width: 100%;
+
+    height: 165px;
+    min-height: 165px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+  }
+
+  .curved-loop-svg {
+    width: 100%;
+    height: 165px;
+
+    /*
+     * Chữ lớn gần bằng PC.
+     */
+    font-size: 5.2rem;
+  }
+
+  .curved-loop-text {
+    font-size: 5.2rem;
+  }
+
+  .curved-loop-measure {
+    font-size: 5.2rem;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .curved-loop-jacket {
+    height: 150px;
+    min-height: 150px;
+  }
+
+  .curved-loop-svg {
+    height: 150px;
+
+    font-size: 5rem;
+  }
+
+  .curved-loop-text {
+    font-size: 5rem;
+  }
+
+  .curved-loop-measure {
+    font-size: 5rem;
+  }
+}
+
+
+/* =========================================
+   VERY SMALL PHONE
+========================================= */
+
+@media (max-width: 380px) {
+
+  .curved-loop-jacket {
+    height: 140px;
+    min-height: 140px;
+  }
+
+  .curved-loop-svg {
+    height: 140px;
+
+    font-size: 4.7rem;
+  }
+
+  .curved-loop-text {
+    font-size: 4.7rem;
+  }
+
+  .curved-loop-measure {
+    font-size: 4.7rem;
+  }
+}

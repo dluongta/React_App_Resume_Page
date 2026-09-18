@@ -12,6 +12,7 @@ import hexagonImg from '../../assets/hexagon-main.png';
 import CustomMusicPlayer from './CustomMusicPlayer';
 import bgMusic from '../../assets/Study-Pop-Playlist.mp3';
 import bgIntroVideo from '../../assets/introVideo.mp4';
+import CurvedLoop from './CurvedLoop';
 
 export const Branding = ({ className }) => {
   const data = [
@@ -120,7 +121,12 @@ export const Branding = ({ className }) => {
           ))}
         </div>
       </section>
-
+      <div style={{ backgroundColor: '#fff', color: 'white' }}> {/* Đổi nền tối để thấy hiệu ứng tím - xanh dương nổi hơn */}
+        <CurvedLoop
+          marqueeText="CREATIVE MIND ✦ DLUONGTA TSCEND ✦ "
+          speed={2}
+        />
+      </div>
       <GalaxyAnimation
         text="DINH LUONG TA"
         imageUrls={galaxyImages}
