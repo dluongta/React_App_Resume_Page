@@ -14,7 +14,8 @@
   -moz-user-select: none;
 
   pointer-events: none;
-  padding-top: 30px;
+  padding-top: 190px;
+  padding-bottom: 150px;
 }
 
 
@@ -89,6 +90,7 @@
   .curved-loop-jacket {
     height: 230px;
     min-height: 230px;
+    
   }
 
   .curved-loop-svg {
@@ -123,15 +125,15 @@
     justify-content: center;
 
     overflow: hidden;
+
+    padding-bottom: 60px;
+    padding-top: 100px;
   }
 
   .curved-loop-svg {
     width: 100%;
     height: 165px;
 
-    /*
-     * Chữ lớn gần bằng PC.
-     */
     font-size: 5.2rem;
   }
 
