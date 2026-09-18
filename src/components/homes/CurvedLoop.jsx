@@ -60,7 +60,12 @@ const CurvedLoop = ({
         const currentOffset = parseFloat(textPathRef.current.getAttribute('startOffset') || '0');
 
         // Nhân speed với multiplier để PC (144Hz) và Mobile (60Hz) chạy y hệt nhau
-        let newOffset = currentOffset + (speed * speedMultiplier);
+        // let newOffset = currentOffset + (speed * speedMultiplier);
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+        const mobileSpeedMultiplier = isMobile ? 2 : 1;
+
+        let newOffset =
+          currentOffset + (speed * mobileSpeedMultiplier * speedMultiplier);
 
         const wrapPoint = spacing;
         if (newOffset > 0) newOffset -= wrapPoint;
