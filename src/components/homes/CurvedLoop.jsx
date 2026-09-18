@@ -23,8 +23,8 @@ const CurvedLoop = ({
   const textLength = spacing;
   const totalText = textLength
     ? Array(Math.ceil(1800 / textLength) + 2)
-        .fill(text)
-        .join('')
+      .fill(text)
+      .join('')
     : text;
   const ready = spacing > 0;
 
@@ -45,20 +45,20 @@ const CurvedLoop = ({
     if (!spacing || !ready) return;
     let frame = 0;
     let lastTime = 0;
-    
+
     const step = (time) => {
       // Bắt đầu tính toán Delta Time để đồng bộ tốc độ khung hình (FPS)
       if (!lastTime) lastTime = time;
       const delta = time - lastTime;
       lastTime = time;
-      
+
       // Chuẩn hoá theo màn hình 60Hz (1 khung hình = ~16.66ms)
       // Giới hạn delta tối đa 50ms để chữ không bị giật lag nếu user chuyển tab
       const speedMultiplier = Math.min(delta, 50) / 16.66;
 
       if (textPathRef.current) {
         const currentOffset = parseFloat(textPathRef.current.getAttribute('startOffset') || '0');
-        
+
         // Nhân speed với multiplier để PC (144Hz) và Mobile (60Hz) chạy y hệt nhau
         let newOffset = currentOffset + (speed * speedMultiplier);
 
@@ -70,7 +70,7 @@ const CurvedLoop = ({
       }
       frame = requestAnimationFrame(step);
     };
-    
+
     frame = requestAnimationFrame(step);
     return () => cancelAnimationFrame(frame);
   }, [spacing, speed, ready]);
@@ -80,14 +80,13 @@ const CurvedLoop = ({
       <svg className="curved-loop-svg" viewBox="0 0 1440 260">
         <defs>
           <path id={pathId} d={pathD} fill="none" stroke="transparent" />
-          
+
           <linearGradient id="moving-gradient" x1="-200%" y1="0%" x2="0%" y2="0%">
             <stop offset="0%" stopColor="#007BFF" />
-            <stop offset="25%" stopColor="#A200FF" />
+            <stop offset="25%" stopColor="#007BFF" />
             <stop offset="50%" stopColor="#007BFF" />
-            <stop offset="75%" stopColor="#A200FF" />
+            <stop offset="75%" stopColor="#007BFF" />
             <stop offset="100%" stopColor="#007BFF" />
-            
             <animate attributeName="x1" values="-200%; 0%" dur="5s" repeatCount="indefinite" />
             <animate attributeName="x2" values="0%; 200%" dur="5s" repeatCount="indefinite" />
           </linearGradient>
@@ -98,11 +97,11 @@ const CurvedLoop = ({
         </text>
 
         {ready && (
-          <text 
-            fontWeight="bold" 
-            xmlSpace="preserve" 
+          <text
+            fontWeight="bold"
+            xmlSpace="preserve"
             className={className}
-            fill="url(#moving-gradient)" 
+            fill="url(#moving-gradient)"
           >
             <textPath ref={textPathRef} href={`#${pathId}`} startOffset={offset + 'px'} xmlSpace="preserve">
               {totalText}
