@@ -13,6 +13,7 @@ import CustomMusicPlayer from './CustomMusicPlayer';
 import bgMusic from '../../assets/Study-Pop-Playlist.mp3';
 import bgIntroVideo from '../../assets/introVideo.mp4';
 import CurvedLoop from './CurvedLoop';
+import ResponsiveCircularText from './ResponsiveCircularText';
 
 export const Branding = ({ className }) => {
   const data = [
@@ -127,6 +128,9 @@ export const Branding = ({ className }) => {
           speed={1.8}
           mobileSpeed={3.8}
         />
+      </div>
+      <div style={{ padding: '50px 0', color: '#333' }}>
+        <ResponsiveCircularText text="REACT APP RESUME PAGE ✦ PORTFOLIO WEBSITE ✦ DLUONGTA TSCEND ✦ " />
       </div>
       <GalaxyAnimation
         text="DINH LUONG TA"
