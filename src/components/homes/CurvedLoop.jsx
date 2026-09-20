@@ -77,6 +77,12 @@ const CurvedLoop = ({
       <svg className="curved-loop-svg" viewBox="0 0 1440 260">
         <defs>
           <path id={pathId} d={pathD} fill="none" />
+          
+          <linearGradient id="gradient-bg" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#ff5a00" />
+            <stop offset="50%" stopColor="#ff1493" />
+            <stop offset="100%" stopColor="#7b2cff" />
+          </linearGradient>
         </defs>
 
         <text ref={measureRef} xmlSpace="preserve" style={{ visibility: 'hidden', opacity: 0, pointerEvents: 'none' }}>
@@ -88,7 +94,7 @@ const CurvedLoop = ({
             <use 
               href={`#${pathId}`} 
               fill="none" 
-              stroke="#007BFF" 
+              stroke="url(#gradient-bg)" 
               strokeWidth="130" 
               strokeLinecap="round" 
             />
