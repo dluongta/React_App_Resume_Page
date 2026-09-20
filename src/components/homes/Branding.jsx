@@ -123,7 +123,7 @@ export const Branding = ({ className }) => {
       </section>
       <div style={{ backgroundColor: '#fff', color: 'white' }}> {/* Đổi nền tối để thấy hiệu ứng tím - xanh dương nổi hơn */}
         <CurvedLoop
-          marqueeText="CREATIVE MIND ✦ DLUONGTA TSCEND ✦ "
+          marqueeText="BE ✦ CREATIVE ✦ WITH ✦ DLUONGTA ✦ TSCEND ✦ "
           speed={1.8}
           mobileSpeed={3.8}
         />

@@ -2,7 +2,7 @@ import { useRef, useEffect, useState, useMemo, useId } from 'react';
 import './CurvedLoop.css';
 
 const CurvedLoop = ({
-  marqueeText = 'CREATIVE MIND ✦ DLUONGTA TSCEND ✦ ',
+  marqueeText = "BE ✦ CREATIVE ✦ WITH ✦ DLUONGTA ✦ TSCEND ✦ ",
   speed = 1.8,
   mobileSpeed = 3.8,
 }) => {
