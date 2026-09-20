@@ -1,21 +1,83 @@
-.circular-text-container {
-  width: 90vw;
-  max-width: 800px;
+.circular-text-wrapper {
+  width: 88%; 
+  max-width: 1000px;
   aspect-ratio: 1 / 1;
-  margin: 0 auto;
+  margin: 40px auto;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-bottom: 100px;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .circular-text-svg {
   width: 100%;
   height: 100%;
-  animation: spin 20s linear infinite;
+  display: block;
+  animation: circularTextRotate 20s linear infinite;
+  transform-origin: center center;
 }
 
-@keyframes spin {
+.circular-text {
+  fill: #ff5a00;
+  font-family: Arial, Helvetica, sans-serif;
+  
+  font-size: 24px; 
+  
+  font-weight: 900;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* =========================
+   TABLET & MOBILE (Đã tối ưu)
+========================= */
+@media (max-width: 768px) {
+  .circular-text-wrapper {
+    /* Tròn nhỏ lại một chút trên mobile nếu muốn */
+    width: 88%;
+    margin: 30px auto;
+  }
+  /* KHÔNG thay đổi font-size ở đây nữa */
+}
+
+@media (max-width: 480px) {
+  .circular-text-wrapper {
+    width: 88%;
+  }
+  /* KHÔNG thay đổi font-size ở đây nữa */
+}
+
+/* =========================
+   ROTATION & REDUCE MOTION
+========================= */
+@keyframes circularTextRotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .circular-text-svg {
+    animation: none;
+  }
+}
+
+.circular-text-section {
+  width: 100%;
+  position: relative;
+  margin-top: -100px;
+  padding-bottom: 160px; 
+  background-color: transparent; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .circular-text-section {
+    margin-top: -80px;
+    padding-bottom: 80px; 
+  }
 }
