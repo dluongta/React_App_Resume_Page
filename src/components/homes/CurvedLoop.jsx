@@ -94,7 +94,8 @@ const CurvedLoop = ({
             <use 
               href={`#${pathId}`} 
               fill="none" 
-              stroke="url(#gradient-bg)" 
+              // stroke="url(#gradient-bg)" 
+              stroke='#ff5a00'
               strokeWidth="130" 
               strokeLinecap="round" 
             />
