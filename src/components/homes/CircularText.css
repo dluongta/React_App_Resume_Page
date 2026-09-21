@@ -18,7 +18,7 @@
 }
 
 .circular-text {
-  fill: #ffffff; /* FIX: ĐỔI MÀU CHỮ THÀNH TRẮNG */
+  fill: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 24px; 
   font-weight: 900;
@@ -26,9 +26,6 @@
   white-space: nowrap;
 }
 
-/* =========================
-   TABLET & MOBILE (Đã tối ưu)
-========================= */
 @media (max-width: 768px) {
   .circular-text-wrapper {
     width: 88%;
@@ -42,9 +39,6 @@
   }
 }
 
-/* =========================
-   ROTATION & REDUCE MOTION
-========================= */
 @keyframes circularTextRotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -67,9 +61,6 @@
   align-items: center;
 }
 
-/* =========================
-   MOBILE RESPONSIVE
-========================= */
 @media (max-width: 768px) {
   .circular-text-section {
     margin-top: -80px;

@@ -26,19 +26,24 @@ const CircularText = ({
             "
             fill="none"
           />
+          {/* Định nghĩa Linear Gradient theo góc 90deg tương ứng với CSS */}
+          <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#ff5a00" />
+            <stop offset="50%" stopColor="#ff1493" />
+            <stop offset="100%" stopColor="#7b2cff" />
+          </linearGradient>
         </defs>
 
-        {/* THÊM VÒNG TRÒN NỀN MÀU CAM Ở ĐÂY */}
+        {/* Vòng tròn sử dụng gradient đã định nghĩa */}
         <circle 
           cx="250" 
           cy="250" 
           r="215" 
           fill="transparent" 
-          stroke="#ff5a00" /* Màu cam */
-          strokeWidth="38" /* Độ dày của dải màu cam (bọc vừa chữ 24px) */
+          stroke="#ff5a00" 
+          strokeWidth="38" 
         />
 
-        {/* THÊM dominantBaseline="middle" ĐỂ CHỮ NẰM CHÍNH GIỮA DẢI CAM */}
         <text 
           className="circular-text" 
           xmlSpace="preserve"
