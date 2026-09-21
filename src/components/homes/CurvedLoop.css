@@ -33,7 +33,7 @@
   overflow: visible;
 
   font-size: 6rem;
-  font-weight: 700;
+  font-weight: 600;
 
   text-transform: uppercase;
   line-height: 1;
@@ -57,7 +57,7 @@
   pointer-events: none;
 
   font-size: 6rem;
-  font-weight: 800;
+  font-weight: 600;
 
   text-transform: uppercase;
 }
@@ -70,7 +70,7 @@
 .curved-loop-text {
   font-size: 6rem;
 
-  font-weight: 800;
+  font-weight: 600;
 
   text-transform: uppercase;
 
@@ -190,14 +190,14 @@
   .curved-loop-svg {
     height: 140px;
 
-    font-size: 4.7rem;
+    font-size: 4.8rem;
   }
 
   .curved-loop-text {
-    font-size: 4.7rem;
+    font-size: 4.8rem;
   }
 
   .curved-loop-measure {
-    font-size: 4.7rem;
+    font-size: 4.8rem;
   }
 }
