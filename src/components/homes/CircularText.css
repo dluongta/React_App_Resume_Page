@@ -24,6 +24,13 @@
   font-weight: 900;
   text-transform: uppercase;
   white-space: nowrap;
+  
+  /* --- THÊM PHẦN NÀY ĐỂ CHỐNG BÔI ĐEN VÀ TƯƠNG TÁC --- */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE10+/Edge */
+  user-select: none;         /* Chuẩn chung */
+  pointer-events: none;      /* Ngăn click, hover, kéo thả chữ */
 }
 
 @media (max-width: 768px) {
