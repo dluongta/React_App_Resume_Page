@@ -39,7 +39,8 @@ const CircularText = ({
           cx="250" 
           cy="250" 
           r="215" 
-          fill="transparent" 
+          fill="transparent"
+          // stroke="url(#circleGradient)" 
           stroke="#ff5a00" 
           strokeWidth="38" 
         />
