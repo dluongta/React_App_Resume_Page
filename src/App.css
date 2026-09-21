@@ -127,16 +127,16 @@ header.active {
     padding: 5px 10px;
   }
 
-.right.mtop {
-  margin-bottom: -110px !important;
-  padding-bottom: 0px !important;
-  margin-top: -30px !important;
-  padding-top: 0px !important;
-}
+  .right.mtop {
+    margin-bottom: -110px !important;
+    padding-bottom: 0px !important;
+    margin-top: -30px !important;
+    padding-top: 0px !important;
+  }
 
-.right.mtop {
-  padding-bottom: 80px!important;
-}
+  .right.mtop {
+    padding-bottom: 80px !important;
+  }
 
 }
 
@@ -1612,7 +1612,7 @@ section.contact {
 
 .nav-links-sidebar li:hover {
   background: linear-gradient(135deg, #ff6a00, #ff1493);
- }
+}
 
 .nav-links-sidebar li:hover a {
   color: #fff;
@@ -3349,23 +3349,23 @@ body::-webkit-scrollbar {
 }
 
 ::-webkit-scrollbar {
-    width: 12px; 
-    height: 12px; 
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-    border-radius: 10px; 
+  background: #f1f1f1;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #ff6a00, #ff007f, #9d00ff); 
-    border-radius: 10px; 
-    border: 2px solid #f1f1f1; 
+  background: linear-gradient(to bottom, #ff6a00, #ff007f, #9d00ff);
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to bottom, #ff6a00, #ff007f, #9d00ff);
+  background: linear-gradient(to bottom, #ff6a00, #ff007f, #9d00ff);
 }
 
 #custom-scrollbar {
@@ -3403,7 +3403,7 @@ body::-webkit-scrollbar {
   min-width: 120px;
   padding: 8px 0;
   z-index: 1000;
-  backdrop-filter: blur(4px); 
+  backdrop-filter: blur(4px);
 
 }
 
@@ -3412,7 +3412,6 @@ body::-webkit-scrollbar {
   border-radius: 8px;
 }
 
-/* Hình tròn tời (thumb) cho trình duyệt Chrome, Safari, Edge */
 .progress-slider::-webkit-slider-thumb,
 .volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -3427,7 +3426,6 @@ body::-webkit-scrollbar {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Hình tròn tời (thumb) cho trình duyệt Firefox */
 .progress-slider::-moz-range-thumb,
 .volume-slider::-moz-range-thumb {
   width: 14px;
@@ -3438,4 +3436,147 @@ body::-webkit-scrollbar {
   border: none;
   cursor: pointer;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.container.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.container.flex .lef,
+.container.flex .right {
+  flex: 1;
+}
+
+.container.flex .right {
+  display: flex;
+  justify-content: center;
+}
+
+.right .circular-text-wrapper {
+  max-width: 380px;
+  width: 100%;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .container.flex {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .container.flex .lef,
+  .container.flex .right {
+    width: 100%;
+  }
+
+  .right .circular-text-wrapper {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+
+.content.flex-2-cols {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.content.flex-2-cols .lef,
+.content.flex-2-cols .right {
+  flex: 1;
+}
+
+.content.flex-2-cols .right {
+  display: flex;
+  justify-content: center;
+}
+
+.content.flex-2-cols .right .circular-text-wrapper {
+  max-width: 380px;
+  width: 100%;
+  margin: 0;
+}
+
+
+@media (max-width: 768px) {
+  .content.flex-2-cols {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .content.flex-2-cols .lef,
+  .content.flex-2-cols .right {
+    width: 100%;
+  }
+
+  .content.flex-2-cols .right .circular-text-wrapper {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+.right .circular-text-wrapper {
+  max-width: 280px;
+  width: 100%;
+  margin: 0;
+}
+
+.content.flex-2-cols .right .circular-text-wrapper {
+  max-width: 280px;
+  width: 100%;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+
+  .right .circular-text-wrapper,
+  .content.flex-2-cols .right .circular-text-wrapper {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  .right .circular-text-wrapper {
+    margin-top: -30px;
+    margin-bottom: 20px;
+  }
+
+  .content.flex-2-cols .right .circular-text-wrapper {
+    margin-top: 30px;
+    margin-bottom: 58px;
+  }
+}
+
+.circular-text {
+  fill: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 19px;
+  font-weight: 900;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.skill {
+  margin-top: -50px !important;
+}
+
+.timeline-section {
+  margin-top: -20px;
+}
+
+@media (max-width: 768px) {
+  .skill {
+    margin-top: -120px !important;
+  }
 }

@@ -13,7 +13,6 @@ import CustomMusicPlayer from './CustomMusicPlayer';
 import bgMusic from '../../assets/Study-Pop-Playlist.mp3';
 import bgIntroVideo from '../../assets/introVideo.mp4';
 import CurvedLoop from './CurvedLoop';
-import CircularText from './CircularText';
 
 export const Branding = ({ className }) => {
   const data = [
@@ -127,11 +126,6 @@ export const Branding = ({ className }) => {
           marqueeText="BE ✦ CREATIVE ✦ WITH ✦ DLUONGTA ✦ TSCEND ✦ "
           speed={1.8}
           mobileSpeed={3.8}
-        />
-      </div>
-      <div className="circular-text-section">
-        <CircularText
-          text="REACT APP RESUME PAGE&nbsp;✦&nbsp;PORTFOLIO WEBSITE&nbsp;✦&nbsp;DLUONGTA TSCEND&nbsp;✦&nbsp;"
         />
       </div>
 

@@ -15,8 +15,8 @@
 
   pointer-events: none;
   padding-top: 185px;
-  padding-bottom: 180px;
-  margin-bottom: 100px;
+  padding-bottom: 190px;
+  margin-bottom: 130px;
 }
 
 
@@ -128,8 +128,8 @@
     overflow: hidden;
     
     padding-top: 105px;
-    padding-bottom: 80px;
-    margin-bottom: 70px;
+    padding-bottom: 60px;
+    margin-bottom: 90px;
   }
 
   .curved-loop-svg {

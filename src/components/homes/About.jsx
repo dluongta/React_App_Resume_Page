@@ -1,5 +1,6 @@
 import React from 'react';
 import Carousel from './Carousel';
+import CircularText from './CircularText';
 
 export const About = ({ className = "" }) => {
   const data = [
@@ -35,6 +36,9 @@ export const About = ({ className = "" }) => {
                   <span className="line2"></span>
                   <span className="line2"></span>
                 </button>
+              </div>
+              <div className="right">
+                <CircularText />
               </div>
             </React.Fragment>
           ))}
