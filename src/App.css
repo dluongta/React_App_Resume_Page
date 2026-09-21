@@ -3544,12 +3544,12 @@ body::-webkit-scrollbar {
 
   .right .circular-text-wrapper {
     margin-top: -30px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 
   .content.flex-2-cols .right .circular-text-wrapper {
     margin-top: 30px;
-    margin-bottom: 58px;
+    margin-bottom: 60px;
   }
 }
 
