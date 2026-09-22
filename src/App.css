@@ -2749,6 +2749,13 @@ body.sub-root,
   .top-marquee {
     height: 48px;
   }
+
+  .header .container.flex {
+    align-items: center;
+    display: flex;
+    justify-items: space-between;
+    flex-direction: row;
+  }
 }
 
 @media (min-width: 992px) {
@@ -3579,11 +3586,5 @@ body::-webkit-scrollbar {
 @media (max-width: 768px) {
   .skill {
     margin-top: -120px !important;
-  }
-  .container.flex {
-    align-items: center;
-    display: flex;
-    justify-items: space-between;
-    flex-direction: row;
   }
 }
