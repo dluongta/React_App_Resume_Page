@@ -25,7 +25,6 @@ const CircularText = ({
             "
             fill="none"
           />
-          {/* Dải màu gradient bạn đã định nghĩa */}
           <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#ff5a00" />
             <stop offset="50%" stopColor="#ff1493" />
