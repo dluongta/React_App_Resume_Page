@@ -3580,4 +3580,10 @@ body::-webkit-scrollbar {
   .skill {
     margin-top: -120px !important;
   }
+  .container.flex {
+    align-items: center;
+    display: flex;
+    justify-items: space-between;
+    flex-direction: row;
+  }
 }
