@@ -68,6 +68,7 @@ export const Home = ({ className }) => {
                   lineHeight: '0.8',
                   display: 'inline-block',
                   marginBottom: isMobile ? '13px' : '0px',
+                  marginTop : isMobile ? '-25px' : '8px'
                 }}
               >
                 I AM A
