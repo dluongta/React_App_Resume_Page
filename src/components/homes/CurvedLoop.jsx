@@ -8,17 +8,13 @@ const CurvedLoop = ({
 }) => {
   const text = useMemo(() => {
     const hasTrailing = /\s|\u00A0$/.test(marqueeText);
-    return (hasTrailing ? marqueeText.replace(/\s+$/, '') : marqueeText) + '\u00A0';
+    return (hasTrailing ? marqueeText.replace(/\s+$/, '') : marqueeText) + ' \u00A0 ';
   }, [marqueeText]);
 
   const measureRef = useRef(null);
   const textPathRef = useRef(null);
-  
-  const [spacing, setSpacing] = useState(0);
-  
-
   const offsetRef = useRef(0);
-  
+  const [spacing, setSpacing] = useState(0);
   const uid = useId();
   const pathId = `curve-${uid}`;
 
@@ -26,7 +22,7 @@ const CurvedLoop = ({
 
   const textLength = spacing;
   const totalText = textLength
-    ? Array(Math.ceil(1800 / textLength) + 2)
+    ? Array(Math.ceil(2000 / textLength) + 2) 
       .fill(text)
       .join('')
     : text;
@@ -44,7 +40,6 @@ const CurvedLoop = ({
     let frame = 0;
     let lastTime = 0;
 
-    // Khởi tạo vị trí offset ban đầu bằng số âm của 1 đoạn text
     offsetRef.current = -spacing;
 
     const step = (time) => {
@@ -58,9 +53,8 @@ const CurvedLoop = ({
 
       offsetRef.current += (currentSpeed * speedMultiplier);
       
-
-      if (offsetRef.current > 0) {
-        offsetRef.current -= spacing;
+      if (offsetRef.current >= 0) {
+        offsetRef.current = (offsetRef.current % spacing) - spacing;
       }
 
       if (textPathRef.current) {
@@ -87,8 +81,10 @@ const CurvedLoop = ({
           </linearGradient>
         </defs>
 
-        <text ref={measureRef} xmlSpace="preserve" style={{ visibility: 'hidden', opacity: 0, pointerEvents: 'none' }}>
-          {text}
+        <text xmlSpace="preserve" style={{ visibility: 'hidden', opacity: 0, pointerEvents: 'none' }}>
+          <textPath ref={measureRef} href={`#${pathId}`}>
+            {text}
+          </textPath>
         </text>
 
         {ready && (
@@ -96,7 +92,7 @@ const CurvedLoop = ({
             <use 
               href={`#${pathId}`} 
               fill="none" 
-              // stroke="url(#gradient-bg)" 
+              // stroke="url(#gradient-bg)"
               stroke="#ff5a00"
               strokeWidth="130" 
               strokeLinecap="round" 
