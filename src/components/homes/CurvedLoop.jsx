@@ -13,8 +13,12 @@ const CurvedLoop = ({
 
   const measureRef = useRef(null);
   const textPathRef = useRef(null);
+  
   const [spacing, setSpacing] = useState(0);
-  const [offset, setOffset] = useState(0);
+  
+
+  const offsetRef = useRef(0);
+  
   const uid = useId();
   const pathId = `curve-${uid}`;
 
@@ -29,22 +33,19 @@ const CurvedLoop = ({
   const ready = spacing > 0;
 
   useEffect(() => {
-    if (measureRef.current) setSpacing(measureRef.current.getComputedTextLength());
+    if (measureRef.current) {
+      setSpacing(measureRef.current.getComputedTextLength());
+    }
   }, [text]);
 
   useEffect(() => {
-    if (!spacing) return;
-    if (textPathRef.current) {
-      const initial = -spacing;
-      textPathRef.current.setAttribute('startOffset', initial + 'px');
-      setOffset(initial);
-    }
-  }, [spacing]);
-
-  useEffect(() => {
     if (!spacing || !ready) return;
+    
     let frame = 0;
     let lastTime = 0;
+
+    // Khởi tạo vị trí offset ban đầu bằng số âm của 1 đoạn text
+    offsetRef.current = -spacing;
 
     const step = (time) => {
       if (!lastTime) lastTime = time;
@@ -52,19 +53,20 @@ const CurvedLoop = ({
       lastTime = time;
 
       const speedMultiplier = Math.min(delta, 50) / 16.66;
+      const isMobile = window.innerWidth <= 768;
+      const currentSpeed = isMobile ? mobileSpeed : speed;
+
+      offsetRef.current += (currentSpeed * speedMultiplier);
+      
+
+      if (offsetRef.current > 0) {
+        offsetRef.current -= spacing;
+      }
 
       if (textPathRef.current) {
-        const currentOffset = parseFloat(textPathRef.current.getAttribute('startOffset') || '0');
-        const isMobile = window.innerWidth <= 768;
-        const currentSpeed = isMobile ? mobileSpeed : speed;
-
-        let newOffset = currentOffset + (currentSpeed * speedMultiplier);
-        const wrapPoint = spacing;
-        if (newOffset > 0) newOffset -= wrapPoint;
-
-        textPathRef.current.setAttribute('startOffset', newOffset + 'px');
-        setOffset(newOffset);
+        textPathRef.current.setAttribute('startOffset', offsetRef.current + 'px');
       }
+
       frame = requestAnimationFrame(step);
     };
 
@@ -106,7 +108,12 @@ const CurvedLoop = ({
               fill="#FFFFFF"
               dominantBaseline="central" 
             >
-              <textPath ref={textPathRef} href={`#${pathId}`} startOffset={offset + 'px'} xmlSpace="preserve">
+              <textPath 
+                ref={textPathRef} 
+                href={`#${pathId}`} 
+                startOffset="0px" 
+                xmlSpace="preserve"
+              >
                 {totalText}
               </textPath>
             </text>
