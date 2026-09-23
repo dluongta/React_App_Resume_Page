@@ -31,9 +31,9 @@
   display: block;
 
   overflow: visible;
-
-  font-size: 6rem;
-  font-weight: 600;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 6.8rem;
+  font-weight: 900;
 
   text-transform: uppercase;
   line-height: 1;
@@ -43,6 +43,7 @@
   -moz-user-select: none;
 
   pointer-events: none;
+  
 }
 
 
