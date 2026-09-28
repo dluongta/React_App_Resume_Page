@@ -31,15 +31,14 @@ export const Android = () => {
                 <div className="card-content">
                   <h1>{value.linkName}</h1>
                 </div>
-                <Link
+                <a
                   className="link"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.open(value.link, "_blank", "noopener,noreferrer");
-                  }}
+                  href={value.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   &rarr; {value.link}
-                </Link>
+                </a>
               </div>
             );
           })}
