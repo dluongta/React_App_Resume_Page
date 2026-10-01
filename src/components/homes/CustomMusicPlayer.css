@@ -211,11 +211,6 @@
   transition: transform 0.2s, background 0.2s;
 }
 
-.play-pause-btn:hover {
-  transform: scale(1.05);
-  background: #3367d6;
-}
-
 .control-btn {
   background: none;
   border: none;
@@ -466,7 +461,6 @@
 }
 
 .play-pause-btn:hover {
-  transform: scale(1.09);
   background: linear-gradient(135deg, #ff6a00, #ff007f);
 }
 

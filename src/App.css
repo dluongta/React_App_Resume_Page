@@ -3335,26 +3335,6 @@ body::-webkit-scrollbar {
     linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff) !important;
 }
 
-.play-pause-btn {
-  background: linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff);
-}
-
-.play-pause-btn:hover {
-  background: linear-gradient(135deg, #ff6a00, #ff007f, #9d00ff);
-}
-
-.loading-spinner {
-  background: conic-gradient(transparent 15%, #ff6a00, #ff007f, #9d00ff),
-    rgba(0, 0, 0, 0.5);
-}
-
-@media screen and (max-width: 768px) {
-  .loading-spinner {
-    background: conic-gradient(transparent 15%, #ff6a00, #ff007f, #9d00ff),
-      rgba(0, 0, 0, 0.5);
-  }
-}
-
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
