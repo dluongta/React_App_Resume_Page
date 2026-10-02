@@ -14,6 +14,7 @@
   -moz-user-select: none;
 
   pointer-events: none;
+
   padding-top: 190px;
   padding-bottom: 180px;
   margin-bottom: 120px;
@@ -31,7 +32,14 @@
   display: block;
 
   overflow: visible;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  font-family:
+    "Segoe UI",
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+
   font-size: 6rem;
   font-weight: 900;
 
@@ -43,7 +51,6 @@
   -moz-user-select: none;
 
   pointer-events: none;
-  
 }
 
 
@@ -57,10 +64,20 @@
 
   pointer-events: none;
 
+  font-family:
+    "Segoe UI",
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+
   font-size: 6rem;
-  font-weight: 600;
+  font-weight: 900;
 
   text-transform: uppercase;
+  letter-spacing: 0;
+
+  white-space: pre;
 }
 
 
@@ -69,16 +86,22 @@
 ========================================= */
 
 .curved-loop-text {
-  font-size: 6rem;
+  font-family:
+    "Segoe UI",
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
 
-  font-weight: 600;
+  font-size: 6rem;
+  font-weight: 900;
 
   text-transform: uppercase;
-
   letter-spacing: 0;
 
-  user-select: none;
+  white-space: pre;
 
+  user-select: none;
   pointer-events: none;
 }
 
@@ -92,7 +115,6 @@
   .curved-loop-jacket {
     height: 230px;
     min-height: 230px;
-    
   }
 
   .curved-loop-svg {
@@ -127,9 +149,10 @@
     justify-content: center;
 
     overflow: hidden;
-    
+
     padding-top: 100px;
     padding-bottom: 60px;
+
     margin-bottom: 90px;
   }
 
@@ -163,7 +186,6 @@
 
   .curved-loop-svg {
     height: 150px;
-
     font-size: 5rem;
   }
 
@@ -190,7 +212,6 @@
 
   .curved-loop-svg {
     height: 140px;
-
     font-size: 4.8rem;
   }
 

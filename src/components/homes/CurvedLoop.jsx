@@ -7,111 +7,233 @@ const CurvedLoop = ({
   mobileSpeed = 3.8,
 }) => {
   const text = useMemo(() => {
-    const hasTrailing = /\s|\u00A0$/.test(marqueeText);
-    return (hasTrailing ? marqueeText.replace(/\s+$/, '') : marqueeText) + '\u00A0';
+    const cleanText = marqueeText.replace(/\s+$/, '');
+    return cleanText + '\u00A0';
   }, [marqueeText]);
 
   const measureRef = useRef(null);
   const textPathRef = useRef(null);
-  
+
   const [spacing, setSpacing] = useState(0);
-  
 
   const offsetRef = useRef(0);
-  
+  const lastTimeRef = useRef(null);
+
   const uid = useId();
-  const pathId = `curve-${uid}`;
+  const pathId = `curve-${uid.replace(/:/g, '')}`;
 
   const pathD = `M-100,220 Q720,20 1540,220`;
 
-  const textLength = spacing;
-  const totalText = textLength
-    ? Array(Math.ceil(1800 / textLength) + 2)
-      .fill(text)
-      .join('')
-    : text;
-  const ready = spacing > 0;
-
+  /*
+   * ==========================================
+   * ĐO CHÍNH XÁC 1 CHU KỲ TEXT
+   * ==========================================
+   */
   useEffect(() => {
-    if (measureRef.current) {
-      setSpacing(measureRef.current.getComputedTextLength());
+    const measureText = () => {
+      if (!measureRef.current) return;
+
+      const length =
+        measureRef.current.getComputedTextLength();
+
+      if (length > 0) {
+        setSpacing(length);
+      }
+    };
+
+    measureText();
+
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(() => {
+        requestAnimationFrame(measureText);
+      });
     }
+
+    window.addEventListener('resize', measureText);
+
+    return () => {
+      window.removeEventListener('resize', measureText);
+    };
   }, [text]);
 
+  /*
+   * ==========================================
+   * LẶP TEXT RẤT DÀI
+   * ==========================================
+   *
+   * Không để text chỉ dài 3000px nữa.
+   *
+   * 100 pattern giúp chạy rất lâu mà không
+   * bao giờ thấy khoảng trống.
+   */
+  const totalText = useMemo(() => {
+    if (!spacing) return text;
+
+    return Array(100)
+      .fill(text)
+      .join('');
+  }, [text, spacing]);
+
+  const ready = spacing > 0;
+
+  /*
+   * ==========================================
+   * SEAMLESS MARQUEE
+   * ==========================================
+   */
   useEffect(() => {
-    if (!spacing || !ready) return;
-    
-    let frame = 0;
-    let lastTime = 0;
+    if (!ready || !spacing || !textPathRef.current) {
+      return;
+    }
 
-    // Khởi tạo vị trí offset ban đầu bằng số âm của 1 đoạn text
+    let animationFrame;
+
     offsetRef.current = -spacing;
+    lastTimeRef.current = null;
 
-    const step = (time) => {
-      if (!lastTime) lastTime = time;
-      const delta = time - lastTime;
-      lastTime = time;
+    const animate = (time) => {
+      if (lastTimeRef.current === null) {
+        lastTimeRef.current = time;
+      }
 
-      const speedMultiplier = Math.min(delta, 50) / 16.66;
-      const isMobile = window.innerWidth <= 768;
-      const currentSpeed = isMobile ? mobileSpeed : speed;
+      const delta = Math.min(
+        time - lastTimeRef.current,
+        50
+      );
 
-      offsetRef.current += (currentSpeed * speedMultiplier);
-      
+      lastTimeRef.current = time;
 
-      if (offsetRef.current > 0) {
+      const isMobile =
+        window.innerWidth <= 768;
+
+      const currentSpeed =
+        isMobile
+          ? mobileSpeed
+          : speed;
+
+      /*
+       * Tốc độ theo thời gian thực.
+       */
+      const movement =
+        currentSpeed *
+        (delta / 16.6666667);
+
+      offsetRef.current += movement;
+
+      /*
+       * ======================================
+       * SEAMLESS RESET
+       * ======================================
+       *
+       * Không reset thẳng về -spacing.
+       *
+       * Giữ lại phần dư:
+       *
+       *  0.8
+       *
+       * sẽ thành:
+       *
+       * -spacing + 0.8
+       *
+       * thay vì:
+       *
+       * -spacing
+       *
+       * Điều này tránh mất pixel khi FPS
+       * không đúng 60fps.
+       */
+      if (offsetRef.current >= 0) {
         offsetRef.current -= spacing;
       }
 
       if (textPathRef.current) {
-        textPathRef.current.setAttribute('startOffset', offsetRef.current + 'px');
+        textPathRef.current.setAttribute(
+          'startOffset',
+          `${offsetRef.current}px`
+        );
       }
 
-      frame = requestAnimationFrame(step);
+      animationFrame =
+        requestAnimationFrame(animate);
     };
 
-    frame = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(frame);
-  }, [spacing, speed, mobileSpeed, ready]);
+    animationFrame =
+      requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      lastTimeRef.current = null;
+    };
+  }, [
+    ready,
+    spacing,
+    speed,
+    mobileSpeed,
+  ]);
 
   return (
-    <div className="curved-loop-jacket" style={{ visibility: ready ? 'visible' : 'hidden' }}>
-      <svg className="curved-loop-svg" viewBox="0 0 1440 260">
+    <div
+      className="curved-loop-jacket"
+      style={{
+        visibility: ready
+          ? 'visible'
+          : 'hidden',
+      }}
+    >
+      <svg
+        className="curved-loop-svg"
+        viewBox="0 0 1440 260"
+      >
         <defs>
-          <path id={pathId} d={pathD} fill="none" />
-          
-          <linearGradient id="gradient-bg" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#ff5a00" />
-            <stop offset="50%" stopColor="#ff1493" />
-            <stop offset="100%" stopColor="#7b2cff" />
-          </linearGradient>
+          <path
+            id={pathId}
+            d={pathD}
+            fill="none"
+          />
         </defs>
 
-        <text ref={measureRef} xmlSpace="preserve" style={{ visibility: 'hidden', opacity: 0, pointerEvents: 'none' }}>
+        {/* =================================
+            MEASURE
+        ================================= */}
+
+        <text
+          ref={measureRef}
+          className="curved-loop-measure"
+          xmlSpace="preserve"
+          aria-hidden="true"
+        >
           {text}
         </text>
 
         {ready && (
           <>
-            <use 
-              href={`#${pathId}`} 
-              fill="none" 
-              // stroke="url(#gradient-bg)" 
+            {/* =================================
+                ORANGE CURVE
+            ================================= */}
+
+            <use
+              href={`#${pathId}`}
+              fill="none"
               stroke="#ff5a00"
-              strokeWidth="130" 
-              strokeLinecap="round" 
+              strokeWidth="130"
+              strokeLinecap="round"
             />
 
+            {/* =================================
+                INFINITE MOVING TEXT
+            ================================= */}
+
             <text
-              fontWeight="bold"
+              className="curved-loop-text"
               xmlSpace="preserve"
               fill="#FFFFFF"
-              dominantBaseline="central" 
+              dominantBaseline="central"
+              fontWeight="900"
             >
-              <textPath 
-                ref={textPathRef} 
-                href={`#${pathId}`} 
-                startOffset="0px" 
+              <textPath
+                ref={textPathRef}
+                href={`#${pathId}`}
+                startOffset={`${-spacing}px`}
                 xmlSpace="preserve"
               >
                 {totalText}
