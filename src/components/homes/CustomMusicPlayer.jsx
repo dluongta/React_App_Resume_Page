@@ -111,8 +111,9 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
 
       if (!isLooping) {
         audio.pause();
-        audio.currentTime = 0;
-        setCurrentTime(0);
+        // Giữ thanh tiến trình ở cuối bài thay vì nhảy về 0
+        audio.currentTime = durationRef.current;
+        setCurrentTime(durationRef.current);
       }
     };
 
@@ -257,10 +258,7 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
 
   const progressPercent =
     duration > 0
-      ? Math.min(
-        (currentTime / Math.max(duration - END_OFFSET, 0)) * 100,
-        100
-      )
+      ? Math.min((currentTime / duration) * 100, 100)
       : 0;
 
   const volumePercent = isMuted ? 0 : volume * 100;
@@ -298,7 +296,7 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
                 type="range"
                 className="progress-slider"
                 min="0"
-                max={duration ? Math.max(duration - END_OFFSET, 0) : 0}
+                max={duration || 0} // <--- Sửa max ở đây
                 step="0.1"
                 value={Math.min(currentTime, duration)}
                 onChange={handleSeek}
@@ -310,7 +308,6 @@ const CustomMusicPlayer = ({ src, title, artist, useImage = false, cover }) => {
                     rgba(255, 255, 255, 0.1) ${progressPercent}%)`
                 }}
               />
-
             </div>
 
             <span className="time-text time-duration">{formatTime(duration)}</span>
