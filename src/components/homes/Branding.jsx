@@ -10,7 +10,7 @@ import bgLogoVideo from '../../assets/logo.mp4';
 import ParticleTextCanvas from "./ParticleTextCanvas";
 import hexagonImg from '../../assets/hexagon-main.png';
 import CustomMusicPlayer from './CustomMusicPlayer';
-import bgMusic from '../../assets/Study-Pop-Playlist.mp3';
+import bgMusic from '../../assets/remix_background.mp3';
 import bgIntroVideo from '../../assets/introVideo.mp4';
 import CurvedLoop from './CurvedLoop';
 
@@ -136,7 +136,7 @@ export const Branding = ({ className }) => {
       <ParticleTextCanvas />
       <CustomVideoPlayer src={bgIntroVideo} captionSrc={caption_logo_1} />
       <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />
-      <CustomMusicPlayer src={bgMusic} title="Study Pop Playlist" artist="DLUONGTA" useImage={true} cover={hexagonImg} />
+      <CustomMusicPlayer src={bgMusic} title="Remix Background" artist="DLUONGTA" useImage={true} cover={hexagonImg} />
       <Hero />
     </>
   );
