@@ -141,8 +141,8 @@ export const Web = () => {
     },
     {
       id: "28",
-      link: "https://github.com/luen2003/face-recognition-app-web/releases/download/v1.0.0/FaceRecognitionAppWeb.exe",
-      linkName: "Face Recognition App Web",
+      link: "https://dluongta.github.io/image-framer-studio.html",
+      linkName: "Image Framer Studio",
     }
   ];
 
