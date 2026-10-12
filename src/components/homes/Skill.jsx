@@ -1,72 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import CircularText from "./CircularText";
 
-export const Skill = ({ className }) => {
-
-  const useInView = () => {
-    const ref = useRef(null);
-    const [inView, setInView] = useState(false);
-
-    useEffect(() => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setInView(true);
-        },
-        { threshold: 0.3 }
-      );
-
-      const current = ref.current;
-      if (current) observer.observe(current);
-
-      return () => {
-        if (current) observer.unobserve(current);
-        observer.disconnect();
-      };
-    }, []);
-
-    return [ref, inView];
-  };
-
-  const Progress = ({ done, title }) => {
-    const [ref, inView] = useInView();
-    const [width, setWidth] = useState("0%");
-    const [count, setCount] = useState(0);
-    const intervalRef = useRef(null);
-
-    useEffect(() => {
-      if (inView) {
-        setWidth(`${done}%`);
-
-        intervalRef.current = setInterval(() => {
-          setCount((prev) => {
-            if (prev >= done) {
-              clearInterval(intervalRef.current);
-              return done;
-            }
-            return prev + 1;
-          });
-        }, 10);
-      }
-
-      return () => clearInterval(intervalRef.current);
-    }, [inView, done]);
-
-    return (
-      <div className="progress" ref={ref}>
-        <div
-          className="progress-done"
-          style={{
-            width: `calc(${width} - 20px)`,
-            opacity: inView ? 1 : 0
-          }}
-        >
-          <span>{title}</span>
-          <span>{count}%</span>
-        </div>
-      </div>
-    );
-  };
-
+export const Skill = ({ className }) => { 
   const data = [
     {
       title: "Every Day Is A New Challenge",

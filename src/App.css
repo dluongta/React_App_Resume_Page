@@ -459,31 +459,6 @@ h3 {
   width: 90%;
 }
 
-.progress h4 {
-  position: absolute;
-  color: #000000;
-  top: -30px;
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.progress h4:nth-child(2) {
-  right: 0;
-  font-size: 17px;
-  font-weight: 400;
-  color: gray;
-}
-
-.progress-done {
-  background-color: orange;
-  border-radius: 20px;
-  color: beige;
-  height: 100%;
-  width: 0;
-  opacity: 0;
-  transition: 1s ease 0.3s;
-}
-
 .skill .right {
   padding: 0 50px;
 }
@@ -1233,30 +1208,6 @@ iframe {
   width: 100%;
   margin: 30px 0;
   border: none;
-}
-
-.progress {
-  margin: 24px 0;
-  position: relative;
-  background: linear-gradient(to right, #00c6ff, #0072ff);
-  border-radius: 30px;
-  height: 40px;
-  width: 100%;
-  overflow: hidden;
-}
-
-.progress-done {
-  height: 100%;
-  width: 0%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  transition: width 1s ease-in-out, opacity 0.5s ease-in-out;
-  opacity: 0;
 }
 
 .video-player-container {
@@ -2275,24 +2226,6 @@ body:has(.galaxy-page) .container {
   .margin-2 {
     margin-bottom: 33px;
   }
-}
-
-.progress {
-  width: 100%;
-  background: #4f46e5;
-  border-radius: 50px;
-  overflow: hidden;
-}
-
-.progress-done {
-  background: orange;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10px;
-  color: #fff;
-  border-radius: 50px;
 }
 
 * {
