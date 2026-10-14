@@ -1132,7 +1132,7 @@ export default function Globe3D() {
 
           <div className="globe-slider-group">
             <div className="globe-slider-header">
-              <span>Arc Density</span>
+              <span>Arc Spawn Rate</span>
               <span className="globe-mono globe-density-val">
                 {DENSITY_NAMES[spawnDensity - 1]}
               </span>
