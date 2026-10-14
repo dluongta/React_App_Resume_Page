@@ -129,6 +129,7 @@ export const Branding = ({ className }) => {
           mobileSpeed={3.8}
         />
       </div>
+      
       <Globe3D />
       <GalaxyAnimation
         text="DINH LUONG TA"
