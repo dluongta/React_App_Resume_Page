@@ -1,68 +1,91 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 
 // ============================================================================
-// 1. WORLD TECH HUBS & CONTINENT POLYGONS DATA
+// 1. CONTINENT POLYGONS & INLAND-CALIBRATED TECH HUBS DATA
 // ============================================================================
-const TECH_HUBS = [
-  { lat: 37.7749, lng: -122.4194 },
-  { lat: 40.7128, lng: -74.0060 },
-  { lat: 47.6062, lng: -122.3321 },
-  { lat: 30.2672, lng: -97.7431 },
-  { lat: 43.6532, lng: -79.3832 },
-  { lat: 19.4326, lng: -99.1332 },
-  { lat: -23.5505, lng: -46.6333 },
-  { lat: -34.6037, lng: -58.3816 },
-  { lat: -33.4489, lng: -70.6693 },
-  { lat: 4.7110, lng: -74.0721 },
-  { lat: 51.5074, lng: -0.1278 },
-  { lat: 48.8566, lng: 2.3522 },
-  { lat: 52.5200, lng: 13.4050 },
-  { lat: 52.3676, lng: 4.9041 },
-  { lat: 59.3293, lng: 18.0686 },
-  { lat: 47.3769, lng: 8.5417 },
-  { lat: 40.4168, lng: -3.7038 },
-  { lat: 52.2297, lng: 21.0122 },
-  { lat: 50.4501, lng: 30.5234 },
-  { lat: 41.0082, lng: 28.9784 },
-  { lat: 32.0853, lng: 34.7818 },
-  { lat: 25.2048, lng: 55.2708 },
-  { lat: 6.5244, lng: 3.3792 },
-  { lat: -1.2921, lng: 36.8219 },
-  { lat: 30.0444, lng: 31.2357 },
-  { lat: -33.9249, lng: 18.4241 },
-  { lat: 12.9716, lng: 77.5946 },
-  { lat: 19.0760, lng: 72.8777 },
-  { lat: 28.6139, lng: 77.2090 },
-  { lat: 1.3521, lng: 103.8198 },
-  { lat: 21.0285, lng: 105.8542 },
-  { lat: 10.8231, lng: 106.6297 },
-  { lat: 13.7563, lng: 100.5018 },
-  { lat: -6.2088, lng: 106.8456 },
-  { lat: 14.5995, lng: 120.9842 },
-  { lat: 35.6762, lng: 139.6503 },
-  { lat: 37.5665, lng: 126.9780 },
-  { lat: 39.9042, lng: 116.4074 },
-  { lat: 31.2304, lng: 121.4737 },
-  { lat: 22.3193, lng: 114.1694 },
-  { lat: 25.0330, lng: 121.5654 },
-  { lat: -33.8688, lng: 151.2093 },
-  { lat: -37.8136, lng: 144.9631 },
-  { lat: -36.8485, lng: 174.7633 }
+const CONTINENT_POLYGONS = [
+  // Bắc Mỹ
+  [[-168,65],[-140,70],[-120,74],[-85,75],[-60,65],[-53,47],[-70,42],[-81,25],[-90,20],[-84,9],[-77,8],[-92,15],[-105,20],[-117,32],[-124,48],[-140,60],[-165,60]],
+  // Greenland
+  [[-55,60],[-44,60],[-20,70],[-18,81],[-50,82],[-68,76]],
+  // Nam Mỹ
+  [[-80,10],[-62,10],[-50,0],[-35,-6],[-38,-15],[-48,-28],[-58,-38],[-68,-54],[-75,-50],[-72,-35],[-70,-18],[-81,-5]],
+  // Châu Âu
+  [[-10,36],[5,36],[15,38],[28,36],[35,45],[60,55],[60,70],[28,71],[10,63],[5,50],[-5,48],[-10,43]],
+  // Vương quốc Anh
+  [[-10,51],[2,51],[0,58],[-8,58]],
+  // Châu Phi
+  [[-17,15],[-6,35],[11,37],[33,31],[43,12],[51,11],[40,-10],[35,-25],[20,-35],[14,-22],[9,-2],[5,5],[-8,4]],
+  // Madagascar
+  [[44,-13],[50,-13],[48,-25],[43,-25]],
+  // Châu Á
+  [[28,41],[45,40],[55,22],[72,20],[78,8],[88,22],[100,13],[104,1],[109,15],[122,23],[122,38],[132,42],[142,52],[170,66],[178,68],[105,76],[65,72],[60,55],[35,45]],
+  // Nhật Bản
+  [[130,31],[141,35],[145,44],[139,41],[130,34]],
+  // Đông Nam Á / Indonesia
+  [[95,5],[106,-6],[120,-8],[140,-5],[135,2],[120,18],[115,6]],
+  // Châu Úc
+  [[113,-22],[122,-14],[136,-12],[143,-11],[153,-25],[148,-38],[138,-35],[115,-34]],
+  // New Zealand
+  [[166,-46],[178,-37],[175,-41],[168,-46]]
 ];
 
-const CONTINENT_POLYGONS = [
-  [[-168,65],[-140,70],[-120,74],[-85,75],[-60,65],[-53,47],[-70,42],[-81,25],[-90,20],[-84,9],[-77,8],[-92,15],[-105,20],[-117,32],[-124,48],[-140,60],[-165,60]],
-  [[-55,60],[-44,60],[-20,70],[-18,81],[-50,82],[-68,76]],
-  [[-80,10],[-62,10],[-50,0],[-35,-6],[-38,-15],[-48,-28],[-58,-38],[-68,-54],[-75,-50],[-72,-35],[-70,-18],[-81,-5]],
-  [[-10,36],[5,36],[15,38],[28,36],[35,45],[60,55],[60,70],[28,71],[10,63],[5,50],[-5,48],[-10,43]],
-  [[-10,51],[2,51],[0,58],[-8,58]],
-  [[-17,15],[-6,35],[11,37],[33,31],[43,12],[51,11],[40,-10],[35,-25],[20,-35],[14,-22],[9,-2],[5,5],[-8,4]],
-  [[44,-13],[50,-13],[48,-25],[43,-25]],
-  [[28,41],[45,40],[55,22],[72,20],[78,8],[88,22],[100,13],[104,1],[109,15],[122,23],[122,38],[132,42],[142,52],[170,66],[178,68],[105,76],[65,72],[60,55],[35,45]],
-  [[130,31],[141,35],[145,44],[139,41],[130,34]],
-  [[95,5],[106,-6],[120,-8],[140,-5],[135,2],[120,18],[115,6]],
-  [[113,-22],[122,-14],[136,-12],[143,-11],[153,-25],[148,-38],[138,-35],[115,-34]],
-  [[166,-46],[178,-37],[175,-41],[168,-46]]
+// Tọa độ các Hub đã được tinh chỉnh nằm sâu bên trong đa giác lục địa
+const RAW_TECH_HUBS = [
+  // Bắc Mỹ
+  { lat: 39.5, lng: -116.0 },
+  { lat: 41.5, lng: -77.5 },
+  { lat: 47.5, lng: -119.0 },
+  { lat: 33.0, lng: -98.0 },
+  { lat: 45.0, lng: -79.5 },
+  { lat: 23.5, lng: -101.0 },
+  { lat: 54.0, lng: -110.0 },
+  // Nam Mỹ
+  { lat: -21.0, lng: -49.0 },
+  { lat: -33.5, lng: -61.5 },
+  { lat: -32.0, lng: -68.0 },
+  { lat: 4.7, lng: -73.0 },
+  { lat: -10.0, lng: -55.0 },
+  { lat: -14.0, lng: -72.0 },
+  // Châu Âu
+  { lat: 53.5, lng: -2.5 },
+  { lat: 47.5, lng: 2.5 },
+  { lat: 51.5, lng: 11.5 },
+  { lat: 52.0, lng: 6.5 },
+  { lat: 60.5, lng: 16.0 },
+  { lat: 47.0, lng: 8.5 },
+  { lat: 40.5, lng: -3.7 },
+  { lat: 52.0, lng: 20.0 },
+  { lat: 50.5, lng: 30.5 },
+  { lat: 56.5, lng: 38.0 },
+  // Trung Đông & Châu Phi
+  { lat: 39.5, lng: 34.0 },
+  { lat: 33.5, lng: 42.0 },
+  { lat: 26.0, lng: 45.0 },
+  { lat: 9.5, lng: 8.0 },
+  { lat: -1.3, lng: 35.5 },
+  { lat: 28.0, lng: 29.5 },
+  { lat: -25.0, lng: 25.0 },
+  { lat: 16.0, lng: 2.0 },
+  // Châu Á
+  { lat: 15.5, lng: 77.5 },
+  { lat: 21.0, lng: 76.0 },
+  { lat: 28.0, lng: 78.0 },
+  { lat: 3.5, lng: 102.5 },
+  { lat: 21.5, lng: 104.5 },
+  { lat: 15.5, lng: 101.0 },
+  { lat: -2.0, lng: 112.0 },
+  { lat: 12.0, lng: 120.0 },
+  { lat: 36.5, lng: 138.0 },
+  { lat: 39.9, lng: 115.5 },
+  { lat: 31.5, lng: 117.5 },
+  { lat: 25.0, lng: 113.5 },
+  { lat: 48.0, lng: 106.0 },
+  // Châu Đại Dương
+  { lat: -31.0, lng: 147.0 },
+  { lat: -34.0, lng: 142.0 },
+  { lat: -25.0, lng: 128.0 },
+  { lat: -42.5, lng: 172.5 }
 ];
 
 const ARC_COLORS = [
@@ -78,7 +101,7 @@ const GLOBE_RADIUS = 100;
 const FOV_RAD = (45 * Math.PI) / 180;
 
 // ============================================================================
-// 2. PURE 3D MATH & PROJECTION HELPERS
+// 2. PURE 3D MATH, LAND VERIFICATION & PROJECTION HELPERS
 // ============================================================================
 function isPointInPolygon(lng, lat, polygon) {
   let inside = false;
@@ -98,6 +121,48 @@ function isLand(lng, lat) {
   }
   return false;
 }
+
+// Kiểm tra điểm và 4 hướng xung quanh để đảm bảo Hub nằm trọn trên đất liền
+function isSafeInland(lng, lat) {
+  if (!isLand(lng, lat)) return false;
+  const margin = 1.2;
+  return (
+    isLand(lng + margin, lat) &&
+    isLand(lng - margin, lat) &&
+    isLand(lng, lat + margin) &&
+    isLand(lng, lat - margin)
+  );
+}
+
+// Tự động dời bất kỳ điểm nào bị lệch ra biển vào vùng đất liền gần nhất
+function snapToGuaranteedLand(lat, lng) {
+  if (isSafeInland(lng, lat)) return { lat, lng };
+  if (isLand(lng, lat)) return { lat, lng };
+
+  for (let r = 0.5; r <= 30; r += 0.5) {
+    for (let deg = 0; deg < 360; deg += 15) {
+      const rad = (deg * Math.PI) / 180;
+      const testLat = Math.max(-85, Math.min(85, lat + Math.sin(rad) * r));
+      const testLng = ((lng + Math.cos(rad) * r + 540) % 360) - 180;
+      if (isSafeInland(testLng, testLat)) {
+        return { lat: testLat, lng: testLng };
+      }
+    }
+  }
+  for (let r = 0.5; r <= 30; r += 0.5) {
+    for (let deg = 0; deg < 360; deg += 15) {
+      const rad = (deg * Math.PI) / 180;
+      const testLat = Math.max(-85, Math.min(85, lat + Math.sin(rad) * r));
+      const testLng = ((lng + Math.cos(rad) * r + 540) % 360) - 180;
+      if (isLand(testLng, testLat)) {
+        return { lat: testLat, lng: testLng };
+      }
+    }
+  }
+  return { lat: 21.5, lng: 104.5 };
+}
+
+const VERIFIED_LAND_HUBS = RAW_TECH_HUBS.map((hub) => snapToGuaranteedLand(hub.lat, hub.lng));
 
 function latLngToVec3(lat, lng, radius) {
   const phi = (90 - lat) * (Math.PI / 180);
@@ -177,23 +242,20 @@ function getResponsiveView(w, h) {
     const mobileZoom = Math.min(650, Math.max(480, Math.round(330 / Math.max(aspect, 0.45))));
     return {
       zoom: mobileZoom,
-      minZoom: 260,
-      maxZoom: 780,
-      offsetY: -28
+      offsetY: -28,
+      autoRotateSpeed: 0.0086 // Xoay nhanh hơn trên Mobile
     };
   } else if (w < 1024) {
     return {
       zoom: 430,
-      minZoom: 220,
-      maxZoom: 650,
-      offsetY: -10
+      offsetY: -10,
+      autoRotateSpeed: 0.0080 // Xoay nhanh trên Tablet
     };
   } else {
     return {
       zoom: 390,
-      minZoom: 200,
-      maxZoom: 600,
-      offsetY: -6
+      offsetY: -6,
+      autoRotateSpeed: 0.0046 // Xoay nhanh trên PC
     };
   }
 }
@@ -361,7 +423,9 @@ export default function Globe3D() {
             landDots.push({
               x: x * GLOBE_RADIUS,
               y: y * GLOBE_RADIUS,
-              z: z * GLOBE_RADIUS
+              z: z * GLOBE_RADIUS,
+              lat,
+              lng: normLng
             });
           }
         }
@@ -373,13 +437,29 @@ export default function Globe3D() {
 
       if (isCancelled) return;
 
-      // Bước 3: Khởi tạo Tech Hubs & Tia năng lượng ban đầu (90% -> 100%)
-      TECH_HUBS.forEach((hub, index) => {
+      // Bước 3: Khởi tạo Tech Hubs gắn chặt vào đúng các hạt đất liền (landDots) (90% -> 100%)
+      VERIFIED_LAND_HUBS.forEach((hub, index) => {
+        const targetVec = latLngToVec3(hub.lat, hub.lng, GLOBE_RADIUS);
+        let closestDot = null;
+        let minDist = Infinity;
+
+        // Khóa cứng từng Hub vào đúng hạt đất liền gần nhất để không bao giờ nằm ở đại dương
+        for (let j = 0; j < landDots.length; j++) {
+          const d = vecDist(targetVec, landDots[j]);
+          if (d < minDist) {
+            minDist = d;
+            closestDot = landDots[j];
+          }
+        }
+
+        const finalLat = closestDot ? closestDot.lat : hub.lat;
+        const finalLng = closestDot ? closestDot.lng : hub.lng;
+
         const isMajor = index % 3 === 0;
-        const surfaceData = createSurfaceRingPoints(hub.lat, hub.lng, GLOBE_RADIUS * 1.004, 1.9, 16);
+        const surfaceData = createSurfaceRingPoints(finalLat, finalLng, GLOBE_RADIUS * 1.004, 1.9, 16);
         cityHubs.push({
-          lat: hub.lat,
-          lng: hub.lng,
+          lat: finalLat,
+          lng: finalLng,
           center: surfaceData.center,
           ringPts: surfaceData.pts,
           color: isMajor ? '#38bdf8' : '#a855f7',
@@ -415,14 +495,17 @@ export default function Globe3D() {
     }
 
     function spawnRandomArc(initialProgress = 0) {
-      const startIdx = Math.floor(Math.random() * TECH_HUBS.length);
-      let endIdx = Math.floor(Math.random() * TECH_HUBS.length);
+      if (cityHubs.length < 2) return;
+
+      const startIdx = Math.floor(Math.random() * cityHubs.length);
+      let endIdx = Math.floor(Math.random() * cityHubs.length);
       while (endIdx === startIdx) {
-        endIdx = Math.floor(Math.random() * TECH_HUBS.length);
+        endIdx = Math.floor(Math.random() * cityHubs.length);
       }
 
-      const startHub = TECH_HUBS[startIdx];
-      const endHub = TECH_HUBS[endIdx];
+      // Điểm phát và điểm đến luôn lấy từ cityHubs đã khóa trên đất liền
+      const startHub = cityHubs[startIdx];
+      const endHub = cityHubs[endIdx];
       const colorObj = ARC_COLORS[Math.floor(Math.random() * ARC_COLORS.length)];
 
       const startVec = latLngToVec3(startHub.lat, startHub.lng, GLOBE_RADIUS);
@@ -477,6 +560,8 @@ export default function Globe3D() {
       targetRotation = { x: 0.25, y: -1.8 };
       targetZoom = viewConfig.zoom;
       targetOffsetY = viewConfig.offsetY;
+      setAutoRotate(true);
+      setSpawnDensity(4);
     }
 
     engineRef.current = {
@@ -517,9 +602,9 @@ export default function Globe3D() {
       if (isCancelled) return;
       animationFrameId = requestAnimationFrame(animate);
 
-      // 1. Update Camera & Globe Rotation
+      // 1. Update Camera & Globe Rotation (Tốc độ tự xoay nhanh trên cả Mobile & PC)
       if (autoRotateRef.current) {
-        targetRotation.y += 0.0018;
+        targetRotation.y += viewConfig.autoRotateSpeed;
       }
       currentRotation.x += (targetRotation.x - currentRotation.x) * 0.08;
       currentRotation.y += (targetRotation.y - currentRotation.y) * 0.08;
@@ -549,7 +634,7 @@ export default function Globe3D() {
         ctx.fillRect(sx, sy, s.size, s.size);
       }
 
-      // 3. Outer Atmosphere Halo Glow (Mặc định luôn bật)
+      // 3. Outer Atmosphere Halo Glow
       const outerGrad = ctx.createRadialGradient(
         globeCenterX, globeCenterY, apparentRadius * 0.82,
         globeCenterX, globeCenterY, apparentRadius * 1.26
@@ -581,7 +666,7 @@ export default function Globe3D() {
       ctx.arc(globeCenterX, globeCenterY, apparentRadius, 0, Math.PI * 2);
       ctx.fill();
 
-      // Rim Fresnel Edge Highlight (Mặc định luôn bật)
+      // Rim Fresnel Edge Highlight
       const rimGrad = ctx.createRadialGradient(
         globeCenterX, globeCenterY, apparentRadius * 0.86,
         globeCenterX, globeCenterY, apparentRadius
@@ -647,7 +732,7 @@ export default function Globe3D() {
         }
       }
 
-      // 7. Render Tech Hub Nodes & Surface Rings
+      // 7. Render Tech Hub Nodes & Surface Rings (100% trên đất liền)
       for (let i = 0; i < cityHubs.length; i++) {
         const hub = cityHubs[i];
         const centerProj = project3D(hub.center, sinX, cosX, sinY, cosY);
@@ -820,6 +905,8 @@ export default function Globe3D() {
           user-select: none;
           -webkit-user-select: none;
           -webkit-tap-highlight-color: transparent;
+          /* Cho phép cuộn trang tự nhiên như các phần tử bình thường */
+          touch-action: pan-y pan-x;
         }
         .globe-root * {
           box-sizing: border-box;
@@ -839,12 +926,11 @@ export default function Globe3D() {
           align-items: center;
           justify-content: center;
           transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.75s ease;
-          pointer-events: auto;
+          pointer-events: none;
         }
         .globe-loader-overlay.is-hidden {
           opacity: 0;
           visibility: hidden;
-          pointer-events: none;
         }
         .globe-loader-info {
           display: flex;
@@ -883,7 +969,7 @@ export default function Globe3D() {
           box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
         }
 
-        /* Vùng chứa Canvas */
+        /* Vùng chứa Canvas (pointer-events: none để không chặn thao tác lướt trang) */
         .globe-canvas-container {
           position: absolute;
           inset: 0;
@@ -907,7 +993,7 @@ export default function Globe3D() {
           pointer-events: none;
         }
 
-        /* Bảng điều khiển ở góc trên bên phải */
+        /* Bảng điều khiển ở góc trên bên phải (nơi duy nhất nhận tương tác) */
         .globe-controls-wrapper {
           position: absolute;
           top: 12px;
@@ -1059,7 +1145,6 @@ export default function Globe3D() {
           border: none;
           box-shadow: 0 0 10px #38bdf8;
         }
-        /* Phần chân điều khiển chứa link Reset View giống hình mẫu */
         .globe-reset-row {
           display: flex;
           justify-content: flex-end;
@@ -1100,12 +1185,12 @@ export default function Globe3D() {
         </div>
       </div>
 
-      {/* 2. Vùng chứa Canvas 3D */}
+      {/* 2. Vùng chứa Canvas 3D (Hoàn toàn không bắt sự kiện chuột/chạm để lướt mượt) */}
       <div className={`globe-canvas-container ${isLoaded ? 'is-ready' : ''}`}>
         <canvas ref={canvasRef} />
       </div>
 
-      {/* 3. Bảng điều khiển góc trên bên phải */}
+      {/* 3. Bảng điều khiển góc trên bên phải (Nơi duy nhất nhận tương tác) */}
       <div className={`globe-controls-wrapper ${isLoaded ? 'is-ready' : ''}`}>
         <div className="globe-glass-panel">
           <div className="globe-controls-header">
