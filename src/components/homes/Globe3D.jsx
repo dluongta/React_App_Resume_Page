@@ -209,7 +209,7 @@ export default function Globe3D() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0);
 
-  // States cho bảng điều khiển góc trên bên phải (Glow đã mặc định luôn bật)
+  // States cho bảng điều khiển góc trên bên phải
   const [autoRotate, setAutoRotate] = useState(true);
   const [spawnDensity, setSpawnDensity] = useState(4);
 
@@ -828,7 +828,7 @@ export default function Globe3D() {
           font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
 
-        /* Màn hình Loading Overlay (Đã xóa hình tròn xoay trên thanh %) */
+        /* Màn hình Loading Overlay */
         .globe-loader-overlay {
           position: absolute;
           inset: 0;
@@ -883,7 +883,7 @@ export default function Globe3D() {
           box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
         }
 
-        /* Vùng chứa Canvas có hiệu ứng Fade-in & Scale-in khi tải xong */
+        /* Vùng chứa Canvas */
         .globe-canvas-container {
           position: absolute;
           inset: 0;
@@ -1059,19 +1059,28 @@ export default function Globe3D() {
           border: none;
           box-shadow: 0 0 10px #38bdf8;
         }
+        /* Phần chân điều khiển chứa link Reset View giống hình mẫu */
+        .globe-reset-row {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          padding-top: 8px;
+          margin-top: 2px;
+          border-top: 1px solid rgba(51, 65, 85, 0.45);
+        }
         .globe-btn-reset {
-          width: 100%;
-          padding: 4px 0;
-          border-radius: 7px;
-          border: 1px solid rgba(51, 65, 85, 0.7);
-          background: rgba(15, 23, 42, 0.45);
-          color: #94a3b8;
-          font-size: 10.5px;
-          transition: color 0.15s ease, background 0.15s ease;
+          padding: 0;
+          border: none;
+          background: transparent;
+          color: #38bdf8;
+          font-size: 10px;
+          font-weight: 400;
+          text-decoration: none;
+          transition: color 0.15s ease;
         }
         .globe-btn-reset:hover {
-          color: #f8fafc;
-          background: rgba(30, 41, 59, 0.75);
+          text-decoration: underline;
+          text-underline-offset: 3px;
         }
       `}</style>
 
@@ -1138,13 +1147,15 @@ export default function Globe3D() {
             />
           </div>
 
-          <button
-            type="button"
-            onClick={handleReset}
-            className="globe-btn globe-btn-reset"
-          >
-            Reset Camera View
-          </button>
+          <div className="globe-reset-row">
+            <button
+              type="button"
+              onClick={handleReset}
+              className="globe-btn globe-btn-reset"
+            >
+              Reset View
+            </button>
+          </div>
         </div>
       </div>
     </div>
