@@ -1109,7 +1109,7 @@ export default function Globe3D() {
       <div className={`globe-controls-wrapper ${isLoaded ? 'is-ready' : ''}`}>
         <div className="globe-glass-panel">
           <div className="globe-controls-header">
-            <span className="globe-controls-title">Telemetry</span>
+            <span className="globe-controls-title">CONTROLS</span>
           </div>
 
           <div className="globe-toggle-grid">
