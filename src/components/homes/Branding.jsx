@@ -13,6 +13,7 @@ import CustomMusicPlayer from './CustomMusicPlayer';
 import bgMusic from '../../assets/remix_background_music.mp3';
 import bgIntroVideo from '../../assets/introVideo.mp4';
 import CurvedLoop from './CurvedLoop';
+import Globe3D from './Globe3D';
 
 export const Branding = ({ className }) => {
   const data = [
@@ -128,7 +129,7 @@ export const Branding = ({ className }) => {
           mobileSpeed={3.8}
         />
       </div>
-
+      <Globe3D />
       <GalaxyAnimation
         text="DINH LUONG TA"
         imageUrls={galaxyImages}
