@@ -1118,7 +1118,7 @@ export default function Globe3D() {
               onClick={() => setAutoRotate((prev) => !prev)}
               className={`globe-btn globe-btn-toggle ${autoRotate ? 'active-sky' : ''}`}
             >
-              <span>⟳</span> Rotate
+              <span>🔄</span> Rotate
             </button>
 
             <button
