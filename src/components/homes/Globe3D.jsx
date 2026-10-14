@@ -209,24 +209,18 @@ export default function Globe3D() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0);
 
-  // States cho bảng điều khiển góc trên bên phải
+  // States cho bảng điều khiển góc trên bên phải (Glow đã mặc định luôn bật)
   const [autoRotate, setAutoRotate] = useState(true);
-  const [showAtmosphere, setShowAtmosphere] = useState(true);
   const [spawnDensity, setSpawnDensity] = useState(4);
 
   // Refs đồng bộ state vào vòng lặp requestAnimationFrame
   const autoRotateRef = useRef(autoRotate);
-  const showAtmosphereRef = useRef(showAtmosphere);
   const spawnDensityRef = useRef(spawnDensity);
   const engineRef = useRef(null);
 
   useEffect(() => {
     autoRotateRef.current = autoRotate;
   }, [autoRotate]);
-
-  useEffect(() => {
-    showAtmosphereRef.current = showAtmosphere;
-  }, [showAtmosphere]);
 
   useEffect(() => {
     spawnDensityRef.current = spawnDensity;
@@ -263,10 +257,9 @@ export default function Globe3D() {
     let focalLength = 500;
 
     let targetRotation = { x: 0.25, y: -1.8 };
-    let currentRotation = { x: 0.25, y: -2.4 }; // Bắt đầu lệch nhẹ để khi vào có đà xoay mượt
+    let currentRotation = { x: 0.25, y: -2.4 };
 
     let viewConfig = getResponsiveView(screenW, screenH);
-    // Bắt đầu từ xa (zoom + 140) để tạo hiệu ứng Zoom-in mượt mà khi vừa load xong
     let cameraZoom = viewConfig.zoom + 140;
     let targetZoom = viewConfig.zoom;
     let currentOffsetY = viewConfig.offsetY;
@@ -299,7 +292,7 @@ export default function Globe3D() {
       };
     }
 
-    // Khởi tạo dữ liệu bất đồng bộ theo từng chunk để không gây đơ trang web
+    // Khởi tạo dữ liệu bất đồng bộ theo từng chunk
     async function buildSceneDataAsync() {
       const yieldFrame = () => new Promise((resolve) => requestAnimationFrame(resolve));
 
@@ -402,7 +395,6 @@ export default function Globe3D() {
       await yieldFrame();
 
       if (!isCancelled) {
-        // Bắt đầu chạy vòng lặp vẽ 3D và mở khóa giao diện mượt mà
         animate();
         setTimeout(() => {
           if (!isCancelled) setIsLoaded(true);
@@ -557,21 +549,19 @@ export default function Globe3D() {
         ctx.fillRect(sx, sy, s.size, s.size);
       }
 
-      // 3. Outer Atmosphere Halo Glow
-      if (showAtmosphereRef.current) {
-        const outerGrad = ctx.createRadialGradient(
-          globeCenterX, globeCenterY, apparentRadius * 0.82,
-          globeCenterX, globeCenterY, apparentRadius * 1.26
-        );
-        outerGrad.addColorStop(0, 'rgba(56, 189, 248, 0.26)');
-        outerGrad.addColorStop(0.45, 'rgba(139, 92, 246, 0.14)');
-        outerGrad.addColorStop(1, 'rgba(14, 165, 233, 0)');
+      // 3. Outer Atmosphere Halo Glow (Mặc định luôn bật)
+      const outerGrad = ctx.createRadialGradient(
+        globeCenterX, globeCenterY, apparentRadius * 0.82,
+        globeCenterX, globeCenterY, apparentRadius * 1.26
+      );
+      outerGrad.addColorStop(0, 'rgba(56, 189, 248, 0.26)');
+      outerGrad.addColorStop(0.45, 'rgba(139, 92, 246, 0.14)');
+      outerGrad.addColorStop(1, 'rgba(14, 165, 233, 0)');
 
-        ctx.fillStyle = outerGrad;
-        ctx.beginPath();
-        ctx.arc(globeCenterX, globeCenterY, apparentRadius * 1.26, 0, Math.PI * 2);
-        ctx.fill();
-      }
+      ctx.fillStyle = outerGrad;
+      ctx.beginPath();
+      ctx.arc(globeCenterX, globeCenterY, apparentRadius * 1.26, 0, Math.PI * 2);
+      ctx.fill();
 
       // 4. Render 3D Shaded Earth Core Sphere
       const coreGrad = ctx.createRadialGradient(
@@ -591,21 +581,19 @@ export default function Globe3D() {
       ctx.arc(globeCenterX, globeCenterY, apparentRadius, 0, Math.PI * 2);
       ctx.fill();
 
-      // Rim Fresnel Edge Highlight
-      if (showAtmosphereRef.current) {
-        const rimGrad = ctx.createRadialGradient(
-          globeCenterX, globeCenterY, apparentRadius * 0.86,
-          globeCenterX, globeCenterY, apparentRadius
-        );
-        rimGrad.addColorStop(0, 'rgba(56, 189, 248, 0)');
-        rimGrad.addColorStop(0.75, 'rgba(56, 189, 248, 0.14)');
-        rimGrad.addColorStop(1, 'rgba(168, 85, 247, 0.45)');
+      // Rim Fresnel Edge Highlight (Mặc định luôn bật)
+      const rimGrad = ctx.createRadialGradient(
+        globeCenterX, globeCenterY, apparentRadius * 0.86,
+        globeCenterX, globeCenterY, apparentRadius
+      );
+      rimGrad.addColorStop(0, 'rgba(56, 189, 248, 0)');
+      rimGrad.addColorStop(0.75, 'rgba(56, 189, 248, 0.14)');
+      rimGrad.addColorStop(1, 'rgba(168, 85, 247, 0.45)');
 
-        ctx.fillStyle = rimGrad;
-        ctx.beginPath();
-        ctx.arc(globeCenterX, globeCenterY, apparentRadius, 0, Math.PI * 2);
-        ctx.fill();
-      }
+      ctx.fillStyle = rimGrad;
+      ctx.beginPath();
+      ctx.arc(globeCenterX, globeCenterY, apparentRadius, 0, Math.PI * 2);
+      ctx.fill();
 
       // 5. Render Graticule Lines
       const horizonZ = (GLOBE_RADIUS * GLOBE_RADIUS) / cameraZoom;
@@ -804,7 +792,6 @@ export default function Globe3D() {
       ctx.restore();
     }
 
-    // Khởi tạo kích thước & chạy hàm tạo dữ liệu bất đồng bộ
     updateCanvasSize();
     currentOffsetY = viewConfig.offsetY;
     buildSceneDataAsync();
@@ -841,7 +828,7 @@ export default function Globe3D() {
           font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
 
-        /* Màn hình Loading Overlay */
+        /* Màn hình Loading Overlay (Đã xóa hình tròn xoay trên thanh %) */
         .globe-loader-overlay {
           position: absolute;
           inset: 0;
@@ -851,7 +838,6 @@ export default function Globe3D() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 18px;
           transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.75s ease;
           pointer-events: auto;
         }
@@ -860,45 +846,12 @@ export default function Globe3D() {
           visibility: hidden;
           pointer-events: none;
         }
-        .globe-spinner-box {
-          position: relative;
-          width: 68px;
-          height: 68px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .globe-ring-outer {
-          position: absolute;
-          inset: 0;
-          border-radius: 50%;
-          border: 2px solid rgba(56, 189, 248, 0.14);
-          border-top-color: #38bdf8;
-          border-right-color: rgba(168, 85, 247, 0.65);
-          animation: globeSpin 1.15s cubic-bezier(0.5, 0.15, 0.5, 0.85) infinite;
-        }
-        .globe-ring-inner {
-          position: absolute;
-          inset: 10px;
-          border-radius: 50%;
-          border: 1.5px dashed rgba(168, 85, 247, 0.4);
-          border-bottom-color: #a855f7;
-          animation: globeSpinReverse 1.8s linear infinite;
-        }
-        .globe-core-dot {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background: #38bdf8;
-          box-shadow: 0 0 16px #38bdf8, 0 0 30px #a855f7;
-          animation: globePulse 1.5s ease-in-out infinite;
-        }
         .globe-loader-info {
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 8px;
-          width: 210px;
+          width: 220px;
         }
         .globe-loader-text-row {
           width: 100%;
@@ -928,16 +881,6 @@ export default function Globe3D() {
           border-radius: 999px;
           transition: width 0.2s ease-out;
           box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
-        }
-        @keyframes globeSpin {
-          to { transform: rotate(360deg); }
-        }
-        @keyframes globeSpinReverse {
-          to { transform: rotate(-360deg); }
-        }
-        @keyframes globePulse {
-          0%, 100% { transform: scale(0.85); opacity: 0.7; }
-          50% { transform: scale(1.2); opacity: 1; }
         }
 
         /* Vùng chứa Canvas có hiệu ứng Fade-in & Scale-in khi tải xong */
@@ -1026,27 +969,6 @@ export default function Globe3D() {
           cursor: pointer;
           outline: none;
         }
-        .globe-btn-burst {
-          padding: 4px 8px;
-          border-radius: 7px;
-          border: none;
-          background: linear-gradient(to right, #0ea5e9, #6366f1);
-          color: #ffffff;
-          font-size: 11px;
-          font-weight: 500;
-          box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.2);
-          transition: transform 0.15s ease, filter 0.15s ease;
-          display: flex;
-          align-items: center;
-          gap: 3px;
-          white-space: nowrap;
-        }
-        .globe-btn-burst:hover {
-          filter: brightness(1.1);
-        }
-        .globe-btn-burst:active {
-          transform: scale(0.95);
-        }
         .globe-toggle-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -1072,10 +994,27 @@ export default function Globe3D() {
           background: rgba(14, 165, 233, 0.15);
           color: #7dd3fc;
         }
-        .globe-btn-toggle.active-purple {
-          border-color: rgba(168, 85, 247, 0.4);
-          background: rgba(168, 85, 247, 0.15);
-          color: #d8b4fe;
+        .globe-btn-burst {
+          padding: 5px 8px;
+          border-radius: 7px;
+          border: none;
+          background: linear-gradient(to right, #0ea5e9, #6366f1);
+          color: #ffffff;
+          font-size: 11px;
+          font-weight: 500;
+          box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.2);
+          transition: transform 0.15s ease, filter 0.15s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
+          white-space: nowrap;
+        }
+        .globe-btn-burst:hover {
+          filter: brightness(1.1);
+        }
+        .globe-btn-burst:active {
+          transform: scale(0.95);
         }
         .globe-slider-group {
           display: flex;
@@ -1136,13 +1075,8 @@ export default function Globe3D() {
         }
       `}</style>
 
-      {/* 1. Màn hình Preloader mượt mà */}
+      {/* 1. Màn hình Preloader chỉ hiển thị thanh % */}
       <div className={`globe-loader-overlay ${isLoaded ? 'is-hidden' : ''}`}>
-        <div className="globe-spinner-box">
-          <div className="globe-ring-outer" />
-          <div className="globe-ring-inner" />
-          <div className="globe-core-dot" />
-        </div>
         <div className="globe-loader-info">
           <div className="globe-loader-text-row">
             <span>Initializing Globe</span>
@@ -1167,13 +1101,6 @@ export default function Globe3D() {
         <div className="globe-glass-panel">
           <div className="globe-controls-header">
             <span className="globe-controls-title">Telemetry</span>
-            <button
-              type="button"
-              onClick={handleBurst}
-              className="globe-btn globe-btn-burst"
-            >
-              <span>⚡</span> Surge
-            </button>
           </div>
 
           <div className="globe-toggle-grid">
@@ -1187,10 +1114,10 @@ export default function Globe3D() {
 
             <button
               type="button"
-              onClick={() => setShowAtmosphere((prev) => !prev)}
-              className={`globe-btn globe-btn-toggle ${showAtmosphere ? 'active-purple' : ''}`}
+              onClick={handleBurst}
+              className="globe-btn globe-btn-burst"
             >
-              <span>✦</span> Glow
+              <span>⚡</span> Release Surge
             </button>
           </div>
 
