@@ -14,6 +14,7 @@ import bgMusic from '../../assets/remix_background_music.mp3';
 import bgIntroVideo from '../../assets/introVideo.mp4';
 import CurvedLoop from './CurvedLoop';
 import Globe3D from './Globe3D';
+import SpiralGalaxy from './SpiralGalaxy';
 
 export const Branding = ({ className }) => {
   const data = [
@@ -135,6 +136,7 @@ export const Branding = ({ className }) => {
         text="DINH LUONG TA"
         imageUrls={galaxyImages}
       />
+      <SpiralGalaxy />
       <ParticleTextCanvas />
       <CustomVideoPlayer src={bgIntroVideo} captionSrc={caption_logo_1} />
       <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />

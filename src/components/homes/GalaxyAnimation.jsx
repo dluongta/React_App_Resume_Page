@@ -922,6 +922,9 @@ const GalaxyAnimation = ({
             .galaxy-container {
               height: 60vh;
             }
+            .galaxy-container {
+              padding-bottom: 0px;
+            }
           }
 
           @keyframes spin { 100% { transform: rotate(360deg); } }
