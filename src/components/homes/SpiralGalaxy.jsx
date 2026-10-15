@@ -46,7 +46,7 @@ const SpiralGalaxy = () => {
         coreGlowRadius = 85;
         rotationSpeed = 0.01;
       } else {
-        cameraDistance = 900;
+        cameraDistance = 960;
         coreGlowRadius = 120;
         rotationSpeed = 0.003;
       }
