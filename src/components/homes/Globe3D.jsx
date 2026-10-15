@@ -249,13 +249,13 @@ function getResponsiveView(w, h) {
     return {
       zoom: 430,
       offsetY: -10,
-      autoRotateSpeed: 0.0080 // Xoay nhanh trên Tablet
+      autoRotateSpeed: 0.0086 // Xoay nhanh trên Tablet
     };
   } else {
     return {
       zoom: 390,
       offsetY: -6,
-      autoRotateSpeed: 0.0046 // Xoay nhanh trên PC
+      autoRotateSpeed: 0.0086 // Xoay nhanh trên PC
     };
   }
 }
