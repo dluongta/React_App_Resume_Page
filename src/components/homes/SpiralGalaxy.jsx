@@ -11,7 +11,7 @@ const SpiralGalaxy = () => {
     const ctx = canvas.getContext('2d', { alpha: false });
 
     let width, height, centerX, centerY;
-    let cameraDistance = 900;
+    let cameraDistance = 1200;
     let coreGlowRadius = 180;
     let rotationSpeed = 0.003; // Biến lưu tốc độ xoay
     let coreGradient = null;
@@ -46,8 +46,8 @@ const SpiralGalaxy = () => {
         coreGlowRadius = 85;
         rotationSpeed = 0.01;
       } else {
-        cameraDistance = 880;
-        coreGlowRadius = 180;
+        cameraDistance = 900;
+        coreGlowRadius = 120;
         rotationSpeed = 0.003;
       }
 
