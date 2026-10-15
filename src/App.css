@@ -1034,7 +1034,9 @@ iframe {
 }
 
 .branding .btn-led span {
-  background: #8800ff;
+  position: absolute;
+  display: block;
+  background: #1269ba;
 }
 
 :root {
