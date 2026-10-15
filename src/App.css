@@ -1033,6 +1033,10 @@ iframe {
   background: #1269ba;
 }
 
+.branding .btn-led span {
+  background: #8800ff;
+}
+
 :root {
   --line-length: 60px;
   --line-length-x: 280px;
