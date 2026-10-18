@@ -2343,7 +2343,7 @@ footer ul {
   left: 0;
   width: 100%;
   z-index: 9999;
-  background: linear-gradient(90deg, #ff5a00 0%, #ff1493 40%, #7b2cff 80%, #5a2cff 100%);
+  background: linear-gradient(90deg, #ff5a00 0%, #ff1493 40%, #7b2cff 80%, #2c30ff 100%);
   color: white;
   overflow: hidden;
   height: 40px;
@@ -2686,7 +2686,7 @@ body.sub-root,
 
   .top-marquee {
     height: 48px;
-    background: linear-gradient(90deg, #ff5a00 0%, #ff1493 40%, #7b2cff 100%);
+    background: linear-gradient(90deg, #ff5a00 0%, #ff1493 20%, #7b2cff 80%, #2c30ff 100%);
   }
 
   .header .container.flex {
