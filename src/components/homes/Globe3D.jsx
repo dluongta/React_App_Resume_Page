@@ -1216,8 +1216,14 @@ export default function Globe3D() {
               onClick={handleBurst}
               className="globe-btn globe-btn-burst"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
-                fill="currentColor" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
                 <path d="M13 2 3 14h7l-1 8 12-14h-8l1-6z" />
               </svg>
               Release Surge
