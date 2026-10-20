@@ -3572,3 +3572,111 @@ body::-webkit-scrollbar {
   background: #0080ff;
   box-shadow: 0 0 8px #0080ff;
 } 
+
+.branding .btn-led {
+  position: relative;
+  overflow: hidden;
+}
+
+.branding .btn-led span {
+  position: absolute;
+  display: block;
+}
+
+/* --- CẠNH TRÊN (Chạy từ trái sang phải: 90deg) --- */
+.branding .btn-led span:nth-child(1),
+.branding .btn-led span:nth-child(5) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #ff7b00 0%,   #ff7b00 25%,   /* Đoạn 1: Cam (Đuôi) */
+    #ff007f 25%,  #ff007f 50%,   /* Đoạn 2: Hồng */
+    #9d00ff 50%,  #9d00ff 75%,   /* Đoạn 3: Tím */
+    #0080ff 75%,  #0080ff 100%   /* Đoạn 4: Xanh dương (Đầu) */
+  );
+  animation: btn-anim1 4s linear infinite;
+}
+
+/* --- CẠNH PHẢI (Chạy từ trên xuống dưới: 180deg) --- */
+.branding .btn-led span:nth-child(2),
+.branding .btn-led span:nth-child(6) {
+  top: -100%;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    #ff7b00 0%,   #ff7b00 25%,
+    #ff007f 25%,  #ff007f 50%,
+    #9d00ff 50%,  #9d00ff 75%,
+    #0080ff 75%,  #0080ff 100%
+  );
+  animation: btn-anim2 4s linear infinite;
+  animation-delay: 0.5s; /* Đợi đúng 0.5s khi đầu cạnh trên vừa chạm góc phải */
+}
+
+/* --- CẠNH DƯỚI (Chạy từ phải sang trái: 270deg) --- */
+.branding .btn-led span:nth-child(3),
+.branding .btn-led span:nth-child(7) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    270deg,
+    #ff7b00 0%,   #ff7b00 25%,
+    #ff007f 25%,  #ff007f 50%,
+    #9d00ff 50%,  #9d00ff 75%,
+    #0080ff 75%,  #0080ff 100%
+  );
+  animation: btn-anim3 4s linear infinite;
+  animation-delay: 1s; /* Đợi cạnh phải chạm góc dưới */
+}
+
+/* --- CẠNH TRÁI (Chạy từ dưới lên trên: 0deg) --- */
+.branding .btn-led span:nth-child(4),
+.branding .btn-led span:nth-child(8) {
+  bottom: -100%;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(
+    0deg,
+    #ff7b00 0%,   #ff7b00 25%,
+    #ff007f 25%,  #ff007f 50%,
+    #9d00ff 50%,  #9d00ff 75%,
+    #0080ff 75%,  #0080ff 100%
+  );
+  animation: btn-anim4 4s linear infinite;
+  animation-delay: 1.5s; /* Đợi cạnh dưới chạm góc trái */
+}
+
+/* --- ĐƯỜNG CHẠY THỨ 2 (.line2) ĐUỔI THEO SAU (Cách đường 1 đúng nửa vòng = 2s) --- */
+.branding .btn-led span:nth-child(5) { animation-delay: 2s; }
+.branding .btn-led span:nth-child(6) { animation-delay: 2.5s; }
+.branding .btn-led span:nth-child(7) { animation-delay: 3s; }
+.branding .btn-led span:nth-child(8) { animation-delay: 3.5s; }
+
+/* --- KEYFRAMES CHUYỂN ĐỘNG ---
+   Từ 0% -> 25% (1s): Thanh LED đi từ -100% đến 100%.
+   Đúng ở nửa chặng (12.5% = 0.5s), đầu thanh chạm góc (vị trí 0%)
+   và khớp chính xác với mốc delay 0.5s của cạnh tiếp theo! */
+@keyframes btn-anim1 {
+  0% { left: -100%; }
+  25%, 100% { left: 100%; }
+}
+@keyframes btn-anim2 {
+  0% { top: -100%; }
+  25%, 100% { top: 100%; }
+}
+@keyframes btn-anim3 {
+  0% { right: -100%; }
+  25%, 100% { right: 100%; }
+}
+@keyframes btn-anim4 {
+  0% { bottom: -100%; }
+  25%, 100% { bottom: 100%; }
+}
