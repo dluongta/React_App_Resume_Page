@@ -3548,3 +3548,27 @@ body::-webkit-scrollbar {
   height: 1.2em;
   flex-shrink: 0;
 }
+
+.branding .btn-led span:nth-child(1),
+.branding .btn-led span:nth-child(5) {
+  background: #ff7b00;
+  box-shadow: 0 0 8px #ff7b00;
+}
+
+.branding .btn-led span:nth-child(2),
+.branding .btn-led span:nth-child(6) {
+  background: #ff007f;
+  box-shadow: 0 0 8px #ff007f;
+}
+
+.branding .btn-led span:nth-child(3),
+.branding .btn-led span:nth-child(7) {
+  background: #9d00ff;
+  box-shadow: 0 0 8px #9d00ff;
+}
+
+.branding .btn-led span:nth-child(4),
+.branding .btn-led span:nth-child(8) {
+  background: #0080ff;
+  box-shadow: 0 0 8px #0080ff;
+} 
