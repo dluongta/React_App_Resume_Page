@@ -143,6 +143,11 @@ export const Web = () => {
       id: "28",
       link: "https://dluongta.github.io/image-framer-studio.html",
       linkName: "Image Framer Studio",
+    },
+    {
+      id: "29",
+      link: "https://dluongta.github.io/web_preview.html",
+      linkName: "Web Preview",
     }
   ];
 

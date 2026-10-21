@@ -173,6 +173,11 @@ export const AppComponent = () => {
       id: "34",
       link: "https://dluongta.github.io/image-framer-studio.html",
       linkName: "Image Framer Studio",
+    },
+    {
+      id: "35",
+      link: "https://dluongta.github.io/web_preview.html",
+      linkName: "Web Preview",
     }
   ];
   return (
