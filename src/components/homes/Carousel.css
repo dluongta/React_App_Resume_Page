@@ -110,3 +110,17 @@
 .carousel-dots {
   z-index: 10;
 }
+
+.carousel-button:hover {
+  background: #555;
+  transition: background 0.3s ease;
+}
+
+.dot:hover {
+  background: #555;
+  transition: background 0.3s ease;
+}
+
+.dot.active:hover {
+  background: #555;
+}
