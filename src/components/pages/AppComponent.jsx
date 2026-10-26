@@ -178,11 +178,6 @@ export const AppComponent = () => {
       id: "35",
       link: "https://dluongta.github.io/web_preview.html",
       linkName: "Web Preview",
-    },
-    {
-      id: "36",
-      link: "https://dluongta.github.io/neon_play_game.html",
-      linkName: "Neon Play Game",
     }
   ];
   return (

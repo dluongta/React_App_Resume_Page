@@ -148,11 +148,6 @@ export const Web = () => {
       id: "29",
       link: "https://dluongta.github.io/web_preview.html",
       linkName: "Web Preview",
-    },
-    {
-      id: "30",
-      link: "https://dluongta.github.io/neon_play_game.html",
-      linkName: "Neon Play Game",
     }
   ];
 
