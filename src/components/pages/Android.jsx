@@ -21,7 +21,6 @@ export const Android = () => {
     }
   ]
   return (
-
     <>
       <section className='blog'>
         <div className="cards-wrapper">
