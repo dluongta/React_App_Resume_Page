@@ -126,10 +126,9 @@ export const Branding = ({ className }) => {
         <CurvedLoop
           marqueeText="BE ✦ CREATIVE ✦ WITH ✦ DLUONGTA ✦ TSCEND ✦ "
           speed={1.8}
-          mobileSpeed={3.8}
+          mobileSpeed={4.2}
         />
       </div>
-      
       <Globe3D />
       <GalaxyAnimation
         text="DINH LUONG TA"

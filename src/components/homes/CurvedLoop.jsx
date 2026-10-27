@@ -1,239 +1,176 @@
-import { useRef, useEffect, useState, useMemo, useId } from 'react';
+
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import './CurvedLoop.css';
 
 const CurvedLoop = ({
-  marqueeText = "BE ✦ CREATIVE ✦ WITH ✦ DLUONGTA ✦ TSCEND ✦ ",
+  marqueeText = 'BE ✦ CREATIVE ✦ WITH ✦ DLUONGTA ✦ TSCEND ✦ ',
   speed = 1.8,
   mobileSpeed = 3.8,
 }) => {
-  const text = useMemo(() => {
-    const cleanText = marqueeText.replace(/\s+$/, '');
-    return cleanText + '\u00A0';
-  }, [marqueeText]);
+  const cleanText = useMemo(
+    () => marqueeText.replace(/\s+$/, '') + '\u00A0',
+    [marqueeText]
+  );
 
   const measureRef = useRef(null);
   const textPathRef = useRef(null);
+  const offsetRef = useRef(0);
 
   const [spacing, setSpacing] = useState(0);
 
-  const offsetRef = useRef(0);
-  const lastTimeRef = useRef(null);
+  const uid = useId().replace(/:/g, '');
+  const pathId = `curve-${uid}`;
 
-  const uid = useId();
-  const pathId = `curve-${uid.replace(/:/g, '')}`;
+  const pathD = 'M-100,220 Q720,20 1540,220';
 
-  const pathD = `M-100,220 Q720,20 1540,220`;
-
-  /*
-   * ==========================================
-   * ĐO CHÍNH XÁC 1 CHU KỲ TEXT
-   * ==========================================
-   */
+  // Đo chiều dài chính xác của một chu kỳ chữ.
   useEffect(() => {
+    const element = measureRef.current;
+
+    if (!element) return;
+
+    let resizeObserver;
+    let frameId;
+
     const measureText = () => {
-      if (!measureRef.current) return;
+      cancelAnimationFrame(frameId);
 
-      const length =
-        measureRef.current.getComputedTextLength();
+      frameId = requestAnimationFrame(() => {
+        if (!measureRef.current) return;
 
-      if (length > 0) {
-        setSpacing(length);
-      }
+        const length = measureRef.current.getComputedTextLength();
+
+        if (length > 0 && Number.isFinite(length)) {
+          setSpacing((previous) =>
+            Math.abs(previous - length) > 0.1 ? length : previous
+          );
+        }
+      });
     };
 
     measureText();
 
     if (document.fonts?.ready) {
-      document.fonts.ready.then(() => {
-        requestAnimationFrame(measureText);
-      });
+      document.fonts.ready.then(measureText);
     }
 
-    window.addEventListener('resize', measureText);
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(measureText);
+      resizeObserver.observe(element);
+    } else {
+      window.addEventListener('resize', measureText);
+    }
 
     return () => {
+      cancelAnimationFrame(frameId);
+      resizeObserver?.disconnect();
       window.removeEventListener('resize', measureText);
     };
-  }, [text]);
+  }, [cleanText]);
 
-  /*
-   * ==========================================
-   * LẶP TEXT RẤT DÀI
-   * ==========================================
-   *
-   * Không để text chỉ dài 3000px nữa.
-   *
-   * 100 pattern giúp chạy rất lâu mà không
-   * bao giờ thấy khoảng trống.
-   */
-  const totalText = useMemo(() => {
-    if (!spacing) return text;
+  // Lặp đủ chu kỳ để không xuất hiện khoảng trống trên đường cong.
+  const repeatCount = useMemo(() => {
+    if (!spacing) return 2;
 
-    return Array(100)
-      .fill(text)
-      .join('');
-  }, [text, spacing]);
+    // Đường cong dài khoảng 1.6 lần chiều rộng viewBox.
+    // Dự phòng thêm nhiều chu kỳ cho đoạn chữ nằm ngoài khung nhìn.
+    return Math.max(12, Math.ceil(2400 / spacing) + 8);
+  }, [spacing]);
 
-  const ready = spacing > 0;
+  const totalText = useMemo(
+    () => cleanText.repeat(repeatCount),
+    [cleanText, repeatCount]
+  );
 
-  /*
-   * ==========================================
-   * SEAMLESS MARQUEE
-   * ==========================================
-   */
+  // Animation liên tục, không phụ thuộc tốc độ khung hình.
   useEffect(() => {
-    if (!ready || !spacing || !textPathRef.current) {
-      return;
-    }
+    const textPath = textPathRef.current;
 
-    let animationFrame;
+    if (!textPath || spacing <= 0) return;
 
-    offsetRef.current = -spacing;
-    lastTimeRef.current = null;
+    let rafId = 0;
+    let previousTime = null;
+
+    // Giữ offset trong [-spacing, 0), tránh reset gây nhảy hình.
+    let offset = -spacing;
+    offsetRef.current = offset;
+
+    textPath.setAttribute('startOffset', `${offset}px`);
 
     const animate = (time) => {
-      if (lastTimeRef.current === null) {
-        lastTimeRef.current = time;
+      if (previousTime === null) {
+        previousTime = time;
+        rafId = requestAnimationFrame(animate);
+        return;
       }
 
-      const delta = Math.min(
-        time - lastTimeRef.current,
-        50
-      );
+      // Giới hạn delta để tránh nhảy xa khi tab bị ẩn hoặc máy lag.
+      const delta = Math.min(time - previousTime, 32);
+      previousTime = time;
 
-      lastTimeRef.current = time;
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const currentSpeed = isMobile ? mobileSpeed : speed;
 
-      const isMobile =
-        window.innerWidth <= 768;
+      // speed được tính theo pixel mỗi frame ở mốc 60 FPS.
+      const movement = currentSpeed * (delta / (1000 / 60));
 
-      const currentSpeed =
-        isMobile
-          ? mobileSpeed
-          : speed;
+      // Modulo giữ lại phần dư, không làm mất pixel khi lặp.
+      offset = -spacing + ((offset + movement + spacing) % spacing);
 
-      /*
-       * Tốc độ theo thời gian thực.
-       */
-      const movement =
-        currentSpeed *
-        (delta / 16.6666667);
+      offsetRef.current = offset;
+      textPath.setAttribute('startOffset', `${offset}px`);
 
-      offsetRef.current += movement;
-
-      /*
-       * ======================================
-       * SEAMLESS RESET
-       * ======================================
-       *
-       * Không reset thẳng về -spacing.
-       *
-       * Giữ lại phần dư:
-       *
-       *  0.8
-       *
-       * sẽ thành:
-       *
-       * -spacing + 0.8
-       *
-       * thay vì:
-       *
-       * -spacing
-       *
-       * Điều này tránh mất pixel khi FPS
-       * không đúng 60fps.
-       */
-      if (offsetRef.current >= 0) {
-        offsetRef.current -= spacing;
-      }
-
-      if (textPathRef.current) {
-        textPathRef.current.setAttribute(
-          'startOffset',
-          `${offsetRef.current}px`
-        );
-      }
-
-      animationFrame =
-        requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
     };
 
-    animationFrame =
-      requestAnimationFrame(animate);
+    rafId = requestAnimationFrame(animate);
 
     return () => {
-      cancelAnimationFrame(animationFrame);
-      lastTimeRef.current = null;
+      cancelAnimationFrame(rafId);
+      previousTime = null;
     };
-  }, [
-    ready,
-    spacing,
-    speed,
-    mobileSpeed,
-  ]);
+  }, [spacing, speed, mobileSpeed]);
 
   return (
     <div
       className="curved-loop-jacket"
-      style={{
-        visibility: ready
-          ? 'visible'
-          : 'hidden',
-      }}
+      style={{ visibility: spacing > 0 ? 'visible' : 'hidden' }}
+      aria-hidden="true"
     >
       <svg
         className="curved-loop-svg"
         viewBox="0 0 1440 260"
+        preserveAspectRatio="xMidYMid meet"
       >
         <defs>
-          <path
-            id={pathId}
-            d={pathD}
-            fill="none"
-          />
+          <path id={pathId} d={pathD} fill="none" />
         </defs>
 
-        {/* =================================
-            MEASURE
-        ================================= */}
-
+        {/* Đo chính xác một chu kỳ chữ */}
         <text
           ref={measureRef}
           className="curved-loop-measure"
           xmlSpace="preserve"
-          aria-hidden="true"
         >
-          {text}
+          {cleanText}
         </text>
 
-        {ready && (
+        {spacing > 0 && (
           <>
-            {/* =================================
-                ORANGE CURVE
-            ================================= */}
-
+            {/* Dải cong màu cam */}
             <use
               href={`#${pathId}`}
-              fill="none"
-              stroke="#ff5a00"
-              strokeWidth="130"
-              strokeLinecap="round"
+              className="curved-loop-band"
             />
 
-            {/* =================================
-                INFINITE MOVING TEXT
-            ================================= */}
-
-            <text
-              className="curved-loop-text"
-              xmlSpace="preserve"
-              fill="#FFFFFF"
-              dominantBaseline="central"
-              fontWeight="900"
-            >
+            {/* Chữ chạy liên tục */}
+            <text className="curved-loop-text">
               <textPath
                 ref={textPathRef}
                 href={`#${pathId}`}
                 startOffset={`${-spacing}px`}
+                method="align"
+                spacing="exact"
                 xmlSpace="preserve"
               >
                 {totalText}
