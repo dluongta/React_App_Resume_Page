@@ -125,8 +125,8 @@ export const Branding = ({ className }) => {
       <div style={{ backgroundColor: '#fff', color: 'white' }}>
         <CurvedLoop
           marqueeText="BE ✦ CREATIVE ✦ WITH ✦ DLUONGTA ✦ TSCEND ✦ "
-          speed={1.8}
-          mobileSpeed={4.2}
+          speed={1.5}
+          mobileSpeed={4.3}
         />
       </div>
       <Globe3D />
