@@ -1167,11 +1167,37 @@ export default function Globe3D() {
           text-decoration: underline;
           text-underline-offset: 3px;
         }
+
+        /* --- Tech Spinner Animation Thêm Mới --- */
+        @keyframes globe-spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        
+        .globe-tech-spinner {
+          width: 44px;
+          height: 44px;
+          margin-bottom: 12px;
+          border-radius: 50%;
+          /* Tạo vòng tròn gradient xanh dương -> tím */
+          background: conic-gradient(from 0deg, rgba(14, 165, 233, 0) 0%, #0ea5e9 40%, #a855f7 100%);
+          /* Khoét lỗ ở giữa tạo thành cái nhẫn (ring mask) */
+          -webkit-mask: radial-gradient(farthest-side, transparent 82%, #000 84%);
+          mask: radial-gradient(farthest-side, transparent 82%, #000 84%);
+          animation: globe-spin 1s linear infinite;
+          /* Ánh sáng glow */
+          filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.6));
+        }
+        /* --------------------------------------- */
       `}</style>
 
-      {/* 1. Màn hình Preloader chỉ hiển thị thanh % */}
+      {/* 1. Màn hình Preloader có thêm Vòng Tròn Spinner */}
       <div className={`globe-loader-overlay ${isLoaded ? 'is-hidden' : ''}`}>
         <div className="globe-loader-info">
+
+          {/* ---> VÒNG TRÒN LOADING THÊM MỚI Ở ĐÂY <--- */}
+          <div className="globe-tech-spinner"></div>
+
           <div className="globe-loader-text-row">
             <span>Initializing Globe</span>
             <span className="globe-mono globe-loader-percent">{loadProgress}%</span>
