@@ -173,6 +173,11 @@ export const AppComponent = () => {
       id: "34",
       link: "https://dluongta.github.io/web_preview.html",
       linkName: "Web Preview",
+    },
+    {
+      id: "35",
+      link: "https://github.com/luen2003/VNKey/releases/download/v1.0.0/VNKey.exe",
+      linkName: "VNKey",
     }
   ];
   return (
