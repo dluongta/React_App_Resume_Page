@@ -126,56 +126,51 @@ export const AppComponent = () => {
     },
     {
       id: "25",
-      link: "https://dluongta.github.io/math_editor.html",
-      linkName: "Math Editor",
-    },
-    {
-      id: "26",
       link: "https://dluongta.github.io/voice_recording.html",
       linkName: "Voice Recording",
     },
     {
-      id: "27",
+      id: "26",
       link: "https://dluongta.github.io/video_recording.html",
       linkName: "Video Recording",
     },
     {
-      id: "28",
+      id: "27",
       link: "https://dluongta.github.io/spin_wheel.html",
       linkName: "Spin Wheel",
     },
     {
-      id: "29",
+      id: "28",
       link: "https://github.com/luen2003/WeatherApp/releases/download/v1.0.0/app-release.apk",
       linkName: "Weather App",
     },
     {
-      id: "30",
+      id: "29",
       link: "https://dluongta.github.io/vn-telex-input.html",
       linkName: "VN Telex Input",
     },
     {
-      id: "31",
+      id: "30",
       link: "https://github.com/luen2003/SDL_GAME/archive/refs/tags/v1.0.0.zip",
       linkName: "SDL Game",
     },
     {
-      id: "32",
+      id: "31",
       link: "https://github.com/luen2003/face-recognition-app/releases/download/v1.0.0/FaceRecognitionApp.exe",
       linkName: "Face Recognition App",
     },
     {
-      id: "33",
+      id: "32",
       link: "https://github.com/luen2003/face-recognition-app-web/releases/download/v1.0.0/FaceRecognitionAppWeb.exe",
       linkName: "Face Recognition App Web",
     },
     {
-      id: "34",
+      id: "33",
       link: "https://dluongta.github.io/image-framer-studio.html",
       linkName: "Image Framer Studio",
     },
     {
-      id: "35",
+      id: "34",
       link: "https://dluongta.github.io/web_preview.html",
       linkName: "Web Preview",
     }

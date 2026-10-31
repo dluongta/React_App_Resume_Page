@@ -116,36 +116,31 @@ export const Web = () => {
     },
     {
       id: "23",
-      link: "https://dluongta.github.io/math_editor.html",
-      linkName: "Math Editor",
-    },
-    {
-      id: "24",
       link: "https://dluongta.github.io/voice_recording.html",
       linkName: "Voice Recording",
     },
     {
-      id: "25",
+      id: "24",
       link: "https://dluongta.github.io/video_recording.html",
       linkName: "Video Recording",
     },
     {
-      id: "26",
+      id: "25",
       link: "https://dluongta.github.io/spin_wheel.html",
       linkName: "Spin Wheel",
     },
     {
-      id: "27",
+      id: "26",
       link: "https://dluongta.github.io/vn-telex-input.html",
       linkName: "VN Telex Input",
     },
     {
-      id: "28",
+      id: "27",
       link: "https://dluongta.github.io/image-framer-studio.html",
       linkName: "Image Framer Studio",
     },
     {
-      id: "29",
+      id: "28",
       link: "https://dluongta.github.io/web_preview.html",
       linkName: "Web Preview",
     }
