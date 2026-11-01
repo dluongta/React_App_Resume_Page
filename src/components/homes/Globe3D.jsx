@@ -1179,14 +1179,23 @@ export default function Globe3D() {
           height: 44px;
           margin-bottom: 12px;
           border-radius: 50%;
-          /* Tạo vòng tròn gradient xanh dương -> tím */
-          background: conic-gradient(from 0deg, rgba(14, 165, 233, 0) 0%, #0ea5e9 40%, #a855f7 100%);
+          /* 
+            - Từ 0 đến 90 độ: Gradient từ Xanh dương (#0ea5e9) sang Tím (#a855f7)
+            - Từ 90 đến 360 độ: Màu xám (#334155) cho phần viền còn lại
+          */
+          background: conic-gradient(
+            from 0deg, 
+            #0ea5e9 0deg, 
+            #a855f7 90deg, 
+            #334155 90deg, 
+            #334155 360deg
+          );
           /* Khoét lỗ ở giữa tạo thành cái nhẫn (ring mask) */
           -webkit-mask: radial-gradient(farthest-side, transparent 82%, #000 84%);
           mask: radial-gradient(farthest-side, transparent 82%, #000 84%);
           animation: globe-spin 1s linear infinite;
-          /* Ánh sáng glow */
-          filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.6));
+          /* Ánh sáng glow nhẹ (tùy chọn) */
+          filter: drop-shadow(0 0 4px rgba(168, 85, 247, 0.4));
         }
         /* --------------------------------------- */
       `}</style>
