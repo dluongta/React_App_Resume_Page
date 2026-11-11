@@ -2686,7 +2686,7 @@ body.sub-root,
 
   .top-marquee {
     height: 48px;
-    background: linear-gradient(90deg, #ff5a00 0%, #ff1493 50%, #7b2cff 100%);
+    background: linear-gradient(90deg, #ff5a00 0%, #ff1493 50%, #c02cff 100%);
   }
 
   .header .container.flex {
