@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Spiral Galaxy</title>
-    <!-- Preload scripts để trình duyệt ưu tiên tải ngay lập tức -->
     <link rel="preload" href="three@r128.min.js" as="script">
     <link rel="preload" href="OrbitControls.js" as="script">
     <script src="three@r128.min.js"></script>
@@ -46,9 +45,6 @@
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         }
 
-        /* ============================================================================
-           PRELOADER SCREEN (CHỜ GPU WARM-UP XONG MỚI HIỂN THỊ)
-           ============================================================================ */
         #preloader {
             position: fixed;
             inset: 0;
@@ -73,9 +69,7 @@
             height: 48px;
             border-radius: 50%;
             border: 4px solid rgba(148, 163, 184, 0.25);
-            /* Đường tròn màu xám */
             border-top-color: #ff7b00;
-            /* Cung màu cam chạy quanh */
             animation: orbitSpin 0.85s linear infinite;
         }
 
@@ -84,7 +78,6 @@
             font-weight: 600;
             letter-spacing: 0.08em;
             color: #ff7b00;
-            /* Chữ màu cam */
         }
 
         @keyframes orbitSpin {
