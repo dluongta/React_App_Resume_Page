@@ -2403,7 +2403,7 @@ export default function SpiralGalaxy({ height = '680px', margin = '1.5rem 0', cl
                 </div>
 
                 <div className="panel-footer">
-                    <span>Interactive HUD • Scroll-Friendly</span>
+                    <span>Control Panel</span>
                     <span className="font-mono-tech" style={{ color: '#818cf8' }}>Dinh Luong Ta</span>
                 </div>
             </aside>
