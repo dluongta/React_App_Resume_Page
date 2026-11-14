@@ -434,7 +434,8 @@ const GALAXY_STYLES = `
         position: relative;
         isolation: isolate;
         width: 100%;
-        margin: 1.5rem 0;
+        margin-top: 20px;
+        margin-bottom: 40px;
         border-radius: 0;
         overflow: hidden;
         background-color: var(--bg-deep);
@@ -1913,7 +1914,7 @@ export default function SpiralGalaxy({ height = '680px', margin = '1.5rem 0', cl
         <div
             ref={rootRef}
             className={`galaxy-root ${className}`}
-            style={{ height, margin, borderRadius: 0 }}
+            style={{ height, borderRadius: 0 }}
         >
             <style>{GALAXY_STYLES}</style>
 
