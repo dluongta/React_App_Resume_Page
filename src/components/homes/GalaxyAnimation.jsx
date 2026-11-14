@@ -888,7 +888,7 @@ const GalaxyAnimation = ({
             borderTop: '4px solid #FF8C00', borderRadius: '50%',
             animation: 'spin 1s linear infinite'
           }} />
-          <div style={{ color: '#FF8C00', marginTop: '15px', fontWeight: 'bold', letterSpacing: '2px', fontSize: '14px' }}>
+          <div style={{ color: '#FF8C00', marginTop: '15px', fontWeight: 'bold', letterSpacing: '2px', fontSize: '14px', fontFamily: 'Arial, sans-serif' }}>
             LOADING UNIVERSE...
           </div>
         </div>
