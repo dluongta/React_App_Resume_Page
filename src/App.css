@@ -4079,3 +4079,15 @@ body::-webkit-scrollbar {
   0% { bottom: -100%; }
   50%, 100% { bottom: 100%; }
 } */
+
+.galaxy-section {
+  margin-bottom: -15px!important;
+  margin-top: 0px!important;
+}
+
+@media (max-width: 768px) {
+  .galaxy-section {
+    margin-bottom: -228px!important;
+    margin-top: -10px!important;
+  }
+}

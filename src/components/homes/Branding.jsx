@@ -134,6 +134,32 @@ export const Branding = ({ className }) => {
         text="DINH LUONG TA"
         imageUrls={galaxyImages}
       />
+      {/* Embedded iframe */}
+      <section
+        className="galaxy-section"
+        style={{
+          width: "100%",
+          height: "100vh",
+          margin: "50px 0",
+          padding: 0,
+          boxSizing: "border-box",
+        }}
+      >
+        <iframe
+          src="/3d_spiral_galaxy.html"
+          title="3D Spiral Galaxy"
+          width="100%"
+          height="100%"
+          style={{
+            border: "none",
+            display: "block",
+            backgroundColor: "#fff",
+          }}
+          className='custom-iframe'
+          loading="lazy"
+          allowFullScreen
+        />
+      </section>
       <ParticleTextCanvas />
       <CustomVideoPlayer src={bgIntroVideo} captionSrc={caption_logo_1} />
       <CustomVideoPlayer src={bgLogoVideo} captionSrc={caption_logo} />
