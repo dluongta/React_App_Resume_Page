@@ -435,13 +435,20 @@ const GALAXY_STYLES = `
         isolation: isolate;
         width: 100%;
         margin-top: 20px;
-        margin-bottom: 40px;
+        margin-bottom: 38px;
         border-radius: 0;
         overflow: hidden;
         background-color: var(--bg-deep);
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         color: var(--text-main);
         touch-action: pan-y;
+    }
+
+    @media (max-width: 768px) {
+        .galaxy-root {
+        margin-top: 25px;
+        margin-bottom: 45px;
+        }
     }
 
     .galaxy-root * {
@@ -1028,7 +1035,7 @@ const GALAXY_STYLES = `
     }
     .galaxy-root .toast-banner.show { opacity: 1; }
 
-    @media (max-width: 680px) {
+    @media (max-width: 768px) {
         .galaxy-root .hud-top-left {
             top: 0.65rem;
             left: 0.65rem;
