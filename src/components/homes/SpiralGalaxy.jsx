@@ -1213,7 +1213,7 @@ export default function SpiralGalaxy({ height = '680px', margin = '1.5rem 0', cl
                 return new Vec3(0, r * 0.04, r * 1.12 * mult);
             }
             if (mode === 'core') {
-                return new Vec3(r * 0.35 * mult, r * 0.12 * mult, r * 0.45 * mult);
+                return new Vec3(r * 0.45 * mult, r * 0.15 * mult, r * 0.55 * mult);
             }
             return new Vec3(0, r * 0.52 * mult, r * 0.98 * mult);
         };
