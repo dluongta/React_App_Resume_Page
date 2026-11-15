@@ -435,7 +435,7 @@ const GALAXY_STYLES = `
         isolation: isolate;
         width: 100%;
         margin-top: 20px;
-        margin-bottom: 38px;
+        margin-bottom: 36px;
         border-radius: 0;
         overflow: hidden;
         background-color: var(--bg-deep);
@@ -1159,7 +1159,8 @@ export default function SpiralGalaxy({ height = '680px', margin = '1.5rem 0', cl
     const [activePresetKey, setActivePresetKey] = useState('spiralGalaxy');
     const [activeCam, setActiveCam] = useState('oblique');
     const [isPaused, setIsPaused] = useState(false);
-    const [isGuiOpen, setIsGuiOpen] = useState(() => (typeof window !== 'undefined' ? window.innerWidth >= 768 : true));
+    // const [isGuiOpen, setIsGuiOpen] = useState(() => (typeof window !== 'undefined' ? window.innerWidth >= 768 : true));
+    const [isGuiOpen, setIsGuiOpen] = useState(false);
     const [isCompactToggle, setIsCompactToggle] = useState(() => (typeof window !== 'undefined' ? window.innerWidth < 420 : false));
     const [fps, setFps] = useState(60);
     const [isLoaded, setIsLoaded] = useState(false);
