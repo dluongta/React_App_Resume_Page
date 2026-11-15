@@ -155,9 +155,9 @@ const Mat4 = {
         const c = Math.cos(rad);
         const s = Math.sin(rad);
         out.fill(0);
-        out[0] = c;  out[2] = -s;
+        out[0] = c; out[2] = -s;
         out[5] = 1;
-        out[8] = s;  out[10] = c;
+        out[8] = s; out[10] = c;
         out[15] = 1;
         return out;
     }
@@ -1398,11 +1398,11 @@ export default function SpiralGalaxy({ height = '680px', margin = '1.5rem 0', cl
 
         const corners = new Float32Array([
             -0.5, -0.5,
-             0.5, -0.5,
-            -0.5,  0.5,
-            -0.5,  0.5,
-             0.5, -0.5,
-             0.5,  0.5
+            0.5, -0.5,
+            -0.5, 0.5,
+            -0.5, 0.5,
+            0.5, -0.5,
+            0.5, 0.5
         ]);
         const spriteQuadBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, spriteQuadBuffer);
@@ -1937,11 +1937,10 @@ export default function SpiralGalaxy({ height = '680px', margin = '1.5rem 0', cl
 
             <div className="hud-top-left">
                 <div className="glass-panel preset-header-card pointer-auto">
-                    <div className="icon-box" title="Globe Observatory">
+                    <div class="icon-box" title="Galaxy Observatory">
                         <svg viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M2 12h20"></path>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            <circle cx="12" cy="12" r="1.5" fill="currentColor"></circle>
+                            <ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(-30 12 12)"></ellipse>
                         </svg>
                     </div>
                     <div style={{ minWidth: 0, flex: 1 }}>
