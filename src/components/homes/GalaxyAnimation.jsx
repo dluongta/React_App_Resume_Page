@@ -381,13 +381,21 @@
 //           ctx.globalAlpha = Math.min(1, Math.max(0.1, (item.z + 3000) / 5000));
 //           ctx.fillRect(px - sSize / 2, py - sSize / 2, sSize, sSize);
 //         }
-//         else if (item.type === 2) {
-//           if (currentBlend !== "source-over") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
-//             let sq = item.size * scale;
-//             ctx.fillStyle = "#FF3366";
-//             ctx.globalAlpha = Math.min(1, (item.z + 2000) / 3000);
-//             ctx.fillRect(px - sq / 2, py - sq / 2, sq, sq);
-//           
+//          else if (item.type === 2) {
+//           if (currentBlend !== "source-over") { ctx.globalCompositeOperation = "source-over"; currentBlend = "source-over"; }
+////         if (scale > IMAGE_SHOW_SCALE) {
+////         let img = images[item.imgIdx];
+////         if (img && img.width > 0) {
+////          let isize = item.size * scale * 5;
+////          isize = Math.min(isize, 1200);
+////          ctx.globalAlpha = 1;
+////          ctx.drawImage(img, px - isize / 2, py - isize / 2, isize, isize);
+////         }
+////       } else {
+//            let sq = item.size * scale;
+//            ctx.fillStyle = "#FF3366";
+//            ctx.globalAlpha = Math.min(1, (item.z + 2000) / 3000);
+//            ctx.fillRect(px - sq / 2, py - sq / 2, sq, sq);
 //         }
 //         else if (item.type === 3 && caches.planet) {
 //           if (currentBlend !== "lighter") { ctx.globalCompositeOperation = "lighter"; currentBlend = "lighter"; }
