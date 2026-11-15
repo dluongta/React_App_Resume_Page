@@ -1937,11 +1937,16 @@ export default function SpiralGalaxy({ height = '680px', margin = '1.5rem 0', cl
 
             <div className="hud-top-left">
                 <div className="glass-panel preset-header-card pointer-auto">
-                    <div class="icon-box" title="Galaxy Observatory">
-                        <svg viewBox="0 0 24 24">
-                            <path d="m12 3-1.9 5.8-5.8 1.9 5.8 1.9L12 18.5l1.9-5.8 5.8-1.9-5.8-1.9z"></path>
-                            <path d="m5 3 1 3 3 1-3 1-1 3-1-3-3-1 3-1z"></path>
-                            <path d="m19 15 1 3 3 1-3 1-1 3-1-3-3-1 3-1z"></path>
+                    <div className="icon-box" style={{ width: '40px', height: '40px' }}>
+                        <svg viewBox="0 0 24 24" style={{ width: '40px', height: '40px' }}>
+                            <defs>
+                                <clipPath id="frontClip">
+                                    <rect x="-6" y="12" width="36" height="18" transform="rotate(-30 12 12)"></rect>
+                                </clipPath>
+                            </defs>
+                            <ellipse cx="12" cy="12" rx="9.6" ry="2.7" opacity="1.0" transform="rotate(-30 12 12)"></ellipse>
+                            <circle cx="12" cy="12" r="5.7" style={{ fill: 'currentColor', stroke: 'none' }}></circle>
+                            <ellipse cx="12" cy="12" rx="9.6" ry="2.7" transform="rotate(-30 12 12)" clipPath="url(#frontClip)"></ellipse>
                         </svg>
                     </div>
                     <div style={{ minWidth: 0, flex: 1 }}>
