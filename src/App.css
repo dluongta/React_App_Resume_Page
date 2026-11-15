@@ -3557,8 +3557,8 @@ body::-webkit-scrollbar {
 
 .branding .btn-led span:nth-child(2),
 .branding .btn-led span:nth-child(6) {
-  background: #ff007f;
-  box-shadow: 0 0 8px #ff007f;
+  background: #ff00cc;
+  box-shadow: 0 0 8px #ff00cc;
 }
 
 .branding .btn-led span:nth-child(3),
@@ -3597,7 +3597,7 @@ body::-webkit-scrollbar {
   background: linear-gradient(
     90deg,
     #ff7b00 0%,   #ff7b00 25%,
-    #ff007f 25%,  #ff007f 50%,
+    #ff00cc 25%,  #ff00cc 50%,
     #9d00ff 50%,  #9d00ff 75%,
     #0080ff 75%,  #0080ff 100%
   );
@@ -3613,11 +3613,11 @@ body::-webkit-scrollbar {
   background: linear-gradient(
     180deg,
     #ff7b00 0%,   #ff7b00 25%,
-    #ff007f 25%,  #ff007f 50%,
+    #ff00cc 25%,  #ff00cc 50%,
     #9d00ff 50%,  #9d00ff 75%,
     #0080ff 75%,  #0080ff 100%
   );
-  box-shadow: 0 0 8px #ff007f;
+  box-shadow: 0 0 8px #ff00cc;
   animation: btn-anim2 var(--speed) linear infinite;
   animation-delay: calc(var(--speed) * 0.25);
 }
@@ -3630,7 +3630,7 @@ body::-webkit-scrollbar {
   background: linear-gradient(
     270deg,
     #ff7b00 0%,   #ff7b00 25%,
-    #ff007f 25%,  #ff007f 50%,
+    #ff00cc 25%,  #ff00cc 50%,
     #9d00ff 50%,  #9d00ff 75%,
     #0080ff 75%,  #0080ff 100%
   );
@@ -3647,7 +3647,7 @@ body::-webkit-scrollbar {
   background: linear-gradient(
     0deg,
     #ff7b00 0%,   #ff7b00 25%,
-    #ff007f 25%,  #ff007f 50%,
+    #ff00cc 25%,  #ff00cc 50%,
     #9d00ff 50%,  #9d00ff 75%,
     #0080ff 75%,  #0080ff 100%
   );
@@ -3692,7 +3692,7 @@ body::-webkit-scrollbar {
   background: linear-gradient(
     90deg,
     #ff7b00 0%,   #ff7b00 25%,   
-    #ff007f 25%,  #ff007f 50%,   
+    #ff00cc 25%,  #ff00cc 50%,   
     #9d00ff 50%,  #9d00ff 75%,   
     #0080ff 75%,  #0080ff 100%  
   );
@@ -3708,7 +3708,7 @@ body::-webkit-scrollbar {
   background: linear-gradient(
     180deg,
     #ff7b00 0%,   #ff7b00 25%,
-    #ff007f 25%,  #ff007f 50%,
+    #ff00cc 25%,  #ff00cc 50%,
     #9d00ff 50%,  #9d00ff 75%,
     #0080ff 75%,  #0080ff 100%
   );
@@ -3725,7 +3725,7 @@ body::-webkit-scrollbar {
   background: linear-gradient(
     270deg,
     #ff7b00 0%,   #ff7b00 25%,
-    #ff007f 25%,  #ff007f 50%,
+    #ff00cc 25%,  #ff00cc 50%,
     #9d00ff 50%,  #9d00ff 75%,
     #0080ff 75%,  #0080ff 100%
   );
@@ -3742,7 +3742,7 @@ body::-webkit-scrollbar {
   background: linear-gradient(
     0deg,
     #ff7b00 0%,   #ff7b00 25%,
-    #ff007f 25%,  #ff007f 50%,
+    #ff00cc 25%,  #ff00cc 50%,
     #9d00ff 50%,  #9d00ff 75%,
     #0080ff 75%,  #0080ff 100%
   );
@@ -3792,7 +3792,7 @@ body::-webkit-scrollbar {
   background: linear-gradient(
     90deg,
     #ff7b00 0%,   #ff7b00 25%,
-    #ff007f 25%,  #ff007f 50%,
+    #ff00cc 25%,  #ff00cc 50%,
     #9d00ff 50%,  #9d00ff 75%,
     #0080ff 75%,  #0080ff 100%
   );
@@ -3808,7 +3808,7 @@ body::-webkit-scrollbar {
   background: linear-gradient(
     180deg,
     #ff7b00 0%,   #ff7b00 25%,
-    #ff007f 25%,  #ff007f 50%,
+    #ff00cc 25%,  #ff00cc 50%,
     #9d00ff 50%,  #9d00ff 75%,
     #0080ff 75%,  #0080ff 100%
   );
@@ -3825,7 +3825,7 @@ body::-webkit-scrollbar {
   background: linear-gradient(
     270deg,
     #ff7b00 0%,   #ff7b00 25%,
-    #ff007f 25%,  #ff007f 50%,
+    #ff00cc 25%,  #ff00cc 50%,
     #9d00ff 50%,  #9d00ff 75%,
     #0080ff 75%,  #0080ff 100%
   );
@@ -3842,7 +3842,7 @@ body::-webkit-scrollbar {
   background: linear-gradient(
     0deg,
     #ff7b00 0%,   #ff7b00 25%,
-    #ff007f 25%,  #ff007f 50%,
+    #ff00cc 25%,  #ff00cc 50%,
     #9d00ff 50%,  #9d00ff 75%,
     #0080ff 75%,  #0080ff 100%
   );
@@ -3896,7 +3896,7 @@ body::-webkit-scrollbar {
   background: linear-gradient(
     90deg,
     #ff7b00 0%,   #ff7b00 25%,
-    #ff007f 25%,  #ff007f 50%,
+    #ff00cc 25%,  #ff00cc 50%,
     #9d00ff 50%,  #9d00ff 75%,
     #0080ff 75%,  #0080ff 100%
   );
@@ -3913,11 +3913,11 @@ body::-webkit-scrollbar {
   background: linear-gradient(
     180deg,
     #ff7b00 0%,   #ff7b00 25%,
-    #ff007f 25%,  #ff007f 50%,
+    #ff00cc 25%,  #ff00cc 50%,
     #9d00ff 50%,  #9d00ff 75%,
     #0080ff 75%,  #0080ff 100%
   );
-  box-shadow: 0 0 8px #ff007f;
+  box-shadow: 0 0 8px #ff00cc;
   animation: btn-anim2 var(--speed) linear infinite;
   animation-delay: calc(var(--speed) * 0.25);
 }
@@ -3931,7 +3931,7 @@ body::-webkit-scrollbar {
   background: linear-gradient(
     270deg,
     #ff7b00 0%,   #ff7b00 25%,
-    #ff007f 25%,  #ff007f 50%,
+    #ff00cc 25%,  #ff00cc 50%,
     #9d00ff 50%,  #9d00ff 75%,
     #0080ff 75%,  #0080ff 100%
   );
@@ -3949,7 +3949,7 @@ body::-webkit-scrollbar {
   background: linear-gradient(
     0deg,
     #ff7b00 0%,   #ff7b00 25%,
-    #ff007f 25%,  #ff007f 50%,
+    #ff00cc 25%,  #ff00cc 50%,
     #9d00ff 50%,  #9d00ff 75%,
     #0080ff 75%,  #0080ff 100%
   );
