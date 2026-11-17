@@ -8,15 +8,15 @@ import {
   useLocation,
 } from 'react-router-dom';
 
-import { Header } from './components/homes/header/Header';
-import { HomePage } from './components/homes/HomePage';
-import { Footer } from './components/homes/footer/Footer';
+import { Header } from './components/home/header/Header';
+import { HomePage } from './components/home/HomePage';
+import { Footer } from './components/home/footer/Footer';
 import { Web } from './components/pages/Web';
 import { AppComponent } from './components/pages/AppComponent';
 import { Android } from './components/pages/Android';
 import { Resume } from './components/pages/Resume';
-import ScrollToTopButton from './components/homes/ScrollToTopButton';
-import CustomScrollbar from './components/homes/CustomScrollbar';
+import ScrollToTopButton from './components/home/ScrollToTopButton';
+import CustomScrollbar from './components/home/CustomScrollbar';
 
 const AppContent = () => {
   const location = useLocation();

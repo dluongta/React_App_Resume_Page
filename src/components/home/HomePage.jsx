@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { About } from '../homes/About';
-import { Branding } from '../homes/Branding';
-import { Home } from '../homes/Home';
-import { Skill } from '../homes/Skill';
-import { WrapperOne } from '../homes/WrapperOne';
-import { Service } from '../homes/Service';
-import { Wrapper } from '../homes/Wrapper';
+import { About } from '../home/About';
+import { Branding } from '../home/Branding';
+import { Home } from '../home/Home';
+import { Skill } from '../home/Skill';
+import { WrapperOne } from '../home/WrapperOne';
+import { Service } from '../home/Service';
+import { Wrapper } from '../home/Wrapper';
 import SplitFlapLog from './SplitFlapLog';
 import { CounterSection } from './CounterSection';
 
