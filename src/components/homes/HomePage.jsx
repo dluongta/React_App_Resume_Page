@@ -35,7 +35,7 @@ export const HomePage = () => {
       <Home className="reveal" />
       <Branding className="reveal" />
       <About className="reveal" />
-      <Wrapper className="reveal" />
+      {/* <Wrapper className="reveal" /> */}
       <Skill className="reveal" />
       <Service className="reveal" />
       <CounterSection className="reveal" />

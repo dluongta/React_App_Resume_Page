@@ -16,7 +16,7 @@ export const Skill = ({ className }) => {
         <div className="heading">
           <div className="animated-text bottomMargin-1"></div>
         </div>
-        <div className="content flex-2-cols">
+        {/* <div className="content flex-2-cols">
 
           <div className="lef mtop">
             {data.map((val, index) => (
@@ -44,7 +44,7 @@ export const Skill = ({ className }) => {
             <CircularText />
           </div>
 
-        </div>
+        </div> */}
         <div className="timeline-section">
           <div className="timeline">
             {[

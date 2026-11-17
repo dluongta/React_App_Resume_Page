@@ -7,7 +7,9 @@ export const About = ({ className = "" }) => {
     {
       id: 1,
       title: "Who I Am And What I Do",
-      desc: "I am extremely fascinated by science, engineering and technology.",
+      para1: "I am extremely fascinated by science, engineering and technology.",
+      para2: "I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android and Application Development.",
+      para3: "With technology continuing to evolve at an unprecedented speed, I would like to develop innovative solutions that have beneficial and significant impacts on the world.",
     },
   ];
 
@@ -23,7 +25,10 @@ export const About = ({ className = "" }) => {
                   <h3 className="animated-text">About Me</h3>
                   <h1 className="animated-text">{value.title}</h1>
                 </div>
-                <p>{value.desc}</p>
+                <p>{value.para1}</p>
+                <p>{value.para2}</p>
+                <p>{value.para3}</p>
+
                 <button className="primary-btn btn-led">
                   Contact Me
                   <span></span>
