@@ -301,7 +301,7 @@
     }
 
     .home-right {
-      margin-bottom: 16px !important;
+      margin-bottom: 17px !important;
       margin-top: -6px !important;
     }
 
@@ -347,6 +347,6 @@
     font-size: clamp(1.5rem, 5vw, 3.5rem);
   }
   .home-right {
-    margin-bottom: 28px!important;
+    margin-bottom: 29px!important;
   }
 }
