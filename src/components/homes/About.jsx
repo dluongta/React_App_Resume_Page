@@ -7,9 +7,9 @@ export const About = ({ className = "" }) => {
     {
       id: 1,
       title: "Who I Am And What I Do",
-      para1: "I am extremely fascinated by science, engineering and technology.",
-      para2: "I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android and Application Development.",
-      para3: "With technology continuing to evolve at an unprecedented speed, I would like to develop innovative solutions that have beneficial and significant impacts on the world.",
+      para1: "I am Dinh Luong Ta. I am a programmer skilled in Software Development, including Web, Android and Application Development.",
+      para2: "I am extremely fascinated by science, engineering and technology. All of my products are from the TSCEND brand and made by DLUONGTA.",
+      para3: "With remarkable and accelerating technological development, I would like to develop innovative solutions that have a beneficial and significant impact on the world.",
     },
   ];
 
@@ -28,7 +28,6 @@ export const About = ({ className = "" }) => {
                 <p>{value.para1}</p>
                 <p>{value.para2}</p>
                 <p>{value.para3}</p>
-
                 <button className="primary-btn btn-led">
                   Contact Me
                   <span></span>
