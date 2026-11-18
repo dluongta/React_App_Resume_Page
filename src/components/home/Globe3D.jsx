@@ -1178,9 +1178,6 @@ export default function Globe3D() {
           height: 44px;
           margin-bottom: 12px;
           border-radius: 50%;
-          /* 
-            - Đã đổi màu gradient thành thuần xanh dương (#0ea5e9)
-          */
           background: conic-gradient(
             from 0deg, 
             #0ea5e9 0deg, 
@@ -1188,11 +1185,9 @@ export default function Globe3D() {
             #334155 90deg, 
             #334155 360deg
           );
-          /* Khoét lỗ ở giữa tạo thành cái nhẫn (ring mask) */
           -webkit-mask: radial-gradient(farthest-side, transparent 82%, #000 84%);
           mask: radial-gradient(farthest-side, transparent 82%, #000 84%);
           animation: globe-spin 1s linear infinite;
-          /* Đổi màu ánh sáng glow sang xanh dương cho đồng bộ */
           filter: drop-shadow(0 0 4px rgba(14, 165, 233, 0.4));
         }
         /* --------------------------------------- */
