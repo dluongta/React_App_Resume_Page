@@ -962,13 +962,12 @@ export default function Globe3D() {
         }
         .globe-progress-fill {
           height: 100%;
-          background: linear-gradient(90deg, #0ea5e9, #a855f7);
+          background: #0ea5e9;
           border-radius: 999px;
           transition: width 0.2s ease-out;
           box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
         }
 
-        /* Vùng chứa Canvas (pointer-events: none để không chặn thao tác lướt trang) */
         .globe-canvas-container {
           position: absolute;
           inset: 0;
