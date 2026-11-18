@@ -1179,8 +1179,8 @@ export default function Globe3D() {
           border-radius: 50%;
           background: conic-gradient(
             from 0deg, 
-            #a855f7 0deg, 
-            #a855f7 90deg, 
+            #ff8c00 0deg, 
+            #ff8c00 90deg, 
             #334155 90deg, 
             #334155 360deg
           );
