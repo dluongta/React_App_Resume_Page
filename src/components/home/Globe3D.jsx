@@ -1179,13 +1179,12 @@ export default function Globe3D() {
           margin-bottom: 12px;
           border-radius: 50%;
           /* 
-            - Từ 0 đến 90 độ: Gradient từ Xanh dương (#0ea5e9) sang Tím (#a855f7)
-            - Từ 90 đến 360 độ: Màu xám (#334155) cho phần viền còn lại
+            - Đã đổi màu gradient thành thuần xanh dương (#0ea5e9)
           */
           background: conic-gradient(
             from 0deg, 
             #0ea5e9 0deg, 
-            #a855f7 90deg, 
+            #0ea5e9 90deg, 
             #334155 90deg, 
             #334155 360deg
           );
@@ -1193,8 +1192,8 @@ export default function Globe3D() {
           -webkit-mask: radial-gradient(farthest-side, transparent 82%, #000 84%);
           mask: radial-gradient(farthest-side, transparent 82%, #000 84%);
           animation: globe-spin 1s linear infinite;
-          /* Ánh sáng glow nhẹ (tùy chọn) */
-          filter: drop-shadow(0 0 4px rgba(168, 85, 247, 0.4));
+          /* Đổi màu ánh sáng glow sang xanh dương cho đồng bộ */
+          filter: drop-shadow(0 0 4px rgba(14, 165, 233, 0.4));
         }
         /* --------------------------------------- */
       `}</style>
