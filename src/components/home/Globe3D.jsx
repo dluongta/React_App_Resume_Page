@@ -962,7 +962,7 @@ export default function Globe3D() {
         }
         .globe-progress-fill {
           height: 100%;
-          background: #0ea5e9;
+          background: linear-gradient(90deg, #0ea5e9, #a855f7);;
           border-radius: 999px;
           transition: width 0.2s ease-out;
           box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
