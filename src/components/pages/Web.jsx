@@ -76,71 +76,66 @@ export const Web = () => {
     },
     {
       id: "15",
-      link: "https://shootingtankio.onrender.com/",
-      linkName: "Shooting Tank IO",
-    },
-    {
-      id: "16",
       link: "https://dluongta.github.io/image_editor/index.html",
       linkName: "Image Editor",
     },
     {
-      id: "17",
+      id: "16",
       link: "https://dluongta.github.io/upload_avatar.html",
       linkName: "Upload Avatar",
     },
     {
-      id: "18",
+      id: "17",
       link: "https://react-app-bank-code.vercel.app/",
       linkName: "Confirm Payment",
     },
     {
-      id: "19",
+      id: "18",
       link: "https://github.com/luen2003/mysql-api",
       linkName: "NodeJS MySQL API",
     },
     {
-      id: "20",
+      id: "19",
       link: "https://github.com/luen2003/php-mysql-api",
       linkName: "PHP MySQL API",
     },
     {
-      id: "21",
+      id: "20",
       link: "https://dluongta.github.io/flipbook3d.html",
       linkName: "3D Flip Book",
     },
     {
-      id: "22",
+      id: "21",
       link: "https://dluongta.github.io/text_image.html",
       linkName: "Text Image",
     },
     {
-      id: "23",
+      id: "22",
       link: "https://dluongta.github.io/voice_recording.html",
       linkName: "Voice Recording",
     },
     {
-      id: "24",
+      id: "23",
       link: "https://dluongta.github.io/video_recording.html",
       linkName: "Video Recording",
     },
     {
-      id: "25",
+      id: "24",
       link: "https://dluongta.github.io/spin_wheel.html",
       linkName: "Spin Wheel",
     },
     {
-      id: "26",
+      id: "25",
       link: "https://dluongta.github.io/vn-telex-input.html",
       linkName: "VN Telex Input",
     },
     {
-      id: "27",
+      id: "26",
       link: "https://dluongta.github.io/image-framer-studio.html",
       linkName: "Image Framer Studio",
     },
     {
-      id: "28",
+      id: "27",
       link: "https://dluongta.github.io/web_preview.html",
       linkName: "Web Preview",
     }
