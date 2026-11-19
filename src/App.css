@@ -4079,3 +4079,17 @@ body::-webkit-scrollbar {
   0% { bottom: -100%; }
   50%, 100% { bottom: 100%; }
 } */
+
+/* Căn giữa theo chiều dọc cho cả 2 cột trái và phải */
+.about .container.flex {
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+}
+
+/* Đảm bảo vòng tròn nằm chính giữa cột bên phải */
+.about .right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
