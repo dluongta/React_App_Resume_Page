@@ -4093,8 +4093,8 @@ body::-webkit-scrollbar {
 }
 
 .skill {
-  margin-top: -50px!important;
-  margin-bottom: -10px!important;
+  margin-top: -60px!important;
+  margin-bottom: 12px!important;
 }
 
 @media screen and (max-width: 768px) {
