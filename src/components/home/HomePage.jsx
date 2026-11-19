@@ -5,7 +5,6 @@ import { Home } from '../home/Home';
 import { Skill } from '../home/Skill';
 import { WrapperOne } from '../home/WrapperOne';
 import { Service } from '../home/Service';
-import { Wrapper } from '../home/Wrapper';
 import SplitFlapLog from './SplitFlapLog';
 import { CounterSection } from './CounterSection';
 
@@ -35,7 +34,6 @@ export const HomePage = () => {
       <Home className="reveal" />
       <Branding className="reveal" />
       <About className="reveal" />
-      {/* <Wrapper className="reveal" /> */}
       <Skill className="reveal" />
       <Service className="reveal" />
       <CounterSection className="reveal" />

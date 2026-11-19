@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import CircularText from "./CircularText";
 
 export const Skill = ({ className }) => { 
   const data = [
@@ -16,35 +15,6 @@ export const Skill = ({ className }) => {
         <div className="heading">
           <div className="animated-text bottomMargin-1"></div>
         </div>
-        {/* <div className="content flex-2-cols">
-
-          <div className="lef mtop">
-            {data.map((val, index) => (
-              <div key={index}>
-                <h1 className="animated-text">{val.title}</h1>
-                <p>{val.para}</p>
-                <p>{val.para1}</p>
-
-                <button className="primary-btn btn-led">
-                  Contact Me
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span className="line2"></span>
-                  <span className="line2"></span>
-                  <span className="line2"></span>
-                  <span className="line2"></span>
-                </button>
-              </div>
-            ))}
-          </div>
-
-          <div className="right">
-            <CircularText />
-          </div>
-
-        </div> */}
         <div className="timeline-section">
           <div className="timeline">
             {[
@@ -79,7 +49,6 @@ export const Skill = ({ className }) => {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );
