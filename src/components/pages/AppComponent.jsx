@@ -173,6 +173,11 @@ export const AppComponent = () => {
       id: "34",
       link: "https://github.com/luen2003/VNKey/releases/download/v1.0.0/VNKey_Installer.exe",
       linkName: "VNKey",
+    },
+    {
+      id: "35",
+      link: "https://dluongta.github.io/fruit_slash.html",
+      linkName: "Fruit Slash",
     }
   ];
   return (
