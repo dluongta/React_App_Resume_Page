@@ -4104,22 +4104,35 @@ body::-webkit-scrollbar {
   }
 }
 
-.nav-links li,
-.nav-links-sidebar li {
+.nav-links li {
     padding: 0;
     list-style: none;
-    border-radius: 2px;
-    overflow: hidden;
 }
 
-.nav-links li a,
-.nav-links-sidebar li a {
+.nav-links li a {
     display: block;
     width: 100%;
     height: 100%;
     padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.nav-links-sidebar li {
+    padding: 0;         
+    list-style: none;
+}
+
+.nav-links-sidebar li a {
+    display: block;
+    width: 100%;
+    padding: 18px 24px;
+    font-weight: 500;
     border-radius: 2px;
     text-decoration: none;
     box-sizing: border-box;
     transition: all 0.3s ease;
 }
+
