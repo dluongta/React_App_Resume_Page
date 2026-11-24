@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import logo_brand from  '../../../assets/logo.jpg';
+import logo_brand from  '../../../assets/logo-2.png';
 import { Link } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import heroImage1 from "../../assets/logo-2.jpg";
+import heroImage1 from "../../assets/logo-2.png";
 import heroImage2 from "../../assets/logo-3.png";
 import heroImage3 from "../../assets/hexagon-main.png";
 import "./Carousel.css";

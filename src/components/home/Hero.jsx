@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './Hero.css';
-import heroImage1 from '../../assets/logo-2.jpg';
+import heroImage1 from '../../assets/logo-2.png';
 import heroImage2 from '../../assets/logo-3.png';
 import heroImage3 from '../../assets/hexagon-main.png';
 

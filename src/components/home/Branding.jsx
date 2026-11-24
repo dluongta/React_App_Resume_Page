@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from 'react';
 import logo from '../../assets/logo-3.png';
 import GalaxyAnimation from './GalaxyAnimation';
-import lumindLogo from '../../assets/logo.jpg';
+import lumindLogo from '../../assets/logo-1.png';
 import Hero from './Hero';
 import CustomVideoPlayer from './CustomVideoPlayer';
 import caption_logo from '../../assets/caption_logo.vtt';
