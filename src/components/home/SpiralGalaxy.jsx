@@ -1944,9 +1944,9 @@ export default function SpiralGalaxy({ height = '680px', margin = '1.5rem 0', cl
                                     <rect x="-6" y="12" width="36" height="18" transform="rotate(-30 12 12)"></rect>
                                 </clipPath>
                             </defs>
-                            <ellipse cx="12" cy="12" rx="9.6" ry="2.7" opacity="1.0" transform="rotate(-30 12 12)"></ellipse>
-                            <circle cx="12" cy="12" r="5.7" style={{ fill: 'currentColor', stroke: 'none' }}></circle>
-                            <ellipse cx="12" cy="12" rx="9.6" ry="2.7" transform="rotate(-30 12 12)" clipPath="url(#frontClip)"></ellipse>
+                            <ellipse cx="12" cy="12" rx="9.6" ry="2.8" opacity="1.0" transform="rotate(-30 12 12)"></ellipse>
+                            <circle cx="12" cy="12" r="6.8" style={{ fill: 'currentColor', stroke: 'none' }}></circle>
+                            <ellipse cx="12" cy="12" rx="9.6" ry="2.8" transform="rotate(-30 12 12)" clipPath="url(#frontClip)"></ellipse>
                         </svg>
                     </div>
                     <div style={{ minWidth: 0, flex: 1 }}>
